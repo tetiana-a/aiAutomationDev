@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Multi-Model Joke Generation & AI Quality Selection — Project Details</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════
+   THEMES & VARIABLES
+══════════════════════════════════════ */
+:root { --tt: background .5s cubic-bezier(.4,0,.2,1), color .5s cubic-bezier(.4,0,.2,1), border-color .5s cubic-bezier(.4,0,.2,1); }
+
+[data-theme="dark"]{
+  --bg:#080808; --bg2:#101010; --bg3:#181818;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
+  --txt:#efefef; --txt2:#a0a0a0; --txt3:#555555;
+  --tag:rgba(255,255,255,.05); --hov:rgba(255,255,255,.03);
+  --accent:#3b82f6;
+}
+[data-theme="light"]{
+  --bg:#f7f7f5; --bg2:#eeeeed; --bg3:#e4e4e2;
+  --line:rgba(0,0,0,.07); --line2:rgba(0,0,0,.13);
+  --txt:#0c0c0c; --txt2:#565656; --txt3:#a0a0a0;
+  --tag:rgba(0,0,0,.04); --hov:rgba(0,0,0,.025);
+  --accent:#2563eb;
+}
+
+/* ══════════════════════════════════════
+   RESET & BASE (bigger font)
+══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Syne',sans-serif;
+  font-weight:400;
+  line-height:1.75;
+  font-size:19px;
+  overflow-x:hidden;
+  transition:var(--tt);
+  cursor:auto;
+}
+::selection{background:var(--txt);color:var(--bg)}
+a{color:inherit;text-decoration:none}
+
+/* ══════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════ */
+#cursor-dot{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--txt);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;will-change:transform}
+#cursor-ring{position:fixed;width:30px;height:30px;border-radius:50%;border:1px solid var(--txt2);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .4s cubic-bezier(.4,0,.2,1),height .4s,border-color .3s,opacity .3s;will-change:transform;opacity:.5}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}body{cursor:auto}}
+
+/* ══════════════════════════════════════
+   GRAIN
+══════════════════════════════════════ */
+body::after{
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:9990;
+  opacity:.022;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ══════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════ */
+.wrap{max-width:1000px;margin:0 auto;padding:0 40px}
+@media(max-width:900px){.wrap{padding:0 24px} body{font-size:18px}}
+@media(max-width:480px){body{font-size:17px}}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt)}
+.nav-in{max-width:1000px;margin:0 auto;padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
+.nav-links a:hover{color:var(--txt)}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+
+/* Language switcher */
+.lang-sw{display:flex;align-items:center;gap:2px;background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:3px;overflow:hidden}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:2px;transition:background .2s,color .2s}
+.lang-btn.active{background:var(--txt);color:var(--bg)}
+
+/* Theme toggle */
+.theme-tog{width:42px;height:22px;background:var(--bg3);border:1px solid var(--line2);border-radius:11px;cursor:pointer;position:relative;flex-shrink:0;transition:var(--tt)}
+.theme-tog::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--txt);top:3px;left:3px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+[data-theme="light"] .theme-tog::before{transform:translateX(20px)}
+
+/* Audio toggle */
+.audio-btn{width:30px;height:30px;background:var(--bg3);border:1px solid var(--line);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:background .2s,color .2s,border-color .2s}
+.audio-btn svg{width:14px;height:14px}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 0 60px;overflow:hidden}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .3s both}
+.eye-line{width:28px;height:1px;background:var(--txt3)}
+.eye-txt{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--txt);opacity:0;animation:fadeUp .7s .45s both}
+.hero-tagline{margin-top:15px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--txt2);opacity:0;animation:fadeUp .7s .55s both}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px;opacity:0;animation:fadeUp .7s .65s both}
+.h-tag{background:var(--tag);border:1px solid var(--line);padding:6px 12px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════
+   REVEAL
+══════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════ */
+.sec{padding:80px 0;border-top:1px solid var(--line)}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,38px);font-weight:400;letter-spacing:-.02em;line-height:1.1}
+.sec-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-top:8px;display:block}
+
+/* Text */
+.text-block p{font-size:17px;color:var(--txt2);line-height:1.8;margin-bottom:1.2em}
+.text-block strong{color:var(--txt);font-weight:600}
+.text-block ul{margin-left:20px;margin-bottom:1.2em}
+.text-block li{margin-bottom:0.5em;color:var(--txt2)}
+.text-block li::marker{color:var(--txt3);content:'— '}
+
+/* Screens */
+.screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:30px}
+.screen-card{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:border-color .3s}
+.screen-card:hover{border-color:var(--line2)}
+.screen-img{width:100%;height:220px;object-fit:cover;display:block}
+.screen-img-placeholder{
+  width:100%;height:220px;
+  background:linear-gradient(135deg,var(--bg3) 0%,var(--bg) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--txt3);font-size:12px;font-family:'JetBrains Mono',monospace;
+  text-align:center;padding:20px
+}
+.screen-caption{padding:12px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--txt3);text-align:center}
+
+/* Code Block */
+.code-block{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:20px}
+.code-header{padding:10px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.code-lang{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-transform:uppercase}
+.copy-btn{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--tag);border:1px solid var(--line);color:var(--txt2);padding:4px 10px;border-radius:2px;cursor:pointer}
+pre{padding:20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:var(--txt);white-space:pre-wrap}
+
+/* Results Grid */
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+@media(max-width:600px){.results-grid{grid-template-columns:1fr}}
+.res-box{padding:20px;background:var(--bg2);border:1px solid var(--line);border-radius:3px}
+.res-box-title{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.res-list{list-style:none}
+.res-list li{font-size:13px;color:var(--txt2);margin-bottom:6px;padding-left:12px;position:relative}
+.res-list li::before{content:'';position:absolute;left:0;top:7px;width:4px;height:4px;background:var(--txt3);border-radius:50%}
+
+/* Download CTA */
+.download-cta{margin-top:50px;padding:30px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--txt);color:var(--bg);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:3px;border:none;cursor:pointer;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-primary svg{width:14px;height:14px}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center}
+.footer-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);transition:color .2s}
+.footer-link:hover{color:var(--txt)}
+
+a,button{cursor:pointer}
+</style>
+</head>
+
+<body>
+<!-- Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+    <nav class="nav-links">
+      <a href="index.html" data-i18n="nav_back">Back to Portfolio</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-sw" id="langSw">
+        <button class="lang-btn active" data-lang-btn="en">EN</button>
+        <button class="lang-btn" data-lang-btn="uk">UA</button>
+        <button class="lang-btn" data-lang-btn="cs">CZ</button>
+      </div>
+      <button class="theme-tog" id="themeBtn" aria-label="Toggle theme"></button>
+      <button class="audio-btn" id="audioBtn" aria-label="Play Music">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eye-line"></div>
+        <div class="eye-txt" data-i18n="hero_type">AI Automation System</div>
+      </div>
+
+      <h1 class="hero-title" data-i18n="hero_title">Multi-Model Joke Generation & AI Quality Selection</h1>
+      <div class="hero-tagline" data-i18n="hero_tagline">A multi-agent orchestration pattern: 3× GPT-5-mini generation → GPT-5 judge scoring → best output selection.</div>
+
+      <div class="hero-tags">
+        <span class="h-tag">n8n</span>
+        <span class="h-tag">OpenAI</span>
+        <span class="h-tag">GPT-5-mini</span>
+        <span class="h-tag">GPT-5</span>
+        <span class="h-tag">Merge (Append)</span>
+        <span class="h-tag">AI-as-Judge</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT & PROBLEM -->
+<section class="sec">
+  <div class="wrap">
+    <div class="text-block rv">
+      <h2 class="sec-title" data-i18n="context_title">Context & Problem</h2>
+      <span class="sec-sub" data-i18n="context_sub">Why multi-model evaluation</span>
+
+      <p data-i18n="context_p1">
+        Large Language Models can generate creative content, but quality varies. If you rely on a single output, results are inconsistent.
+      </p>
+
+      <p data-i18n="context_p2">
+        <strong>Problem:</strong> No ranking layer, no validation, and no structured evaluation logic. A single model can produce weak jokes,
+        even with a good prompt.
+      </p>
+
+      <p><strong data-i18n="goal_title">Goal:</strong>
+        <span data-i18n="goal_text">
+          Generate 3 jokes using a lightweight model (GPT-5-mini), then use a stronger model (GPT-5) to score (1–10) and select the best one.
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="impl_title">Implementation</h2>
+      <span class="sec-sub" data-i18n="impl_sub">Workflow orchestration</span>
+
+      <div class="text-block">
+        <p data-i18n="impl_desc">
+          Implemented a multi-step orchestration workflow in n8n:
+          Manual Trigger → 3 parallel GPT-5-mini nodes → Merge (append) → Merge (final) → GPT-5 judge with structured result.
+        </p>
+        <ul>
+          <li data-i18n="impl_li1"><strong>Generation layer:</strong> 3 parallel prompts, each returns output_text</li>
+          <li data-i18n="impl_li2"><strong>Aggregation layer:</strong> Merge (append) ensures exactly 3 items reach the judge</li>
+          <li data-i18n="impl_li3"><strong>Evaluation layer:</strong> GPT-5 scores each joke and selects best #N with reason</li>
+          <li data-i18n="impl_li4"><strong>Pattern:</strong> self-consistency sampling + AI-as-judge</li>
+        </ul>
+      </div>
+
+      <!-- ✅ SCREENSHOT #1: Overall architecture in n8n -->
+      <!-- PUT YOUR IMAGE HERE: assets/screens/jokes-1-architecture.png -->
+      <div class="screens-grid">
+        <figure class="screen-card">
+          <img class="screen-img"
+               src="assets/screens/jokes-1-architecture.png"
+               alt="Manual Trigger → 3× GPT-5-mini → Merge → Merge → GPT-5 Judge"
+               onerror="this.remove(); this.parentElement.querySelector('.screen-img-placeholder').style.display='flex';" />
+          <div class="screen-img-placeholder" style="display:none">
+            Architecture:<br>Manual Trigger → 3× GPT-5-mini → Merge → GPT-5 Judge
+          </div>
+          <figcaption class="screen-caption" data-i18n="scr_1_cap">Fig 1. Multi-model orchestration workflow in n8n</figcaption>
+        </figure>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">GPT-5-mini Prompt (Generator)</span>
+          <button class="copy-btn" onclick="copyCode(this, 'genPrompt')">COPY</button>
+        </div>
+        <pre id="genPrompt">Generate 1 short joke (max 5 sentences).
+Make it genuinely funny, unexpected, and playful.
+Clean and safe.
+
+Output ONLY the joke text.</pre>
+      </div>
+
+      <!-- ✅ SCREENSHOT #2: 3 parallel generator nodes -->
+      <!-- PUT YOUR IMAGE HERE: assets/screens/jokes-2-generators.png -->
+      <div class="screens-grid">
+        <figure class="screen-card">
+          <img class="screen-img"
+               src="assets/screens/jokes-2-generators.png"
+               alt="Parallel GPT-5-mini generator nodes"
+               onerror="this.remove(); this.parentElement.querySelector('.screen-img-placeholder').style.display='flex';" />
+          <div class="screen-img-placeholder" style="display:none">
+            Parallel GPT-5-mini nodes:<br>Generate / Generate 1 / Generate 3
+          </div>
+          <figcaption class="screen-caption" data-i18n="scr_2_cap">Fig 2. Parallel GPT-5-mini joke generation nodes</figcaption>
+        </figure>
+      </div>
+
+      <!-- Aggregation -->
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">Expected items after Merge</span>
+          <button class="copy-btn" onclick="copyCode(this, 'mergeOut')">COPY</button>
+        </div>
+        <pre id="mergeOut">[
+  { "output_text": "Joke #1..." },
+  { "output_text": "Joke #2..." },
+  { "output_text": "Joke #3..." }
+]</pre>
+      </div>
+
+      <!-- ✅ SCREENSHOT #3: Merge nodes -->
+      <!-- PUT YOUR IMAGE HERE: assets/screens/jokes-3-merge.png -->
+      <div class="screens-grid">
+        <figure class="screen-card">
+          <img class="screen-img"
+               src="assets/screens/jokes-3-merge.png"
+               alt="Merge (append) + Merge final consolidation"
+               onerror="this.remove(); this.parentElement.querySelector('.screen-img-placeholder').style.display='flex';" />
+          <div class="screen-img-placeholder" style="display:none">
+            Aggregation layer:<br>Merge (append) → Merge1 (final)
+          </div>
+          <figcaption class="screen-caption" data-i18n="scr_3_cap">Fig 3. Aggregation layer using Merge nodes</figcaption>
+        </figure>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">GPT-5 Judge Prompt</span>
+          <button class="copy-btn" onclick="copyCode(this, 'judgePrompt')">COPY</button>
+        </div>
+        <pre id="judgePrompt">You will receive 3 items.
+Each item contains one joke in field "output_text".
+
+Score each joke 1–10.
+Pick the best one.
+
+Return structured result:
+
+Joke 1 (score X/10)
+Joke 2 (score X/10)
+Joke 3 (score X/10)
+
+Best joke: #N
+Reason: short explanation</pre>
+      </div>
+
+      <!-- ✅ SCREENSHOT #4: Judge node and output -->
+      <!-- PUT YOUR IMAGE HERE: assets/screens/jokes-4-judge.png -->
+      <div class="screens-grid">
+        <figure class="screen-card">
+          <img class="screen-img"
+               src="assets/screens/jokes-4-judge.png"
+               alt="GPT-5 judge scoring and selection output"
+               onerror="this.remove(); this.parentElement.querySelector('.screen-img-placeholder').style.display='flex';" />
+          <div class="screen-img-placeholder" style="display:none">
+            Evaluation layer:<br>GPT-5 scores and selects best joke
+          </div>
+          <figcaption class="screen-caption" data-i18n="scr_4_cap">Fig 4. GPT-5 evaluation and structured selection output</figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OUTPUT & RESULTS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="output_title">Results & Impact</h2>
+      <span class="sec-sub" data-i18n="output_sub">What this pattern enables</span>
+
+      <div class="results-grid">
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_quant">Technical</div>
+          <ul class="res-list">
+            <li data-i18n="r_t1">Multi-agent orchestration</li>
+            <li data-i18n="r_t2">Parallel LLM execution</li>
+            <li data-i18n="r_t3">Structured evaluation output</li>
+            <li data-i18n="r_t4">Deterministic formatting</li>
+          </ul>
+        </div>
+
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_arch">Architectural Pattern</div>
+          <ul class="res-list">
+            <li data-i18n="r_a1">Self-consistency sampling</li>
+            <li data-i18n="r_a2">LLM ensemble evaluation</li>
+            <li data-i18n="r_a3">AI-as-judge selection</li>
+          </ul>
+        </div>
+
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_biz">Business Use Cases</div>
+          <ul class="res-list">
+            <li data-i18n="r_b1">Marketing copy A/B selection</li>
+            <li data-i18n="r_b2">Ad headline testing</li>
+            <li data-i18n="r_b3">Email subject optimization</li>
+            <li data-i18n="r_b4">Content quality scoring</li>
+            <li data-i18n="r_b5">Moderation pipelines</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="sec">
+  <div class="wrap">
+    <div class="download-cta rv">
+      <h3 class="sec-title" data-i18n="dl_title">Export Workflow</h3>
+      <p data-i18n="dl_desc">Download the n8n workflow JSON export and import it directly into your n8n instance.</p>
+
+      <!-- OPTION A: demo download via JS -->
+      <button class="btn-primary" onclick="downloadJSON()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span data-i18n="dl_btn">Download JSON</span>
+      </button>
+
+      <!-- OPTION B (best): real file download -->
+      <!-- Put file: exports/jokes-generator.json -->
+      <!-- <a class="btn-primary" href="exports/jokes-generator.json" download>Download JSON</a> -->
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="footer-link" data-i18n="footer_link">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ════════════════════════════════════════
+   i18n
+════════════════════════════════════════ */
+const i18n = {
+  en:{
+    nav_back:"Back to Portfolio",
+
+    hero_type:"AI Automation System",
+    hero_title:"Multi-Model Joke Generation & AI Quality Selection",
+    hero_tagline:"A multi-agent orchestration pattern: 3× GPT-5-mini generation → GPT-5 judge scoring → best output selection.",
+
+    context_title:"Context & Problem",
+    context_sub:"Why multi-model evaluation",
+    context_p1:"Large Language Models can generate creative content, but quality varies. If you rely on a single output, results are inconsistent.",
+    context_p2:"<strong>Problem:</strong> No ranking layer, no validation, and no structured evaluation logic. A single model can produce weak jokes, even with a good prompt.",
+    goal_title:"Goal:",
+    goal_text:"Generate 3 jokes using a lightweight model (GPT-5-mini), then use a stronger model (GPT-5) to score (1–10) and select the best one.",
+
+    impl_title:"Implementation",
+    impl_sub:"Workflow orchestration",
+    impl_desc:"Implemented a multi-step orchestration workflow in n8n: Manual Trigger → 3 parallel GPT-5-mini nodes → Merge (append) → Merge (final) → GPT-5 judge with structured result.",
+    impl_li1:"<strong>Generation layer:</strong> 3 parallel prompts, each returns output_text",
+    impl_li2:"<strong>Aggregation layer:</strong> Merge (append) ensures exactly 3 items reach the judge",
+    impl_li3:"<strong>Evaluation layer:</strong> GPT-5 scores each joke and selects best #N with reason",
+    impl_li4:"<strong>Pattern:</strong> self-consistency sampling + AI-as-judge",
+
+    scr_1_cap:"Fig 1. Multi-model orchestration workflow in n8n",
+    scr_2_cap:"Fig 2. Parallel GPT-5-mini joke generation nodes",
+    scr_3_cap:"Fig 3. Aggregation layer using Merge nodes",
+    scr_4_cap:"Fig 4. GPT-5 evaluation and structured selection output",
+
+    output_title:"Results & Impact",
+    output_sub:"What this pattern enables",
+    res_quant:"Technical",
+    r_t1:"Multi-agent orchestration",
+    r_t2:"Parallel LLM execution",
+    r_t3:"Structured evaluation output",
+    r_t4:"Deterministic formatting",
+
+    res_arch:"Architectural Pattern",
+    r_a1:"Self-consistency sampling",
+    r_a2:"LLM ensemble evaluation",
+    r_a3:"AI-as-judge selection",
+
+    res_biz:"Business Use Cases",
+    r_b1:"Marketing copy A/B selection",
+    r_b2:"Ad headline testing",
+    r_b3:"Email subject optimization",
+    r_b4:"Content quality scoring",
+    r_b5:"Moderation pipelines",
+
+    dl_title:"Export Workflow",
+    dl_desc:"Download the n8n workflow JSON export and import it directly into your n8n instance.",
+    dl_btn:"Download JSON",
+    footer_link:"← Back to Portfolio"
+  },
+
+  uk:{
+    nav_back:"Назад до портфоліо",
+
+    hero_type:"Система AI Автоматизації",
+    hero_title:"Генерація анекдотів + оцінка якості (Multi-Model)",
+    hero_tagline:"Патерн multi-agent: 3× GPT-5-mini генерує → GPT-5 оцінює (1–10) → вибирає найкращий результат.",
+
+    context_title:"Контекст та Проблема",
+    context_sub:"Чому потрібна оцінка",
+    context_p1:"LLM можуть генерувати креативний контент, але якість сильно коливається. Один результат = нестабільна якість.",
+    context_p2:"<strong>Проблема:</strong> Немає ранжування, валідації та структурної логіки оцінки. Один LLM може видати слабкий анекдот навіть з нормальним промптом.",
+    goal_title:"Мета:",
+    goal_text:"Згенерувати 3 анекдоти через легкий модель (GPT-5-mini), потім сильнішою (GPT-5) оцінити (1–10) і вибрати найкращий.",
+
+    impl_title:"Реалізація",
+    impl_sub:"Оркестрація workflow",
+    impl_desc:"Реалізовано multi-step workflow в n8n: Manual Trigger → 3 паралельні GPT-5-mini → Merge (append) → Merge (final) → GPT-5 judge зі структурованим результатом.",
+    impl_li1:"<strong>Generation layer:</strong> 3 паралельні промпти, кожен повертає output_text",
+    impl_li2:"<strong>Aggregation layer:</strong> Merge (append) гарантує рівно 3 items для judge",
+    impl_li3:"<strong>Evaluation layer:</strong> GPT-5 ставить оцінки та обирає Best joke #N + причина",
+    impl_li4:"<strong>Патерн:</strong> self-consistency sampling + AI-as-judge",
+
+    scr_1_cap:"Рис. 1. Multi-model orchestration workflow в n8n",
+    scr_2_cap:"Рис. 2. Паралельні GPT-5-mini генератори анекдотів",
+    scr_3_cap:"Рис. 3. Aggregation layer на Merge nodes",
+    scr_4_cap:"Рис. 4. GPT-5 оцінка та вибір найкращого анекдота",
+
+    output_title:"Результати та Вплив",
+    output_sub:"Що дає цей патерн",
+    res_quant:"Технічно",
+    r_t1:"Multi-agent оркестрація",
+    r_t2:"Паралельне виконання LLM",
+    r_t3:"Структурований output оцінки",
+    r_t4:"Детерміноване форматування",
+
+    res_arch:"Архітектурний патерн",
+    r_a1:"Self-consistency sampling",
+    r_a2:"LLM ensemble evaluation",
+    r_a3:"AI-as-judge selection",
+
+    res_biz:"Бізнес-застосування",
+    r_b1:"Вибір маркетинг-копірайту",
+    r_b2:"Тест заголовків реклами",
+    r_b3:"Оптимізація email subject",
+    r_b4:"Оцінка якості контенту",
+    r_b5:"Модерація / scoring пайплайни",
+
+    dl_title:"Експорт Workflow",
+    dl_desc:"Завантаж JSON-експорт workflow і імпортуй у свій n8n.",
+    dl_btn:"Завантажити JSON",
+    footer_link:"← Назад до портфоліо"
+  },
+
+  cs:{
+    nav_back:"Zpět na portfólio",
+
+    hero_type:"Systém AI automatizace",
+    hero_title:"Generování vtipů + výběr kvality (Multi-Model)",
+    hero_tagline:"Multi-agent pattern: 3× GPT-5-mini generuje → GPT-5 hodnotí (1–10) → vybere nejlepší výstup.",
+
+    context_title:"Kontext a problém",
+    context_sub:"Proč je potřeba hodnocení",
+    context_p1:"LLM umí generovat kreativní obsah, ale kvalita se liší. Jeden výstup = nestabilní kvalita.",
+    context_p2:"<strong>Problém:</strong> Chybí ranking, validace a strukturovaná logika hodnocení. Jeden model může vyprodukovat slabý vtip i s dobrým promptem.",
+    goal_title:"Cíl:",
+    goal_text:"Vygenerovat 3 vtipy pomocí lehkého modelu (GPT-5-mini), poté je silnějším (GPT-5) ohodnotit (1–10) a vybrat nejlepší.",
+
+    impl_title:"Implementace",
+    impl_sub:"Orchestrace workflow",
+    impl_desc:"V n8n je implementován multi-step workflow: Manual Trigger → 3 paralelní GPT-5-mini → Merge (append) → Merge (final) → GPT-5 judge se strukturovaným výsledkem.",
+    impl_li1:"<strong>Generation layer:</strong> 3 paralelní prompty, každý vrací output_text",
+    impl_li2:"<strong>Aggregation layer:</strong> Merge (append) zajistí přesně 3 položky pro judge",
+    impl_li3:"<strong>Evaluation layer:</strong> GPT-5 ohodnotí a vybere Best joke #N + důvod",
+    impl_li4:"<strong>Pattern:</strong> self-consistency sampling + AI-as-judge",
+
+    scr_1_cap:"Obr. 1. Multi-model orchestration workflow v n8n",
+    scr_2_cap:"Obr. 2. Paralelní GPT-5-mini generátory vtipů",
+    scr_3_cap:"Obr. 3. Agregace pomocí Merge nodes",
+    scr_4_cap:"Obr. 4. GPT-5 hodnocení a výběr nejlepšího vtipu",
+
+    output_title:"Výsledky a dopad",
+    output_sub:"Co tento pattern umožňuje",
+    res_quant:"Technické",
+    r_t1:"Multi-agent orchestrace",
+    r_t2:"Paralelní běh LLM",
+    r_t3:"Strukturovaný výstup hodnocení",
+    r_t4:"Deterministické formátování",
+
+    res_arch:"Architektonický pattern",
+    r_a1:"Self-consistency sampling",
+    r_a2:"LLM ensemble evaluation",
+    r_a3:"AI-as-judge selection",
+
+    res_biz:"Business use-cases",
+    r_b1:"Výběr marketingového copy",
+    r_b2:"Testování reklamních headline",
+    r_b3:"Optimalizace email subject",
+    r_b4:"Scoring kvality obsahu",
+    r_b5:"Moderace pipeline",
+
+    dl_title:"Export workflow",
+    dl_desc:"Stáhni JSON export workflow a importuj ho do n8n.",
+    dl_btn:"Stáhnout JSON",
+    footer_link:"← Zpět na portfólio"
+  }
+};
+
+/* Cursor */
+(function(){
+  if(!window.matchMedia('(hover:hover)').matches) return;
+  const dot=document.getElementById('cursor-dot');
+  const ring=document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  },{passive:true});
+
+  function lerpRing(){
+    rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(lerpRing);
+  }
+  lerpRing();
+
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.opacity='1'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px';ring.style.opacity='.5'});
+  });
+})();
+
+/* Theme toggle */
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const h=document.documentElement;
+  h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark');
+});
+
+/* Audio toggle */
+const audioBtn=document.getElementById('audioBtn');
+const bgMusic=document.getElementById('bgMusic');
+let isPlaying=false;
+audioBtn.addEventListener('click',()=>{
+  if(isPlaying){
+    bgMusic.pause();
+    audioBtn.style.background='';
+    audioBtn.style.borderColor='';
+    audioBtn.style.color='';
+  }else{
+    bgMusic.play().catch(()=>{});
+    audioBtn.style.background='var(--txt)';
+    audioBtn.style.borderColor='var(--txt)';
+    audioBtn.style.color='var(--bg)';
+  }
+  isPlaying=!isPlaying;
+});
+
+/* Language system */
+function applyLang(lang){
+  const t=i18n[lang];
+  document.documentElement.setAttribute('data-lang',lang);
+  document.documentElement.setAttribute('lang',lang==='uk'?'uk':lang==='cs'?'cs':'en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(t[key]!==undefined) el.innerHTML=t[key];
+  });
+  document.querySelectorAll('[data-lang-btn]').forEach(b=>{
+    b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang);
+  });
+}
+document.getElementById('langSw').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-lang-btn]');
+  if(btn) applyLang(btn.getAttribute('data-lang-btn'));
+});
+applyLang('en');
+
+/* Reveal */
+const rvObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      rvObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv').forEach(el=>rvObserver.observe(el));
+
+/* Copy */
+function copyCode(btn, id){
+  const code=document.getElementById(id).innerText;
+  navigator.clipboard.writeText(code).then(()=>{
+    const orig=btn.innerText;
+    btn.innerText='COPIED!';
+    setTimeout(()=>btn.innerText=orig,1200);
+  });
+}
+
+/* Download JSON (demo placeholder)
+   ✅ Best: replace with real file link: exports/jokes-generator.json
+*/
+function downloadJSON(){
+  const workflow={
+    name:"Jokes Generator (Multi-Model + Judge)",
+    description:"3× GPT-5-mini generate jokes, merge items, GPT-5 judges and selects best.",
+    nodes:[
+      {name:"Manual Trigger", type:"n8n-nodes-base.manualTrigger", position:[200,300]},
+      {name:"Generate", type:"n8n-nodes-base.openAi", model:"gpt-5-mini", position:[420,200]},
+      {name:"Generate 1", type:"n8n-nodes-base.openAi", model:"gpt-5-mini", position:[420,300]},
+      {name:"Generate 3", type:"n8n-nodes-base.openAi", model:"gpt-5-mini", position:[420,400]},
+      {name:"Merge (Append)", type:"n8n-nodes-base.merge", mode:"append", position:[650,300]},
+      {name:"Merge1 (Final)", type:"n8n-nodes-base.merge", mode:"append", position:[820,300]},
+      {name:"GPT-5 Judge", type:"n8n-nodes-base.openAi", model:"gpt-5", position:[1020,300]}
+    ],
+    expected_output:{
+      format:[
+        "Joke 1 (score X/10)",
+        "Joke 2 (score X/10)",
+        "Joke 3 (score X/10)",
+        "Best joke: #N",
+        "Reason: short explanation"
+      ]
+    },
+    note:"This is a demo export placeholder. Replace with your real n8n JSON export."
+  };
+
+  const dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(workflow,null,2));
+  const a=document.createElement('a');
+  a.setAttribute("href",dataStr);
+  a.setAttribute("download","jokes-generator.json");
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+</script>
+</body>
+</html>

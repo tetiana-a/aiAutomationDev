@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Weather Report — Project Details</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════
+   THEMES & VARIABLES
+══════════════════════════════════════ */
+:root { --tt: background .5s cubic-bezier(.4,0,.2,1), color .5s cubic-bezier(.4,0,.2,1), border-color .5s cubic-bezier(.4,0,.2,1); }
+[data-theme="dark"] {
+  --bg:#080808; --bg2:#101010; --bg3:#181818;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
+  --txt:#efefef; --txt2:#a0a0a0; --txt3:#555555;
+  --tag:rgba(255,255,255,.05); --hov:rgba(255,255,255,.03);
+  --accent:#3b82f6;
+}
+[data-theme="light"] {
+  --bg:#f7f7f5; --bg2:#eeeeed; --bg3:#e4e4e2;
+  --line:rgba(0,0,0,.07); --line2:rgba(0,0,0,.13);
+  --txt:#0c0c0c; --txt2:#565656; --txt3:#a0a0a0;
+  --tag:rgba(0,0,0,.04); --hov:rgba(0,0,0,.025);
+  --accent:#2563eb;
+}
+
+/* ══════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Syne',sans-serif;
+  font-weight:400;
+  line-height:1.75;
+  font-size:19px;
+  overflow-x:hidden;
+  transition:var(--tt);
+  cursor:auto;
+}
+::selection{background:var(--txt);color:var(--bg)}
+a{color:inherit;text-decoration:none}
+
+/* ══════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════ */
+#cursor-dot{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--txt);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;will-change:transform}
+#cursor-ring{position:fixed;width:30px;height:30px;border-radius:50%;border:1px solid var(--txt2);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .4s cubic-bezier(.4,0,.2,1),height .4s,border-color .3s,opacity .3s;will-change:transform;opacity:.5}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}body{cursor:auto}}
+
+/* ══════════════════════════════════════
+   GRAIN
+══════════════════════════════════════ */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ══════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════ */
+.wrap{max-width:1000px;margin:0 auto;padding:0 40px}
+@media(max-width:900px){.wrap{padding:0 24px}}
+@media(max-width:480px){body{font-size:17px}}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt)}
+.nav-in{max-width:1000px;margin:0 auto;padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
+.nav-links a:hover{color:var(--txt)}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+
+/* Language switcher */
+.lang-sw{display:flex;align-items:center;gap:2px;background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:3px;overflow:hidden}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:2px;transition:background .2s,color .2s}
+.lang-btn.active{background:var(--txt);color:var(--bg)}
+
+/* Theme toggle */
+.theme-tog{width:42px;height:22px;background:var(--bg3);border:1px solid var(--line2);border-radius:11px;cursor:pointer;position:relative;flex-shrink:0;transition:var(--tt)}
+.theme-tog::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--txt);top:3px;left:3px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+[data-theme="light"] .theme-tog::before{transform:translateX(20px)}
+
+/* Audio toggle */
+.audio-btn{width:30px;height:30px;background:var(--bg3);border:1px solid var(--line);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:background .2s}
+.audio-btn svg{width:14px;height:14px}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 0 60px;overflow:hidden}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .3s both}
+.eye-line{width:28px;height:1px;background:var(--txt3)}
+.eye-txt{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--txt);opacity:0;animation:fadeUp .7s .45s both}
+.hero-tagline{margin-top:15px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--txt2);opacity:0;animation:fadeUp .7s .55s both}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px;opacity:0;animation:fadeUp .7s .65s both}
+.h-tag{background:var(--tag);border:1px solid var(--line);padding:6px 12px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════
+   REVEAL SYSTEM
+══════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════════════
+   SECTION BASE
+══════════════════════════════════════ */
+.sec{padding:80px 0;border-top:1px solid var(--line)}
+.sec-head{margin-bottom:40px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,38px);font-weight:400;letter-spacing:-.02em;line-height:1.1}
+.sec-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-top:8px;display:block}
+
+/* ══════════════════════════════════════
+   CONTENT BLOCKS
+══════════════════════════════════════ */
+.text-block p{font-size:17px;color:var(--txt2);line-height:1.8;margin-bottom:1.2em}
+.text-block strong{color:var(--txt);font-weight:600}
+.text-block ul{margin-left:20px;margin-bottom:1.2em}
+.text-block li{margin-bottom:0.5em;color:var(--txt2)}
+
+/* Screenshots */
+.screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:30px}
+.screen-card{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:border-color .3s}
+.screen-card:hover{border-color:var(--line2)}
+.screen-img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  display:block;
+}
+.screen-img-placeholder{
+  width:100%;
+  height:220px;
+  background:linear-gradient(135deg, var(--bg3) 0%, var(--bg) 100%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--txt3);
+  font-size:12px;
+  font-family:'JetBrains Mono',monospace;
+  text-align:center;
+  padding:20px
+}
+.screen-caption{padding:12px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--txt3);text-align:center}
+
+/* Code Block */
+.code-block{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:20px}
+.code-header{padding:10px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.code-lang{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-transform:uppercase}
+.copy-btn{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--tag);border:1px solid var(--line);color:var(--txt2);padding:4px 10px;border-radius:2px;cursor:pointer}
+pre{padding:20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:var(--txt);white-space:pre-wrap}
+
+/* Download Button */
+.download-cta{margin-top:50px;padding:30px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--txt);color:var(--bg);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:3px;border:none;cursor:pointer;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-primary svg{width:14px;height:14px}
+
+/* Results Grid */
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+@media(max-width:600px){.results-grid{grid-template-columns:1fr}}
+.res-box{padding:20px;background:var(--bg2);border:1px solid var(--line);border-radius:3px}
+.res-box-title{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.res-list{list-style:none}
+.res-list li{font-size:13px;color:var(--txt2);margin-bottom:6px;padding-left:12px;position:relative}
+.res-list li::before{content:'';position:absolute;left:0;top:7px;width:4px;height:4px;background:var(--txt3);border-radius:50%}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center}
+.footer-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);transition:color .2s}
+.footer-link:hover{color:var(--txt)}
+
+a,button{cursor:pointer}
+</style>
+</head>
+
+<body>
+
+<!-- Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+
+    <nav class="nav-links">
+      <a href="index.html" data-i18n="nav_back">Back to Portfolio</a>
+    </nav>
+
+    <div class="nav-right">
+      <div class="lang-sw" id="langSw">
+        <button class="lang-btn active" data-lang-btn="en">EN</button>
+        <button class="lang-btn" data-lang-btn="uk">UA</button>
+        <button class="lang-btn" data-lang-btn="cs">CZ</button>
+      </div>
+
+      <button class="theme-tog" id="themeBtn" aria-label="Toggle theme"></button>
+
+      <button class="audio-btn" id="audioBtn" aria-label="Play Music">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eye-line"></div>
+        <div class="eye-txt" data-i18n="hero_type">AI Reporting System</div>
+      </div>
+
+      <h1 class="hero-title" data-i18n="hero_title">Daily Weather Kyiv + Brno → Telegram</h1>
+      <div class="hero-tagline" data-i18n="hero_tagline">An automated weather reporting workflow that retrieves data, formats it with AI, and sends daily updates to Telegram.</div>
+
+      <div class="hero-tags">
+        <span class="h-tag">n8n</span>
+        <span class="h-tag">OpenWeatherMap</span>
+        <span class="h-tag">LLM (GPT-4o)</span>
+        <span class="h-tag">Telegram API</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROBLEM & GOAL ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="text-block rv">
+      <h2 class="sec-title" data-i18n="context_title">Context & Problem</h2>
+      <span class="sec-sub">Business Case</span>
+
+      <p data-i18n="context_p1">
+        Users want daily weather updates with clean, readable formatting, automated delivery, and support for multiple cities without manual checks.
+      </p>
+
+      <p data-i18n="context_p2">
+        <strong>The Challenge:</strong> Raw API responses are not user-friendly. Static templates are rigid. The system needed to generate dynamic, human-like weather reports automatically for multiple cities.
+      </p>
+
+      <p><strong data-i18n="goal_title">Goal:</strong>
+        <span data-i18n="goal_text">Build an automated system that runs daily, fetches weather data for Kyiv and Brno, formats the text using an LLM, and sends a structured message to Telegram.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ IMPLEMENTATION ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="impl_title">Implementation</h2>
+      <span class="sec-sub">Architecture & Logic</span>
+
+      <div class="text-block">
+        <p data-i18n="impl_desc">
+          The workflow is built in n8n. It triggers daily via Cron, creates city items, merges them, and uses the <strong>Split in Batches</strong> node to process each city sequentially. It fetches data from OpenWeatherMap, passes raw JSON to GPT-4o Mini for formatting, and sends the result via Telegram.
+        </p>
+      </div>
+
+      <!-- =========================================================
+           ✅ INSERT SCREENSHOT #1 HERE
+           1) Put image in: assets/screens/weather-1.png
+           Shows: Full workflow canvas with loop structure
+      ========================================================== -->
+      <div class="screens-grid">
+        <figure class="screen-card">
+          <img class="screen-img"
+               src="assets/screens/weather-1.png"
+               alt="Workflow: Cron -> Split in Batches -> Weather API -> LLM"
+               onerror="this.remove(); this.parentElement.querySelector('.screen-img-placeholder').style.display='flex';" />
+          <div class="screen-img-placeholder" style="display:none">
+            Workflow Canvas:<br>Cron → Loop → API → AI → Telegram
+          </div>
+          <figcaption class="screen-caption" data-i18n="scr_1_cap">Fig 1. n8n Workflow with batch processing logic</figcaption>
+        </figure>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">Prompt / LLM Node</span>
+          <button class="copy-btn" onclick="copyCode(this)">COPY</button>
+        </div>
+
+        <pre id="codeContent">// LLM Prompt Structure
+You are a weather assistant.
+Generate a concise, friendly weather report for the city.
+
+Input Data:
+- City: {{$json.city}}
+- Temp: {{$json.main.temp}}°C
+- Feels like: {{$json.main.feels_like}}°C
+- Wind: {{$json.wind.speed}} m/s
+- Humidity: {{$json.main.humidity}}%
+- Description: {{$json.weather[0].description}}
+
+Output Format:
+City Emoji + Name
+Temperature line
+Weather description
+Advice (e.g., "Take an umbrella" if rain).</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OUTPUT & RESULTS ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="output_title">Output & Results</h2>
+      <span class="sec-sub">Real Production Output</span>
+
+      <!-- =========================================================
+           ✅ INSERT SCREENSHOT #2 HERE
+           Put image in: assets/screens/weather-2.png
+           Shows: Real Telegram message generated by AI
+      ========================================================== -->
+      <div class="screens-grid">
+        <figure class="screen-card">
+          <img class="screen-img"
+               src="assets/screens/weather-2.png"
+               alt="Telegram Message: Formatted Weather Report"
+               onerror="this.remove(); this.parentElement.querySelector('.screen-img-placeholder').style.display='flex';" />
+          <div class="screen-img-placeholder" style="display:none">
+            Telegram Output:<br>Formatted AI Weather Message
+          </div>
+          <figcaption class="screen-caption" data-i18n="scr_2_cap">Fig 2. AI-generated weather message received in Telegram</figcaption>
+        </figure>
+      </div>
+
+      <div class="results-grid">
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_quant">Quantitative</div>
+          <ul class="res-list">
+            <li data-i18n="r_q1">Daily automation (08:30)</li>
+            <li data-i18n="r_q2">2 cities processed</li>
+            <li data-i18n="r_q3">AI formatting (<3s)</li>
+          </ul>
+        </div>
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_qual">Qualitative</div>
+          <ul class="res-list">
+            <li data-i18n="r_ql1">Human-like text output</li>
+            <li data-i18n="r_ql2">Stable loop architecture</li>
+            <li data-i18n="r_ql3">Clean formatting</li>
+          </ul>
+        </div>
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_biz">Business Value</div>
+          <ul class="res-list">
+            <li data-i18n="r_b1">Scalable notification engine</li>
+            <li data-i18n="r_b2">Travel & Logistics use cases</li>
+            <li data-i18n="r_b3">Zero manual reporting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DOWNLOAD ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="download-cta rv">
+      <h3 class="sec-title" data-i18n="dl_title">Export Workflow</h3>
+      <p data-i18n="dl_desc">Download the ready-to-use n8n workflow JSON file. Import it directly into your n8n instance.</p>
+      <button class="btn-primary" onclick="downloadJSON()">
+        <span data-i18n="dl_btn">Download JSON</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="footer-link" data-i18n="footer_link">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<audio id="bgMusic" loop>
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ════════════════════════════════════════
+   TRANSLATIONS
+════════════════════════════════════════ */
+const i18n = {
+  en: {
+    nav_back: 'Back to Portfolio',
+    hero_type: 'AI Reporting System',
+    hero_title: 'Daily Weather Kyiv + Brno → Telegram',
+    hero_tagline: 'An automated weather reporting workflow that retrieves data, formats it with AI, and sends daily updates to Telegram.',
+    context_title: 'Context & Problem',
+    context_p1: 'Users want daily weather updates with clean, readable formatting, automated delivery, and support for multiple cities without manual checks.',
+    context_p2: '<strong>The Challenge:</strong> Raw API responses are not user-friendly. Static templates are rigid. The system needed to generate dynamic, human-like weather reports automatically for multiple cities.',
+    goal_title: 'Goal:',
+    goal_text: 'Build an automated system that runs daily, fetches weather data for Kyiv and Brno, formats the text using an LLM, and sends a structured message to Telegram.',
+    impl_title: 'Implementation',
+    impl_desc: 'The workflow is built in n8n. It triggers daily via Cron, creates city items, merges them, and uses the <strong>Split in Batches</strong> node to process each city sequentially. It fetches data from OpenWeatherMap, passes raw JSON to GPT-4o Mini for formatting, and sends the result via Telegram.',
+    scr_1_cap: 'Fig 1. n8n Workflow with batch processing logic',
+    output_title: 'Output & Results',
+    scr_2_cap: 'Fig 2. AI-generated weather message received in Telegram',
+    res_quant: 'Quantitative',
+    r_q1: 'Daily automation (08:30)',
+    r_q2: '2 cities processed',
+    r_q3: 'AI formatting (<3s)',
+    res_qual: 'Qualitative',
+    r_ql1: 'Human-like text output',
+    r_ql2: 'Stable loop architecture',
+    r_ql3: 'Clean formatting',
+    res_biz: 'Business Value',
+    r_b1: 'Scalable notification engine',
+    r_b2: 'Travel & Logistics use cases',
+    r_b3: 'Zero manual reporting',
+    dl_title: 'Export Workflow',
+    dl_desc: 'Download the ready-to-use n8n workflow JSON file. Import it directly into your n8n instance.',
+    dl_btn: 'Download JSON',
+    footer_link: '← Back to Portfolio'
+  },
+  uk: {
+    nav_back: 'Назад до портфоліо',
+    hero_type: 'AI Система Звітності',
+    hero_title: 'Щоденна Погода Київ + Брно → Telegram',
+    hero_tagline: 'Автоматизований workflow звітності погоди, який отримує дані, форматує їх через AI та надсилає щоденні оновлення в Telegram.',
+    context_title: 'Контекст та Проблема',
+    context_p1: 'Користувачі хочуть щоденні оновлення погоди з чистим, читабельним форматуванням, автоматичною доставкою та підтримкою кількох міст без ручних перевірок.',
+    context_p2: '<strong>Виклик:</strong> Сирі відповіді API не зручні для читання. Статичні шаблони жорсткі. Системі потрібно було генерувати динамічні, людяні прогнози погоди автоматично для кількох міст.',
+    goal_title: 'Мета:',
+    goal_text: 'Створити автоматизовану систему, яка запускається щодня, отримує дані погоди для Києва та Брно, форматує текст за допомогою LLM та надсилає структуроване повідомлення в Telegram.',
+    impl_title: 'Реалізація',
+    impl_desc: 'Workflow побудований на n8n. Він запускається щодня через Cron, створює елементи міст, об\'єднує їх і використовує ноду <strong>Split in Batches</strong> для послідовної обробки кожного міста. Отримує дані з OpenWeatherMap, передає JSON в GPT-4o Mini для форматування та надсилає результат через Telegram.',
+    scr_1_cap: 'Рис. 1. Workflow в n8n з логікою пакетної обробки',
+    output_title: 'Результат та Вивід',
+    scr_2_cap: 'Рис. 2. Згенероване AI повідомлення про погоду в Telegram',
+    res_quant: 'Кількісні',
+    r_q1: 'Щоденна автоматизація (08:30)',
+    r_q2: 'Обробка 2-х міст',
+    r_q3: 'AI форматування (<3с)',
+    res_qual: 'Якісні',
+    r_ql1: 'Людяний текст',
+    r_ql2: 'Стабільна архітектура циклу',
+    r_ql3: 'Чисте форматування',
+    res_biz: 'Бізнес-цінність',
+    r_b1: 'Масштабований двигун сповіщень',
+    r_b2: 'Кейси для подорожей та логістики',
+    r_b3: 'Нуль ручних звітів',
+    dl_title: 'Експорт Workflow',
+    dl_desc: 'Завантажте готовий JSON-файл workflow для n8n. Імпортуйте його безпосередньо у ваш екземпляр n8n.',
+    dl_btn: 'Завантажити JSON',
+    footer_link: '← Назад до портфоліо'
+  },
+  cs: {
+    nav_back: 'Zpět na portfólio',
+    hero_type: 'AI Reportovací Systém',
+    hero_title: 'Denní Počasí Kyjev + Brno → Telegram',
+    hero_tagline: 'Automatizovaný workflow pro hlášení počasí, který načítá data, formátuje je pomocí AI a posílá denní aktualizace do Telegramu.',
+    context_title: 'Kontext a Problém',
+    context_p1: 'Uživatelé chtějí denní aktualizace počasí s čistým, čitelným formátováním, automatickým doručováním a podporou více měst bez manuálních kontrol.',
+    context_p2: '<strong>Výzva:</strong> Surové odpovědi API nejsou uživatelsky přívětivé. Statické šablony jsou tuhé. Systém potřeboval automaticky generovat dynamické, lidsky znějící zprávy o počasí pro více měst.',
+    goal_title: 'Cíl:',
+    goal_text: 'Postavit automatizovaný systém, který běží denně, načítá data o počasí pro Kyjev a Brno, formátuje text pomocí LLM a odesílá strukturovanou zprávu do Telegramu.',
+    impl_title: 'Implementace',
+    impl_desc: 'Workflow je postaveno v n8n. Spouští se denně přes Cron, vytváří položky měst, spojuje je a používá uzel <strong>Split in Batches</strong> pro sekvenční zpracování každého města. Načítá data z OpenWeatherMap, předává JSON GPT-4o Mini k formátování a odesílá výsledek přes Telegram.',
+    scr_1_cap: 'Obr. 1. Workflow v n8n s logikou dávkového zpracování',
+    output_title: 'Výstup a Výsledky',
+    scr_2_cap: 'Obr. 2. Zpráva o počasí generovaná AI v Telegramu',
+    res_quant: 'Kvantitativní',
+    r_q1: 'Denní automatizace (08:30)',
+    r_q2: 'Zpracování 2 měst',
+    r_q3: 'AI formátování (<3s)',
+    res_qual: 'Kvalitativní',
+    r_ql1: 'Lidsky znějící text',
+    r_ql2: 'Stabilní architektura smyčky',
+    r_ql3: 'Čisté formátování',
+    res_biz: 'Obchodní hodnota',
+    r_b1: 'Škálovatelný engine oznámení',
+    r_b2: 'Případy použití pro cestování a logistiku',
+    r_b3: 'Nula manuálního reportingu',
+    dl_title: 'Export Workflow',
+    dl_desc: 'Stáhněte si připravený JSON soubor workflow pro n8n. Importujte jej přímo do vaší instance n8n.',
+    dl_btn: 'Stáhnout JSON',
+    footer_link: '← Zpět na portfólio'
+  }
+};
+
+/* Cursor */
+(function(){
+  if(!window.matchMedia('(hover:hover)').matches) return;
+  const dot=document.getElementById('cursor-dot');
+  const ring=document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    dot.style.left=mx+'px';dot.style.top=my+'px';
+  },{passive:true});
+
+  function lerpRing(){
+    rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(lerpRing);
+  }
+  lerpRing();
+
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.opacity='1'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px';ring.style.opacity='.5'});
+  });
+})();
+
+/* Theme toggle */
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const h=document.documentElement;
+  h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark');
+});
+
+/* Audio toggle */
+const audioBtn = document.getElementById('audioBtn');
+const bgMusic = document.getElementById('bgMusic');
+let isPlaying = false;
+
+audioBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    audioBtn.style.background = '';
+    audioBtn.style.borderColor = '';
+    audioBtn.style.color = '';
+  } else {
+    bgMusic.play().catch(()=>{});
+    audioBtn.style.background = 'var(--txt)';
+    audioBtn.style.borderColor = 'var(--txt)';
+    audioBtn.style.color = 'var(--bg)';
+  }
+  isPlaying = !isPlaying;
+});
+
+/* Language system */
+function applyLang(lang){
+  const t=i18n[lang];
+  document.documentElement.setAttribute('data-lang',lang);
+  document.documentElement.setAttribute('lang',lang==='uk'?'uk':lang==='cs'?'cs':'en');
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(t[key]!==undefined) el.innerHTML=t[key];
+  });
+
+  document.querySelectorAll('[data-lang-btn]').forEach(b=>{
+    b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang);
+  });
+}
+document.getElementById('langSw').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-lang-btn]');
+  if(btn) applyLang(btn.getAttribute('data-lang-btn'));
+});
+applyLang('en');
+
+/* Reveal */
+const rvObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      rvObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv').forEach(el=>rvObserver.observe(el));
+
+/* Download JSON - Weather Workflow */
+function downloadJSON(){
+  const workflow={
+    "name": "Daily Weather Kyiv + Brno",
+    "nodes": [
+      {
+        "parameters": { "rule": { "interval": [ { "field": "cronExpression", "expression": "30 8 * * *" } ] } },
+        "id": "cron-node", "name": "Daily Trigger", "type": "n8n-nodes-base.scheduleTrigger", "typeVersion": 1, "position": [250, 300]
+      },
+      {
+        "parameters": { "values": { "string": [ { "name": "city", "value": "Kyiv" } ] }, "options": {} },
+        "id": "set-kyiv", "name": "City Kyiv", "type": "n8n-nodes-base.set", "typeVersion": 2, "position": [450, 200]
+      },
+      {
+        "parameters": { "values": { "string": [ { "name": "city", "value": "Brno" } ] }, "options": {} },
+        "id": "set-brno", "name": "City Brno", "type": "n8n-nodes-base.set", "typeVersion": 2, "position": [450, 400]
+      },
+      {
+        "parameters": { "mode": "append" },
+        "id": "merge-node", "name": "Merge Cities", "type": "n8n-nodes-base.merge", "typeVersion": 2, "position": [650, 300]
+      },
+      {
+        "parameters": { "batchSize": 1, "options": {} },
+        "id": "split-node", "name": "Split in Batches", "type": "n8n-nodes-base.splitInBatches", "typeVersion": 2, "position": [850, 300]
+      },
+      {
+        "parameters": { "operation": "currentWeather", "city": "={{ $json.city }}", "units": "metric" },
+        "id": "weather-node", "name": "OpenWeatherMap", "type": "n8n-nodes-base.openWeatherMap", "typeVersion": 1, "position": [1050, 300]
+      },
+      {
+        "parameters": { "model": "gpt-4o-mini", "prompt": "Format weather data for {{$json.city}}..." },
+        "id": "llm-node", "name": "AI Formatter", "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi", "typeVersion": 1, "position": [1250, 300]
+      },
+      {
+        "parameters": { "chatId": "YOUR_CHAT_ID", "text": "={{ $json.output }}" },
+        "id": "telegram-node", "name": "Send Telegram", "type": "n8n-nodes-base.telegram", "typeVersion": 1, "position": [1450, 300]
+      }
+    ],
+    "connections": {
+      "Daily Trigger": { "main": [ [ {"node":"City Kyiv","type":"main","index":0}, {"node":"City Brno","type":"main","index":0} ] ] },
+      "City Kyiv": { "main": [ [ {"node":"Merge Cities","type":"main","index":0} ] ] },
+      "City Brno": { "main": [ [ {"node":"Merge Cities","type":"main","index":1} ] ] },
+      "Merge Cities": { "main": [ [ {"node":"Split in Batches","type":"main","index":0} ] ] },
+      "Split in Batches": { "main": [ [ {"node":"OpenWeatherMap","type":"main","index":0} ] ] },
+      "OpenWeatherMap": { "main": [ [ {"node":"AI Formatter","type":"main","index":0} ] ] },
+      "AI Formatter": { "main": [ [ {"node":"Send Telegram","type":"main","index":0} ] ] },
+      "Send Telegram": { "main": [ [ {"node":"Split in Batches","type":"main","index":0} ] ] }
+    }
+  };
+
+  const dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(workflow,null,2));
+  const a=document.createElement('a');
+  a.setAttribute("href",dataStr);
+  a.setAttribute("download","Daily_Weather_Telegram.json");
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+/* Copy code */
+function copyCode(btn){
+  const code=document.getElementById('codeContent').innerText;
+  navigator.clipboard.writeText(code).then(()=>{
+    const orig=btn.innerText;
+    btn.innerText='COPIED!';
+    setTimeout(()=>btn.innerText=orig,1200);
+  });
+}
+</script>
+
+</body>
+</html>
