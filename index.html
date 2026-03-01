@@ -103,7 +103,68 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
    HERO
 ══════════════════════════════════════ */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:110px 0 80px;overflow:hidden}
-.hero-content{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 48px}
+.hero-content{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 48px;width:100%}
+
+/* NEW: Hero Layout with Photo */
+.hero-grid {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  margin-bottom: 20px;
+}
+
+.hero-left {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Додаємо вирівнювання по центру */
+  gap: 15px;
+}
+
+.hero-avatar {
+  width: 360px;
+  height: 360px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--line);
+  filter: grayscale(100%);
+  opacity: 0.9;
+  transition: filter 0.4s, opacity 0.4s;
+}
+.hero-avatar:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.hero-socials {
+  display: flex;
+  gap: 8px;
+}
+
+.hs-ico {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--txt3);
+  transition: all .2s;
+  text-transform: uppercase;
+}
+.hs-ico:hover {
+  border-color: var(--txt);
+  color: var(--txt);
+  background: var(--hov);
+}
+
+.hero-right {
+  flex-grow: 1;
+}
+
 .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .3s both}
 .eye-line{width:28px;height:1px;background:var(--txt3)}
 .eye-txt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
@@ -113,12 +174,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .hero-name em{font-style:italic}
 .hero-role{margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--txt3);opacity:0;animation:fadeUp .7s .55s both}
 .hero-desc{margin-top:24px;max-width:500px;font-size:16px;color:var(--txt2);line-height:1.78;opacity:0;animation:fadeUp .7s .65s both}
-.hero-stats{display:flex;gap:52px;margin-top:60px;padding-top:40px;border-top:1px solid var(--line);opacity:0;animation:fadeUp .7s .75s both;flex-wrap:wrap;gap:40px}
+.hero-stats{display:flex;gap:52px;margin-top:60px;padding-top:40px;border-top:1px solid var(--line);opacity:0;animation:fadeUp .7s .75s both;flex-wrap:wrap;gap:40px; justify-content: center;}
 .stat-n{font-family:'Playfair Display',serif;font-size:42px;line-height:1;color:var(--txt);font-weight:600}
 .stat-l{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);margin-top:5px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-@media(max-width:900px){.hero-content{padding:0 28px}.hero-stats{gap:28px}.stat-n{font-size:34px}}
+@media(max-width:900px){
+  .hero-content{padding:0 28px}
+  .hero-grid {flex-direction: column; align-items: center; text-align: center;}
+  .hero-left {align-items: center;}
+  .hero-eyebrow{justify-content: center;}
+  .hero-stats{gap:28px}.stat-n{font-size:34px}
+}
 @media(max-width:480px){.hero-content{padding:0 20px}.hero-name{font-size:clamp(40px,11vw,60px)}.hero-desc{font-size:14px}.hero-stats{gap:20px}}
 
 /* ══════════════════════════════════════
@@ -280,7 +347,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 }
 
 /* ══════════════════════════════════════
-   LUXURY TYPOGRAPHY BOOST (2026-02)
+   LUXURY TYPOGRAPHY BOOST
 ══════════════════════════════════════ */
 body{font-size:19px;line-height:1.75}
 @media(max-width:900px){body{font-size:18px}}
@@ -319,7 +386,7 @@ nav, .hero, .sec, footer, .mobile-menu { position: relative; z-index: 2; }
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* Sit on top of body background, behind text */
+  z-index: 1; 
   pointer-events: none;
   opacity: 0;
   transition: opacity 2s ease-in-out; 
@@ -424,7 +491,8 @@ body{
   "url": "https://tetiana-a.github.io/aiAutomationDev/",
   "jobTitle": "AI Automation Architect",
   "sameAs": [
-    "https://github.com/tetiana-a"
+    "https://github.com/tetiana-a",
+    "https://www.linkedin.com/in/tetiana-kotolup-194a133b3/"
   ]
 }
 </script>
@@ -480,14 +548,28 @@ body{
 <section class="hero" id="top">
   
   <div class="hero-content">
-    <div class="hero-eyebrow">
-      <div class="eye-line"></div>
-      <div class="eye-txt" data-i18n="hero_role">AI Automation Developer</div>
-      <div class="eye-dot"></div>
+    <!-- NEW: Flex container for Photo + Text -->
+    <div class="hero-grid">
+        <div class="hero-left">
+             <!-- REPLACE THE SRC BELOW WITH YOUR ACTUAL PHOTO URL -->
+            <img src="0.jpg" alt="Tetiana Kotolup" class="hero-avatar">
+            <div class="hero-socials">
+                <a href="https://www.linkedin.com/in/tetiana-kotolup-194a133b3/" target="_blank" class="hs-ico" title="LinkedIn">in</a>
+                <a href="https://github.com/tetiana-a" target="_blank" class="hs-ico" title="GitHub">gh</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-eyebrow">
+              <div class="eye-line"></div>
+              <div class="eye-txt" data-i18n="hero_role">AI Automation Developer</div>
+              <div class="eye-dot"></div>
+            </div>
+           <h1 class="hero-name">Tetiana<br><em>Kotolup</em></h1>
+            <div class="hero-role">n8n · OpenAI · Telegram · Google Suite · REST API</div>
+            <p class="hero-desc" data-i18n="hero_desc">I design and build production-ready automations that transform manual processes into self-running AI systems. From idea to live workflow — systematically and predictably.</p>
+        </div>
     </div>
-   <h1 class="hero-name">Tetiana<br><em>Kotolup</em></h1>
-    <div class="hero-role">n8n · OpenAI · Telegram · Google Suite · REST API</div>
-    <p class="hero-desc" data-i18n="hero_desc">I design and build production-ready automations that transform manual processes into self-running AI systems. From idea to live workflow — systematically and predictably.</p>
+      
     <div class="hero-stats">
       <div>
         <div class="stat-n">10+</div>
@@ -547,12 +629,22 @@ body{
       <div class="a-cell rv rv-d4" id="contact">
         <div class="a-lbl" data-i18n="about_contact_lbl">Contact</div>
         <div class="contact-list">
-     <a href="mailto:kotolup24@gmail.com" class="c-item">
-  <div class="c-ico">@</div>
-  <span>kotolup24@gmail.com</span>
-</a>
+          <a href="mailto:kotolup24@gmail.com" class="c-item">
+            <div class="c-ico">@</div>
+            <span>kotolup24@gmail.com</span>
+          </a>
           <a href="https://t.me/tetiana_K888" target="_blank" class="c-item">
-            <div class="c-ico">tg</div>@tetiana_K888
+            <div class="c-ico">tg</div>
+            @tetiana_K888
+          </a>
+          <!-- NEW: LinkedIn & GitHub Links -->
+          <a href="https://www.linkedin.com/in/tetiana-kotolup-194a133b3/" target="_blank" class="c-item">
+            <div class="c-ico">in</div>
+            <span>LinkedIn Profile</span>
+          </a>
+          <a href="https://github.com/tetiana-a" target="_blank" class="c-item">
+            <div class="c-ico">gh</div>
+            <span>GitHub Profile</span>
           </a>
         </div>
       </div>
@@ -683,6 +775,12 @@ body{
           <div class="case-kicker" data-i18n="case_kicker">AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram</div>
           <h3 class="case-ttl" data-i18n="case_title">AI Agent for Call Analysis<br>& Telegram Statistics Bot</h3>
           <p class="case-tag" data-i18n="case_tagline">The company could not understand why clients were dissatisfied — because no one systematically listened to calls. An AI system was built that does this automatically, 24/7.</p>
+          
+          <!-- NEW: Presentation Button -->
+          <div class="p-actions">
+            <a href="https://www.canva.com/design/DAHCErRNw_o/jQ6o9Ue2T_WtHi_8feDaRA/edit?utm_content=DAHCErRNw_o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" class="p-btn" data-i18n="btn_presentation">Presentation</a>
+          </div>
+        
         </div>
         <div class="stack-wrap">
           <span class="st">n8n</span><span class="st">OpenAI GPT</span><span class="st">AssemblyAI</span>
@@ -795,7 +893,7 @@ body{
 const i18n = {
   en: {
     nav_about:'About', nav_skills:'Skills', nav_certs:'Certs', nav_case:'Case', nav_projects:'Projects',
-    btn_details:'Details', btn_json:'Download JSON',
+    btn_details:'Details', btn_json:'Download JSON', btn_presentation:'Presentation',
     hero_role:'AI Automation Developer',
     hero_desc:'I design and build production-ready automations that transform manual processes into self-running AI systems. From idea to live workflow — systematically and predictably.',
     stat_auto:'Automations', stat_certs:'Certificates', stat_first:'AI-first approach',
@@ -866,7 +964,7 @@ const i18n = {
   },
   uk: {
     nav_about:'Про мене', nav_skills:'Навички', nav_certs:'Сертифікати', nav_case:'Кейс', nav_projects:'Проекти',
-    btn_details:'Деталі', btn_json:'JSON',
+    btn_details:'Деталі', btn_json:'JSON', btn_presentation:'Презентація',
     hero_role:'AI Automation Developer',
     hero_desc:'Проєктую та будую production-ready автоматизації, які перетворюють ручні процеси на самостійні AI-системи. Від ідеї до живого workflow — системно та прогнозовано.',
     stat_auto:'Автоматизацій', stat_certs:'Сертифікатів', stat_first:'AI-first підхід',
@@ -937,7 +1035,7 @@ const i18n = {
   },
   cs: {
     nav_about:'O mně', nav_skills:'Dovednosti', nav_certs:'Certifikáty', nav_case:'Případ', nav_projects:'Projekty',
-    btn_details:'Detaily', btn_json:'JSON',
+    btn_details:'Detaily', btn_json:'JSON', btn_presentation:'Prezentace',
     hero_role:'AI Automation Developer',
     hero_desc:'Navrhuji a vytvářím produkční automatizace, které mění ruční procesy na samostatně fungující AI systémy. Od nápadu po živý workflow — systematicky a předvídatelně.',
     stat_auto:'Automatizací', stat_certs:'Certifikátů', stat_first:'AI-first přístup',
@@ -1185,6 +1283,7 @@ ham.addEventListener('click',()=>{
   mob.classList.toggle('open');
 });
 function closeMob(){ham.classList.remove('open');mob.classList.remove('open');}
+
 
 /* ════════════════════════════════════════
    PDF
