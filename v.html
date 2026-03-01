@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Voice to Image Generator — Project Details</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════
+   THEMES & VARIABLES
+══════════════════════════════════════ */
+:root { --tt: background .5s cubic-bezier(.4,0,.2,1), color .5s cubic-bezier(.4,0,.2,1), border-color .5s cubic-bezier(.4,0,.2,1); }
+
+[data-theme="dark"]{
+  --bg:#080808; --bg2:#101010; --bg3:#181818;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
+  --txt:#efefef; --txt2:#a0a0a0; --txt3:#555555;
+  --tag:rgba(255,255,255,.05); --hov:rgba(255,255,255,.03);
+  --accent:#3b82f6;
+}
+[data-theme="light"]{
+  --bg:#f7f7f5; --bg2:#eeeeed; --bg3:#e4e4e2;
+  --line:rgba(0,0,0,.07); --line2:rgba(0,0,0,.13);
+  --txt:#0c0c0c; --txt2:#565656; --txt3:#a0a0a0;
+  --tag:rgba(0,0,0,.04); --hov:rgba(0,0,0,.025);
+  --accent:#2563eb;
+}
+
+/* ══════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Syne',sans-serif;
+  font-weight:400;
+  line-height:1.75;
+  font-size:19px;
+  overflow-x:hidden;
+  transition:var(--tt);
+  cursor:auto;
+}
+::selection{background:var(--txt);color:var(--bg)}
+a{color:inherit;text-decoration:none}
+
+/* ══════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════ */
+#cursor-dot{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--txt);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;will-change:transform}
+#cursor-ring{position:fixed;width:30px;height:30px;border-radius:50%;border:1px solid var(--txt2);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .4s cubic-bezier(.4,0,.2,1),height .4s,border-color .3s,opacity .3s;will-change:transform;opacity:.5}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}body{cursor:auto}}
+
+/* ══════════════════════════════════════
+   GRAIN
+══════════════════════════════════════ */
+body::after{
+  content:'';
+  position:fixed; inset:0;
+  pointer-events:none;
+  z-index:9990;
+  opacity:.022;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ══════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════ */
+.wrap{max-width:1000px;margin:0 auto;padding:0 40px}
+@media(max-width:900px){.wrap{padding:0 24px} body{font-size:18px}}
+@media(max-width:480px){body{font-size:17px}}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt)}
+.nav-in{max-width:1000px;margin:0 auto;padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
+.nav-links a:hover{color:var(--txt)}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+
+/* Language switcher */
+.lang-sw{display:flex;align-items:center;gap:2px;background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:3px;overflow:hidden}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:2px;transition:background .2s,color .2s}
+.lang-btn.active{background:var(--txt);color:var(--bg)}
+
+/* Theme toggle */
+.theme-tog{width:42px;height:22px;background:var(--bg3);border:1px solid var(--line2);border-radius:11px;cursor:pointer;position:relative;flex-shrink:0;transition:var(--tt)}
+.theme-tog::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--txt);top:3px;left:3px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+[data-theme="light"] .theme-tog::before{transform:translateX(20px)}
+
+/* Audio toggle */
+.audio-btn{width:30px;height:30px;background:var(--bg3);border:1px solid var(--line);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:background .2s,color .2s,border-color .2s}
+.audio-btn svg{width:14px;height:14px}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 0 60px;overflow:hidden}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .3s both}
+.eye-line{width:28px;height:1px;background:var(--txt3)}
+.eye-txt{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--txt);opacity:0;animation:fadeUp .7s .45s both}
+.hero-tagline{margin-top:15px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--txt2);opacity:0;animation:fadeUp .7s .55s both}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px;opacity:0;animation:fadeUp .7s .65s both}
+.h-tag{background:var(--tag);border:1px solid var(--line);padding:6px 12px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════
+   REVEAL SYSTEM
+══════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════════════
+   SECTION BASE
+══════════════════════════════════════ */
+.sec{padding:80px 0;border-top:1px solid var(--line)}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,38px);font-weight:400;letter-spacing:-.02em;line-height:1.1}
+.sec-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-top:8px;display:block}
+
+/* ══════════════════════════════════════
+   CONTENT BLOCKS
+══════════════════════════════════════ */
+.text-block p{font-size:17px;color:var(--txt2);line-height:1.8;margin-bottom:1.2em}
+.text-block strong{color:var(--txt);font-weight:600}
+.text-block ul{margin-left:20px;margin-bottom:1.2em}
+.text-block li{margin-bottom:0.5em;color:var(--txt2)}
+.text-block li::marker{color:var(--txt3);content:'— '}
+
+/* Screenshots */
+.screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:30px}
+.screen-card{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:border-color .3s}
+.screen-card:hover{border-color:var(--line2)}
+.screen-img{width:100%;height:220px;object-fit:cover;display:block}
+.screen-img-placeholder{
+  width:100%;height:220px;
+  background:linear-gradient(135deg,var(--bg3) 0%,var(--bg) 100%);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--txt3);font-size:12px;font-family:'JetBrains Mono',monospace;
+  text-align:center;padding:20px
+}
+.screen-caption{padding:12px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--txt3);text-align:center}
+
+/* Code Block */
+.code-block{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:20px}
+.code-header{padding:10px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.code-lang{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-transform:uppercase}
+.copy-btn{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--tag);border:1px solid var(--line);color:var(--txt2);padding:4px 10px;border-radius:2px;cursor:pointer}
+pre{padding:20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:var(--txt);white-space:pre-wrap}
+
+/* Download CTA */
+.download-cta{margin-top:50px;padding:30px;background:var(--bg2);border:1px solid var(--line);border-radius:4px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--txt);color:var(--bg);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:3px;border:none;cursor:pointer;transition:opacity .2s}
+.btn-primary:hover{opacity:.85}
+.btn-primary svg{width:14px;height:14px}
+
+/* Results Grid */
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+@media(max-width:600px){.results-grid{grid-template-columns:1fr}}
+.res-box{padding:20px;background:var(--bg2);border:1px solid var(--line);border-radius:3px}
+.res-box-title{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.res-list{list-style:none}
+.res-list li{font-size:13px;color:var(--txt2);margin-bottom:6px;padding-left:12px;position:relative}
+.res-list li::before{content:'';position:absolute;left:0;top:7px;width:4px;height:4px;background:var(--txt3);border-radius:50%}
+
+/* Footer */
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center}
+.footer-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);transition:color .2s}
+.footer-link:hover{color:var(--txt)}
+
+a,button{cursor:pointer}
+</style>
+</head>
+
+<body>
+<!-- Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+    <nav class="nav-links">
+      <a href="index.html" data-i18n="nav_back">Back to Portfolio</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang-sw" id="langSw">
+        <button class="lang-btn active" data-lang-btn="en">EN</button>
+        <button class="lang-btn" data-lang-btn="uk">UA</button>
+        <button class="lang-btn" data-lang-btn="cs">CZ</button>
+      </div>
+      <button class="theme-tog" id="themeBtn" aria-label="Toggle theme"></button>
+      <button class="audio-btn" id="audioBtn" aria-label="Play Music">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eye-line"></div>
+        <div class="eye-txt" data-i18n="hero_type">AI Automation System</div>
+      </div>
+
+      <h1 class="hero-title" data-i18n="hero_title">Voice → Image Generator</h1>
+      <div class="hero-tagline" data-i18n="hero_tagline">Telegram bot that converts voice messages into AI-generated images using AssemblyAI, GPT-4 & DALL-E.</div>
+
+      <div class="hero-tags">
+        <span class="h-tag">n8n</span>
+        <span class="h-tag">Telegram Bot</span>
+        <span class="h-tag">AssemblyAI</span>
+        <span class="h-tag">OpenAI GPT-4</span>
+        <span class="h-tag">DALL-E</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT & PROBLEM -->
+<section class="sec">
+  <div class="wrap">
+    <div class="text-block rv">
+      <h2 class="sec-title" data-i18n="context_title">Context & Problem</h2>
+      <span class="sec-sub" data-i18n="context_sub">Voice → Text → Prompt → Image</span>
+
+      <p data-i18n="context_p1">
+        Creating visual content usually requires precise typing of prompts. Users often have visual ideas while speaking (voice notes), but the friction of transcribing and formatting prompts discourages them.
+      </p>
+
+      <p data-i18n="context_p2">
+        <strong>Challenge:</strong> Transcribing audio manually is slow. Automatic transcription needs to be high-quality. The text must then be intelligently transformed into a detailed image prompt, and finally rendered into an image — all seamlessly within a chat interface.
+      </p>
+
+      <p><strong data-i18n="goal_title">Goal:</strong>
+        <span data-i18n="goal_text">Build a Telegram bot that accepts voice/audio, transcribes it, generates a creative image prompt, creates the image, and returns it to the user instantly.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPLEMENTATION -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="impl_title">Implementation</h2>
+      <span class="sec-sub" data-i18n="impl_sub">Workflow Pipeline</span>
+
+      <div class="text-block">
+        <p data-i18n="impl_desc">
+          An event-driven n8n workflow triggers on new Telegram messages. It validates the input (voice/audio), handles commands (/start, /reset), and processes audio via AssemblyAI.
+          A polling loop ensures the transcript is ready before sending it to GPT-4 for prompt engineering, followed by DALL-E generation.
+        </p>
+        <ul>
+          <li data-i18n="impl_li1"><strong>Telegram Trigger</strong> → Listens for updates (messages, voice, files)</li>
+          <li data-i18n="impl_li2"><strong>Validation Router</strong> → Checks for /start, /reset, or voice/file presence</li>
+          <li data-i18n="impl_li3"><strong>AssemblyAI</strong> → Uploads audio, requests transcription, polls for completion</li>
+          <li data-i18n="impl_li4"><strong>GPT-4 Prompting</strong> → Converts transcribed text into a structured JSON image prompt</li>
+          <li data-i18n="impl_li5"><strong>DALL-E 3</strong> → Generates the image based on the engineered prompt</li>
+        </ul>
+      </div>
+
+      <!-- SCREENSHOT PLACEHOLDER -->
+      <div class="screens-grid">
+        <figure class="screen-card">
+          <img class="screen-img"
+               src="v1.png"
+               alt="Telegram Voice to Image Workflow"
+               onerror="this.remove(); this.parentElement.querySelector('.screen-img-placeholder').style.display='flex';" />
+          <div class="screen-img-placeholder" style="display:none">
+            n8n Workflow:<br>Trigger → Checks → AssemblyAI → Loop → GPT-4 → DALL-E → Telegram
+          </div>
+          <figcaption class="screen-caption" data-i18n="scr_1_cap">Fig 1. High-level workflow architecture</figcaption>
+        </figure>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">System Prompt (GPT-4)</span>
+          <button class="copy-btn" onclick="copyCode(this, 'promptCode')">COPY</button>
+        </div>
+        <pre id="promptCode">Ти — асистент, який генерує зображення СУВОРО за останнім запитом користувача.
+
+КРИТИЧНО ВАЖЛИВО:
+- Використовуй ТІЛЬКИ поточний текст транскрипції.
+- Повністю ігноруй попередні теми, стилі, персонажів...
+- Кожен новий запит обробляється як повністю новий незалежний сценарій.
+
+ФОРМАТ ВИХОДУ (ОБОВʼЯЗКОВО):
+Поверни ТІЛЬКИ валідний JSON.
+{
+  "caption": "Українською, 50-200 символів, з emoji",
+  "image_prompt": "English, 60-150 words, detailed visual description",
+  "tts_text": "Українською, 1-2 речення"
+}
+
+... (Full prompt includes constraints for style, mood, lighting, prohibited content handling)</pre>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">JavaScript (Parsing GPT Response)</span>
+          <button class="copy-btn" onclick="copyCode(this, 'jsCode')">COPY</button>
+        </div>
+        <pre id="jsCode">// Parse JSON returned as text by 'Message a model1'
+const chat_id = $node["Edit Fields1"].json.chat_id;
+const raw = $json?.output?.[0]?.content?.[0]?.text ?? $json?.text ?? "";
+
+let parsed;
+try {
+  parsed = JSON.parse(raw);
+} catch (e) {
+  throw new Error("Model did not return valid JSON. Raw: " + raw.slice(0, 400));
+}
+
+return [{
+  json: {
+    chat_id,
+    caption: parsed.caption ?? "",
+    image_prompt: parsed.image_prompt ?? "",
+    tts_text: parsed.tts_text ?? ""
+  }
+}];</pre>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OUTPUT & RESULTS -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="output_title">Results & Impact</h2>
+      <span class="sec-sub" data-i18n="output_sub">User Experience & Automation</span>
+
+      <div class="results-grid">
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_quant">Technical Flow</div>
+          <ul class="res-list">
+            <li data-i18n="r_q1">Instant Telegram response</li>
+            <li data-i18n="r_q2">Multilingual transcription</li>
+            <li data-i18n="r_q3">Context-aware prompting</li>
+            <li data-i18n="r_q4">High-quality DALL-E output</li>
+          </ul>
+        </div>
+
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_qual">Features</div>
+          <ul class="res-list">
+            <li data-i18n="r_ql1">/start command for instructions</li>
+            <li data-i18n="r_ql2">/reset to clear context</li>
+            <li data-i18n="r_ql3">Polling loop for async transcription</li>
+            <li data-i18n="r_ql4">Error handling for file types</li>
+          </ul>
+        </div>
+
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_biz">User Value</div>
+          <ul class="res-list">
+            <li data-i18n="r_b1">Create art from voice notes</li>
+            <li data-i18n="r_b2">No prompt engineering skills needed</li>
+            <li data-i18n="r_b3">Fun, interactive AI experience</li>
+            <li data-i18n="r_b4">Accessible via standard Telegram</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="sec">
+  <div class="wrap">
+    <div class="download-cta rv">
+      <h3 class="sec-title" data-i18n="dl_title">Export Workflow</h3>
+      <p data-i18n="dl_desc">Download the full n8n workflow JSON (Telegram Voice to Image) and import it into your n8n instance.</p>
+
+      <button class="btn-primary" onclick="downloadJSON()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        <span data-i18n="dl_btn">Download JSON</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="footer-link" data-i18n="footer_link">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="02.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* i18n */
+const i18n = {
+  en:{
+    nav_back:"Back to Portfolio",
+    hero_type:"AI Automation System",
+    hero_title:"Voice → Image Generator",
+    hero_tagline:"Telegram bot that converts voice messages into AI-generated images using AssemblyAI, GPT-4 & DALL-E.",
+
+    context_title:"Context & Problem",
+    context_sub:"Voice → Text → Prompt → Image",
+    context_p1:"Creating visual content usually requires precise typing of prompts. Users often have visual ideas while speaking (voice notes), but the friction of transcribing and formatting prompts discourages them.",
+    context_p2:"<strong>Challenge:</strong> Transcribing audio manually is slow. Automatic transcription needs to be high-quality. The text must then be intelligently transformed into a detailed image prompt, and finally rendered into an image — all seamlessly within a chat interface.",
+    goal_title:"Goal:",
+    goal_text:"Build a Telegram bot that accepts voice/audio, transcribes it, generates a creative image prompt, creates the image, and returns it to the user instantly.",
+
+    impl_title:"Implementation",
+    impl_sub:"Workflow Pipeline",
+    impl_desc:"An event-driven n8n workflow triggers on new Telegram messages. It validates the input (voice/audio), handles commands (/start, /reset), and processes audio via AssemblyAI. A polling loop ensures the transcript is ready before sending it to GPT-4 for prompt engineering, followed by DALL-E generation.",
+    impl_li1:"<strong>Telegram Trigger</strong> → Listens for updates (messages, voice, files)",
+    impl_li2:"<strong>Validation Router</strong> → Checks for /start, /reset, or voice/file presence",
+    impl_li3:"<strong>AssemblyAI</strong> → Uploads audio, requests transcription, polls for completion",
+    impl_li4:"<strong>GPT-4 Prompting</strong> → Converts transcribed text into a structured JSON image prompt",
+    impl_li5:"<strong>DALL-E 3</strong> → Generates the image based on the engineered prompt",
+
+    scr_1_cap:"Fig 1. High-level workflow architecture",
+
+    output_title:"Results & Impact",
+    output_sub:"User Experience & Automation",
+
+    res_quant:"Technical Flow",
+    r_q1:"Instant Telegram response",
+    r_q2:"Multilingual transcription",
+    r_q3:"Context-aware prompting",
+    r_q4:"High-quality DALL-E output",
+
+    res_qual:"Features",
+    r_ql1:"/start command for instructions",
+    r_ql2:"/reset to clear context",
+    r_ql3:"Polling loop for async transcription",
+    r_ql4:"Error handling for file types",
+
+    res_biz:"User Value",
+    r_b1:"Create art from voice notes",
+    r_b2:"No prompt engineering skills needed",
+    r_b3:"Fun, interactive AI experience",
+    r_b4:"Accessible via standard Telegram",
+
+    dl_title:"Export Workflow",
+    dl_desc:"Download the full n8n workflow JSON (Telegram Voice to Image) and import it into your n8n instance.",
+    dl_btn:"Download JSON",
+    footer_link:"← Back to Portfolio"
+  },
+
+  uk:{
+    nav_back:"Назад до портфоліо",
+    hero_type:"Система AI Автоматизації",
+    hero_title:"Голос → Зображення",
+    hero_tagline:"Telegram-бот, що перетворює голосові повідомлення на AI-зображення через AssemblyAI, GPT-4 та DALL-E.",
+
+    context_title:"Контекст та Проблема",
+    context_sub:"Голос → Текст → Промпт → Зображення",
+    context_p1:"Створення візуального контенту зазвичай вимагає точного введення промптів. Користувачі часто мають візуальні ідеї під час розмови (войси), але тертя транскрибування та форматування промптів відлякує їх.",
+    context_p2:"<strong>Виклик:</strong> Транскрибування аудіо вручну повільне. Автоматична транскрипція має бути якісною. Текст потім треба інтелектуально перетворити на детальний промпт для зображення, і, нарешті, відрендерити — все безшовно в чаті.",
+    goal_title:"Мета:",
+    goal_text:"Створити Telegram-бота, який приймає голос/аудіо, транскрибує його, генерує креативний промпт, створює зображення і миттєво повертає його користувачу.",
+
+    impl_title:"Реалізація",
+    impl_sub:"Пайплайн Workflow",
+    impl_desc:"Подіє-орієнтований workflow в n8n запускається на нові повідомлення Telegram. Він валідує вхідні дані, обробляє команди (/start, /reset) та процесить аудіо через AssemblyAI. Цикл опитування гарантує готовність транскрипції перед відправкою в GPT-4 для інженерії промптів.",
+    impl_li1:"<strong>Telegram Trigger</strong> → Слухає оновлення (повідомлення, голос, файли)",
+    impl_li2:"<strong>Router</strong> → Перевіряє /start, /reset або наявність файлу",
+    impl_li3:"<strong>AssemblyAI</strong> → Завантажує аудіо, запитує транскрипцію, поллінг завершення",
+    impl_li4:"<strong>GPT-4</strong> → Перетворює текст у структурований JSON-промпт",
+    impl_li5:"<strong>DALL-E 3</strong> → Генерує зображення на основі інженерного промпту",
+
+    scr_1_cap:"Рис. 1. Архітектура workflow високого рівня",
+
+    output_title:"Результати та Вплив",
+    output_sub:"Досвід користувача та Автоматизація",
+
+    res_quant:"Технічний потік",
+    r_q1:"Миттєва відповідь Telegram",
+    r_q2:"Багатомовна транскрипція",
+    r_q3:"Контекстно-залежний промптинг",
+    r_q4:"Високоякісний вивід DALL-E",
+
+    res_qual:"Функції",
+    r_ql1:"Команда /start для інструкцій",
+    r_ql2:"Команда /reset для очищення контексту",
+    r_ql3:"Цикл polling для асинхронної транскрипції",
+    r_ql4:"Обробка помилок типів файлів",
+
+    res_biz:"Цінність для користувача",
+    r_b1:"Створення мистецтва з голосових",
+    r_b2:"Потрібні навички промпт-інженерії",
+    r_b3:"Веселий, інтерактивний AI-досвід",
+    r_b4:"Доступний через звичайний Telegram",
+
+    dl_title:"Експорт Workflow",
+    dl_desc:"Завантажити повний JSON workflow (Telegram Voice to Image) для імпорту в n8n.",
+    dl_btn:"Завантажити JSON",
+    footer_link:"← Назад до портфоліо"
+  },
+
+  cs:{
+    nav_back:"Zpět na portfólio",
+    hero_type:"Systém AI automatizace",
+    hero_title:"Hlas → Obrázek Generator",
+    hero_tagline:"Telegram bot, který převádí hlasové zprávy na AI-generované obrázky pomocí AssemblyAI, GPT-4 a DALL-E.",
+
+    context_title:"Kontext a Problém",
+    context_sub:"Hlas → Text → Prompt → Obrázek",
+    context_p1:"Vytváření vizuálního obsahu obvykle vyžaduje přesné psaní promptů. Uživatelé mají často vizuální nápady při mluvení (hlasovky), ale tření přepisování a formátování promptů je odrazuje.",
+    context_p2:"<strong>Výzva:</strong> Ruční přepis audia je pomalý. Automatický přepis musí být kvalitní. Text musí být chytře převeden na detailní prompt pro obrázek a konečně vykreslen — to vše plynule v chatovém rozhraní.",
+    goal_title:"Cíl:",
+    goal_text:"Postavit Telegram bota, který přijímá hlas/audio, přepisuje ho, generuje kreativní prompt, vytváří obrázek a okamžitě ho vrací uživateli.",
+
+    impl_title:"Implementace",
+    impl_sub:"Workflow Pipeline",
+    impl_desc:"Událostmi řízený n8n workflow se spouští na nové zprávy Telegramu. Validuje vstup, zpracovává příkazy (/start, /reset) a procesuje audio přes AssemblyAI. Polling smyčka zajišťuje připravenost přepisu před odesláním do GPT-4 pro prompt engineering.",
+    impl_li1:"<strong>Telegram Trigger</strong> → Naslouchá aktualizacím (zprávy, hlas, soubory)",
+    impl_li2:"<strong>Router</strong> → Kontroluje /start, /reset nebo přítomnost souboru",
+    impl_li3:"<strong>AssemblyAI</strong> → Nahraje audio, žádá o přepis, pollinguje dokončení",
+    impl_li4:"<strong>GPT-4 Prompting</strong> → Převede text na strukturovaný JSON prompt",
+    impl_li5:"<strong>DALL-E 3</strong> → Generuje obrázek na základě promptu",
+
+    scr_1_cap:"Obr. 1. Architektura workflow na vysoké úrovni",
+
+    output_title:"Výsledky a Dopad",
+    output_sub:"Uživatelská zkušenost a Automatizace",
+
+    res_quant:"Technický tok",
+    r_q1:"Okamžitá odpověď Telegramu",
+    r_q2:"Vícejazyčný přepis",
+    r_q3:"Kontextově závislý prompting",
+    r_q4:"Vysokokvalitní výstup DALL-E",
+
+    res_qual:"Funkce",
+    r_ql1:"Příkaz /start pro instrukce",
+    r_ql2:"Příkaz /reset pro vymazání kontextu",
+    r_ql3:"Polling smyčka pro asynchronní přepis",
+    r_ql4:"Zpracování chyb typů souborů",
+
+    res_biz:"Hodnota pro uživatele",
+    r_b1:"Vytváření umění z hlasovek",
+    r_b2:"Nejsou potřeba dovednosti prompt engineeringu",
+    r_b3:"Zábavná, interaktivní AI zkušenost",
+    r_b4:"Přístupné přes standardní Telegram",
+
+    dl_title:"Export Workflow",
+    dl_desc:"Stáhněte si kompletní JSON workflow (Telegram Voice to Image) pro import do n8n.",
+    dl_btn:"Stáhnout JSON",
+    footer_link:"← Zpět na portfólio"
+  }
+};
+
+/* Cursor */
+(function(){
+  if(!window.matchMedia('(hover:hover)').matches) return;
+  const dot=document.getElementById('cursor-dot');
+  const ring=document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  },{passive:true});
+
+  function lerpRing(){
+    rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(lerpRing);
+  }
+  lerpRing();
+
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.opacity='1'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px';ring.style.opacity='.5'});
+  });
+})();
+
+/* Theme toggle */
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const h=document.documentElement;
+  h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark');
+});
+
+/* Audio toggle */
+const audioBtn=document.getElementById('audioBtn');
+const bgMusic=document.getElementById('bgMusic');
+let isPlaying=false;
+audioBtn.addEventListener('click',()=>{
+  if(isPlaying){
+    bgMusic.pause();
+    audioBtn.style.background='';
+    audioBtn.style.borderColor='';
+    audioBtn.style.color='';
+  }else{
+    bgMusic.play().catch(()=>{});
+    audioBtn.style.background='var(--txt)';
+    audioBtn.style.borderColor='var(--txt)';
+    audioBtn.style.color='var(--bg)';
+  }
+  isPlaying=!isPlaying;
+});
+
+/* Language system */
+function applyLang(lang){
+  const t=i18n[lang];
+  document.documentElement.setAttribute('data-lang',lang);
+  document.documentElement.setAttribute('lang',lang==='uk'?'uk':lang==='cs'?'cs':'en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(t[key]!==undefined) el.innerHTML=t[key];
+  });
+  document.querySelectorAll('[data-lang-btn]').forEach(b=>{
+    b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang);
+  });
+}
+document.getElementById('langSw').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-lang-btn]');
+  if(btn) applyLang(btn.getAttribute('data-lang-btn'));
+});
+applyLang('en');
+
+/* Reveal */
+const rvObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      rvObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv').forEach(el=>rvObserver.observe(el));
+
+/* Copy */
+function copyCode(btn, id){
+  const code=document.getElementById(id).innerText;
+  navigator.clipboard.writeText(code).then(()=>{
+    const orig=btn.innerText;
+    btn.innerText='COPIED!';
+    setTimeout(()=>btn.innerText=orig,1200);
+  });
+}
+
+/* Download JSON */
+function downloadJSON(){
+  const workflow = {"name":"Telegram Voice to Image","nodes":[{"parameters":{"updates":["message"],"additionalFields":{}},"type":"n8n-nodes-base.telegramTrigger","typeVersion":1.2,"position":[5424,1024],"id":"c968f3ac-8394-44e9-b1a2-b5a9648dd2bd","name":"Telegram Trigger1","webhookId":"a18c3748-c872-4d9c-87f2-91852a4c4b1e","credentials":{"telegramApi":{"id":"skiMfAoYDSIweKbb","name":"Telegram account"}}},{"parameters":{"method":"POST","url":"https://api.assemblyai.com/v2/upload","sendHeaders":true,"headerParameters":{"parameters":[{"name":"authorization","value":"YOUR_API_KEY"}]},"sendBody":true,"contentType":"binaryData","inputDataFieldName":"data","options":{}},"type":"n8n-nodes-base.httpRequest","typeVersion":4.4,"position":[6640,1008],"id":"f72f1f00-bb36-4613-895b-98ae8b0e3d46","name":"HTTP Request2"},{"parameters":{"method":"POST","url":"https://api.assemblyai.com/v2/transcript","sendHeaders":true,"headerParameters":{"parameters":[{"name":"authorization","value":"YOUR_API_KEY"},{"name":"content-type","value":"application/json"}]},"sendBody":true,"specifyBody":"json","jsonBody":"={\n  \"audio_url\": \"{{$node['HTTP Request2'].json['upload_url']}}\",\n  \"language_detection\": true,\n  \"speech_models\": [\"universal-2\"]\n}\n","options":{}},"type":"n8n-nodes-base.httpRequest","typeVersion":4.4,"position":[6800,1008],"id":"79c334fc-e39e-43bd-b98e-a49b9e8a54f8","name":"HTTP Request3"},{"parameters":{"url":"=https://api.assemblyai.com/v2/transcript/{{$node[\"HTTP Request3\"].json[\"id\"]}}\n","sendHeaders":true,"headerParameters":{"parameters":[{"name":"authorization","value":"YOUR_API_KEY"}]},"options":{}},"type":"n8n-nodes-base.httpRequest","typeVersion":4.4,"position":[7456,1008],"id":"996bfd3a-a11e-4a86-b1db-18db060698d9","name":"Get Transcript1"},{"parameters":{"assignments":{"assignments":[{"id":"87981780-8a41-4f3f-9121-885961ebc397","name":"transcript_id","value":"={{ $node[\"HTTP Request3\"].json.id }}\n\n","type":"string"},{"id":"015cc7fe-fada-4559-9ff5-bd06a8da4199","name":"chat_id","value":"={{ $node[\"Telegram Trigger1\"].json.message.chat.id }}\n","type":"string"}]},"options":{}},"type":"n8n-nodes-base.set","typeVersion":3.4,"position":[7024,1008],"id":"595f751f-2b08-499d-9dd1-f4393ed19d1d","name":"transcript_id1"},{"parameters":{"modelId":{"__rl":true,"value":"gpt-4.1","mode":"list","cachedResultName":"GPT-4.1"},"responses":{"values":[{"role":"system","content":"You are an assistant generating images STRICTLY based on the last user request."},{"content":"={{$node[\"Get Transcript1\"].json[\"text\"]}}\n"}]},"builtInTools":{},"options":{}},"type":"@n8n/n8n-nodes-langchain.openAi","typeVersion":2.1,"position":[8016,992],"id":"1ab357cc-9898-4712-8ad0-e0cb9c787aa6","name":"Message a model1","credentials":{"openAiApi":{"id":"tbChJ93Nj7WMlkYH","name":"OpenAi account"}}},{"parameters":{"conditions":{"options":{"caseSensitive":true,"leftValue":"","typeValidation":"strict","version":3},"conditions":[{"id":"4cc199c6-7c74-41b6-88d1-d960ca530298","leftValue":"={{ $json.file_id || '' }}","rightValue":"=","operator":{"type":"string","operation":"notEmpty","singleValue":true}}],"combinator":"and"},"looseTypeValidation":"={{ false }}","options":{}},"type":"n8n-nodes-base.if","typeVersion":2.3,"position":[6048,1072],"id":"4ffb034f-c007-4516-82b8-594edb280ca8","name":"Has voice/audio file?1"},{"parameters":{"conditions":{"options":{"caseSensitive":true,"leftValue":"","typeValidation":"strict","version":3},"conditions":[{"id":"c82b6018-5dc6-4270-a262-736d85712ca7","leftValue":"={{ $node[\"Telegram Trigger1\"].json.message?.text || \"\" }}\n","rightValue":"/start","operator":{"type":"string","operation":"contains"}}],"combinator":"and"},"options":{}},"type":"n8n-nodes-base.if","typeVersion":2.3,"position":[5792,1056],"id":"297aae25-5fd2-4aed-9012-6dd60f784407","name":"Is /start1"},{"parameters":{"chatId":"={{ $json.chat_id }}","text":"=Hello! Send me a voice message.","additionalFields":{"appendAttribution":false}},"type":"n8n-nodes-base.telegram","typeVersion":1.2,"position":[5952,880],"id":"c7ae36df-7c29-475e-8e0d-7adad7c7a029","name":"Send a text message5","webhookId":"36ccf571-cf44-4b06-8a0d-c87ccbd06d1a","credentials":{"telegramApi":{"id":"skiMfAoYDSIweKbb","name":"Telegram account"}}},{"parameters":{"resource":"image","prompt":"={{ $json.image_prompt }}","options":{}},"type":"@n8n/n8n-nodes-langchain.openAi","typeVersion":2.1,"position":[8480,992],"id":"291486d2-06b3-4111-96d8-34a1b1b9eda7","name":"Generate an image1","credentials":{"openAiApi":{"id":"tbChJ93Nj7WMlkYH","name":"OpenAi account"}}},{"parameters":{"operation":"sendPhoto","chatId":"={{ $node[\"Edit Fields1\"].json.chat_id }}","binaryData":true,"additionalFields":{}},"type":"n8n-nodes-base.telegram","typeVersion":1.2,"position":[8640,992],"id":"2ff0696b-2af3-4a58-8bc6-2b30a729d911","name":"Send a photo message1","webhookId":"095fbd49-df23-41e4-872e-f7c7be6dae50","credentials":{"telegramApi":{"id":"skiMfAoYDSIweKbb","name":"Telegram account"}}},{"parameters":{"chatId":"={{ $node[\"Telegram Trigger1\"].json.message.chat.id }}\n","text":"🎧 Processing audio...","additionalFields":{"appendAttribution":false}},"type":"n8n-nodes-base.telegram","typeVersion":1.2,"position":[6352,816],"id":"3b8e8bf3-140c-493b-9217-3456a441adee","name":"Send a text message6","webhookId":"0bdb0e34-3f75-44d0-8509-0b717b7b56b9","credentials":{"telegramApi":{"id":"skiMfAoYDSIweKbb","name":"Telegram account"}}},{"parameters":{"chatId":"={{ $node[\"Telegram Trigger1\"].json.message.chat.id }}\n","text":"=Please send a voice file.","additionalFields":{"appendAttribution":false}},"type":"n8n-nodes-base.telegram","typeVersion":1.2,"position":[6464,1200],"id":"ec8b341f-73f5-4e96-bd51-6b11ed3aa512","name":"Send a text message7","webhookId":"e94069ea-0ee1-423b-aac2-90d16d6dc4e4","credentials":{"telegramApi":{"id":"skiMfAoYDSIweKbb","name":"Telegram account"}}},{"parameters":{"resource":"file","fileId":"={{ $json.file_id }}","additionalFields":{}},"type":"n8n-nodes-base.telegram","typeVersion":1.2,"position":[6480,1008],"id":"8da92782-941d-4236-ab14-4ce84b1eb35b","name":"Get a file1","webhookId":"9fdf281c-6a99-4434-82cc-53f9341a1fb2","credentials":{"telegramApi":{"id":"skiMfAoYDSIweKbb","name":"Telegram account"}}},{"parameters":{"assignments":{"assignments":[{"id":"fd2b99f1-9cc8-41dc-acce-e6e50b821765","name":"chat_id","value":"={{ $json.message.chat.id }}","type":"string"},{"id":"89eed5c3-2a7f-4119-aa49-d84441df0d6c","name":"file_id","value":"={{ $json.message.voice?.file_id || $json.message.audio?.file_id || $json.message.document?.file_id }}","type":"string"}]},"options":{}},"type":"n8n-nodes-base.set","typeVersion":3.4,"position":[5632,1024],"id":"2e64e72d-fdd5-4482-a2c8-725b471316f1","name":"Edit Fields1"},{"parameters":{"conditions":{"options":{"caseSensitive":true,"leftValue":"","typeValidation":"strict","version":3},"conditions":[{"id":"b7a8d1a6-0f4a-4fa4-8e11-8a2f3b7b1d01","leftValue":"={{ $node[\"Telegram Trigger1\"].json.message?.text || \"\" }}","rightValue":"/reset","operator":{"type":"string","operation":"contains"}}],"combinator":"and"},"options":{}},"type":"n8n-nodes-base.if","typeVersion":2.3,"position":[5904,1232],"id":"bedb672e-f4bc-433a-8926-40b7dd684cb0","name":"Is /reset1"},{"parameters":{"chatId":"={{ $node[\"Telegram Trigger1\"].json.message.chat.id }}","text":"✅ Context reset.","additionalFields":{"appendAttribution":false}},"type":"n8n-nodes-base.telegram","typeVersion":1.2,"position":[6240,1376],"id":"56e636ad-f303-4d2d-b71d-27c223964477","name":"Send reset confirmation1","webhookId":"b1d9b7d7-0b9b-4cb3-9f0b-6d3f0f9b09e0","credentials":{"telegramApi":{"id":"skiMfAoYDSIweKbb","name":"Telegram account"}}},{"parameters":{"jsCode":"// Parse JSON logic here..."},"type":"n8n-nodes-base.code","typeVersion":2,"position":[8320,992],"id":"cc7a4ff2-80ff-472e-b5a0-7655a0a1213c","name":"Parse model JSON1"},{"parameters":{"amount":5,"unit":"seconds"},"type":"n8n-nodes-base.wait","typeVersion":1,"position":[7296,1008],"id":"09a4be6c-a87a-42a7-8ec6-3e2e6d1ebfa2","name":"Wait for transcript1","webhookId":"efe0fe40-d0a9-4918-9df4-5e514cf9f31d"},{"parameters":{"conditions":{"options":{"caseSensitive":true,"leftValue":"","typeValidation":"strict","version":3},"conditions":[{"id":"6d5d1b21-1c2f-4f6a-8d7b-9e8b1d2c3f4a","leftValue":"={{ $json.status || \"\" }}","rightValue":"completed","operator":{"type":"string","operation":"equals"}}],"combinator":"and"},"options":{}},"type":"n8n-nodes-base.if","typeVersion":2.3,"position":[7648,1008],"id":"e29e5e34-c10c-4466-aaa4-f7bb69e500e5","name":"Transcript completed?1"},{"parameters":{"assignments":{"assignments":[{"id":"374f4b86-0dff-42a1-9758-c62865c22a4f","name":"text","value":"={{ $json.text }}","type":"string"}]},"options":{}},"type":"n8n-nodes-base.set","typeVersion":3.4,"position":[7840,992],"id":"a5c28f02-33a3-4646-a900-2a94914e6fe1","name":"Use final transcript1"}],"pinData":{},"connections":{"Telegram Trigger1":{"main":[[{"node":"Edit Fields1","type":"main","index":0}]]},"HTTP Request2":{"main":[[{"node":"HTTP Request3","type":"main","index":0}]]},"HTTP Request3":{"main":[[{"node":"transcript_id1","type":"main","index":0}]]},"Get Transcript1":{"main":[[{"node":"Transcript completed?1","type":"main","index":0}]]},"transcript_id1":{"main":[[{"node":"Wait for transcript1","type":"main","index":0}]]},"Message a model1":{"main":[[{"node":"Parse model JSON1","type":"main","index":0}]]},"Has voice/audio file?1":{"main":[[{"node":"Send a text message6","type":"main","index":0},{"node":"Get a file1","type":"main","index":0}],[{"node":"Send a text message7","type":"main","index":0}]]},"Is /start1":{"main":[[{"node":"Send a text message5","type":"main","index":0}],[{"node":"Is /reset1","type":"main","index":0}]]},"Generate an image1":{"main":[[{"node":"Send a photo message1","type":"main","index":0}]]},"Get a file1":{"main":[[{"node":"HTTP Request2","type":"main","index":0}]]},"Edit Fields1":{"main":[[{"node":"Is /start1","type":"main","index":0}]]},"Is /reset1":{"main":[[{"node":"Send reset confirmation1","type":"main","index":0}],[{"node":"Has voice/audio file?1","type":"main","index":0}]]},"Parse model JSON1":{"main":[[{"node":"Generate an image1","type":"main","index":0}]]},"Wait for transcript1":{"main":[[{"node":"Get Transcript1","type":"main","index":0}]]},"Transcript completed?1":{"main":[[{"node":"Use final transcript1","type":"main","index":0}],[{"node":"Wait for transcript1","type":"main","index":0}]]},"Use final transcript1":{"main":[[{"node":"Message a model1","type":"main","index":0}]]}},"active":false,"settings":{"executionOrder":"v1","binaryMode":"separate"},"meta":{"instanceId":"2314bb34f842569ac280f8bf46692991ab5e47ef10a62c21b2a725d9fb7850e3"},"id":"DMAYPjUmzwXwMCwZWtyvR","tags":[]};
+
+  const dataStr="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(workflow,null,2));
+  const a=document.createElement('a');
+  a.setAttribute("href",dataStr);
+  a.setAttribute("download","voice-to-image-workflow.json");
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+</script>
+</body>
+</html>
