@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WealthMirror AI — Project Details</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════
+   THEMES & VARIABLES
+══════════════════════════════════════ */
+:root { --tt: background .5s cubic-bezier(.4,0,.2,1), color .5s cubic-bezier(.4,0,.2,1), border-color .5s cubic-bezier(.4,0,.2,1); }
+[data-theme="dark"] {
+  --bg:#080808; --bg2:#101010; --bg3:#181818;
+  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
+  --txt:#efefef; --txt2:#a0a0a0; --txt3:#555555;
+  --tag:rgba(255,255,255,.05); --hov:rgba(255,255,255,.03);
+  --accent:#10b981;
+}
+[data-theme="light"] {
+  --bg:#f7f7f5; --bg2:#eeeeed; --bg3:#e4e4e2;
+  --line:rgba(0,0,0,.07); --line2:rgba(0,0,0,.13);
+  --txt:#0c0c0c; --txt2:#565656; --txt3:#a0a0a0;
+  --tag:rgba(0,0,0,.04); --hov:rgba(0,0,0,.025);
+  --accent:#059669;
+}
+
+/* ══════════════════════════════════════
+   RESET & BASE
+══════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--txt);
+  font-family:'Syne',sans-serif;
+  font-weight:400;
+  line-height:1.75;
+  font-size:19px;
+  overflow-x:hidden;
+  transition:var(--tt);
+  cursor:auto;
+}
+::selection{background:var(--txt);color:var(--bg)}
+a{color:inherit;text-decoration:none}
+
+/* ══════════════════════════════════════
+   CUSTOM CURSOR
+══════════════════════════════════════ */
+#cursor-dot{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--txt);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;will-change:transform}
+#cursor-ring{position:fixed;width:30px;height:30px;border-radius:50%;border:1px solid var(--txt2);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .4s cubic-bezier(.4,0,.2,1),height .4s,border-color .3s,opacity .3s;will-change:transform;opacity:.5}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}body{cursor:auto}}
+
+/* ══════════════════════════════════════
+   GRAIN
+══════════════════════════════════════ */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ══════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════ */
+.wrap{max-width:1000px;margin:0 auto;padding:0 40px}
+@media(max-width:900px){.wrap{padding:0 24px}}
+@media(max-width:480px){body{font-size:17px}}
+
+/* ══════════════════════════════════════
+   NAV
+══════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt)}
+.nav-in{max-width:1000px;margin:0 auto;padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
+.nav-links a:hover{color:var(--txt)}
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+
+/* Language switcher */
+.lang-sw{display:flex;align-items:center;gap:2px;background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:3px;overflow:hidden}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:2px;transition:background .2s,color .2s}
+.lang-btn.active{background:var(--txt);color:var(--bg)}
+
+/* Theme toggle */
+.theme-tog{width:42px;height:22px;background:var(--bg3);border:1px solid var(--line2);border-radius:11px;cursor:pointer;position:relative;flex-shrink:0;transition:var(--tt)}
+.theme-tog::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--txt);top:3px;left:3px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+[data-theme="light"] .theme-tog::before{transform:translateX(20px)}
+
+/* Audio toggle */
+.audio-btn{width:30px;height:30px;background:var(--bg3);border:1px solid var(--line);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:background .2s}
+.audio-btn svg{width:14px;height:14px}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 0 60px;overflow:hidden}
+.hero-content{position:relative;z-index:1}
+.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .3s both}
+.eye-line{width:28px;height:1px;background:var(--txt3)}
+.eye-txt{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--txt);opacity:0;animation:fadeUp .7s .45s both}
+.hero-tagline{margin-top:15px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--txt2);opacity:0;animation:fadeUp .7s .55s both}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px;opacity:0;animation:fadeUp .7s .65s both}
+.h-tag{background:var(--tag);border:1px solid var(--line);padding:6px 12px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════════
+   REVEAL SYSTEM
+══════════════════════════════════════ */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
+.rv.on{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════════════
+   SECTION BASE
+══════════════════════════════════════ */
+.sec{padding:80px 0;border-top:1px solid var(--line)}
+.sec-head{margin-bottom:40px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,38px);font-weight:400;letter-spacing:-.02em;line-height:1.1}
+.sec-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-top:8px;display:block}
+
+/* ══════════════════════════════════════
+   CONTENT BLOCKS
+══════════════════════════════════════ */
+.text-block p{font-size:17px;color:var(--txt2);line-height:1.8;margin-bottom:1.2em}
+.text-block strong{color:var(--txt);font-weight:600}
+.text-block ul{margin-left:20px;margin-bottom:1.2em}
+.text-block li{margin-bottom:0.5em;color:var(--txt2)}
+
+/* Code Block */
+.code-block{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:20px}
+.code-header{padding:10px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.code-lang{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-transform:uppercase}
+.copy-btn{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--tag);border:1px solid var(--line);color:var(--txt2);padding:4px 10px;border-radius:2px;cursor:pointer;transition:background .2s}
+.copy-btn:hover{background:var(--hov)}
+pre{padding:20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:var(--txt);white-space:pre-wrap}
+
+/* Links Section */
+.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:30px}
+.link-card{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:20px;display:flex;align-items:center;gap:16px;transition:border-color .3s,background .2s}
+.link-card:hover{border-color:var(--line2);background:var(--hov)}
+.link-icon{width:44px;height:44px;border-radius:6px;background:var(--tag);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.link-icon svg{width:20px;height:20px;color:var(--txt)}
+.link-info{flex:1;min-width:0}
+.link-label{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:4px}
+.link-title{font-size:15px;color:var(--txt);word-break:break-all}
+.link-arrow{color:var(--txt3);transition:transform .3s}
+.link-card:hover .link-arrow{transform:translateX(4px)}
+
+/* Architecture Diagram */
+.arch-block{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:30px;margin-top:30px;overflow-x:auto}
+.arch-flow{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;justify-content:center;min-width:600px}
+.arch-node{background:var(--bg3);border:1px solid var(--line2);padding:12px 18px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt);white-space:nowrap;text-align:center}
+.arch-arrow{color:var(--txt3);font-size:18px;flex-shrink:0}
+@media(max-width:700px){.arch-block{padding:20px}.arch-flow{min-width:auto;flex-wrap:wrap;gap:8px}.arch-arrow{display:none}}
+
+/* Results Grid */
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+@media(max-width:600px){.results-grid{grid-template-columns:1fr}}
+.res-box{padding:20px;background:var(--bg2);border:1px solid var(--line);border-radius:3px}
+.res-box-title{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.res-list{list-style:none}
+.res-list li{font-size:13px;color:var(--txt2);margin-bottom:6px;padding-left:12px;position:relative}
+.res-list li::before{content:'';position:absolute;left:0;top:7px;width:4px;height:4px;background:var(--accent);border-radius:50%}
+
+/* Tech Stack */
+.tech-stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.tech-item{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--line);padding:10px 16px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:border-color .2s}
+.tech-item:hover{border-color:var(--line2)}
+.tech-item svg{width:16px;height:16px;color:var(--txt3)}
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center}
+.footer-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);transition:color .2s}
+.footer-link:hover{color:var(--txt)}
+
+a,button{cursor:pointer}
+</style>
+</head>
+
+<body>
+
+<!-- Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+
+    <nav class="nav-links">
+      <a href="index.html" data-i18n="nav_back">Back to Portfolio</a>
+    </nav>
+
+    <div class="nav-right">
+      <div class="lang-sw" id="langSw">
+        <button class="lang-btn active" data-lang-btn="en">EN</button>
+        <button class="lang-btn" data-lang-btn="uk">UA</button>
+        <button class="lang-btn" data-lang-btn="cs">CZ</button>
+      </div>
+
+      <button class="theme-tog" id="themeBtn" aria-label="Toggle theme"></button>
+
+      <button class="audio-btn" id="audioBtn" aria-label="Play Music">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="eye-line"></div>
+        <div class="eye-txt" data-i18n="hero_type">AI Automation SaaS</div>
+      </div>
+
+      <h1 class="hero-title" data-i18n="hero_title">WealthMirror AI</h1>
+      <div class="hero-tagline" data-i18n="hero_tagline">Production AI automation SaaS for real-time financial decision analysis delivered via Telegram bot.</div>
+
+      <div class="hero-tags">
+        <span class="h-tag">Node.js</span>
+        <span class="h-tag">TypeScript</span>
+        <span class="h-tag">OpenAI API</span>
+        <span class="h-tag">Telegram Bot</span>
+        <span class="h-tag">PostgreSQL</span>
+        <span class="h-tag">2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LINKS ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="links_title">Project Links</h2>
+      <span class="sec-sub" data-i18n="links_sub">Source & Demo</span>
+
+      <div class="links-grid">
+        <a href="https://github.com/tetiana-a/wealthmirror-ai" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </div>
+          <div class="link-info">
+            <div class="link-label">Source Code</div>
+            <div class="link-title">github.com/tetiana-a/wealthmirror-ai</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <a href="https://t.me/sass88888888_bot" target="_blank" rel="noopener" class="link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.73 18.9L15.83 4.41c-.52-1.21-2.12-1.21-2.64 0L7.27 18.9c-.47 1.09.35 2.27 1.52 2.27h4.22c-.04-.15-.07-.32-.07-.5v-3.5l-2.44-1.47 3.44-2.03 3.44 2.03-2.44 1.47v3.5c0 .18-.03.35-.07.5h4.22c1.17 0 1.99-1.18 1.52-2.27z"></path>
+              <circle cx="12" cy="12" r="10"></circle>
+            </svg>
+          </div>
+          <div class="link-info">
+            <div class="link-label">Live Demo</div>
+            <div class="link-title">t.me/sass88888888_bot</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROBLEM & GOAL ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="text-block rv">
+      <h2 class="sec-title" data-i18n="context_title">Context & Problem</h2>
+      <span class="sec-sub">Business Case</span>
+
+      <p data-i18n="context_p1">
+        Financial decision-making requires quick, personalized analysis that most individuals cannot access without expensive advisory services. Traditional financial advisors are costly, slow, and not available 24/7. Users need instant, AI-powered insights tailored to their financial profile.
+      </p>
+
+      <p data-i18n="context_p2">
+        <strong>The Challenge:</strong> Build a scalable SaaS that delivers real-time financial analysis through a familiar interface (Telegram), with user behavior modeling, usage-based monetization, and structured AI outputs that users can act on immediately.
+      </p>
+
+      <p><strong data-i18n="goal_title">Goal:</strong>
+        <span data-i18n="goal_text">Create a fully automated financial advisor flow — from user query to AI-generated structured insight — delivered via Telegram with persistent user profiles and usage tracking.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ARCHITECTURE ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="arch_title">System Architecture</h2>
+      <span class="sec-sub" data-i18n="arch_sub">Data Flow</span>
+
+      <div class="text-block">
+        <p data-i18n="arch_desc">
+          The system is built as a webhook-based backend that orchestrates the entire pipeline: receiving user input from Telegram, processing it through OpenAI, storing structured data in PostgreSQL, and returning personalized responses.
+        </p>
+      </div>
+
+      <div class="arch-block">
+        <div class="arch-flow">
+          <div class="arch-node">Telegram<br><span style="color:var(--txt3);font-size:9px">User Input</span></div>
+          <span class="arch-arrow">→</span>
+          <div class="arch-node">Express Webhook<br><span style="color:var(--txt3);font-size:9px">API Gateway</span></div>
+          <span class="arch-arrow">→</span>
+          <div class="arch-node">OpenAI API<br><span style="color:var(--txt3);font-size:9px">Analysis Engine</span></div>
+          <span class="arch-arrow">→</span>
+          <div class="arch-node">PostgreSQL<br><span style="color:var(--txt3);font-size:9px">Prisma/Supabase</span></div>
+          <span class="arch-arrow">→</span>
+          <div class="arch-node">Response<br><span style="color:var(--txt3);font-size:9px">Structured Output</span></div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+          Node.js
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+          TypeScript
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M12 1v6m0 6v10"></path><path d="M1 12h6m6 0h10"></path></svg>
+          OpenAI API
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          Telegraf
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+          PostgreSQL
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path></svg>
+          Prisma ORM
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          Supabase
+        </div>
+        <div class="tech-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          Render
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ IMPLEMENTATION ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="impl_title">Key Features</h2>
+      <span class="sec-sub" data-i18n="impl_sub">Implementation Details</span>
+
+      <div class="results-grid">
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="feat_1_title">Financial DNA</div>
+          <ul class="res-list">
+            <li data-i18n="f_1_1">User behavior modeling</li>
+            <li data-i18n="f_1_2">Risk profile analysis</li>
+            <li data-i18n="f_1_3">Personalized insights</li>
+            <li data-i18n="f_1_4">Persistent user profiles</li>
+          </ul>
+        </div>
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="feat_2_title">SaaS Logic</div>
+          <ul class="res-list">
+            <li data-i18n="f_2_1">Usage-based limits</li>
+            <li data-i18n="f_2_2">Monetization system</li>
+            <li data-i18n="f_2_3">Tier management</li>
+            <li data-i18n="f_2_4">Quota tracking</li>
+          </ul>
+        </div>
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="feat_3_title">AI Pipeline</div>
+          <ul class="res-list">
+            <li data-i18n="f_3_1">Structured output</li>
+            <li data-i18n="f_3_2">Context awareness</li>
+            <li data-i18n="f_3_3">Response formatting</li>
+            <li data-i18n="f_3_4">Error handling</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-lang">TypeScript / Webhook Handler Pattern</span>
+          <button class="copy-btn" onclick="copyCode(this)">COPY</button>
+        </div>
+        <pre id="codeContent">// Express webhook handler for Telegram bot
+bot.on('text', async (ctx) => {
+  const userId = ctx.from.id;
+  const message = ctx.message.text;
+
+  // 1. Get or create user profile (Financial DNA)
+  const user = await prisma.user.upsert({
+    where: { telegramId: userId },
+    update: { lastActive: new Date() },
+    create: { telegramId: userId, tier: 'free' }
+  });
+
+  // 2. Check usage limits (SaaS logic)
+  const usage = await checkUserLimits(user);
+  if (!usage.allowed) {
+    return ctx.reply('Daily limit reached. Upgrade for more.');
+  }
+
+  // 3. Process through OpenAI with user context
+  const analysis = await openai.chat.completions.create({
+    model: 'gpt-4',
+    messages: buildContext(user, message),
+    response_format: { type: 'json_object' }
+  });
+
+  // 4. Store interaction and increment usage
+  await prisma.interaction.create({
+    data: { userId: user.id, query: message, response: analysis }
+  });
+
+  // 5. Return structured response
+  ctx.reply(formatResponse(analysis));
+});</pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ OUTPUT & RESULTS ══ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <h2 class="sec-title" data-i18n="output_title">Results</h2>
+      <span class="sec-sub" data-i18n="output_sub">Project Outcomes</span>
+
+      <div class="results-grid">
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_tech">Technical</div>
+          <ul class="res-list">
+            <li data-i18n="r_t1">Fully automated pipeline</li>
+            <li data-i18n="r_t2">Scalable cloud deployment</li>
+            <li data-i18n="r_t3">Type-safe codebase</li>
+            <li data-i18n="r_t4">Reliable webhook handling</li>
+          </ul>
+        </div>
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_user">User Experience</div>
+          <ul class="res-list">
+            <li data-i18n="r_u1">Instant AI responses</li>
+            <li data-i18n="r_u2">Personalized analysis</li>
+            <li data-i18n="r_u3">Familiar Telegram interface</li>
+            <li data-i18n="r_u4">24/7 availability</li>
+          </ul>
+        </div>
+        <div class="res-box">
+          <div class="res-box-title" data-i18n="res_biz">Business Value</div>
+          <ul class="res-list">
+            <li data-i18n="r_b1">Monetization-ready SaaS</li>
+            <li data-i18n="r_b2">Low operational cost</li>
+            <li data-i18n="r_b3">Usage analytics built-in</li>
+            <li data-i18n="r_b4">Scalable infrastructure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="wrap">
+    <a href="index.html" class="footer-link" data-i18n="footer_link">← Back to Portfolio</a>
+  </div>
+</footer>
+
+<audio id="bgMusic" loop>
+  <source src="assets/music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+/* ════════════════════════════════════════
+   TRANSLATIONS
+════════════════════════════════════════ */
+const i18n = {
+  en: {
+    nav_back: 'Back to Portfolio',
+    hero_type: 'AI Automation SaaS',
+    hero_title: 'WealthMirror AI',
+    hero_tagline: 'Production AI automation SaaS for real-time financial decision analysis delivered via Telegram bot.',
+    links_title: 'Project Links',
+    links_sub: 'Source & Demo',
+    context_title: 'Context & Problem',
+    context_p1: 'Financial decision-making requires quick, personalized analysis that most individuals cannot access without expensive advisory services. Traditional financial advisors are costly, slow, and not available 24/7. Users need instant, AI-powered insights tailored to their financial profile.',
+    context_p2: '<strong>The Challenge:</strong> Build a scalable SaaS that delivers real-time financial analysis through a familiar interface (Telegram), with user behavior modeling, usage-based monetization, and structured AI outputs that users can act on immediately.',
+    goal_title: 'Goal:',
+    goal_text: 'Create a fully automated financial advisor flow — from user query to AI-generated structured insight — delivered via Telegram with persistent user profiles and usage tracking.',
+    arch_title: 'System Architecture',
+    arch_sub: 'Data Flow',
+    arch_desc: 'The system is built as a webhook-based backend that orchestrates the entire pipeline: receiving user input from Telegram, processing it through OpenAI, storing structured data in PostgreSQL, and returning personalized responses.',
+    impl_title: 'Key Features',
+    impl_sub: 'Implementation Details',
+    feat_1_title: 'Financial DNA',
+    f_1_1: 'User behavior modeling',
+    f_1_2: 'Risk profile analysis',
+    f_1_3: 'Personalized insights',
+    f_1_4: 'Persistent user profiles',
+    feat_2_title: 'SaaS Logic',
+    f_2_1: 'Usage-based limits',
+    f_2_2: 'Monetization system',
+    f_2_3: 'Tier management',
+    f_2_4: 'Quota tracking',
+    feat_3_title: 'AI Pipeline',
+    f_3_1: 'Structured output',
+    f_3_2: 'Context awareness',
+    f_3_3: 'Response formatting',
+    f_3_4: 'Error handling',
+    output_title: 'Results',
+    output_sub: 'Project Outcomes',
+    res_tech: 'Technical',
+    r_t1: 'Fully automated pipeline',
+    r_t2: 'Scalable cloud deployment',
+    r_t3: 'Type-safe codebase',
+    r_t4: 'Reliable webhook handling',
+    res_user: 'User Experience',
+    r_u1: 'Instant AI responses',
+    r_u2: 'Personalized analysis',
+    r_u3: 'Familiar Telegram interface',
+    r_u4: '24/7 availability',
+    res_biz: 'Business Value',
+    r_b1: 'Monetization-ready SaaS',
+    r_b2: 'Low operational cost',
+    r_b3: 'Usage analytics built-in',
+    r_b4: 'Scalable infrastructure',
+    footer_link: '← Back to Portfolio'
+  },
+  uk: {
+    nav_back: 'Назад до портфоліо',
+    hero_type: 'AI Автоматизація SaaS',
+    hero_title: 'WealthMirror AI',
+    hero_tagline: 'Продакшн AI автоматизація SaaS для аналізу фінансових рішень в реальному часі через Telegram бота.',
+    links_title: 'Посилання на проект',
+    links_sub: 'Код та Демо',
+    context_title: 'Контекст та Проблема',
+    context_p1: 'Прийняття фінансових рішень вимагає швидкого, персоналізованого аналізу, до якого більшість людей не мають доступу без дорогих консультацій. Традиційні фінансові консультанти дорогі, повільні та недоступні 24/7. Користувачам потрібні миттєві AI-інсайти, адаптовані до їх фінансового профілю.',
+    context_p2: '<strong>Виклик:</strong> Створити масштабований SaaS, який надає аналіз фінансів в реальному часі через знайомий інтерфейс (Telegram), з моделюванням поведінки користувачів, монетизацією на основі використання та структурованими AI-відповідями.',
+    goal_title: 'Мета:',
+    goal_text: 'Створити повністю автоматизований потік фінансового консультанта — від запиту користувача до AI-згенерованого структурованого інсайту — через Telegram з постійними профілями користувачів та відстеженням використання.',
+    arch_title: 'Архітектура Системи',
+    arch_sub: 'Потік Даних',
+    arch_desc: 'Система побудована на основі webhook-бэкенду, який оркеструє весь пайплайн: отримання вводу від Telegram, обробка через OpenAI, зберігання структурованих даних в PostgreSQL та повернення персоналізованих відповідей.',
+    impl_title: 'Ключові Функції',
+    impl_sub: 'Деталі Реалізації',
+    feat_1_title: 'Financial DNA',
+    f_1_1: 'Моделювання поведінки',
+    f_1_2: 'Аналіз ризик-профілю',
+    f_1_3: 'Персоналізовані інсайти',
+    f_1_4: 'Постійні профілі',
+    feat_2_title: 'SaaS Логіка',
+    f_2_1: 'Ліміти використання',
+    f_2_2: 'Система монетизації',
+    f_2_3: 'Управління тарифами',
+    f_2_4: 'Відстеження квот',
+    feat_3_title: 'AI Пайплайн',
+    f_3_1: 'Структурований вивід',
+    f_3_2: 'Контекстна обізнаність',
+    f_3_3: 'Форматування відповідей',
+    f_3_4: 'Обробка помилок',
+    output_title: 'Результати',
+    output_sub: 'Наслідки Проекту',
+    res_tech: 'Технічні',
+    r_t1: 'Повністю автоматизований пайплайн',
+    r_t2: 'Масштабоване хмарне розгортання',
+    r_t3: 'Type-safe кодова база',
+    r_t4: 'Надійна обробка webhook',
+    res_user: 'Досвід Користувача',
+    r_u1: 'Миттєві AI відповіді',
+    r_u2: 'Персоналізований аналіз',
+    r_u3: 'Знайомий інтерфейс Telegram',
+    r_u4: 'Доступність 24/7',
+    res_biz: 'Бізнес-цінність',
+    r_b1: 'SaaS готовий до монетизації',
+    r_b2: 'Низькі операційні витрати',
+    r_b3: 'Вбудована аналітика',
+    r_b4: 'Масштабована інфраструктура',
+    footer_link: '← Назад до портфоліо'
+  },
+  cs: {
+    nav_back: 'Zpět na portfólio',
+    hero_type: 'AI Automatizace SaaS',
+    hero_title: 'WealthMirror AI',
+    hero_tagline: 'Produkční AI automatizace SaaS pro analýzu finančních rozhodnutí v reálném čase přes Telegram bota.',
+    links_title: 'Odkazy na Projekt',
+    links_sub: 'Zdroj & Demo',
+    context_title: 'Kontext a Problém',
+    context_p1: 'Finanční rozhodování vyžaduje rychlou, personalizovanou analýzu, kterou většina jednotlivců nemůže získat bez drahých poradenských služeb. Tradiční finanční poradci jsou drazí, pomalí a nejsou k dispozici 24/7. Uživatelé potřebují okamžité AI poznatky přizpůsobené jejich finančnímu profilu.',
+    context_p2: '<strong>Výzva:</strong> Postavit škálovatelné SaaS, které poskytuje analýzu financí v reálném čase přes známé rozhraní (Telegram), s modelováním chování uživatelů, monitizací založenou na používání a strukturovanými AI výstupy.',
+    goal_title: 'Cíl:',
+    goal_text: 'Vytvořit plně automatizovaný tok finančního poradce — od dotazu uživatele po AI-generovaný strukturovaný vhled — dodávaný přes Telegram s trvalými profily uživatelů a sledováním používání.',
+    arch_title: 'Architektura Systému',
+    arch_sub: 'Tok Dat',
+    arch_desc: 'Systém je postaven jako backend založený na webhooku, který orchestruje celý pipeline: příjem vstupu z Telegramu, zpracování přes OpenAI, ukládání strukturovaných dat v PostgreSQL a vracení personalizovaných odpovědí.',
+    impl_title: 'Klíčové Funkce',
+    impl_sub: 'Detaily Implementace',
+    feat_1_title: 'Financial DNA',
+    f_1_1: 'Modelování chování',
+    f_1_2: 'Analýza rizikového profilu',
+    f_1_3: 'Personalizované vhledy',
+    f_1_4: 'Trvalé profily',
+    feat_2_title: 'SaaS Logika',
+    f_2_1: 'Limity používání',
+    f_2_2: 'Systém monitizace',
+    f_2_3: 'Správa tierů',
+    f_2_4: 'Sledování kvót',
+    feat_3_title: 'AI Pipeline',
+    f_3_1: 'Strukturovaný výstup',
+    f_3_2: 'Kontextová awareness',
+    f_3_3: 'Formátování odpovědí',
+    f_3_4: 'Zpracování chyb',
+    output_title: 'Výsledky',
+    output_sub: 'Výstupy Projektu',
+    res_tech: 'Technické',
+    r_t1: 'Plně automatizovaný pipeline',
+    r_t2: 'Škálovatelné cloudové nasazení',
+    r_t3: 'Type-safe kódová báze',
+    r_t4: 'Spolehlivé zpracování webhook',
+    res_user: 'Uživatelská Zkušenost',
+    r_u1: 'Okamžité AI odpovědi',
+    r_u2: 'Personalizovaná analýza',
+    r_u3: 'Známé rozhraní Telegram',
+    r_u4: 'Dostupnost 24/7',
+    res_biz: 'Obchodní Hodnota',
+    r_b1: 'SaaS připravený k monitizaci',
+    r_b2: 'Nízké provozní náklady',
+    r_b3: 'Zabudovaná analytika',
+    r_b4: 'Škálovatelná infrastruktura',
+    footer_link: '← Zpět na portfólio'
+  }
+};
+
+/* Cursor */
+(function(){
+  if(!window.matchMedia('(hover:hover)').matches) return;
+  const dot=document.getElementById('cursor-dot');
+  const ring=document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    dot.style.left=mx+'px';dot.style.top=my+'px';
+  },{passive:true});
+
+  function lerpRing(){
+    rx+=(mx-rx)*.12; ry+=(my-ry)*.12;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(lerpRing);
+  }
+  lerpRing();
+
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.opacity='1'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px';ring.style.opacity='.5'});
+  });
+})();
+
+/* Theme toggle */
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const h=document.documentElement;
+  h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark');
+});
+
+/* Audio toggle */
+const audioBtn = document.getElementById('audioBtn');
+const bgMusic = document.getElementById('bgMusic');
+let isPlaying = false;
+
+audioBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    audioBtn.style.background = '';
+    audioBtn.style.borderColor = '';
+    audioBtn.style.color = '';
+  } else {
+    bgMusic.play().catch(()=>{});
+    audioBtn.style.background = 'var(--txt)';
+    audioBtn.style.borderColor = 'var(--txt)';
+    audioBtn.style.color = 'var(--bg)';
+  }
+  isPlaying = !isPlaying;
+});
+
+/* Language system */
+function applyLang(lang){
+  const t=i18n[lang];
+  document.documentElement.setAttribute('data-lang',lang);
+  document.documentElement.setAttribute('lang',lang==='uk'?'uk':lang==='cs'?'cs':'en');
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(t[key]!==undefined) el.innerHTML=t[key];
+  });
+
+  document.querySelectorAll('[data-lang-btn]').forEach(b=>{
+    b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang);
+  });
+}
+document.getElementById('langSw').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-lang-btn]');
+  if(btn) applyLang(btn.getAttribute('data-lang-btn'));
+});
+applyLang('en');
+
+/* Reveal */
+const rvObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      rvObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.rv').forEach(el=>rvObserver.observe(el));
+
+/* Copy code */
+function copyCode(btn){
+  const code=document.getElementById('codeContent').innerText;
+  navigator.clipboard.writeText(code).then(()=>{
+    const orig=btn.innerText;
+    btn.innerText='COPIED!';
+    setTimeout(()=>btn.innerText=orig,1200);
+  });
+}
+</script>
+
+</body>
+</html>
