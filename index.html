@@ -218,7 +218,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 </div>
 
 <section class="hero" id="top">
-  <canvas id="matrixCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.6;z-index:0"></canvas>
+  <canvas id="matrixCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.65;z-index:0"></canvas>
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="eye-line"></div>
@@ -288,7 +288,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <div class="a-cell rv rv-d4" id="contact">
         <div class="a-lbl" data-i18n="about_contact_lbl">Contact</div>
         <div class="contact-list">
-          <a href="/cdn-cgi/l/email-protection#442f2b302b2831347670042329252d286a272b29" class="c-item"><div class="c-ico">@</div><span><span class="__cf_email__" data-cfemail="4c2723382320393c7e780c2b212d2520622f2321">[email&#160;protected]</span></span></a>
+          <a href="mailto:kotolup24@gmail.com" class="c-item"><div class="c-ico">@</div><span>kotolup24@gmail.com</span></a>
           <a href="https://t.me/tetiana_K888" target="_blank" class="c-item"><div class="c-ico">tg</div>@tetiana_K888</a>
           <a href="https://github.com/tetiana-a" target="_blank" class="c-item"><div class="c-ico">gh</div>github.com/tetiana-a</a>
           <a href="https://tetiana-a.github.io/aiAutomationDev/" target="_blank" class="c-item"><div class="c-ico">↗</div>Portfolio site</a>
@@ -510,13 +510,19 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 <footer>
   <div class="ft-in">
     <div class="ft-name">Tetiana Kotolup</div>
-    <div class="ft-info">AI Automation Developer · Full-Stack AI Products<br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="12797d667d7e6762202652757f737b7e3c717d7f">[email&#160;protected]</a> · @tetiana_K888 · 2026</div>
+    <div class="ft-info">AI Automation Developer · Full-Stack AI Products<br>kotolup24@gmail.com · @tetiana_K888 · 2026</div>
   </div>
 </footer>
 
+<button class="music-fab" id="musicBtn" data-on="false" aria-label="Toggle music">
+  <div class="eq">
+    <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
+  </div>
+  <span class="music-lbl" id="musicLbl">Music</span>
+</button>
+<audio id="bgAudio" preload="none" loop><source src="01.mp3" type="audio/mpeg"></audio>
 
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const i18n={en:{nav_about:"About",nav_skills:"Skills",nav_certs:"Certs",nav_case:"Case",nav_projects:"Projects",btn_details:"Details",btn_site:"Website ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",hero_eyebrow:"AI Automation Developer · Full-Stack AI Products",hero_desc:"I design and build production-ready AI automations and full-stack AI products — from n8n pipelines and Telegram bots to SaaS backends with PostgreSQL. From idea to live system, systematically and predictably.",stat_projects:"Projects",stat_certs:"Certificates",stat_saas:"Live SaaS",stat_first:"AI-first approach",about_title:"About me",about_who_lbl:"Who I am",about_who_p1:"<strong>Tetiana Kotolup</strong> — AI Automation Developer. I build n8n automations, Telegram AI bots, and full-stack AI SaaS products with Node.js, TypeScript, PostgreSQL, OpenAI and React.",edu_lbl:"Education",edu_degree:"Junior Specialist Diploma",edu_school:"Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician",edu_nostri:"✓ Nostrified in CZ · 18-20-M/01 Informační technologie · KÚ JMK 2021",about_who_p2:'Completing the <strong>AI No-Code Developer</strong> program. 3 live AI SaaS products deployed in production.',about_approach_lbl:"My approach",ap1:"Analyse business processes and find time-loss bottlenecks",ap2:"Design AI-agent logic tailored to the specific task",ap3:"Build reliable pipelines with error handling and fallback logic",ap4:"Deploy production backends with PostgreSQL, Prisma, Supabase",ap5:"Test on real scenarios and optimise token costs",ap6:"Evaluate ROI of automation and SaaS implementation",about_tools_lbl:"Tools & Stack",about_contact_lbl:"Contact",skills_title:"Key Expertise",sk1_name:"Workflow Automation",sk1_desc:"n8n pipelines with complex branching, error handling, scheduled jobs, retry logic and webhook triggers. Used across all 11 n8n projects including LegisFlow and AI call analytics.",sk2_name:"AI Integration & Prompting",sk2_desc:"OpenAI GPT-4o / GPT-4o-mini, structured JSON output, multi-model ensemble evaluation, chunking for large legal documents (LegisFlow), Financial DNA modeling (WealthMirror AI).",sk3_name:"Telegram Bot Development",sk3_desc:"Production Telegram bots via Telegraf (Node.js) and n8n: command routing, real-time alerts, voice processing, DALL-E image generation, usage-based SaaS limits. 5+ bots live.",sk4_name:"Backend & API Development",sk4_desc:"Node.js / TypeScript, Express.js REST APIs, JWT authentication, webhook-based event pipelines. Applied in WealthMirror AI and AI CRM — deployed on Render and Vercel.",sk5_name:"Database & ORM",sk5_desc:"PostgreSQL with Prisma ORM, Supabase managed instances. Designed schemas for CRM (clients + appointments), financial user data, usage quotas and SaaS monetization logic.",sk6_name:"API & Service Integrations",sk6_desc:"Google Suite APIs (Sheets, Calendar, Drive, Gmail), AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank, NocoDB DataTable. 10+ third-party integrations across projects.",sk7_name:"Frontend & React",sk7_desc:"React.js dashboard for AI CRM — client management, appointment views, real-time webhook sync. HTML/CSS responsive interfaces, Vercel deployments. LegisFlow web interface.",sk8_name:"Voice & Image AI",sk8_desc:"AssemblyAI transcription pipeline with 30-sec polling, DALL-E 3 image generation from voice messages, PDF text extraction with chunking for large legal documents (LegisFlow).",certs_title:"Certificates",cert1_desc:"Cognitive processes and behavioural patterns — strengthens building human-centred automations",cert2_desc:"AI in marketing: content automation, personalisation, analytics",cert3_desc:"Responsive layout, Flexbox, Grid, CSS animations, forms, validation",cert4_desc:"Functions, arrays, objects, DOM, event listeners, debugging, Chrome DevTools",cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions, GCP security",cert6_desc:"Back-end development, databases, forms, sessions, XSS protection, error handling",cert7_desc:"ChatGPT in business communication: automating correspondence, reports and presentations",cert8_desc:"12 hours of 1-to-1 mentorship from industry experts: goal setting, career development, strategy",case_sec_title:"Featured Case",case_kicker:"AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram",case_title:"AI Agent for Call Analysis<br>& Telegram Statistics Bot",case_tagline:"The company couldn't understand why clients were dissatisfied — no one listened to calls systematically. An AI system was built to do this automatically, 24/7.",case_prob_lbl:"Problem",case_sol_lbl:"Solution · 3 workflows",case_proc_lbl:"Process",case_res_lbl:"Results",case_p1:"Calls processed manually — no sentiment analysis",case_p2:"Managers spend hours listening to recordings",case_p3:"No categorisation or prioritisation system",case_p4:"Statistics unavailable in real time",p_call:"Call",case_pr1:"Trigger: new call → workflow starts automatically",case_pr2:"AssemblyAI transcribes audio; polling every 30 sec",case_pr3:"OpenAI returns JSON: sentiment + category",case_pr4:"IF condition: negative → priority logging",case_pr5:"Testing: 30+ real scenarios, edge cases, fallback",case_pr6:"Prompt optimisation: classification accuracy 90%+",res_quant:"Quantitative",res_qual:"Qualitative",res_biz:"Business",res_q1:"−80% manual work",res_q2:"100% of calls",res_ql1:"Zero lost records",res_ql2:"Full transparency",res_ql3:"Instant negatives",res_b1:"Scale w/o hiring",res_b2:"Data-driven",res_b3:"Modular system",proj_title:"All Projects",
 projects:[
 {idx:"12/14",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,desc:"Production AI SaaS delivering real-time financial decision analysis via Telegram. Webhook backend: user input → OpenAI analysis → structured insight → PostgreSQL. Financial DNA user modeling, usage-based monetization, deployed on Render.",tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
@@ -569,12 +575,40 @@ projects:[
 {idx:"11/14",id:"img-url-drive",title:"Stažení obrázku → Google Drive",year:"2025",featured:false,desc:"Stáhne binary z URL v n8n, nahraje do Google Drive složky se smart názvem souboru.",tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],site:null,bot:null,github:null}
 ]}};
 
-(function(){if(!window.matchMedia('(hover:hover)').matches)return;const dot=document.getElementById('cursor-dot');const ring=document.getElementById('cursor-ring');let mx=0,my=0,rx=0,ry=0;document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'},{passive:true});function lerpRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lerpRing)}lerpRing();document.querySelectorAll('a,button,.a-cell,.c-card,.p-card,.c-blk').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.opacity='1'});el.addEventListener('mouseleave',()=>{ring.style.width='28px';ring.style.height='28px';ring.style.opacity='.5'})})})();
+/* ── CURSOR ── */
+(function(){
+  if(!window.matchMedia('(hover:hover)').matches)return;
+  const dot=document.getElementById('cursor-dot');
+  const ring=document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'},{passive:true});
+  function lerpRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lerpRing)}
+  lerpRing();
+  document.querySelectorAll('a,button,.a-cell,.c-card,.p-card,.c-blk').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.opacity='1'});
+    el.addEventListener('mouseleave',()=>{ring.style.width='28px';ring.style.height='28px';ring.style.opacity='.5'});
+  });
+})();
 
-document.getElementById('themeBtn').addEventListener('click',()=>{const h=document.documentElement;const next=h.getAttribute('data-theme')==='dark'?'light':'dark';h.setAttribute('data-theme',next);localStorage.setItem('tk_theme',next)});
+/* ── THEME ── */
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const h=document.documentElement;
+  const next=h.getAttribute('data-theme')==='dark'?'light':'dark';
+  h.setAttribute('data-theme',next);
+  localStorage.setItem('tk_theme',next);
+});
 
 let curLang='en';
-(function initPrefs(){const savedTheme=localStorage.getItem('tk_theme');const savedLang=localStorage.getItem('tk_lang');const q=new URLSearchParams(location.search);const qLang=q.get('lang');const h=document.documentElement;if(savedTheme==='light'||savedTheme==='dark')h.setAttribute('data-theme',savedTheme);if(qLang)localStorage.setItem('tk_lang',qLang);window.__tkInitialLang=(qLang||savedLang||'en')})();
+(function initPrefs(){
+  const savedTheme=localStorage.getItem('tk_theme');
+  const savedLang=localStorage.getItem('tk_lang');
+  const q=new URLSearchParams(location.search);
+  const qLang=q.get('lang');
+  const h=document.documentElement;
+  if(savedTheme==='light'||savedTheme==='dark')h.setAttribute('data-theme',savedTheme);
+  if(qLang)localStorage.setItem('tk_lang',qLang);
+  window.__tkInitialLang=(qLang||savedLang||'en');
+})();
 
 const projectMap={
   'voice-image':'1.html','ua-months':'2.html','tg-gcal':'3.html',
@@ -583,10 +617,7 @@ const projectMap={
   'monthly-sales':'10.html','img-url-drive':'11.html',
   'wealthmirror':'12.html','aicrm':'13.html','legisflow':'14.html'
 };
-function openProject(id){
-  const file=projectMap[id];
-  if(file) window.open(file,'_blank','noopener');
-}
+function openProject(id){const file=projectMap[id];if(file)window.open(file,'_blank','noopener');}
 
 const skKeys=[['sk1_name','sk1_desc'],['sk2_name','sk2_desc'],['sk3_name','sk3_desc'],['sk4_name','sk4_desc'],['sk5_name','sk5_desc'],['sk6_name','sk6_desc'],['sk7_name','sk7_desc'],['sk8_name','sk8_desc']];
 
@@ -623,64 +654,100 @@ function applyLang(lang){
   document.querySelectorAll('[data-lang-btn]').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang));
 }
 
-document.getElementById('langSw').addEventListener('click',e=>{const btn=e.target.closest('[data-lang-btn]');if(btn)applyLang(btn.getAttribute('data-lang-btn'))});
+document.getElementById('langSw').addEventListener('click',e=>{const btn=e.target.closest('[data-lang-btn]');if(btn)applyLang(btn.getAttribute('data-lang-btn'));});
 
-const rvObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.sk-bar-f').forEach(b=>b.style.width=b.style.getPropertyValue('--w'));rvObserver.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+const rvObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.sk-bar-f').forEach(b=>b.style.width=b.style.getPropertyValue('--w'));rvObserver.unobserve(e.target)}});},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.rv').forEach(el=>rvObserver.observe(el));
-const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=getComputedStyle(e.target).getPropertyValue('--w');barObs.unobserve(e.target)}})},{threshold:.5});
+const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=getComputedStyle(e.target).getPropertyValue('--w');barObs.unobserve(e.target)}});},{threshold:.5});
 document.querySelectorAll('.sk-bar-f').forEach(el=>barObs.observe(el));
 
 const sections=document.querySelectorAll('section[id]');
 const navAnchors=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});navAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur))},{passive:true});
+window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});navAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));},{passive:true});
 
 const ham=document.getElementById('hamBtn');const mob=document.getElementById('mobileMenu');
-ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open')});
-function closeMob(){ham.classList.remove('open');mob.classList.remove('open')}
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open');});
+function closeMob(){ham.classList.remove('open');mob.classList.remove('open');}
 
-function dlPDF(){const cvUrl='https://raw.githubusercontent.com/tetiana-a/aiAutomationDev/main/Tetiana_Kotolup_CV_2026.pdf';const a=document.createElement('a');a.href=cvUrl;a.download='Tetiana_Kotolup_CV_2026.pdf';a.target='_blank';document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),400)}
+function dlPDF(){
+  const cvUrl='https://raw.githubusercontent.com/tetiana-a/aiAutomationDev/main/Tetiana_Kotolup_CV_2026.pdf';
+  const a=document.createElement('a');a.href=cvUrl;a.download='Tetiana_Kotolup_CV_2026.pdf';a.target='_blank';
+  document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),400);
+}
 
-/* Pulsing rings canvas */
+/* ══════════════════════════════════════════
+   CANVAS BACKGROUND — реагує на музику і тему
+   canvas position:fixed → видно на всій сторінці
+══════════════════════════════════════════ */
 (function(){
   const c=document.getElementById('matrixCanvas');
   if(!c)return;
   const ctx=c.getContext('2d');
-  let W,H,rings=[];
-  const RING_COUNT=6;
+  let W,H,rings=[],t=0,musicPulse=1,musicTarget=1;
+  const RING_COUNT=8;
+
   function makeRing(){
     return{
       x:Math.random()*W,
       y:Math.random()*H,
-      r:20+Math.random()*60,
-      maxR:120+Math.random()*220,
-      speed:0.4+Math.random()*0.7,
-      alpha:0.18+Math.random()*0.18,
-      phase:Math.random()*Math.PI*2
+      r:10+Math.random()*50,
+      maxR:80+Math.random()*280,
+      speed:0.3+Math.random()*0.85,
+      alpha:0.12+Math.random()*0.2,
+      phase:Math.random()*Math.PI*2,
+      hue:Math.random()>0.7
     };
   }
+
   function init(){
-    W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;
+    W=c.width=window.innerWidth;
+    H=c.height=window.innerHeight;
     rings=Array.from({length:RING_COUNT},makeRing);
   }
-  let t=0;
+
   function draw(){
     ctx.clearRect(0,0,W,H);
+
+    /* читаємо стан музики кожного кадру */
+    const musicBtn=document.getElementById('musicBtn');
+    const musicOn=musicBtn&&musicBtn.dataset.on==='true';
+
+    /* плавний pulseTarget залежно від музики */
+    musicTarget=musicOn?1.4+0.6*Math.abs(Math.sin(t*3.5)):1;
+    musicPulse+=(musicTarget-musicPulse)*0.08;
+
+    t+=0.013;
+
+    /* читаємо тему кожного кадру — миттєва реакція */
     const isDark=document.documentElement.getAttribute('data-theme')!=='light';
-    const col=isDark?'239,239,239':'12,12,12';
-    t+=0.012;
+
     rings.forEach(rg=>{
-      rg.r+=rg.speed;
-      if(rg.r>rg.maxR){Object.assign(rg,makeRing(),{x:Math.random()*W,y:Math.random()*H,r:20});}
-      const fade=1-(rg.r-20)/(rg.maxR-20);
-      const pulse=0.5+0.5*Math.sin(t*2+rg.phase);
+      rg.r+=rg.speed*musicPulse;
+      if(rg.r>rg.maxR*musicPulse){
+        Object.assign(rg,makeRing());
+        rg.r=10;
+      }
+      const fade=1-(rg.r-10)/(rg.maxR-10);
+      const pulse=0.4+0.6*Math.abs(Math.sin(t*1.8+rg.phase));
+      const a=rg.alpha*fade*pulse*(musicOn?Math.min(1.6,musicPulse):1);
+
+      let stroke;
+      if(isDark){
+        stroke=rg.hue?`rgba(160,140,255,${(a*0.7).toFixed(3)})`:`rgba(239,239,239,${a.toFixed(3)})`;
+      }else{
+        stroke=rg.hue?`rgba(80,60,180,${(a*0.5).toFixed(3)})`:`rgba(12,12,12,${a.toFixed(3)})`;
+      }
+
       ctx.beginPath();
       ctx.arc(rg.x,rg.y,rg.r,0,Math.PI*2);
-      ctx.strokeStyle=`rgba(${col},${rg.alpha*fade*pulse})`;
-      ctx.lineWidth=1.2;
+      ctx.strokeStyle=stroke;
+      ctx.lineWidth=musicOn?1.5*musicPulse:1.1;
       ctx.stroke();
     });
+
     requestAnimationFrame(draw);
   }
+
   init();
   window.addEventListener('resize',init);
   draw();
@@ -689,26 +756,31 @@ function dlPDF(){const cvUrl='https://raw.githubusercontent.com/tetiana-a/aiAuto
 applyLang(window.__tkInitialLang||'en');
 </script>
 
-<button class="music-fab" id="musicBtn" data-on="false" aria-label="Toggle music">
-  <div class="eq">
-    <div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div><div class="eq-bar"></div>
-  </div>
-  <span class="music-lbl" id="musicLbl">Music</span>
-</button>
-<audio id="bgAudio" preload="none" loop><source src="01.mp3" type="audio/mpeg"></audio>
-
 <script>
+/* ── MUSIC ── */
 const musicBtn=document.getElementById('musicBtn');
 const bgAudio=document.getElementById('bgAudio');
 const musicLbl=document.getElementById('musicLbl');
+
 (function(){
   const on=localStorage.getItem('tk_music')==='on';
-  if(on){musicBtn.dataset.on='true';musicLbl.textContent='On';bgAudio.volume=0.4;bgAudio.play().catch(()=>{})}
+  if(on){musicBtn.dataset.on='true';musicLbl.textContent='On';bgAudio.volume=0.4;bgAudio.play().catch(()=>{});}
 })();
+
 musicBtn.addEventListener('click',async()=>{
   const isOn=musicBtn.dataset.on==='true';
-  if(isOn){bgAudio.pause();musicBtn.dataset.on='false';musicLbl.textContent='Music';localStorage.setItem('tk_music','off')}
-  else{bgAudio.volume=0.4;try{await bgAudio.play()}catch(e){}musicBtn.dataset.on='true';musicLbl.textContent='On';localStorage.setItem('tk_music','on')}
+  if(isOn){
+    bgAudio.pause();
+    musicBtn.dataset.on='false';
+    musicLbl.textContent='Music';
+    localStorage.setItem('tk_music','off');
+  }else{
+    bgAudio.volume=0.4;
+    try{await bgAudio.play();}catch(e){}
+    musicBtn.dataset.on='true';
+    musicLbl.textContent='On';
+    localStorage.setItem('tk_music','on');
+  }
 });
 </script>
 </body>
