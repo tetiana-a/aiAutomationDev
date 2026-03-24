@@ -3,13 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tetiana Kotolup – AI Automation Architect specializing in n8n workflows, Telegram bots, OpenAI integrations, Google APIs and intelligent automation systems.">
-<meta name="keywords" content="Tetiana Kotolup, AI Automation, n8n Developer, Telegram Bot Developer, OpenAI Integration">
-<meta name="robots" content="index, follow">
-<title>Tetiana Kotolup – AI Automation Architect | n8n, OpenAI, Telegram Bots</title>
-
+<title>Tetiana Kotolup — AI Automation Developer</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
 /* ══════════════════════════════════════
    THEMES
@@ -103,68 +98,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
    HERO
 ══════════════════════════════════════ */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:110px 0 80px;overflow:hidden}
-.hero-content{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 48px;width:100%}
-
-/* NEW: Hero Layout with Photo */
-.hero-grid {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  margin-bottom: 20px;
-}
-
-.hero-left {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Додаємо вирівнювання по центру */
-  gap: 15px;
-}
-
-.hero-avatar {
-  width: 360px;
-  height: 360px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--line);
-  filter: grayscale(100%);
-  opacity: 0.9;
-  transition: filter 0.4s, opacity 0.4s;
-}
-.hero-avatar:hover {
-  filter: grayscale(0%);
-  opacity: 1;
-}
-
-.hero-socials {
-  display: flex;
-  gap: 8px;
-}
-
-.hs-ico {
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px;
-  color: var(--txt3);
-  transition: all .2s;
-  text-transform: uppercase;
-}
-.hs-ico:hover {
-  border-color: var(--txt);
-  color: var(--txt);
-  background: var(--hov);
-}
-
-.hero-right {
-  flex-grow: 1;
-}
-
+.hero-content{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 48px}
 .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .3s both}
 .eye-line{width:28px;height:1px;background:var(--txt3)}
 .eye-txt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
@@ -174,18 +108,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .hero-name em{font-style:italic}
 .hero-role{margin-top:20px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;color:var(--txt3);opacity:0;animation:fadeUp .7s .55s both}
 .hero-desc{margin-top:24px;max-width:500px;font-size:16px;color:var(--txt2);line-height:1.78;opacity:0;animation:fadeUp .7s .65s both}
-.hero-stats{display:flex;gap:52px;margin-top:60px;padding-top:40px;border-top:1px solid var(--line);opacity:0;animation:fadeUp .7s .75s both;flex-wrap:wrap;gap:40px; justify-content: center;}
+.hero-stats{display:flex;gap:52px;margin-top:60px;padding-top:40px;border-top:1px solid var(--line);opacity:0;animation:fadeUp .7s .75s both;flex-wrap:wrap;gap:40px}
 .stat-n{font-family:'Playfair Display',serif;font-size:42px;line-height:1;color:var(--txt);font-weight:600}
 .stat-l{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);margin-top:5px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
 
-@media(max-width:900px){
-  .hero-content{padding:0 28px}
-  .hero-grid {flex-direction: column; align-items: center; text-align: center;}
-  .hero-left {align-items: center;}
-  .hero-eyebrow{justify-content: center;}
-  .hero-stats{gap:28px}.stat-n{font-size:34px}
-}
+@media(max-width:900px){.hero-content{padding:0 28px}.hero-stats{gap:28px}.stat-n{font-size:34px}}
 @media(max-width:480px){.hero-content{padding:0 20px}.hero-name{font-size:clamp(40px,11vw,60px)}.hero-desc{font-size:14px}.hero-stats{gap:20px}}
 
 /* ══════════════════════════════════════
@@ -321,7 +249,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
    PROJECT ACTIONS
 ══════════════════════════════════════ */
 .p-actions{display:flex;gap:10px;align-items:center;margin-top:18px;flex-wrap:wrap}
-.p-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;border-radius:3px;border:1px solid var(--line2);background:transparent;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:auto;transition:background .2s,opacity .2s,border-color .2s}
+.p-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:9px 14px;border-radius:3px;border:1px solid var(--line2);background:transparent;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:auto;transition:background .2s,opacity .2s,border-color .2s; text-decoration:none;}
 .p-btn:hover{background:var(--hov);border-color:var(--txt3)}
 .p-btn.white{background:#ffffff;color:#0c0c0c;border-color:rgba(0,0,0,.12)}
 .p-btn.white:hover{opacity:.85}
@@ -373,32 +301,8 @@ a,button{cursor:pointer}
 .lang-btn,.theme-tog,.pdf-btn,.hamburger,.p-btn,.music-fab{cursor:pointer!important}
 
 /* ══════════════════════════════════════
-   CONTENT LAYER (for canvas z-index)
-══════════════════════════════════════ */
-nav, .hero, .sec, footer, .mobile-menu { position: relative; z-index: 2; }
-
-/* ══════════════════════════════════════
-   MUSIC VISUALIZER CANVAS
-══════════════════════════════════════ */
-#bgCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1; 
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 2s ease-in-out; 
-}
-#bgCanvas.on {
-  opacity: 1;
-}
-
-/* ══════════════════════════════════════
    FONT SIZE BOOST
 ══════════════════════════════════════ */
-
 body{
   font-size:21px;
   line-height:1.8;
@@ -483,24 +387,8 @@ body{
   font-size:11px;
 }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Tetiana Kotolup",
-  "url": "https://tetiana-a.github.io/aiAutomationDev/",
-  "jobTitle": "AI Automation Architect",
-  "sameAs": [
-    "https://github.com/tetiana-a",
-    "https://www.linkedin.com/in/tetiana-kotolup-194a133b3/"
-  ]
-}
-</script>
 </head>
 <body>
-
-<!-- Animation Canvas -->
-<canvas id="bgCanvas"></canvas>
 
 <!-- Cursor -->
 <div id="cursor-dot"></div>
@@ -548,28 +436,14 @@ body{
 <section class="hero" id="top">
   
   <div class="hero-content">
-    <!-- NEW: Flex container for Photo + Text -->
-    <div class="hero-grid">
-        <div class="hero-left">
-             <!-- REPLACE THE SRC BELOW WITH YOUR ACTUAL PHOTO URL -->
-            <img src="0.jpg" alt="Tetiana Kotolup" class="hero-avatar">
-            <div class="hero-socials">
-                <a href="https://www.linkedin.com/in/tetiana-kotolup-194a133b3/" target="_blank" class="hs-ico" title="LinkedIn">in</a>
-                <a href="https://github.com/tetiana-a" target="_blank" class="hs-ico" title="GitHub">gh</a>
-            </div>
-        </div>
-        <div class="hero-right">
-            <div class="hero-eyebrow">
-              <div class="eye-line"></div>
-              <div class="eye-txt" data-i18n="hero_role">AI Automation Developer</div>
-              <div class="eye-dot"></div>
-            </div>
-           <h1 class="hero-name">Tetiana<br><em>Kotolup</em></h1>
-            <div class="hero-role">n8n · OpenAI · Telegram · Google Suite · REST API</div>
-            <p class="hero-desc" data-i18n="hero_desc">I design and build production-ready automations that transform manual processes into self-running AI systems. From idea to live workflow — systematically and predictably.</p>
-        </div>
+    <div class="hero-eyebrow">
+      <div class="eye-line"></div>
+      <div class="eye-txt" data-i18n="hero_role">AI Automation Developer</div>
+      <div class="eye-dot"></div>
     </div>
-      
+    <h1 class="hero-name">Tetiana<br><em>Kotolup</em></h1>
+    <div class="hero-role">n8n · OpenAI · Telegram · Google Suite · REST API</div>
+    <p class="hero-desc" data-i18n="hero_desc">I design and build production-ready automations that transform manual processes into self-running AI systems. From idea to live workflow — systematically and predictably.</p>
     <div class="hero-stats">
       <div>
         <div class="stat-n">10+</div>
@@ -629,22 +503,12 @@ body{
       <div class="a-cell rv rv-d4" id="contact">
         <div class="a-lbl" data-i18n="about_contact_lbl">Contact</div>
         <div class="contact-list">
-          <a href="mailto:kotolup24@gmail.com" class="c-item">
-            <div class="c-ico">@</div>
-            <span>kotolup24@gmail.com</span>
-          </a>
+     <a href="mailto:kotolup24@gmail.com" class="c-item">
+  <div class="c-ico">@</div>
+  <span>kotolup24@gmail.com</span>
+</a>
           <a href="https://t.me/tetiana_K888" target="_blank" class="c-item">
-            <div class="c-ico">tg</div>
-            @tetiana_K888
-          </a>
-          <!-- NEW: LinkedIn & GitHub Links -->
-          <a href="https://www.linkedin.com/in/tetiana-kotolup-194a133b3/" target="_blank" class="c-item">
-            <div class="c-ico">in</div>
-            <span>LinkedIn Profile</span>
-          </a>
-          <a href="https://github.com/tetiana-a" target="_blank" class="c-item">
-            <div class="c-ico">gh</div>
-            <span>GitHub Profile</span>
+            <div class="c-ico">tg</div>@tetiana_K888
           </a>
         </div>
       </div>
@@ -696,6 +560,19 @@ body{
           <td class="sk-name" data-i18n="sk6_name">Voice & Image AI</td>
           <td class="sk-desc" data-i18n="sk6_desc">AssemblyAI transcription, DALL-E image generation from voice messages</td>
           <td class="sk-bar-td"><div class="sk-bar-w"><div class="sk-bar-f" style="--w:78%"></div></div></td>
+        </tr>
+        <!-- NEW SKILLS 07 & 08 -->
+        <tr>
+          <td class="sk-num">07</td>
+          <td class="sk-name" data-i18n="sk7_name">Full-Stack AI Development</td>
+          <td class="sk-desc" data-i18n="sk7_desc">Node.js, Express, Prisma, Supabase, building scalable backends for AI agents</td>
+          <td class="sk-bar-td"><div class="sk-bar-w"><div class="sk-bar-f" style="--w:82%"></div></div></td>
+        </tr>
+        <tr>
+          <td class="sk-num">08</td>
+          <td class="sk-name" data-i18n="sk8_name">Document AI & OCR</td>
+          <td class="sk-desc" data-i18n="sk8_desc">Automated PDF parsing, text extraction, and document processing workflows</td>
+          <td class="sk-bar-td"><div class="sk-bar-w"><div class="sk-bar-f" style="--w:75%"></div></div></td>
         </tr>
       </tbody>
     </table>
@@ -775,12 +652,6 @@ body{
           <div class="case-kicker" data-i18n="case_kicker">AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram</div>
           <h3 class="case-ttl" data-i18n="case_title">AI Agent for Call Analysis<br>& Telegram Statistics Bot</h3>
           <p class="case-tag" data-i18n="case_tagline">The company could not understand why clients were dissatisfied — because no one systematically listened to calls. An AI system was built that does this automatically, 24/7.</p>
-          
-          <!-- NEW: Presentation Button -->
-          <div class="p-actions">
-            <a href="https://www.canva.com/design/DAHCErRNw_o/jQ6o9Ue2T_WtHi_8feDaRA/edit?utm_content=DAHCErRNw_o&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" class="p-btn" data-i18n="btn_presentation">Presentation</a>
-          </div>
-        
         </div>
         <div class="stack-wrap">
           <span class="st">n8n</span><span class="st">OpenAI GPT</span><span class="st">AssemblyAI</span>
@@ -877,12 +748,12 @@ body{
 <button class="music-fab" id="musicBtn" aria-label="Toggle music" data-on="false" title="Music">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
     <path d="M9 18V5l12-2v13"></path>
-    <circle cx="6" cy="18" r="2"></circle>
-    <circle cx="18" cy="16" r="2"></circle>
+    <circle cx="7" cy="18" r="2"></circle>
+    <circle cx="19" cy="16" r="2"></circle>
   </svg>
 </button>
 <audio id="bgAudio" preload="none" loop>
-  <source src="08.mp3" type="audio/mpeg">
+  <source src="assets/music.mp3" type="audio/mpeg">
 </audio>
 
 
@@ -893,7 +764,7 @@ body{
 const i18n = {
   en: {
     nav_about:'About', nav_skills:'Skills', nav_certs:'Certs', nav_case:'Case', nav_projects:'Projects',
-    btn_details:'Details', btn_json:'Download JSON', btn_presentation:'Presentation',
+    btn_details:'Details', btn_json:'Download JSON', btn_site:'View Site', btn_bot:'View Bot',
     hero_role:'AI Automation Developer',
     hero_desc:'I design and build production-ready automations that transform manual processes into self-running AI systems. From idea to live workflow — systematically and predictably.',
     stat_auto:'Automations', stat_certs:'Certificates', stat_first:'AI-first approach',
@@ -918,6 +789,8 @@ const i18n = {
     sk4_name:'API Integrations', sk4_desc:'REST API, Webhooks, Google Suite, AssemblyAI, CoinGecko, PrivatBank and more',
     sk5_name:'Data Processing', sk5_desc:'JavaScript transforms, aggregation, Google Sheets sync, NocoDB DataTable storage',
     sk6_name:'Voice & Image AI', sk6_desc:'AssemblyAI transcription, DALL-E image generation from voice messages',
+    sk7_name:'Full-Stack AI Development', sk7_desc:'Node.js, Express, Prisma, Supabase, building scalable backends for AI agents',
+    sk8_name:'Document AI & OCR', sk8_desc:'Automated PDF parsing, text extraction, and document processing workflows',
     certs_title:'Certificates',
     cert1_desc:'Cognitive processes and behavioural patterns — strengthens building human-centred automations',
     cert2_desc:'AI in marketing: content automation, personalisation, analytics',
@@ -949,22 +822,25 @@ const i18n = {
     res_b1:'Scale w/o hiring', res_b2:'Data-driven', res_b3:'Modular system',
     proj_title:'All Projects',
     projects:[
-      {idx:'01/11',id:'voice-image', page:'v.html', title:"Voice → Image Generator (Telegram)",desc:"Telegram voice message → AssemblyAI transcription → prompt building → DALL‑E image → sent back to chat.",tags:["n8n", "Telegram", "AssemblyAI", "OpenAI", "DALL‑E"]},
-      {idx:'02/11',id:'ua-months', page:'1.html', title:"Dynamic Ukrainian Month Generator (n8n)",desc:"Reusable date-logic module that outputs months from current month to December as structured JSON — zero maintenance.",tags:["n8n", "JavaScript", "JSON", "Date logic"]},
-      {idx:'03/11',id:'tg-gcal', page:'9.html', title:"Telegram → Google Calendar Event Creator",desc:"AI extracts title/date/time from Telegram text, validates inputs, creates Calendar event, and sends confirmation.",tags:["n8n", "Telegram", "OpenAI", "IF routing", "Google Calendar API"]},
-      {idx:'04/11',id:'btc-alert', page:'5.html', title:"BTC Price Alert → Telegram",desc:"Checks BTC price every 15 minutes and sends Telegram alerts only on meaningful state changes (anti‑spam).",tags:["n8n", "CoinGecko API", "JavaScript", "Static Data", "Telegram"]},
-      {idx:'05/11',id:'currency-report', page:'2.html', title:"Daily Currency Intelligence Report (PrivatBank API)",desc:"Scheduled 09:00 automation that fetches USD/EUR rates and sends a styled HTML email — fully hands-free.",tags:["n8n", "Cron", "REST API", "JavaScript", "Gmail API"]},
-      {idx:'06/11',id:'weather-kyiv-brno', page:'7.html', title:"Daily Weather (Kyiv + Brno) → Telegram",desc:"Daily 08:30 weather updates for two cities using batching, OpenWeatherMap API, and AI formatting.",tags:["n8n", "Cron", "OpenWeatherMap API", "Split in Batches", "OpenAI"]},
-      {idx:'07/11',id:'daily-motivation', page:'6.html', title:"Daily Motivation → Telegram (AI‑Generated)",desc:"Daily 09:00 workflow that generates an original short quote, cleans it in JS, and posts a formatted message with hashtags.",tags:["n8n", "Cron", "OpenAI", "JavaScript", "Telegram"]},
-      {idx:'08/11',id:'site-monitor', page:'10.html', title:"Website Availability Monitor → Telegram Alert",desc:"HEAD request every 5 minutes; alert only on error status (≥ 400). Lightweight uptime monitoring.",tags:["n8n", "Cron", "HTTP (HEAD)", "IF routing", "Telegram"]},
-      {idx:'09/11',id:'ai-jokes', page:'4.html', title:"Multi‑Model Joke Generation & AI Quality Selection",desc:"Parallel GPT‑5‑mini generation + GPT‑5 judge scoring (1–10) and best-pick — a real ensemble evaluation pattern.",tags:["n8n", "OpenAI", "GPT‑5‑mini", "GPT‑5", "Merge"]},
-      {idx:'10/11',id:'monthly-sales', page:'3.html', title:"Monthly Sales Analytics from Google Sheets",desc:"Deterministic pipeline that aggregates orders, revenue and average check for the current month from raw Sheets data.",tags:["n8n", "Google Sheets", "JavaScript", "Deterministic logic"]},
-      {idx:'11/11',id:'img-url-drive', page:'8.html', title:"Download Image URL → Google Drive Upload",desc:"Takes an image URL, downloads binary in n8n, uploads to a specific Drive folder with smart filename logic.",tags:["n8n", "HTTP (binary)", "Google Drive API", "Expressions", "JavaScript"]}
+      {idx:'01/14',id:'wealthmirror',title:"WealthMirror AI — Financial Analysis",desc:"Production AI SaaS for real-time financial decision analysis via Telegram. Features webhook-based backend, OpenAI, PostgreSQL.",tags:["Node.js", "TypeScript", "OpenAI", "Supabase", "Render"], links:{github:'https://github.com/tetiana-a/wealthmirror-ai', bot:'https://t.me/sass88888888_bot'}},
+      {idx:'02/14',id:'ai-crm',title:"AI CRM — Telegram Integration",desc:"AI-driven CRM system automating client management via Telegram bot interface. React dashboard, Node.js backend, JWT auth.",tags:["React.js", "Node.js", "PostgreSQL", "OpenAI", "JWT"], links:{github:'https://github.com/tetiana-a/ai-crm', site:'https://ai-crm-sage.vercel.app'}},
+      {idx:'03/14',id:'legisflow',title:"LegisFlow — Legal Doc Analysis",desc:"AI Agent for legal document analysis. Automated n8n workflow for PDF processing, text extraction, and GPT-4o risk reporting.",tags:["n8n", "GPT-4o", "JavaScript", "Vercel"], links:{github:'https://github.com/tetianaa/LegisFlow', site:'https://legisflow-ai.vercel.app'}},
+      {idx:'04/14',id:'voice-image',title:"Voice → Image Generator (Telegram)",desc:"Telegram voice message → AssemblyAI transcription → prompt building → DALL‑E image → sent back to chat.",tags:["n8n", "Telegram", "AssemblyAI", "OpenAI", "DALL‑E"]},
+      {idx:'05/14',id:'ua-months',title:"Dynamic Ukrainian Month Generator (n8n)",desc:"Reusable date-logic module that outputs months from current month to December as structured JSON — zero maintenance.",tags:["n8n", "JavaScript", "JSON", "Date logic"]},
+      {idx:'06/14',id:'tg-gcal',title:"Telegram → Google Calendar Event Creator",desc:"AI extracts title/date/time from Telegram text, validates inputs, creates Calendar event, and sends confirmation.",tags:["n8n", "Telegram", "OpenAI", "IF routing", "Google Calendar API"]},
+      {idx:'07/14',id:'btc-alert',title:"BTC Price Alert → Telegram",desc:"Checks BTC price every 15 minutes and sends Telegram alerts only on meaningful state changes (anti‑spam).",tags:["n8n", "CoinGecko API", "JavaScript", "Static Data", "Telegram"]},
+      {idx:'08/14',id:'currency-report',title:"Daily Currency Intelligence Report (PrivatBank API)",desc:"Scheduled 09:00 automation that fetches USD/EUR rates and sends a styled HTML email — fully hands-free.",tags:["n8n", "Cron", "REST API", "JavaScript", "Gmail API"]},
+      {idx:'09/14',id:'weather-kyiv-brno',title:"Daily Weather (Kyiv + Brno) → Telegram",desc:"Daily 08:30 weather updates for two cities using batching, OpenWeatherMap API, and AI formatting.",tags:["n8n", "Cron", "OpenWeatherMap API", "Split in Batches", "OpenAI"]},
+      {idx:'10/14',id:'daily-motivation',title:"Daily Motivation → Telegram (AI‑Generated)",desc:"Daily 09:00 workflow that generates an original short quote, cleans it in JS, and posts a formatted message with hashtags.",tags:["n8n", "Cron", "OpenAI", "JavaScript", "Telegram"]},
+      {idx:'11/14',id:'site-monitor',title:"Website Availability Monitor → Telegram Alert",desc:"HEAD request every 5 minutes; alert only on error status (≥ 400). Lightweight uptime monitoring.",tags:["n8n", "Cron", "HTTP (HEAD)", "IF routing", "Telegram"]},
+      {idx:'12/14',id:'ai-jokes',title:"Multi‑Model Joke Generation & AI Quality Selection",desc:"Parallel GPT‑5‑mini generation + GPT‑5 judge scoring (1–10) and best-pick — a real ensemble evaluation pattern.",tags:["n8n", "OpenAI", "GPT‑5‑mini", "GPT‑5", "Merge"]},
+      {idx:'13/14',id:'monthly-sales',title:"Monthly Sales Analytics from Google Sheets",desc:"Deterministic pipeline that aggregates orders, revenue and average check for the current month from raw Sheets data.",tags:["n8n", "Google Sheets", "JavaScript", "Deterministic logic"]},
+      {idx:'14/14',id:'img-url-drive',title:"Download Image URL → Google Drive Upload",desc:"Takes an image URL, downloads binary in n8n, uploads to a specific Drive folder with smart filename logic.",tags:["n8n", "HTTP (binary)", "Google Drive API", "Expressions", "JavaScript"]}
     ]
   },
   uk: {
     nav_about:'Про мене', nav_skills:'Навички', nav_certs:'Сертифікати', nav_case:'Кейс', nav_projects:'Проекти',
-    btn_details:'Деталі', btn_json:'JSON', btn_presentation:'Презентація',
+    btn_details:'Деталі', btn_json:'JSON', btn_site:'Сайт', btn_bot:'Бот',
     hero_role:'AI Automation Developer',
     hero_desc:'Проєктую та будую production-ready автоматизації, які перетворюють ручні процеси на самостійні AI-системи. Від ідеї до живого workflow — системно та прогнозовано.',
     stat_auto:'Автоматизацій', stat_certs:'Сертифікатів', stat_first:'AI-first підхід',
@@ -989,6 +865,8 @@ const i18n = {
     sk4_name:'API Інтеграції', sk4_desc:'REST API, Webhooks, Google Suite, AssemblyAI, CoinGecko, PrivatBank та інші',
     sk5_name:'Обробка даних', sk5_desc:'JavaScript трансформації, агрегація, синхронізація Google Sheets, NocoDB DataTable',
     sk6_name:'Голос та зображення', sk6_desc:'Транскрипція AssemblyAI, генерація зображень DALL-E з голосових повідомлень',
+    sk7_name:'Full-Stack AI Розробка', sk7_desc:'Node.js, Express, Prisma, Supabase, побудова масштабованих бекендів для AI',
+    sk8_name:'Document AI & OCR', sk8_desc:'Автоматизований парсинг PDF, витяг тексту та обробка документів',
     certs_title:'Сертифікати',
     cert1_desc:'Когнітивні процеси та поведінкові патерни — підсилює побудову human-centered автоматизацій',
     cert2_desc:'AI у маркетингу: автоматизація контенту, персоналізація, аналітика',
@@ -1020,22 +898,25 @@ const i18n = {
     res_b1:'Масштаб без найму', res_b2:'Рішення на даних', res_b3:'Модульна система',
     proj_title:'Усі проекти',
     projects:[
-      {idx:'01/11',id:'voice-image', page:'v.html', title:"Голос → Зображення (Telegram)",desc:"Голосове повідомлення Telegram → транскрипт AssemblyAI → побудова промпта → DALL‑E зображення → назад у чат.",tags:["n8n", "Telegram", "AssemblyAI", "OpenAI", "DALL‑E"]},
-      {idx:'02/11',id:'ua-months', page:'1.html', title:"Динамічний генератор місяців українською (n8n)",desc:"Перевикористовуваний модуль логіки дат: повертає місяці від поточного до грудня у вигляді структурованого JSON — без ручних оновлень.",tags:["n8n", "JavaScript", "JSON", "Date logic"]},
-      {idx:'03/11',id:'tg-gcal', page:'9.html', title:"Telegram → Створення події в Google Calendar",desc:"AI витягує назву/дату/час з повідомлення Telegram, валідуює, створює подію в календарі й надсилає підтвердження.",tags:["n8n", "Telegram", "OpenAI", "IF routing", "Google Calendar API"]},
-      {idx:'04/11',id:'btc-alert', page:'5.html', title:"Алерт ціни BTC → Telegram",desc:"Перевіряє ціну BTC кожні 15 хвилин і шле алерти в Telegram лише при зміні стану (без спаму).",tags:["n8n", "CoinGecko API", "JavaScript", "Static Data", "Telegram"]},
-      {idx:'05/11',id:'currency-report', page:'2.html', title:"Щоденний звіт по курсу валют (PrivatBank API)",desc:"Запланована автоматизація на 09:00: тягне курси USD/EUR і надсилає стилізований HTML-лист — без ручної роботи.",tags:["n8n", "Cron", "REST API", "JavaScript", "Gmail API"]},
-      {idx:'06/11',id:'weather-kyiv-brno', page:'7.html', title:"Щоденна погода (Київ + Брно) → Telegram",desc:"Щоденні оновлення о 08:30 для двох міст з batching, OpenWeatherMap API та AI форматуванням.",tags:["n8n", "Cron", "OpenWeatherMap API", "Split in Batches", "OpenAI"]},
-      {idx:'07/11',id:'daily-motivation', page:'6.html', title:"Щоденна мотивація → Telegram (AI)",desc:"Щодня о 09:00 генерує коротку оригінальну фразу, чистить її в JS і надсилає форматоване повідомлення з хештегами.",tags:["n8n", "Cron", "OpenAI", "JavaScript", "Telegram"]},
-      {idx:'08/11',id:'site-monitor', page:'10.html', title:"Моніторинг доступності сайту → Telegram",desc:"HEAD-запит кожні 5 хвилин; алерт лише при помилці (≥ 400). Легкий uptime monitor.",tags:["n8n", "Cron", "HTTP (HEAD)", "IF routing", "Telegram"]},
-      {idx:'09/11',id:'ai-jokes', page:'4.html', title:"Генерація анекдотів + відбір якості (Multi‑Model)",desc:"Паралельна генерація GPT‑5‑mini + оцінка GPT‑5 (1–10) і вибір найкращого — реальний патерн ensemble evaluation.",tags:["n8n", "OpenAI", "GPT‑5‑mini", "GPT‑5", "Merge"]},
-      {idx:'10/11',id:'monthly-sales', page:'3.html', title:"Місячна аналітика продажів з Google Sheets",desc:"Детермінований пайплайн, який рахує замовлення, виручку та середній чек за поточний місяць з сирих даних Sheets.",tags:["n8n", "Google Sheets", "JavaScript", "Deterministic logic"]},
-      {idx:'11/11',id:'img-url-drive', page:'8.html', title:"Завантаження картинки за URL → Google Drive",desc:"Бере URL картинки, завантажує binary у n8n і заливає в папку Google Drive з розумною назвою файлу.",tags:["n8n", "HTTP (binary)", "Google Drive API", "Expressions", "JavaScript"]}
+      {idx:'01/14',id:'wealthmirror',title:"WealthMirror AI — Фінансовий аналіз",desc:"Production AI SaaS для фінансового аналізу рішень через Telegram. Webhook-backend, OpenAI, PostgreSQL.",tags:["Node.js", "TypeScript", "OpenAI", "Supabase", "Render"], links:{github:'https://github.com/tetiana-a/wealthmirror-ai', bot:'https://t.me/sass88888888_bot'}},
+      {idx:'02/14',id:'ai-crm',title:"AI CRM — Telegram Інтеграція",desc:"AI-орієнтована CRM система для управління клієнтами через Telegram. React dashboard, Node.js backend.",tags:["React.js", "Node.js", "PostgreSQL", "OpenAI", "JWT"], links:{github:'https://github.com/tetiana-a/ai-crm', site:'https://ai-crm-sage.vercel.app'}},
+      {idx:'03/14',id:'legisflow',title:"LegisFlow — Аналіз юридичних документів",desc:"AI-агент для аналізу юридичних документів. n8n workflow для обробки PDF та звітності GPT-4o.",tags:["n8n", "GPT-4o", "JavaScript", "Vercel"], links:{github:'https://github.com/tetianaa/LegisFlow', site:'https://legisflow-ai.vercel.app'}},
+      {idx:'04/14',id:'voice-image',title:"Голос → Зображення (Telegram)",desc:"Голосове повідомлення Telegram → транскрипт AssemblyAI → побудова промпта → DALL‑E зображення → назад у чат.",tags:["n8n", "Telegram", "AssemblyAI", "OpenAI", "DALL‑E"]},
+      {idx:'05/14',id:'ua-months',title:"Динамічний генератор місяців українською (n8n)",desc:"Перевикористовуваний модуль логіки дат: повертає місяці від поточного до грудня у вигляді структурованого JSON — без ручних оновлень.",tags:["n8n", "JavaScript", "JSON", "Date logic"]},
+      {idx:'06/14',id:'tg-gcal',title:"Telegram → Створення події в Google Calendar",desc:"AI витягує назву/дату/час з повідомлення Telegram, валідуює, створює подію в календарі й надсилає підтвердження.",tags:["n8n", "Telegram", "OpenAI", "IF routing", "Google Calendar API"]},
+      {idx:'07/14',id:'btc-alert',title:"Алерт ціни BTC → Telegram",desc:"Перевіряє ціну BTC кожні 15 хвилин і шле алерти в Telegram лише при зміні стану (без спаму).",tags:["n8n", "CoinGecko API", "JavaScript", "Static Data", "Telegram"]},
+      {idx:'08/14',id:'currency-report',title:"Щоденний звіт по курсу валют (PrivatBank API)",desc:"Запланована автоматизація на 09:00: тягне курси USD/EUR і надсилає стилізований HTML-лист — без ручної роботи.",tags:["n8n", "Cron", "REST API", "JavaScript", "Gmail API"]},
+      {idx:'09/14',id:'weather-kyiv-brno',title:"Щоденна погода (Київ + Брно) → Telegram",desc:"Щоденні оновлення о 08:30 для двох міст з batching, OpenWeatherMap API та AI форматуванням.",tags:["n8n", "Cron", "OpenWeatherMap API", "Split in Batches", "OpenAI"]},
+      {idx:'10/14',id:'daily-motivation',title:"Щоденна мотивація → Telegram (AI)",desc:"Щодня о 09:00 генерує коротку оригінальну фразу, чистить її в JS і надсилає форматоване повідомлення з хештегами.",tags:["n8n", "Cron", "OpenAI", "JavaScript", "Telegram"]},
+      {idx:'11/14',id:'site-monitor',title:"Моніторинг доступності сайту → Telegram",desc:"HEAD-запит кожні 5 хвилин; алерт лише при помилці (≥ 400). Легкий uptime monitor.",tags:["n8n", "Cron", "HTTP (HEAD)", "IF routing", "Telegram"]},
+      {idx:'12/14',id:'ai-jokes',title:"Генерація анекдотів + відбір якості (Multi‑Model)",desc:"Паралельна генерація GPT‑5‑mini + оцінка GPT‑5 (1–10) і вибір найкращого — реальний патерн ensemble evaluation.",tags:["n8n", "OpenAI", "GPT‑5‑mini", "GPT‑5", "Merge"]},
+      {idx:'13/14',id:'monthly-sales',title:"Місячна аналітика продажів з Google Sheets",desc:"Детермінований пайплайн, який рахує замовлення, виручку та середній чек за поточний місяць з сирих даних Sheets.",tags:["n8n", "Google Sheets", "JavaScript", "Deterministic logic"]},
+      {idx:'14/14',id:'img-url-drive',title:"Завантаження картинки за URL → Google Drive",desc:"Бере URL картинки, завантажує binary у n8n і заливає в папку Google Drive з розумною назвою файлу.",tags:["n8n", "HTTP (binary)", "Google Drive API", "Expressions", "JavaScript"]}
     ]
   },
   cs: {
     nav_about:'O mně', nav_skills:'Dovednosti', nav_certs:'Certifikáty', nav_case:'Případ', nav_projects:'Projekty',
-    btn_details:'Detaily', btn_json:'JSON', btn_presentation:'Prezentace',
+    btn_details:'Detaily', btn_json:'JSON', btn_site:'Web', btn_bot:'Bot',
     hero_role:'AI Automation Developer',
     hero_desc:'Navrhuji a vytvářím produkční automatizace, které mění ruční procesy na samostatně fungující AI systémy. Od nápadu po živý workflow — systematicky a předvídatelně.',
     stat_auto:'Automatizací', stat_certs:'Certifikátů', stat_first:'AI-first přístup',
@@ -1060,6 +941,8 @@ const i18n = {
     sk4_name:'API integrace', sk4_desc:'REST API, Webhooks, Google Suite, AssemblyAI, CoinGecko, PrivatBank a další',
     sk5_name:'Zpracování dat', sk5_desc:'JavaScript transformace, agregace, synchronizace Google Sheets, úložiště NocoDB DataTable',
     sk6_name:'Hlas a obrázky AI', sk6_desc:'Přepis AssemblyAI, generování obrázků DALL-E z hlasových zpráv',
+    sk7_name:'Full-Stack AI Vývoj', sk7_desc:'Node.js, Express, Prisma, Supabase, vývoj škálovatelných backendů pro AI',
+    sk8_name:'Document AI & OCR', sk8_desc:'Automatizované zpracování PDF, extrakce textu a analýza dokumentů',
     certs_title:'Certifikáty',
     cert1_desc:'Kognitivní procesy a behaviorální vzorce — posiluje tvorbu automatizací orientovaných na člověka',
     cert2_desc:'AI v marketingu: automatizace obsahu, personalizace, analytika',
@@ -1091,17 +974,20 @@ const i18n = {
     res_b1:'Škálování bez náboru', res_b2:'Rozhodování na datech', res_b3:'Modulární systém',
     proj_title:'Všechny projekty',
     projects:[
-      {idx:'01/11',id:'voice-image', page:'v.html', title:"Hlas → Obrázek (Telegram)",desc:"Hlasová zpráva v Telegramu → přepis AssemblyAI → vytvoření promptu → DALL‑E obrázek → zpět do chatu.",tags:["n8n", "Telegram", "AssemblyAI", "OpenAI", "DALL‑E"]},
-      {idx:'02/11',id:'ua-months', page:'1.html', title:"Dynamický generátor měsíců v ukrajinštině (n8n)",desc:"Znovupoužitelný modul logiky dat: vrací měsíce od aktuálního do prosince jako strukturované JSON — bez údržby.",tags:["n8n", "JavaScript", "JSON", "Date logic"]},
-      {idx:'03/11',id:'tg-gcal', page:'9.html', title:"Telegram → Vytvoření události v Google Calendar",desc:"AI vytáhne název/datum/čas z Telegram zprávy, validuje, vytvoří událost v kalendáři a pošle potvrzení.",tags:["n8n", "Telegram", "OpenAI", "IF routing", "Google Calendar API"]},
-      {idx:'04/11',id:'btc-alert', page:'5.html', title:"Alert ceny BTC → Telegram",desc:"Kontroluje cenu BTC každých 15 minut a posílá alerty do Telegramu jen při změně stavu (anti‑spam).",tags:["n8n", "CoinGecko API", "JavaScript", "Static Data", "Telegram"]},
-      {idx:'05/11',id:'currency-report', page:'2.html', title:"Denní report kurzů měn (PrivatBank API)",desc:"Automatizace na 09:00: načte kurzy USD/EUR a odešle stylovaný HTML e‑mail — bez ruční práce.",tags:["n8n", "Cron", "REST API", "JavaScript", "Gmail API"]},
-      {idx:'06/11',id:'weather-kyiv-brno', page:'7.html', title:"Denní počasí (Kyjev + Brno) → Telegram",desc:"Denní aktualizace v 08:30 pro dvě města pomocí batching, OpenWeatherMap API a AI formátování.",tags:["n8n", "Cron", "OpenWeatherMap API", "Split in Batches", "OpenAI"]},
-      {idx:'07/11',id:'daily-motivation', page:'6.html', title:"Denní motivace → Telegram (AI)",desc:"Každý den v 09:00 vygeneruje krátký originální citát, očistí ho v JS a odešle formátovanou zprávu s hashtagy.",tags:["n8n", "Cron", "OpenAI", "JavaScript", "Telegram"]},
-      {idx:'08/11',id:'site-monitor', page:'10.html', title:"Monitoring dostupnosti webu → Telegram",desc:"HEAD request každých 5 minut; alert jen při chybě (≥ 400). Lehký uptime monitoring.",tags:["n8n", "Cron", "HTTP (HEAD)", "IF routing", "Telegram"]},
-      {idx:'09/11',id:'ai-jokes', page:'4.html', title:"Generování vtipů + výběr kvality (Multi‑Model)",desc:"Paralelní generování (GPT‑5‑mini) + hodnocení GPT‑5 (1–10) a výběr nejlepšího — reálný pattern ensemble evaluace.",tags:["n8n", "OpenAI", "GPT‑5‑mini", "GPT‑5", "Merge"]},
-      {idx:'10/11',id:'monthly-sales', page:'3.html', title:"Měsíční analýza prodejů z Google Sheets",desc:"Deterministický pipeline, který spočítá objednávky, tržby a průměrný nákup za aktuální měsíc z dat v Sheets.",tags:["n8n", "Google Sheets", "JavaScript", "Deterministic logic"]},
-      {idx:'11/11',id:'img-url-drive', page:'8.html', title:"Stažení obrázku z URL → Google Drive",desc:"Vezme URL obrázku, stáhne binary v n8n a nahraje do Google Drive složky se smart názvem souboru.",tags:["n8n", "HTTP (binary)", "Google Drive API", "Expressions", "JavaScript"]}
+      {idx:'01/14',id:'wealthmirror',title:"WealthMirror AI — Finanční analýza",desc:"Production AI SaaS pro finanční analýzu rozhodování přes Telegram. Webhook backend, OpenAI, PostgreSQL.",tags:["Node.js", "TypeScript", "OpenAI", "Supabase", "Render"], links:{github:'https://github.com/tetiana-a/wealthmirror-ai', bot:'https://t.me/sass88888888_bot'}},
+      {idx:'02/14',id:'ai-crm',title:"AI CRM — Telegram Integrace",desc:"AI řízený CRM systém s Telegram rozhraním pro správu klientů. React dashboard, Node.js backend, JWT auth.",tags:["React.js", "Node.js", "PostgreSQL", "OpenAI", "JWT"], links:{github:'https://github.com/tetiana-a/ai-crm', site:'https://ai-crm-sage.vercel.app'}},
+      {idx:'03/14',id:'legisflow',title:"LegisFlow — Analýza právních dokumentů",desc:"AI agent pro analýzu právních dokumentů. Automatizovaný n8n workflow pro zpracování PDF a reporting GPT-4o.",tags:["n8n", "GPT-4o", "JavaScript", "Vercel"], links:{github:'https://github.com/tetianaa/LegisFlow', site:'https://legisflow-ai.vercel.app'}},
+      {idx:'04/14',id:'voice-image',title:"Hlas → Obrázek (Telegram)",desc:"Hlasová zpráva v Telegramu → přepis AssemblyAI → vytvoření promptu → DALL‑E obrázek → zpět do chatu.",tags:["n8n", "Telegram", "AssemblyAI", "OpenAI", "DALL‑E"]},
+      {idx:'05/14',id:'ua-months',title:"Dynamický generátor měsíců v ukrajinštině (n8n)",desc:"Znovupoužitelný modul logiky dat: vrací měsíce od aktuálního do prosince jako strukturované JSON — bez údržby.",tags:["n8n", "JavaScript", "JSON", "Date logic"]},
+      {idx:'06/14',id:'tg-gcal',title:"Telegram → Vytvoření události v Google Calendar",desc:"AI vytáhne název/datum/čas z Telegram zprávy, validuje, vytvoří událost v kalendáři a pošle potvrzení.",tags:["n8n", "Telegram", "OpenAI", "IF routing", "Google Calendar API"]},
+      {idx:'07/14',id:'btc-alert',title:"Alert ceny BTC → Telegram",desc:"Kontroluje cenu BTC každých 15 minut a posílá alerty do Telegramu jen při změně stavu (anti‑spam).",tags:["n8n", "CoinGecko API", "JavaScript", "Static Data", "Telegram"]},
+      {idx:'08/14',id:'currency-report',title:"Denní report kurzů měn (PrivatBank API)",desc:"Automatizace na 09:00: načte kurzy USD/EUR a odešle stylovaný HTML e‑mail — bez ruční práce.",tags:["n8n", "Cron", "REST API", "JavaScript", "Gmail API"]},
+      {idx:'09/14',id:'weather-kyiv-brno',title:"Denní počasí (Kyjev + Brno) → Telegram",desc:"Denní aktualizace v 08:30 pro dvě města pomocí batching, OpenWeatherMap API a AI formátování.",tags:["n8n", "Cron", "OpenWeatherMap API", "Split in Batches", "OpenAI"]},
+      {idx:'10/14',id:'daily-motivation',title:"Denní motivace → Telegram (AI)",desc:"Každý den v 09:00 vygeneruje krátký originální цитát, očistí ho v JS a odešle formátovanou zprávu s hashtagy.",tags:["n8n", "Cron", "OpenAI", "JavaScript", "Telegram"]},
+      {idx:'11/14',id:'site-monitor',title:"Monitoring dostupnosti webu → Telegram",desc:"HEAD request každých 5 minut; alert jen při chybě (≥ 400). Lehký uptime monitoring.",tags:["n8n", "Cron", "HTTP (HEAD)", "IF routing", "Telegram"]},
+      {idx:'12/14',id:'ai-jokes',title:"Generování vtipů + výběr kvality (Multi‑Model)",desc:"Paralelní generování (GPT‑5‑mini) + hodnocení GPT‑5 (1–10) a výběr nejlepšího — reálný pattern ensemble evaluace.",tags:["n8n", "OpenAI", "GPT‑5‑mini", "GPT‑5", "Merge"]},
+      {idx:'13/14',id:'monthly-sales',title:"Měsíční analýza prodejů z Google Sheets",desc:"Deterministický pipeline, který spočítá objednávky, tržby a průměrný nákup za aktuální měsíc z dat v Sheets.",tags:["n8n", "Google Sheets", "JavaScript", "Deterministic logic"]},
+      {idx:'14/14',id:'img-url-drive',title:"Stažení obrázku z URL → Google Drive",desc:"Vezme URL obrázku, stáhne binary v n8n a nahraje do Google Drive složky se smart názvem souboru.",tags:["n8n", "HTTP (binary)", "Google Drive API", "Expressions", "JavaScript"]}
     ]
   }
 };
@@ -1143,7 +1029,7 @@ document.getElementById('themeBtn').addEventListener('click',()=>{
 let curLang='en';
 
 /* ════════════════════════════════════════
-   PERSISTENCE (theme + language)
+   PERSISTENCE
 ════════════════════════════════════════ */
 (function initPrefs(){
   const savedTheme = localStorage.getItem('tk_theme');
@@ -1155,30 +1041,42 @@ let curLang='en';
   if(savedTheme === 'light' || savedTheme === 'dark') h.setAttribute('data-theme', savedTheme);
   if(qLang) localStorage.setItem('tk_lang', qLang);
 
-  // apply language after i18n is available
   window.__tkInitialLang = (qLang || savedLang || 'en');
 })();
 
 /* ════════════════════════════════════════
-   PROJECT PAGES
+   PROJECT PAGES / PDF
 ════════════════════════════════════════ */
-function openProject(id){
-  const lang = document.documentElement.getAttribute('data-lang') || 'en';
-  const list = (i18n[lang] && i18n[lang].projects) ? i18n[lang].projects : i18n.en.projects;
+const CV_FILE_URL = 'assets/CV_Tetiana_Kotolup.pdf'; // Replace with your file path
 
-  const p = list.find(x => x.id === id);
-
-  // Якщо у проекту є властивість page — переходимо на неї
-  if (p && p.page) {
-    window.location.href = p.page;
-    return;
-  }
-
-  // Fallback (якщо page немає)
-  window.location.href = `project.html?lang=${encodeURIComponent(lang)}&id=${encodeURIComponent(id)}`;
+function dlPDF(){
+  const a = document.createElement('a');
+  a.href = CV_FILE_URL;
+  a.download = 'Tetiana_Kotolup_CV.pdf';
+  a.target = '_blank';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
-/* Example JSON exports (replace with your real n8n exports) */
+function openProject(id){
+  const lang = curLang || document.documentElement.getAttribute('data-lang') || 'en';
+  const url = `project.html?p=${encodeURIComponent(id)}&lang=${encodeURIComponent(lang)}`;
+  window.open(url, '_blank', 'noopener');
+}
+
+function downloadProjectJSON(id){
+  const payload = (window.projectJSON && window.projectJSON[id]) ? window.projectJSON[id] : null;
+  const data = payload ? payload : { note:'Add your real n8n export JSON here', project:id, exportedAt: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `n8n-${id}.json`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 400);
+}
+
 window.projectJSON = {
   "voice-image": {"project":"voice-image","placeholder":true},
   "tg-gcal": {"project":"tg-gcal","placeholder":true},
@@ -1213,15 +1111,26 @@ function applyLang(lang){
     const delay=`rv-d${(i%4)+1}`;
     const el=document.createElement('div');
     el.className=`p-card rv ${delay}`;
+    
+    // Buttons Logic
+    let actionsHTML = '';
+    if (p.links) {
+      // New projects with specific links
+      if (p.links.github) actionsHTML += `<a href="${p.links.github}" target="_blank" class="p-btn">${t.btn_details}</a>`;
+      if (p.links.bot) actionsHTML += `<a href="${p.links.bot}" target="_blank" class="p-btn white">${t.btn_bot}</a>`;
+      else if (p.links.site) actionsHTML += `<a href="${p.links.site}" target="_blank" class="p-btn white">${t.btn_site}</a>`;
+    } else {
+      // Old projects with default logic
+      actionsHTML += `<button class="p-btn" onclick="openProject('${p.id}')">${t.btn_details}</button>`;
+      actionsHTML += `<button class="p-btn white" onclick="downloadProjectJSON('${p.id}')">${t.btn_json}</button>`;
+    }
+
     el.innerHTML = `
       <div class="p-idx">${p.idx}</div>
       <div class="p-ttl">${p.title}</div>
       <div class="p-desc">${p.desc}</div>
       <div class="p-tags">${p.tags.map(tag=>`<span class="p-tag">${tag}</span>`).join('')}</div>
-      <div class="p-actions">
-        <button class="p-btn" onclick="openProject('${p.id}')">${t.btn_details}</button>
-        <button class="p-btn white" onclick="downloadProjectJSON('${p.id}')">${t.btn_json}</button>
-      </div>
+      <div class="p-actions">${actionsHTML}</div>
     `;
     grid.appendChild(el);
   });
@@ -1247,7 +1156,6 @@ const rvObserver=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       e.target.classList.add('on');
-      // Animate skill bars
       e.target.querySelectorAll('.sk-bar-f').forEach(b=>b.style.width=b.style.getPropertyValue('--w'));
       rvObserver.unobserve(e.target);
     }
@@ -1256,7 +1164,6 @@ const rvObserver=new IntersectionObserver(entries=>{
 
 document.querySelectorAll('.rv').forEach(el=>rvObserver.observe(el));
 
-// Skill bars also observed directly
 const barObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=getComputedStyle(e.target).getPropertyValue('--w');barObs.unobserve(e.target)}});
 },{threshold:.5});
@@ -1284,172 +1191,30 @@ ham.addEventListener('click',()=>{
 });
 function closeMob(){ham.classList.remove('open');mob.classList.remove('open');}
 
-
 /* ════════════════════════════════════════
-   PDF
-════════════════════════════════════════ */
-
-function dlPDF(){
-  var a=document.createElement('a');
-  a.href='data:application/pdf;base64,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'; a.download='Tetiana_Kotolup_CV.pdf';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-
-/* ════════════════════════════════════════
-   INIT
-════════════════════════════════════════ */
-
-/* ════════════════════════════════════════
-   MUSIC TOGGLE & VISUALIZATION
+   MUSIC TOGGLE
 ════════════════════════════════════════ */
 const musicBtn = document.getElementById('musicBtn');
 const bgAudio  = document.getElementById('bgAudio');
-const canvas   = document.getElementById('bgCanvas');
-const ctx      = canvas.getContext('2d');
-
-let isPlaying = false;
-let animationId = null;
-let particles = [];
-let width, height;
-
-// Config for themes
-const config = {
-  dark: {
-    count: 60,
-    color: '200, 220, 255', // Light blue neon
-    speed: 0.4,
-    size: {min: 40, max: 150},
-    opacity: {min: 0.02, max: 0.08},
-    glow: 30
-  },
-  light: {
-    count: 20,
-    color: '0, 0, 0', // Soft black
-    speed: 0.2,
-    size: {min: 100, max: 400},
-    opacity: {min: 0.02, max: 0.04},
-    glow: 0
-  }
-};
-
-// Resize handling
-function resize() {
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resize);
-resize();
-
-// Particle class
-class Particle {
-  constructor(theme) {
-    this.theme = theme;
-    this.reset(true);
-  }
-
-  reset(initial = false) {
-    const c = config[this.theme];
-    this.x = Math.random() * width;
-    this.y = initial ? Math.random() * height : height + 100;
-    this.size = Math.random() * (c.size.max - c.size.min) + c.size.min;
-    this.speedY = -(Math.random() * c.speed + 0.1);
-    this.speedX = (Math.random() - 0.5) * c.speed;
-    this.opacity = Math.random() * (c.opacity.max - c.opacity.min) + c.opacity.min;
-    this.color = c.color;
-    this.glow = c.glow;
-  }
-
-  update() {
-    this.y += this.speedY;
-    this.x += this.speedX;
-    if (this.y < -this.size) {
-      this.reset();
-    }
-  }
-
-  draw() {
-    ctx.beginPath();
-    const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size);
-    
-    const rgb = this.color;
-    if (this.glow > 0) {
-       gradient.addColorStop(0, `rgba(${rgb}, ${this.opacity * 2})`);
-       gradient.addColorStop(0.5, `rgba(${rgb}, ${this.opacity})`);
-       gradient.addColorStop(1, `rgba(${rgb}, 0)`);
-    } else {
-       gradient.addColorStop(0, `rgba(${rgb}, ${this.opacity})`);
-       gradient.addColorStop(1, `rgba(${rgb}, 0)`);
-    }
-
-    ctx.fillStyle = gradient;
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-  }
-}
-
-// Animation loop
-function animate() {
-  const theme = document.documentElement.getAttribute('data-theme') || 'dark';
-  
-  ctx.clearRect(0, 0, width, height);
-
-  // Reset particles if theme changed
-  if (particles.length > 0 && particles[0].theme !== theme) {
-    particles = [];
-    for (let i = 0; i < config[theme].count; i++) {
-      particles.push(new Particle(theme));
-    }
-  } else if (particles.length === 0) {
-    for (let i = 0; i < config[theme].count; i++) {
-      particles.push(new Particle(theme));
-    }
-  }
-
-  particles.forEach(p => {
-    p.update();
-    p.draw();
-  });
-
-  if (isPlaying) {
-    animationId = requestAnimationFrame(animate);
-  }
-}
-
-// Init Music
 (function initMusic(){
   const on = localStorage.getItem('tk_music') === 'on';
   musicBtn.dataset.on = on ? 'true' : 'false';
   if(on){
     bgAudio.volume = 0.45;
     bgAudio.play().catch(()=>{});
-    
-    isPlaying = true;
-    canvas.classList.add('on');
-    animate();
   }
 })();
-
 musicBtn.addEventListener('click', async ()=>{
-  isPlaying = musicBtn.dataset.on !== 'true';
-  
-  if(isPlaying){
+  const isOn = musicBtn.dataset.on === 'true';
+  if(isOn){
+    bgAudio.pause();
+    musicBtn.dataset.on = 'false';
+    localStorage.setItem('tk_music','off');
+  }else{
     bgAudio.volume = 0.45;
     try{ await bgAudio.play(); }catch(e){}
     musicBtn.dataset.on = 'true';
     localStorage.setItem('tk_music','on');
-    
-    canvas.classList.add('on');
-    animate();
-    
-  } else {
-    bgAudio.pause();
-    musicBtn.dataset.on = 'false';
-    localStorage.setItem('tk_music','off');
-    
-    canvas.classList.remove('on');
-    if(animationId) cancelAnimationFrame(animationId);
   }
 });
 
