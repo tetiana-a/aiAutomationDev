@@ -670,7 +670,7 @@ ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.tog
 function closeMob(){ham.classList.remove('open');mob.classList.remove('open');}
 
 function dlPDF(){
-  const cvUrl='https://raw.githubusercontent.com/tetiana-a/aiAutomationDev/main/Tetiana_Kotolup_CV_2026.pdf';
+  const cvUrl='https://raw.githubusercontent.com/tetiana-a/aiAutomationDev/Tetiana_Kotolup_CV_2026.pdf';
   const a=document.createElement('a');a.href=cvUrl;a.download='Tetiana_Kotolup_CV_2026.pdf';a.target='_blank';
   document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),400);
 }
