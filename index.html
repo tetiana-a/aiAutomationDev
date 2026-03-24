@@ -523,57 +523,404 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 <audio id="bgAudio" preload="none" loop><source src="01.mp3" type="audio/mpeg"></audio>
 
 <script>
-const i18n={en:{nav_about:"About",nav_skills:"Skills",nav_certs:"Certs",nav_case:"Case",nav_projects:"Projects",btn_details:"Details",btn_site:"Website ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",hero_eyebrow:"AI Automation Developer · Full-Stack AI Products",hero_desc:"I design and build production-ready AI automations and full-stack AI products — from n8n pipelines and Telegram bots to SaaS backends with PostgreSQL. From idea to live system, systematically and predictably.",stat_projects:"Projects",stat_certs:"Certificates",stat_saas:"Live SaaS",stat_first:"AI-first approach",about_title:"About me",about_who_lbl:"Who I am",about_who_p1:"<strong>Tetiana Kotolup</strong> — AI Automation Developer. I build n8n automations, Telegram AI bots, and full-stack AI SaaS products with Node.js, TypeScript, PostgreSQL, OpenAI and React.",edu_lbl:"Education",edu_degree:"Junior Specialist Diploma",edu_school:"Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician",edu_nostri:"✓ Nostrified in CZ · 18-20-M/01 Informační technologie · KÚ JMK 2021",about_who_p2:'Completing the <strong>AI No-Code Developer</strong> program. 3 live AI SaaS products deployed in production.',about_approach_lbl:"My approach",ap1:"Analyse business processes and find time-loss bottlenecks",ap2:"Design AI-agent logic tailored to the specific task",ap3:"Build reliable pipelines with error handling and fallback logic",ap4:"Deploy production backends with PostgreSQL, Prisma, Supabase",ap5:"Test on real scenarios and optimise token costs",ap6:"Evaluate ROI of automation and SaaS implementation",about_tools_lbl:"Tools & Stack",about_contact_lbl:"Contact",skills_title:"Key Expertise",sk1_name:"Workflow Automation",sk1_desc:"n8n pipelines with complex branching, error handling, scheduled jobs, retry logic and webhook triggers. Used across all 11 n8n projects including LegisFlow and AI call analytics.",sk2_name:"AI Integration & Prompting",sk2_desc:"OpenAI GPT-4o / GPT-4o-mini, structured JSON output, multi-model ensemble evaluation, chunking for large legal documents (LegisFlow), Financial DNA modeling (WealthMirror AI).",sk3_name:"Telegram Bot Development",sk3_desc:"Production Telegram bots via Telegraf (Node.js) and n8n: command routing, real-time alerts, voice processing, DALL-E image generation, usage-based SaaS limits. 5+ bots live.",sk4_name:"Backend & API Development",sk4_desc:"Node.js / TypeScript, Express.js REST APIs, JWT authentication, webhook-based event pipelines. Applied in WealthMirror AI and AI CRM — deployed on Render and Vercel.",sk5_name:"Database & ORM",sk5_desc:"PostgreSQL with Prisma ORM, Supabase managed instances. Designed schemas for CRM (clients + appointments), financial user data, usage quotas and SaaS monetization logic.",sk6_name:"API & Service Integrations",sk6_desc:"Google Suite APIs (Sheets, Calendar, Drive, Gmail), AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank, NocoDB DataTable. 10+ third-party integrations across projects.",sk7_name:"Frontend & React",sk7_desc:"React.js dashboard for AI CRM — client management, appointment views, real-time webhook sync. HTML/CSS responsive interfaces, Vercel deployments. LegisFlow web interface.",sk8_name:"Voice & Image AI",sk8_desc:"AssemblyAI transcription pipeline with 30-sec polling, DALL-E 3 image generation from voice messages, PDF text extraction with chunking for large legal documents (LegisFlow).",certs_title:"Certificates",cert1_desc:"Cognitive processes and behavioural patterns — strengthens building human-centred automations",cert2_desc:"AI in marketing: content automation, personalisation, analytics",cert3_desc:"Responsive layout, Flexbox, Grid, CSS animations, forms, validation",cert4_desc:"Functions, arrays, objects, DOM, event listeners, debugging, Chrome DevTools",cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions, GCP security",cert6_desc:"Back-end development, databases, forms, sessions, XSS protection, error handling",cert7_desc:"ChatGPT in business communication: automating correspondence, reports and presentations",cert8_desc:"12 hours of 1-to-1 mentorship from industry experts: goal setting, career development, strategy",case_sec_title:"Featured Case",case_kicker:"AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram",case_title:"AI Agent for Call Analysis<br>& Telegram Statistics Bot",case_tagline:"The company couldn't understand why clients were dissatisfied — no one listened to calls systematically. An AI system was built to do this automatically, 24/7.",case_prob_lbl:"Problem",case_sol_lbl:"Solution · 3 workflows",case_proc_lbl:"Process",case_res_lbl:"Results",case_p1:"Calls processed manually — no sentiment analysis",case_p2:"Managers spend hours listening to recordings",case_p3:"No categorisation or prioritisation system",case_p4:"Statistics unavailable in real time",p_call:"Call",case_pr1:"Trigger: new call → workflow starts automatically",case_pr2:"AssemblyAI transcribes audio; polling every 30 sec",case_pr3:"OpenAI returns JSON: sentiment + category",case_pr4:"IF condition: negative → priority logging",case_pr5:"Testing: 30+ real scenarios, edge cases, fallback",case_pr6:"Prompt optimisation: classification accuracy 90%+",res_quant:"Quantitative",res_qual:"Qualitative",res_biz:"Business",res_q1:"−80% manual work",res_q2:"100% of calls",res_ql1:"Zero lost records",res_ql2:"Full transparency",res_ql3:"Instant negatives",res_b1:"Scale w/o hiring",res_b2:"Data-driven",res_b3:"Modular system",proj_title:"All Projects",
-projects:[
-{idx:"12/14",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,desc:"Production AI SaaS delivering real-time financial decision analysis via Telegram. Webhook backend: user input → OpenAI analysis → structured insight → PostgreSQL. Financial DNA user modeling, usage-based monetization, deployed on Render.",tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
-{idx:"13/14",id:"aicrm",title:"AI CRM System",year:"2026",featured:true,desc:"AI-driven CRM automating client and appointment management. Telegram bot as natural-language interface. React dashboard + AI automation layer synced via webhooks. JWT auth, REST API backend.",tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
-{idx:"14/14",id:"legisflow",title:"LegisFlow — Legal AI Agent",year:"2026",featured:true,desc:"Telegram bot + web interface for automated legal document analysis. Accepts PDF, extracts text, detects risks. n8n workflow: PDF → chunking → GPT-4o → structured risk report. Instant compliance analysis for any contract.",tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
-{idx:"01/14",id:"voice-image",title:"Voice → Image Generator",year:"2025",featured:false,desc:"Telegram voice message → AssemblyAI transcription → prompt building → DALL-E 3 image → sent back to chat.",tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],site:null,bot:null,github:null},
-{idx:"02/14",id:"ua-months",title:"Dynamic Ukrainian Month Generator",year:"2025",featured:false,desc:"Reusable date-logic n8n module — outputs months from current to December as structured JSON with zero maintenance.",tags:["n8n","JavaScript","JSON","Date logic"],site:null,bot:null,github:null},
-{idx:"03/14",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,desc:"AI extracts title/date/time from Telegram text, validates inputs, creates Calendar event, confirms in chat.",tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],site:null,bot:null,github:null},
-{idx:"04/14",id:"btc-alert",title:"BTC Price Alert → Telegram",year:"2025",featured:false,desc:"Checks BTC price every 15 min, sends alerts only on meaningful state changes — no spam, stateful logic.",tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],site:null,bot:null,github:null},
-{idx:"05/14",id:"currency-report",title:"Daily Currency Report",year:"2025",featured:false,desc:"Scheduled 09:00 automation — fetches USD/EUR from PrivatBank API and sends a styled HTML email. Fully hands-free.",tags:["n8n","Cron","REST API","JavaScript","Gmail API"],site:null,bot:null,github:null},
-{idx:"06/14",id:"weather-kyiv-brno",title:"Daily Weather (Kyiv + Brno)",year:"2025",featured:false,desc:"Daily 08:30 weather updates for two cities using batching, OpenWeatherMap API and AI-powered formatting.",tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],site:null,bot:null,github:null},
-{idx:"07/14",id:"daily-motivation",title:"Daily Motivation → Telegram",year:"2025",featured:false,desc:"Daily 09:00 — generates an original motivational quote, cleans it in JS, posts formatted message with hashtags.",tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],site:null,bot:null,github:null},
-{idx:"08/14",id:"site-monitor",title:"Website Availability Monitor",year:"2025",featured:false,desc:"HEAD request every 5 minutes; alert only on error status (≥ 400). Lightweight and reliable uptime monitoring.",tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],site:null,bot:null,github:null},
-{idx:"09/14",id:"ai-jokes",title:"Multi-Model Joke Evaluator",year:"2025",featured:false,desc:"Parallel GPT-4o-mini generation + GPT-4o judge scoring (1–10) and best-pick — real ensemble evaluation pattern.",tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],site:null,bot:null,github:null},
-{idx:"10/14",id:"monthly-sales",title:"Monthly Sales Analytics",year:"2025",featured:false,desc:"Deterministic pipeline aggregating orders, revenue and average check for current month from Google Sheets data.",tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],site:null,bot:null,github:null},
-{idx:"11/14",id:"img-url-drive",title:"Image URL → Google Drive",year:"2025",featured:false,desc:"Downloads binary from URL inside n8n, uploads to specific Drive folder with smart filename generation logic.",tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],site:null,bot:null,github:null}
-]},
-uk:{nav_about:"Про мене",nav_skills:"Навички",nav_certs:"Сертифікати",nav_case:"Кейс",nav_projects:"Проекти",btn_details:"Деталі",btn_site:"Сайт ↗",btn_bot:"Telegram Бот ↗",btn_github:"GitHub ↗",hero_eyebrow:"AI Automation Developer · Full-Stack AI продукти",hero_desc:"Проєктую та будую production-ready AI автоматизації та full-stack AI продукти — від n8n пайплайнів і Telegram ботів до SaaS бекендів з PostgreSQL. Від ідеї до живої системи — системно та прогнозовано.",stat_projects:"Проектів",stat_certs:"Сертифікатів",stat_saas:"Live SaaS",stat_first:"AI-first підхід",about_title:"Про мене",about_who_lbl:"Хто я",about_who_p1:"<strong>Тетяна Котолуп</strong> — AI Automation Developer. Будую n8n автоматизації, Telegram AI боти та full-stack AI SaaS продукти з Node.js, TypeScript, PostgreSQL, OpenAI та React.",edu_lbl:"Освіта",edu_degree:"Диплом молодшого спеціаліста",edu_school:"Черкаський державний бізнес-коледж · 2017<br>Спеціальність: Технік комп'ютерних систем",edu_nostri:"✓ Нострифікований в ЧР · 18-20-M/01 Informační technologie · KÚ JMK 2021",about_who_p2:"Завершую програму <strong>AI No-Code Developer</strong>. 3 живі AI SaaS продукти у production.",about_approach_lbl:"Мій підхід",ap1:"Аналізую бізнес-процеси та знаходжу точки втрати часу",ap2:"Проєктую логіку AI-агента під конкретне завдання",ap3:"Будую надійні пайплайни з error handling і fallback-логікою",ap4:"Деплою production бекенди з PostgreSQL, Prisma, Supabase",ap5:"Тестую на реальних сценаріях та оптимізую витрати токенів",ap6:"Оцінюю ROI від впровадження автоматизації та SaaS",about_tools_lbl:"Стек та інструменти",about_contact_lbl:"Контакти",skills_title:"Ключові навички",sk1_name:"Автоматизація процесів",sk1_desc:"n8n пайплайни зі складним розгалуженням, error handling, scheduled jobs, retry-логікою та webhook тригерами. Застосовано у всіх 11 n8n проектах включно з LegisFlow та AI call analytics.",sk2_name:"AI Інтеграція та Prompting",sk2_desc:"OpenAI GPT-4o / GPT-4o-mini, structured JSON output, ensemble evaluation кількох моделей, chunking для великих документів (LegisFlow), Financial DNA моделювання (WealthMirror).",sk3_name:"Telegram Бот Розробка",sk3_desc:"Production Telegram боти через Telegraf (Node.js) та n8n: command routing, real-time alerts, обробка голосу, DALL-E зображення, usage-based SaaS ліміти. 5+ ботів у production.",sk4_name:"Backend та API Розробка",sk4_desc:"Node.js / TypeScript, Express.js REST API, JWT аутентифікація, webhook event pipelines. Застосовано у WealthMirror AI та AI CRM — задеплоєно на Render та Vercel.",sk5_name:"База даних та ORM",sk5_desc:"PostgreSQL з Prisma ORM, Supabase. Схеми для CRM (клієнти + записи), фінансові дані користувачів, квоти використання та логіка монетизації SaaS.",sk6_name:"API та Сервісні інтеграції",sk6_desc:"Google Suite APIs (Sheets, Calendar, Drive, Gmail), AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank, NocoDB DataTable. 10+ сторонніх інтеграцій.",sk7_name:"Frontend та React",sk7_desc:"React.js дашборд для AI CRM — управління клієнтами, записами, real-time webhook синхронізація. HTML/CSS адаптивні інтерфейси, Vercel. Веб-інтерфейс LegisFlow.",sk8_name:"Голос та Зображення AI",sk8_desc:"AssemblyAI транскрипція з polling кожні 30 сек, DALL-E 3 генерація з голосових повідомлень, PDF витяг тексту з chunking для великих юридичних документів (LegisFlow).",certs_title:"Сертифікати",cert1_desc:"Когнітивні процеси та поведінкові патерни — підсилює побудову human-centered автоматизацій",cert2_desc:"AI у маркетингу: автоматизація контенту, персоналізація, аналітика",cert3_desc:"Адаптивна верстка, Flexbox, Grid, CSS-анімації, форми, валідація",cert4_desc:"Функції, масиви, об'єкти, DOM, event listeners, debugging, Chrome DevTools",cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions, безпека GCP",cert6_desc:"Back-end розробка, бази даних, форми, сесії, захист від XSS, обробка помилок",cert7_desc:"ChatGPT у бізнес-комунікації: автоматизація листування, звітів та презентацій",cert8_desc:"12 годин індивідуального менторства від галузевих експертів: цілі, кар'єрний розвиток, стратегія",case_sec_title:"Головний кейс",case_kicker:"AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram",case_title:"AI-агент для аналізу дзвінків<br>та Telegram-бот статистики",case_tagline:"Компанія не могла зрозуміти, чому клієнти незадоволені — бо ніхто не слухав дзвінки систематично. Побудована AI-система, яка робить це автоматично, 24/7.",case_prob_lbl:"Проблема",case_sol_lbl:"Рішення · 3 workflow",case_proc_lbl:"Процес",case_res_lbl:"Результати",case_p1:"Дзвінки обробляються вручну — немає аналізу тональності",case_p2:"Менеджери витрачають години на прослуховування записів",case_p3:"Немає системи категоризації та пріоритизації",case_p4:"Статистика недоступна в реальному часі",p_call:"Дзвінок",case_pr1:"Тригер: новий дзвінок → автоматичний старт workflow",case_pr2:"AssemblyAI транскрибує аудіо; polling кожні 30 сек",case_pr3:"OpenAI повертає JSON: тональність + категорія",case_pr4:"IF-умова: negative → пріоритетне логування",case_pr5:"Тестування: 30+ реальних сценаріїв, edge cases, fallback",case_pr6:"Оптимізація промпту: точність класифікації 90%+",res_quant:"Кількісні",res_qual:"Якісні",res_biz:"Бізнес-ефект",res_q1:"−80% ручної роботи",res_q2:"100% дзвінків",res_ql1:"Нуль втрачених записів",res_ql2:"Повна прозорість",res_ql3:"Негатив — одразу",res_b1:"Масштаб без найму",res_b2:"Рішення на даних",res_b3:"Модульна система",proj_title:"Усі проекти",
-projects:[
-{idx:"12/14",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,desc:"Production AI SaaS для аналізу фінансових рішень у реальному часі через Telegram. Webhook backend: запит → OpenAI → структурований інсайт → PostgreSQL. Financial DNA моделювання, usage-based монетизація, Render.",tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
-{idx:"13/14",id:"aicrm",title:"AI CRM Система",year:"2026",featured:true,desc:"AI CRM що автоматизує управління клієнтами та записами. Telegram бот як інтерфейс природною мовою. React дашборд + AI шар синхронізовані через webhooks. JWT, REST API бекенд.",tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
-{idx:"14/14",id:"legisflow",title:"LegisFlow — AI агент для юрдокументів",year:"2026",featured:true,desc:"Telegram бот + веб-інтерфейс для аналізу юридичних документів. Приймає PDF, визначає ризики. n8n: PDF → чанкінг → GPT-4o → структурований звіт про ризики.",tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
-{idx:"01/14",id:"voice-image",title:"Голос → Зображення (Telegram)",year:"2025",featured:false,desc:"Голосове повідомлення → транскрипт AssemblyAI → промпт → DALL-E 3 зображення → назад у чат.",tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],site:null,bot:null,github:null},
-{idx:"02/14",id:"ua-months",title:"Динамічний генератор місяців",year:"2025",featured:false,desc:"Перевикористовуваний n8n модуль: місяці від поточного до грудня у structured JSON — без ручних оновлень.",tags:["n8n","JavaScript","JSON","Date logic"],site:null,bot:null,github:null},
-{idx:"03/14",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,desc:"AI витягує назву/дату/час з повідомлення, валідує, створює подію та надсилає підтвердження.",tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],site:null,bot:null,github:null},
-{idx:"04/14",id:"btc-alert",title:"BTC алерт → Telegram",year:"2025",featured:false,desc:"Перевіряє ціну BTC кожні 15 хв, шле алерти лише при зміні стану — без спаму, stateful логіка.",tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],site:null,bot:null,github:null},
-{idx:"05/14",id:"currency-report",title:"Щоденний звіт по курсу валют",year:"2025",featured:false,desc:"Автоматизація о 09:00 — курси USD/EUR з PrivatBank API → стилізований HTML-лист. Повністю автономно.",tags:["n8n","Cron","REST API","JavaScript","Gmail API"],site:null,bot:null,github:null},
-{idx:"06/14",id:"weather-kyiv-brno",title:"Погода (Київ + Брно) → Telegram",year:"2025",featured:false,desc:"Щодня о 08:30 — погода для двох міст з batching, OpenWeatherMap API та AI форматуванням.",tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],site:null,bot:null,github:null},
-{idx:"07/14",id:"daily-motivation",title:"Щоденна мотивація → Telegram",year:"2025",featured:false,desc:"Щодня о 09:00 — генерує оригінальну фразу, чистить у JS, надсилає форматоване повідомлення з хештегами.",tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],site:null,bot:null,github:null},
-{idx:"08/14",id:"site-monitor",title:"Моніторинг доступності сайту",year:"2025",featured:false,desc:"HEAD-запит кожні 5 хвилин; алерт лише при помилці (≥ 400). Легкий і надійний uptime monitor.",tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],site:null,bot:null,github:null},
-{idx:"09/14",id:"ai-jokes",title:"Multi-Model оцінка якості контенту",year:"2025",featured:false,desc:"Паралельна генерація GPT-4o-mini + оцінка GPT-4o (1–10) і вибір найкращого — ensemble evaluation патерн.",tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],site:null,bot:null,github:null},
-{idx:"10/14",id:"monthly-sales",title:"Місячна аналітика продажів",year:"2025",featured:false,desc:"Детермінований пайплайн: замовлення, виручка та середній чек за поточний місяць з Google Sheets.",tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],site:null,bot:null,github:null},
-{idx:"11/14",id:"img-url-drive",title:"Завантаження картинки → Google Drive",year:"2025",featured:false,desc:"Завантажує binary за URL всередині n8n, заливає в Google Drive з розумною назвою файлу.",tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],site:null,bot:null,github:null}
-]},
-cs:{nav_about:"O mně",nav_skills:"Dovednosti",nav_certs:"Certifikáty",nav_case:"Případ",nav_projects:"Projekty",btn_details:"Detaily",btn_site:"Web ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",hero_eyebrow:"AI Automation Developer · Full-Stack AI produkty",hero_desc:"Navrhuji a vytvářím produkční AI automatizace a full-stack AI produkty — od n8n pipelines a Telegram botů po SaaS backendy s PostgreSQL. Od nápadu po živý systém — systematicky a předvídatelně.",stat_projects:"Projektů",stat_certs:"Certifikátů",stat_saas:"Live SaaS",stat_first:"AI-first přístup",about_title:"O mně",about_who_lbl:"Kdo jsem",about_who_p1:"<strong>Tetiana Kotolup</strong> — AI Automation Developer. Vytvářím n8n automatizace, Telegram AI boty a full-stack AI SaaS produkty s Node.js, TypeScript, PostgreSQL, OpenAI a React.",edu_lbl:"Vzdělání",edu_degree:"Diplom mladšího specialisty",edu_school:"Čerkaská státní obchodní škola · 2017<br>Specializace: Technik počítačových systémů",edu_nostri:"✓ Nostrifikováno v ČR · 18-20-M/01 Informační technologie · KÚ JMK 2021",about_who_p2:"Absolvuji program <strong>AI No-Code Developer</strong>. 3 živé AI SaaS produkty v produkci.",about_approach_lbl:"Můj přístup",ap1:"Analyzuji obchodní procesy a nacházím místa ztráty času",ap2:"Navrhuji logiku AI agenta přizpůsobenou konkrétnímu úkolu",ap3:"Buduju spolehlivé pipeline se zpracováním chyb a záložní logikou",ap4:"Nasazuji produkční backendy s PostgreSQL, Prisma, Supabase",ap5:"Testuji na reálných scénářích a optimalizuji náklady na tokeny",ap6:"Hodnotím ROI automatizace a implementace SaaS",about_tools_lbl:"Stack a nástroje",about_contact_lbl:"Kontakt",skills_title:"Klíčové dovednosti",sk1_name:"Automatizace procesů",sk1_desc:"n8n pipelines s komplexním větvením, zpracováním chyb, plánovanými úlohami, retry logikou a webhook triggery. Použito ve všech 11 n8n projektech včetně LegisFlow.",sk2_name:"AI integrace & Prompting",sk2_desc:"OpenAI GPT-4o / GPT-4o-mini, strukturovaný JSON výstup, ensemble evaluace více modelů, chunkování pro velké dokumenty (LegisFlow), Financial DNA modelování (WealthMirror).",sk3_name:"Vývoj Telegram botů",sk3_desc:"Produkční Telegram boti přes Telegraf (Node.js) a n8n: routování příkazů, upozornění, zpracování hlasu, DALL-E obrázky, usage-based SaaS limity. 5+ botů v produkci.",sk4_name:"Backend & API vývoj",sk4_desc:"Node.js / TypeScript, Express.js REST API, JWT autentizace, webhook event pipelines. Použito ve WealthMirror AI a AI CRM — nasazeno na Render a Vercel.",sk5_name:"Databáze & ORM",sk5_desc:"PostgreSQL s Prisma ORM, Supabase. Schémata pro CRM (klienti + schůzky), finanční data uživatelů, kvóty a monetizační logika SaaS.",sk6_name:"API & Servisní integrace",sk6_desc:"Google Suite API (Sheets, Calendar, Drive, Gmail), AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank, NocoDB DataTable. 10+ integrací třetích stran.",sk7_name:"Frontend & React",sk7_desc:"React.js dashboard pro AI CRM — správa klientů, schůzek, real-time webhook sync. HTML/CSS responzivní rozhraní, Vercel nasazení. Webové rozhraní LegisFlow.",sk8_name:"Hlas & Image AI",sk8_desc:"AssemblyAI transkripce s polling každých 30 sec, DALL-E 3 generování z hlasových zpráv, extrakce textu z PDF s chunkováním pro právní dokumenty (LegisFlow).",certs_title:"Certifikáty",cert1_desc:"Kognitivní procesy a behaviorální vzorce — posiluje tvorbu automatizací orientovaných na člověka",cert2_desc:"AI v marketingu: automatizace obsahu, personalizace, analytika",cert3_desc:"Responzivní layout, Flexbox, Grid, CSS animace, formuláře, validace",cert4_desc:"Funkce, pole, objekty, DOM, event listenery, ladění, Chrome DevTools",cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions",cert6_desc:"Back-end vývoj, databáze, formuláře, relace, ochrana XSS, zpracování chyb",cert7_desc:"ChatGPT v obchodní komunikaci: automatizace korespondence, zpráv a prezentací",cert8_desc:"12 hodin individuálního mentorství od odborníků z oboru: cíle, kariérní rozvoj",case_sec_title:"Hlavní případ",case_kicker:"AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram",case_title:"AI agent pro analýzu hovorů<br>a Telegram statistický bot",case_tagline:"Společnost nemohla pochopit, proč jsou klienti nespokojeni. Byl vytvořen AI systém, který to dělá automaticky, 24/7.",case_prob_lbl:"Problém",case_sol_lbl:"Řešení · 3 workflow",case_proc_lbl:"Průběh",case_res_lbl:"Výsledky",case_p1:"Hovory zpracovány ručně — žádná analýza sentimentu",case_p2:"Manažeři tráví hodiny poslechem záznamů",case_p3:"Žádný systém kategorizace ani prioritizace",case_p4:"Statistiky nejsou dostupné v reálném čase",p_call:"Hovor",case_pr1:"Spouštěč: nový hovor → automatický start workflow",case_pr2:"AssemblyAI přepisuje audio; polling každých 30 sec",case_pr3:"OpenAI vrací JSON: sentiment + kategorie",case_pr4:"IF podmínka: negativní → prioritní logování",case_pr5:"Testování: 30+ reálných scénářů, edge cases, fallback",case_pr6:"Optimalizace promptu: přesnost klasifikace 90%+",res_quant:"Kvantitativní",res_qual:"Kvalitativní",res_biz:"Obchodní efekt",res_q1:"−80% ruční práce",res_q2:"100 % hovorů",res_ql1:"Nulová ztráta záznamů",res_ql2:"Plná transparentnost",res_ql3:"Negativní okamžitě",res_b1:"Škálování bez náboru",res_b2:"Rozhodování na datech",res_b3:"Modulární systém",proj_title:"Všechny projekty",
-projects:[
-{idx:"12/14",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,desc:"Production AI SaaS pro analýzu finančních rozhodnutí v reálném čase přes Telegram. Webhook backend: dotaz → OpenAI → strukturovaný výsledek → PostgreSQL. Financial DNA modelování, usage-based monetizace, Render.",tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
-{idx:"13/14",id:"aicrm",title:"AI CRM systém",year:"2026",featured:true,desc:"AI CRM automatizující správu klientů přes Telegram bot (přirozený jazyk). React dashboard + AI vrstva synchronizované přes webhooky. JWT autentizace, REST API backend.",tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
-{idx:"14/14",id:"legisflow",title:"LegisFlow — AI agent pro právní dokumenty",year:"2026",featured:true,desc:"Telegram bot + webové rozhraní pro analýzu právních dokumentů. Přijímá PDF, detekuje rizika. n8n: PDF → chunkování → GPT-4o → strukturovaná zpráva o rizicích.",tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
-{idx:"01/14",id:"voice-image",title:"Hlas → Obrázek (Telegram)",year:"2025",featured:false,desc:"Hlasová zpráva → přepis AssemblyAI → vytvoření promptu → DALL-E 3 obrázek → zpět do chatu.",tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],site:null,bot:null,github:null},
-{idx:"02/14",id:"ua-months",title:"Dynamický generátor měsíců",year:"2025",featured:false,desc:"Znovupoužitelný n8n modul: měsíce od aktuálního do prosince jako structured JSON — bez údržby.",tags:["n8n","JavaScript","JSON","Date logic"],site:null,bot:null,github:null},
-{idx:"03/14",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,desc:"AI vytáhne název/datum/čas z Telegram zprávy, validuje, vytvoří událost a pošle potvrzení.",tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],site:null,bot:null,github:null},
-{idx:"04/14",id:"btc-alert",title:"Alert ceny BTC → Telegram",year:"2025",featured:false,desc:"Kontroluje BTC každých 15 min, posílá alerty jen při změně stavu — bez spamu, stavová logika.",tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],site:null,bot:null,github:null},
-{idx:"05/14",id:"currency-report",title:"Denní report kurzů měn",year:"2025",featured:false,desc:"Automatizace v 09:00 — kurzy USD/EUR z PrivatBank → stylovaný HTML e-mail. Plně autonomní.",tags:["n8n","Cron","REST API","JavaScript","Gmail API"],site:null,bot:null,github:null},
-{idx:"06/14",id:"weather-kyiv-brno",title:"Počasí (Kyjev + Brno) → Telegram",year:"2025",featured:false,desc:"Denně v 08:30 — počasí pro dvě města s batching, OpenWeatherMap API a AI formátováním.",tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],site:null,bot:null,github:null},
-{idx:"07/14",id:"daily-motivation",title:"Denní motivace → Telegram",year:"2025",featured:false,desc:"Každý den v 09:00 — generuje originální citát, vyčistí v JS, odešle formátovanou zprávu s hashtagy.",tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],site:null,bot:null,github:null},
-{idx:"08/14",id:"site-monitor",title:"Monitoring dostupnosti webu",year:"2025",featured:false,desc:"HEAD request každých 5 minut; alert jen při chybě (≥ 400). Lehký a spolehlivý uptime monitoring.",tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],site:null,bot:null,github:null},
-{idx:"09/14",id:"ai-jokes",title:"Multi-Model hodnocení kvality obsahu",year:"2025",featured:false,desc:"Paralelní generování GPT-4o-mini + hodnocení GPT-4o (1–10) a výběr nejlepšího — ensemble evaluace.",tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],site:null,bot:null,github:null},
-{idx:"10/14",id:"monthly-sales",title:"Měsíční analýza prodejů",year:"2025",featured:false,desc:"Deterministický pipeline: objednávky, tržby a průměrný nákup za aktuální měsíc z Google Sheets.",tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],site:null,bot:null,github:null},
-{idx:"11/14",id:"img-url-drive",title:"Stažení obrázku → Google Drive",year:"2025",featured:false,desc:"Stáhne binary z URL v n8n, nahraje do Google Drive složky se smart názvem souboru.",tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],site:null,bot:null,github:null}
-]}};
+const i18n={
+en:{
+  nav_about:"About",nav_skills:"Skills",nav_certs:"Certs",nav_case:"Case",nav_projects:"Projects",
+  btn_details:"Details",btn_site:"Website ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",
+  hero_eyebrow:"AI Automation Developer · Full-Stack AI Products",
+  hero_desc:"I design and build production-ready AI automations and full-stack AI products — from n8n pipelines and Telegram bots to SaaS backends with PostgreSQL. From idea to live system, systematically and predictably.",
+  stat_projects:"Projects",stat_certs:"Certificates",stat_saas:"Live SaaS",stat_first:"AI-first approach",
+  about_title:"About me",about_who_lbl:"Who I am",
+  about_who_p1:"<strong>Tetiana Kotolup</strong> — AI Automation Developer. I build n8n automations, Telegram AI bots, and full-stack AI SaaS products with Node.js, TypeScript, PostgreSQL, OpenAI and React.",
+  edu_lbl:"Education",edu_degree:"Junior Specialist Diploma",
+  edu_school:"Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician",
+  edu_nostri:"✓ Nostrified in CZ · 18-20-M/01 Informační technologie · KÚ JMK 2021",
+  about_who_p2:'Completing the <strong>AI No-Code Developer</strong> program. 3 live AI SaaS products deployed in production.',
+  about_approach_lbl:"My approach",
+  ap1:"Analyse business processes and find time-loss bottlenecks",
+  ap2:"Design AI-agent logic tailored to the specific task",
+  ap3:"Build reliable pipelines with error handling and fallback logic",
+  ap4:"Deploy production backends with PostgreSQL, Prisma, Supabase",
+  ap5:"Test on real scenarios and optimise token costs",
+  ap6:"Evaluate ROI of automation and SaaS implementation",
+  about_tools_lbl:"Tools & Stack",about_contact_lbl:"Contact",
+  skills_title:"Key Expertise",
+  sk1_name:"Workflow Automation",sk1_desc:"n8n pipelines with complex branching, error handling, scheduled jobs, retry logic and webhook triggers. Used across all 11 n8n projects including LegisFlow and AI call analytics.",
+  sk2_name:"AI Integration & Prompting",sk2_desc:"OpenAI GPT-4o / GPT-4o-mini, structured JSON output, multi-model ensemble evaluation, chunking for large legal documents (LegisFlow), Financial DNA modeling (WealthMirror AI).",
+  sk3_name:"Telegram Bot Development",sk3_desc:"Production Telegram bots via Telegraf (Node.js) and n8n: command routing, real-time alerts, voice processing, DALL-E image generation, usage-based SaaS limits. 5+ bots live.",
+  sk4_name:"Backend & API Development",sk4_desc:"Node.js / TypeScript, Express.js REST APIs, JWT authentication, webhook-based event pipelines. Applied in WealthMirror AI and AI CRM — deployed on Render and Vercel.",
+  sk5_name:"Database & ORM",sk5_desc:"PostgreSQL with Prisma ORM, Supabase managed instances. Designed schemas for CRM (clients + appointments), financial user data, usage quotas and SaaS monetization logic.",
+  sk6_name:"API & Service Integrations",sk6_desc:"Google Suite APIs (Sheets, Calendar, Drive, Gmail), AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank, NocoDB DataTable. 10+ third-party integrations across projects.",
+  sk7_name:"Frontend & React",sk7_desc:"React.js dashboard for AI CRM — client management, appointment views, real-time webhook sync. HTML/CSS responsive interfaces, Vercel deployments. LegisFlow web interface.",
+  sk8_name:"Voice & Image AI",sk8_desc:"AssemblyAI transcription pipeline with 30-sec polling, DALL-E 3 image generation from voice messages, PDF text extraction with chunking for large legal documents (LegisFlow).",
+  certs_title:"Certificates",
+  cert1_desc:"Cognitive processes and behavioural patterns — strengthens building human-centred automations",
+  cert2_desc:"AI in marketing: content automation, personalisation, analytics",
+  cert3_desc:"Responsive layout, Flexbox, Grid, CSS animations, forms, validation",
+  cert4_desc:"Functions, arrays, objects, DOM, event listeners, debugging, Chrome DevTools",
+  cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions, GCP security",
+  cert6_desc:"Back-end development, databases, forms, sessions, XSS protection, error handling",
+  cert7_desc:"ChatGPT in business communication: automating correspondence, reports and presentations",
+  cert8_desc:"12 hours of 1-to-1 mentorship from industry experts: goal setting, career development, strategy",
+  case_sec_title:"Featured Case",
+  case_kicker:"AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram",
+  case_title:"AI Agent for Call Analysis<br>& Telegram Statistics Bot",
+  case_tagline:"The company couldn't understand why clients were dissatisfied — no one listened to calls systematically. An AI system was built to do this automatically, 24/7.",
+  case_prob_lbl:"Problem",case_sol_lbl:"Solution · 3 workflows",case_proc_lbl:"Process",case_res_lbl:"Results",
+  case_p1:"Calls processed manually — no sentiment analysis",
+  case_p2:"Managers spend hours listening to recordings",
+  case_p3:"No categorisation or prioritisation system",
+  case_p4:"Statistics unavailable in real time",
+  p_call:"Call",
+  case_pr1:"Trigger: new call → workflow starts automatically",
+  case_pr2:"AssemblyAI transcribes audio; polling every 30 sec",
+  case_pr3:"OpenAI returns JSON: sentiment + category",
+  case_pr4:"IF condition: negative → priority logging",
+  case_pr5:"Testing: 30+ real scenarios, edge cases, fallback",
+  case_pr6:"Prompt optimisation: classification accuracy 90%+",
+  res_quant:"Quantitative",res_qual:"Qualitative",res_biz:"Business",
+  res_q1:"−80% manual work",res_q2:"100% of calls",
+  res_ql1:"Zero lost records",res_ql2:"Full transparency",res_ql3:"Instant negatives",
+  res_b1:"Scale w/o hiring",res_b2:"Data-driven",res_b3:"Modular system",
+  proj_title:"All Projects",
+  projects:[
+    // ── LIVE SaaS (featured) ──────────────────────────────────────────────
+    {idx:"12/14",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
+      desc:"Production AI SaaS delivering real-time financial decision analysis via Telegram. Webhook backend: user input → OpenAI analysis → structured insight → PostgreSQL. Financial DNA user modeling, usage-based monetization, deployed on Render.",
+      tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],
+      site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
+    {idx:"13/14",id:"aicrm",title:"AI CRM System",year:"2026",featured:true,
+      desc:"AI-driven CRM automating client and appointment management. Telegram bot as natural-language interface. React dashboard + AI automation layer synced via webhooks. JWT auth, REST API backend.",
+      tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],
+      site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
+    {idx:"14/14",id:"legisflow",title:"LegisFlow — Legal AI Agent",year:"2026",featured:true,
+      desc:"Telegram bot + web interface for automated legal document analysis. Accepts PDF, extracts text, detects risks. n8n workflow: PDF → chunking → GPT-4o → structured risk report. Instant compliance analysis for any contract.",
+      tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],
+      site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
+    // ── n8n automations (not featured) ───────────────────────────────────
+    {idx:"01/14",id:"voice-image",title:"Voice → Image Generator",year:"2025",featured:false,
+      desc:"Telegram voice message → AssemblyAI transcription → prompt building → DALL-E 3 image → sent back to chat.",
+      tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],
+      site:null,bot:null,github:null},
+    {idx:"02/14",id:"ua-months",title:"Dynamic Ukrainian Month Generator",year:"2025",featured:false,
+      desc:"Reusable date-logic n8n module — outputs months from current to December as structured JSON with zero maintenance.",
+      tags:["n8n","JavaScript","JSON","Date logic"],
+      site:null,bot:null,github:null},
+    {idx:"03/14",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
+      desc:"AI extracts title/date/time from Telegram text, validates inputs, creates Calendar event, confirms in chat.",
+      tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],
+      site:null,bot:null,github:null},
+    {idx:"04/14",id:"btc-alert",title:"BTC Price Alert → Telegram",year:"2025",featured:false,
+      desc:"Checks BTC price every 15 min, sends alerts only on meaningful state changes — no spam, stateful logic.",
+      tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"05/14",id:"currency-report",title:"Daily Currency Report",year:"2025",featured:false,
+      desc:"Scheduled 09:00 automation — fetches USD/EUR from PrivatBank API and sends a styled HTML email. Fully hands-free.",
+      tags:["n8n","Cron","REST API","JavaScript","Gmail API"],
+      site:null,bot:null,github:null},
+    {idx:"06/14",id:"weather-kyiv-brno",title:"Daily Weather (Kyiv + Brno)",year:"2025",featured:false,
+      desc:"Daily 08:30 weather updates for two cities using batching, OpenWeatherMap API and AI-powered formatting.",
+      tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],
+      site:null,bot:null,github:null},
+    {idx:"07/14",id:"daily-motivation",title:"Daily Motivation → Telegram",year:"2025",featured:false,
+      desc:"Daily 09:00 — generates an original motivational quote, cleans it in JS, posts formatted message with hashtags.",
+      tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"08/14",id:"site-monitor",title:"Website Availability Monitor",year:"2025",featured:false,
+      desc:"HEAD request every 5 minutes; alert only on error status (≥ 400). Lightweight and reliable uptime monitoring.",
+      tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"09/14",id:"ai-jokes",title:"Multi-Model Joke Evaluator",year:"2025",featured:false,
+      desc:"Parallel GPT-4o-mini generation + GPT-4o judge scoring (1–10) and best-pick — real ensemble evaluation pattern.",
+      tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],
+      site:null,bot:null,github:null},
+    {idx:"10/14",id:"monthly-sales",title:"Monthly Sales Analytics",year:"2025",featured:false,
+      desc:"Deterministic pipeline aggregating orders, revenue and average check for current month from Google Sheets data.",
+      tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],
+      site:null,bot:null,github:null},
+    {idx:"11/14",id:"img-url-drive",title:"Image URL → Google Drive",year:"2025",featured:false,
+      desc:"Downloads binary from URL inside n8n, uploads to specific Drive folder with smart filename generation logic.",
+      tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],
+      site:null,bot:null,github:null}
+  ]
+},
+uk:{
+  nav_about:"Про мене",nav_skills:"Навички",nav_certs:"Сертифікати",nav_case:"Кейс",nav_projects:"Проекти",
+  btn_details:"Деталі",btn_site:"Сайт ↗",btn_bot:"Telegram Бот ↗",btn_github:"GitHub ↗",
+  hero_eyebrow:"AI Automation Developer · Full-Stack AI продукти",
+  hero_desc:"Проєктую та будую production-ready AI автоматизації та full-stack AI продукти — від n8n пайплайнів і Telegram ботів до SaaS бекендів з PostgreSQL. Від ідеї до живої системи — системно та прогнозовано.",
+  stat_projects:"Проектів",stat_certs:"Сертифікатів",stat_saas:"Live SaaS",stat_first:"AI-first підхід",
+  about_title:"Про мене",about_who_lbl:"Хто я",
+  about_who_p1:"<strong>Тетяна Котолуп</strong> — AI Automation Developer. Будую n8n автоматизації, Telegram AI боти та full-stack AI SaaS продукти з Node.js, TypeScript, PostgreSQL, OpenAI та React.",
+  edu_lbl:"Освіта",edu_degree:"Диплом молодшого спеціаліста",
+  edu_school:"Черкаський державний бізнес-коледж · 2017<br>Спеціальність: Технік комп'ютерних систем",
+  edu_nostri:"✓ Нострифікований в ЧР · 18-20-M/01 Informační technologie · KÚ JMK 2021",
+  about_who_p2:"Завершую програму <strong>AI No-Code Developer</strong>. 3 живі AI SaaS продукти у production.",
+  about_approach_lbl:"Мій підхід",
+  ap1:"Аналізую бізнес-процеси та знаходжу точки втрати часу",
+  ap2:"Проєктую логіку AI-агента під конкретне завдання",
+  ap3:"Будую надійні пайплайни з error handling і fallback-логікою",
+  ap4:"Деплою production бекенди з PostgreSQL, Prisma, Supabase",
+  ap5:"Тестую на реальних сценаріях та оптимізую витрати токенів",
+  ap6:"Оцінюю ROI від впровадження автоматизації та SaaS",
+  about_tools_lbl:"Стек та інструменти",about_contact_lbl:"Контакти",
+  skills_title:"Ключові навички",
+  sk1_name:"Автоматизація процесів",sk1_desc:"n8n пайплайни зі складним розгалуженням, error handling, scheduled jobs, retry-логікою та webhook тригерами. Застосовано у всіх 11 n8n проектах включно з LegisFlow та AI call analytics.",
+  sk2_name:"AI Інтеграція та Prompting",sk2_desc:"OpenAI GPT-4o / GPT-4o-mini, structured JSON output, ensemble evaluation кількох моделей, chunking для великих документів (LegisFlow), Financial DNA моделювання (WealthMirror).",
+  sk3_name:"Telegram Бот Розробка",sk3_desc:"Production Telegram боти через Telegraf (Node.js) та n8n: command routing, real-time alerts, обробка голосу, DALL-E зображення, usage-based SaaS ліміти. 5+ ботів у production.",
+  sk4_name:"Backend та API Розробка",sk4_desc:"Node.js / TypeScript, Express.js REST API, JWT аутентифікація, webhook event pipelines. Застосовано у WealthMirror AI та AI CRM — задеплоєно на Render та Vercel.",
+  sk5_name:"База даних та ORM",sk5_desc:"PostgreSQL з Prisma ORM, Supabase. Схеми для CRM (клієнти + записи), фінансові дані користувачів, квоти використання та логіка монетизації SaaS.",
+  sk6_name:"API та Сервісні інтеграції",sk6_desc:"Google Suite APIs (Sheets, Calendar, Drive, Gmail), AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank, NocoDB DataTable. 10+ сторонніх інтеграцій.",
+  sk7_name:"Frontend та React",sk7_desc:"React.js дашборд для AI CRM — управління клієнтами, записами, real-time webhook синхронізація. HTML/CSS адаптивні інтерфейси, Vercel. Веб-інтерфейс LegisFlow.",
+  sk8_name:"Голос та Зображення AI",sk8_desc:"AssemblyAI транскрипція з polling кожні 30 сек, DALL-E 3 генерація з голосових повідомлень, PDF витяг тексту з chunking для великих юридичних документів (LegisFlow).",
+  certs_title:"Сертифікати",
+  cert1_desc:"Когнітивні процеси та поведінкові патерни — підсилює побудову human-centered автоматизацій",
+  cert2_desc:"AI у маркетингу: автоматизація контенту, персоналізація, аналітика",
+  cert3_desc:"Адаптивна верстка, Flexbox, Grid, CSS-анімації, форми, валідація",
+  cert4_desc:"Функції, масиви, об'єкти, DOM, event listeners, debugging, Chrome DevTools",
+  cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions, безпека GCP",
+  cert6_desc:"Back-end розробка, бази даних, форми, сесії, захист від XSS, обробка помилок",
+  cert7_desc:"ChatGPT у бізнес-комунікації: автоматизація листування, звітів та презентацій",
+  cert8_desc:"12 годин індивідуального менторства від галузевих експертів: цілі, кар'єрний розвиток, стратегія",
+  case_sec_title:"Головний кейс",
+  case_kicker:"AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram",
+  case_title:"AI-агент для аналізу дзвінків<br>та Telegram-бот статистики",
+  case_tagline:"Компанія не могла зрозуміти, чому клієнти незадоволені — бо ніхто не слухав дзвінки систематично. Побудована AI-система, яка робить це автоматично, 24/7.",
+  case_prob_lbl:"Проблема",case_sol_lbl:"Рішення · 3 workflow",case_proc_lbl:"Процес",case_res_lbl:"Результати",
+  case_p1:"Дзвінки обробляються вручну — немає аналізу тональності",
+  case_p2:"Менеджери витрачають години на прослуховування записів",
+  case_p3:"Немає системи категоризації та пріоритизації",
+  case_p4:"Статистика недоступна в реальному часі",
+  p_call:"Дзвінок",
+  case_pr1:"Тригер: новий дзвінок → автоматичний старт workflow",
+  case_pr2:"AssemblyAI транскрибує аудіо; polling кожні 30 сек",
+  case_pr3:"OpenAI повертає JSON: тональність + категорія",
+  case_pr4:"IF-умова: negative → пріоритетне логування",
+  case_pr5:"Тестування: 30+ реальних сценаріїв, edge cases, fallback",
+  case_pr6:"Оптимізація промпту: точність класифікації 90%+",
+  res_quant:"Кількісні",res_qual:"Якісні",res_biz:"Бізнес-ефект",
+  res_q1:"−80% ручної роботи",res_q2:"100% дзвінків",
+  res_ql1:"Нуль втрачених записів",res_ql2:"Повна прозорість",res_ql3:"Негатив — одразу",
+  res_b1:"Масштаб без найму",res_b2:"Рішення на даних",res_b3:"Модульна система",
+  proj_title:"Усі проекти",
+  projects:[
+    {idx:"12/14",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
+      desc:"Production AI SaaS для аналізу фінансових рішень у реальному часі через Telegram. Webhook backend: запит → OpenAI → структурований інсайт → PostgreSQL. Financial DNA моделювання, usage-based монетизація, Render.",
+      tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],
+      site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
+    {idx:"13/14",id:"aicrm",title:"AI CRM Система",year:"2026",featured:true,
+      desc:"AI CRM що автоматизує управління клієнтами та записами. Telegram бот як інтерфейс природною мовою. React дашборд + AI шар синхронізовані через webhooks. JWT, REST API бекенд.",
+      tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],
+      site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
+    {idx:"14/14",id:"legisflow",title:"LegisFlow — AI агент для юрдокументів",year:"2026",featured:true,
+      desc:"Telegram бот + веб-інтерфейс для аналізу юридичних документів. Приймає PDF, визначає ризики. n8n: PDF → чанкінг → GPT-4o → структурований звіт про ризики.",
+      tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],
+      site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
+    {idx:"01/14",id:"voice-image",title:"Голос → Зображення (Telegram)",year:"2025",featured:false,
+      desc:"Голосове повідомлення → транскрипт AssemblyAI → промпт → DALL-E 3 зображення → назад у чат.",
+      tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],
+      site:null,bot:null,github:null},
+    {idx:"02/14",id:"ua-months",title:"Динамічний генератор місяців",year:"2025",featured:false,
+      desc:"Перевикористовуваний n8n модуль: місяці від поточного до грудня у structured JSON — без ручних оновлень.",
+      tags:["n8n","JavaScript","JSON","Date logic"],
+      site:null,bot:null,github:null},
+    {idx:"03/14",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
+      desc:"AI витягує назву/дату/час з повідомлення, валідує, створює подію та надсилає підтвердження.",
+      tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],
+      site:null,bot:null,github:null},
+    {idx:"04/14",id:"btc-alert",title:"BTC алерт → Telegram",year:"2025",featured:false,
+      desc:"Перевіряє ціну BTC кожні 15 хв, шле алерти лише при зміні стану — без спаму, stateful логіка.",
+      tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"05/14",id:"currency-report",title:"Щоденний звіт по курсу валют",year:"2025",featured:false,
+      desc:"Автоматизація о 09:00 — курси USD/EUR з PrivatBank API → стилізований HTML-лист. Повністю автономно.",
+      tags:["n8n","Cron","REST API","JavaScript","Gmail API"],
+      site:null,bot:null,github:null},
+    {idx:"06/14",id:"weather-kyiv-brno",title:"Погода (Київ + Брно) → Telegram",year:"2025",featured:false,
+      desc:"Щодня о 08:30 — погода для двох міст з batching, OpenWeatherMap API та AI форматуванням.",
+      tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],
+      site:null,bot:null,github:null},
+    {idx:"07/14",id:"daily-motivation",title:"Щоденна мотивація → Telegram",year:"2025",featured:false,
+      desc:"Щодня о 09:00 — генерує оригінальну фразу, чистить у JS, надсилає форматоване повідомлення з хештегами.",
+      tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"08/14",id:"site-monitor",title:"Моніторинг доступності сайту",year:"2025",featured:false,
+      desc:"HEAD-запит кожні 5 хвилин; алерт лише при помилці (≥ 400). Легкий і надійний uptime monitor.",
+      tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"09/14",id:"ai-jokes",title:"Multi-Model оцінка якості контенту",year:"2025",featured:false,
+      desc:"Паралельна генерація GPT-4o-mini + оцінка GPT-4o (1–10) і вибір найкращого — ensemble evaluation патерн.",
+      tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],
+      site:null,bot:null,github:null},
+    {idx:"10/14",id:"monthly-sales",title:"Місячна аналітика продажів",year:"2025",featured:false,
+      desc:"Детермінований пайплайн: замовлення, виручка та середній чек за поточний місяць з Google Sheets.",
+      tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],
+      site:null,bot:null,github:null},
+    {idx:"11/14",id:"img-url-drive",title:"Завантаження картинки → Google Drive",year:"2025",featured:false,
+      desc:"Завантажує binary за URL всередині n8n, заливає в Google Drive з розумною назвою файлу.",
+      tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],
+      site:null,bot:null,github:null}
+  ]
+},
+cs:{
+  nav_about:"O mně",nav_skills:"Dovednosti",nav_certs:"Certifikáty",nav_case:"Případ",nav_projects:"Projekty",
+  btn_details:"Detaily",btn_site:"Web ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",
+  hero_eyebrow:"AI Automation Developer · Full-Stack AI produkty",
+  hero_desc:"Navrhuji a vytvářím produkční AI automatizace a full-stack AI produkty — od n8n pipelines a Telegram botů po SaaS backendy s PostgreSQL. Od nápadu po živý systém — systematicky a předvídatelně.",
+  stat_projects:"Projektů",stat_certs:"Certifikátů",stat_saas:"Live SaaS",stat_first:"AI-first přístup",
+  about_title:"O mně",about_who_lbl:"Kdo jsem",
+  about_who_p1:"<strong>Tetiana Kotolup</strong> — AI Automation Developer. Vytvářím n8n automatizace, Telegram AI boty a full-stack AI SaaS produkty s Node.js, TypeScript, PostgreSQL, OpenAI a React.",
+  edu_lbl:"Vzdělání",edu_degree:"Diplom mladšího specialisty",
+  edu_school:"Čerkaská státní obchodní škola · 2017<br>Specializace: Technik počítačových systémů",
+  edu_nostri:"✓ Nostrifikováno v ČR · 18-20-M/01 Informační technologie · KÚ JMK 2021",
+  about_who_p2:"Absolvuji program <strong>AI No-Code Developer</strong>. 3 živé AI SaaS produkty v produkci.",
+  about_approach_lbl:"Můj přístup",
+  ap1:"Analyzuji obchodní procesy a nacházím místa ztráty času",
+  ap2:"Navrhuji logiku AI agenta přizpůsobenou konkrétnímu úkolu",
+  ap3:"Buduju spolehlivé pipeline se zpracováním chyb a záložní logikou",
+  ap4:"Nasazuji produkční backendy s PostgreSQL, Prisma, Supabase",
+  ap5:"Testuji na reálných scénářích a optimalizuji náklady na tokeny",
+  ap6:"Hodnotím ROI automatizace a implementace SaaS",
+  about_tools_lbl:"Stack a nástroje",about_contact_lbl:"Kontakt",
+  skills_title:"Klíčové dovednosti",
+  sk1_name:"Automatizace procesů",sk1_desc:"n8n pipelines s komplexním větvením, zpracováním chyb, plánovanými úlohami, retry logikou a webhook triggery. Použito ve všech 11 n8n projektech včetně LegisFlow.",
+  sk2_name:"AI integrace & Prompting",sk2_desc:"OpenAI GPT-4o / GPT-4o-mini, strukturovaný JSON výstup, ensemble evaluace více modelů, chunkování pro velké dokumenty (LegisFlow), Financial DNA modelování (WealthMirror).",
+  sk3_name:"Vývoj Telegram botů",sk3_desc:"Produkční Telegram boti přes Telegraf (Node.js) a n8n: routování příkazů, upozornění, zpracování hlasu, DALL-E obrázky, usage-based SaaS limity. 5+ botů v produkci.",
+  sk4_name:"Backend & API vývoj",sk4_desc:"Node.js / TypeScript, Express.js REST API, JWT autentizace, webhook event pipelines. Použito ve WealthMirror AI a AI CRM — nasazeno na Render a Vercel.",
+  sk5_name:"Databáze & ORM",sk5_desc:"PostgreSQL s Prisma ORM, Supabase. Schémata pro CRM (klienti + schůzky), finanční data uživatelů, kvóty a monetizační logika SaaS.",
+  sk6_name:"API & Servisní integrace",sk6_desc:"Google Suite API (Sheets, Calendar, Drive, Gmail), AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank, NocoDB DataTable. 10+ integrací třetích stran.",
+  sk7_name:"Frontend & React",sk7_desc:"React.js dashboard pro AI CRM — správa klientů, schůzek, real-time webhook sync. HTML/CSS responzivní rozhraní, Vercel nasazení. Webové rozhraní LegisFlow.",
+  sk8_name:"Hlas & Image AI",sk8_desc:"AssemblyAI transkripce s polling každých 30 sec, DALL-E 3 generování z hlasových zpráv, extrakce textu z PDF s chunkováním pro právní dokumenty (LegisFlow).",
+  certs_title:"Certifikáty",
+  cert1_desc:"Kognitivní procesy a behaviorální vzorce — posiluje tvorbu automatizací orientovaných na člověka",
+  cert2_desc:"AI v marketingu: automatizace obsahu, personalizace, analytika",
+  cert3_desc:"Responzivní layout, Flexbox, Grid, CSS animace, formuláře, validace",
+  cert4_desc:"Funkce, pole, objekty, DOM, event listenery, ladění, Chrome DevTools",
+  cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions",
+  cert6_desc:"Back-end vývoj, databáze, formuláře, relace, ochrana XSS, zpracování chyb",
+  cert7_desc:"ChatGPT v obchodní komunikaci: automatizace korespondence, zpráv a prezentací",
+  cert8_desc:"12 hodin individuálního mentorství od odborníků z oboru: cíle, kariérní rozvoj",
+  case_sec_title:"Hlavní případ",
+  case_kicker:"AI Call Analytics System · n8n + OpenAI + AssemblyAI + Telegram",
+  case_title:"AI agent pro analýzu hovorů<br>a Telegram statistický bot",
+  case_tagline:"Společnost nemohla pochopit, proč jsou klienti nespokojeni. Byl vytvořen AI systém, který to dělá automaticky, 24/7.",
+  case_prob_lbl:"Problém",case_sol_lbl:"Řešení · 3 workflow",case_proc_lbl:"Průběh",case_res_lbl:"Výsledky",
+  case_p1:"Hovory zpracovány ručně — žádná analýza sentimentu",
+  case_p2:"Manažeři tráví hodiny poslechem záznamů",
+  case_p3:"Žádný systém kategorizace ani prioritizace",
+  case_p4:"Statistiky nejsou dostupné v reálném čase",
+  p_call:"Hovor",
+  case_pr1:"Spouštěč: nový hovor → automatický start workflow",
+  case_pr2:"AssemblyAI přepisuje audio; polling každých 30 sec",
+  case_pr3:"OpenAI vrací JSON: sentiment + kategorie",
+  case_pr4:"IF podmínka: negativní → prioritní logování",
+  case_pr5:"Testování: 30+ reálných scénářů, edge cases, fallback",
+  case_pr6:"Optimalizace promptu: přesnost klasifikace 90%+",
+  res_quant:"Kvantitativní",res_qual:"Kvalitativní",res_biz:"Obchodní efekt",
+  res_q1:"−80% ruční práce",res_q2:"100 % hovorů",
+  res_ql1:"Nulová ztráta záznamů",res_ql2:"Plná transparentnost",res_ql3:"Negativní okamžitě",
+  res_b1:"Škálování bez náboru",res_b2:"Rozhodování na datech",res_b3:"Modulární systém",
+  proj_title:"Všechny projekty",
+  projects:[
+    {idx:"12/14",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
+      desc:"Production AI SaaS pro analýzu finančních rozhodnutí v reálném čase přes Telegram. Webhook backend: dotaz → OpenAI → strukturovaný výsledek → PostgreSQL. Financial DNA modelování, usage-based monetizace, Render.",
+      tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],
+      site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
+    {idx:"13/14",id:"aicrm",title:"AI CRM systém",year:"2026",featured:true,
+      desc:"AI CRM automatizující správu klientů přes Telegram bot (přirozený jazyk). React dashboard + AI vrstva synchronizované přes webhooky. JWT autentizace, REST API backend.",
+      tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],
+      site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
+    {idx:"14/14",id:"legisflow",title:"LegisFlow — AI agent pro právní dokumenty",year:"2026",featured:true,
+      desc:"Telegram bot + webové rozhraní pro analýzu právních dokumentů. Přijímá PDF, detekuje rizika. n8n: PDF → chunkování → GPT-4o → strukturovaná zpráva o rizicích.",
+      tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],
+      site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
+    {idx:"01/14",id:"voice-image",title:"Hlas → Obrázek (Telegram)",year:"2025",featured:false,
+      desc:"Hlasová zpráva → přepis AssemblyAI → vytvoření promptu → DALL-E 3 obrázek → zpět do chatu.",
+      tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],
+      site:null,bot:null,github:null},
+    {idx:"02/14",id:"ua-months",title:"Dynamický generátor měsíců",year:"2025",featured:false,
+      desc:"Znovupoužitelný n8n modul: měsíce od aktuálního do prosince jako structured JSON — bez údržby.",
+      tags:["n8n","JavaScript","JSON","Date logic"],
+      site:null,bot:null,github:null},
+    {idx:"03/14",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
+      desc:"AI vytáhne název/datum/čas z Telegram zprávy, validuje, vytvoří událost a pošle potvrzení.",
+      tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],
+      site:null,bot:null,github:null},
+    {idx:"04/14",id:"btc-alert",title:"Alert ceny BTC → Telegram",year:"2025",featured:false,
+      desc:"Kontroluje BTC každých 15 min, posílá alerty jen při změně stavu — bez spamu, stavová logika.",
+      tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"05/14",id:"currency-report",title:"Denní report kurzů měn",year:"2025",featured:false,
+      desc:"Automatizace v 09:00 — kurzy USD/EUR z PrivatBank → stylovaný HTML e-mail. Plně autonomní.",
+      tags:["n8n","Cron","REST API","JavaScript","Gmail API"],
+      site:null,bot:null,github:null},
+    {idx:"06/14",id:"weather-kyiv-brno",title:"Počasí (Kyjev + Brno) → Telegram",year:"2025",featured:false,
+      desc:"Denně v 08:30 — počasí pro dvě města s batching, OpenWeatherMap API a AI formátováním.",
+      tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],
+      site:null,bot:null,github:null},
+    {idx:"07/14",id:"daily-motivation",title:"Denní motivace → Telegram",year:"2025",featured:false,
+      desc:"Každý den v 09:00 — generuje originální citát, vyčistí v JS, odešle formátovanou zprávu s hashtagy.",
+      tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"08/14",id:"site-monitor",title:"Monitoring dostupnosti webu",year:"2025",featured:false,
+      desc:"HEAD request každých 5 minut; alert jen při chybě (≥ 400). Lehký a spolehlivý uptime monitoring.",
+      tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"09/14",id:"ai-jokes",title:"Multi-Model hodnocení kvality obsahu",year:"2025",featured:false,
+      desc:"Paralelní generování GPT-4o-mini + hodnocení GPT-4o (1–10) a výběr nejlepšího — ensemble evaluace.",
+      tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],
+      site:null,bot:null,github:null},
+    {idx:"10/14",id:"monthly-sales",title:"Měsíční analýza prodejů",year:"2025",featured:false,
+      desc:"Deterministický pipeline: objednávky, tržby a průměrný nákup za aktuální měsíc z Google Sheets.",
+      tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],
+      site:null,bot:null,github:null},
+    {idx:"11/14",id:"img-url-drive",title:"Stažení obrázku → Google Drive",year:"2025",featured:false,
+      desc:"Stáhne binary z URL v n8n, nahraje do Google Drive složky se smart názvem souboru.",
+      tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],
+      site:null,bot:null,github:null}
+  ]
+}};
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PROJECT FILE MAP
+   Key = project id   Value = detail HTML file
+   Verified against actual uploaded files (titles extracted from <title>):
+     1.html  → Dynamic Ukrainian Month Generator      → ua-months
+     2.html  → Daily Currency Intelligence Report     → currency-report
+     3.html  → Monthly Sales Analytics                → monthly-sales
+     4.html  → Multi-Model Joke Generation            → ai-jokes
+     5.html  → BTC Price Alert → Telegram             → btc-alert
+     6.html  → Daily Motivation → Telegram            → daily-motivation
+     7.html  → Daily Weather Report                   → weather-kyiv-brno
+     8.html  → Download Image to Google Drive         → img-url-drive
+     9.html  → Telegram → Google Calendar             → tg-gcal
+    10.html  → Website Availability Monitor           → site-monitor
+    12.html  → WealthMirror AI                        → wealthmirror
+    13.html  → AI CRM                                 → aicrm
+    14.html  → LegisFlow                              → legisflow
+    11.html  → Voice → Image (not yet created)        → voice-image
+───────────────────────────────────────────────────────────────────────── */
+const projectMap={
+  'voice-image'  :'11.html',   // detail page not yet created
+  'ua-months'    :'1.html',
+  'tg-gcal'      :'9.html',
+  'btc-alert'    :'5.html',
+  'currency-report':'2.html',
+  'weather-kyiv-brno':'7.html',
+  'daily-motivation':'6.html',
+  'site-monitor' :'10.html',
+  'ai-jokes'     :'4.html',
+  'monthly-sales':'3.html',
+  'img-url-drive':'8.html',
+  'wealthmirror' :'12.html',
+  'aicrm'        :'13.html',
+  'legisflow'    :'14.html'
+};
+
+function openProject(id){
+  const file=projectMap[id];
+  if(file)window.open(file,'_blank','noopener');
+}
 
 /* ── CURSOR ── */
 (function(){
@@ -610,15 +957,6 @@ let curLang='en';
   window.__tkInitialLang=(qLang||savedLang||'en');
 })();
 
-const projectMap={
-  'voice-image':'1.html','ua-months':'2.html','tg-gcal':'3.html',
-  'btc-alert':'4.html','currency-report':'5.html','weather-kyiv-brno':'6.html',
-  'daily-motivation':'7.html','site-monitor':'8.html','ai-jokes':'9.html',
-  'monthly-sales':'10.html','img-url-drive':'11.html',
-  'wealthmirror':'12.html','aicrm':'13.html','legisflow':'14.html'
-};
-function openProject(id){const file=projectMap[id];if(file)window.open(file,'_blank','noopener');}
-
 const skKeys=[['sk1_name','sk1_desc'],['sk2_name','sk2_desc'],['sk3_name','sk3_desc'],['sk4_name','sk4_desc'],['sk5_name','sk5_desc'],['sk6_name','sk6_desc'],['sk7_name','sk7_desc'],['sk8_name','sk8_desc']];
 
 function applyLang(lang){
@@ -643,7 +981,9 @@ function applyLang(lang){
       if(p.bot)acts+=`<a href="${p.bot}" target="_blank" rel="noopener" class="p-btn">${t.btn_bot}</a>`;
       if(p.github)acts+=`<a href="${p.github}" target="_blank" rel="noopener" class="p-btn">${t.btn_github}</a>`;
       acts+=`</div>`;
-    }else{acts=`<div class="p-actions"><button class="p-btn" onclick="openProject('${p.id}')">${t.btn_details}</button></div>`}
+    }else{
+      acts=`<div class="p-actions"><button class="p-btn" onclick="openProject('${p.id}')">${t.btn_details}</button></div>`;
+    }
     const badge=p.featured
       ?`<span style="font-family:'JetBrains Mono',monospace;font-size:8px;background:var(--txt);color:var(--bg);padding:2px 7px;border-radius:2px;margin-left:8px;">${p.year} · Live</span>`
       :`<span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-left:6px;">${p.year}</span>`;
@@ -654,31 +994,52 @@ function applyLang(lang){
   document.querySelectorAll('[data-lang-btn]').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang));
 }
 
-document.getElementById('langSw').addEventListener('click',e=>{const btn=e.target.closest('[data-lang-btn]');if(btn)applyLang(btn.getAttribute('data-lang-btn'));});
+document.getElementById('langSw').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-lang-btn]');
+  if(btn)applyLang(btn.getAttribute('data-lang-btn'));
+});
 
-const rvObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');e.target.querySelectorAll('.sk-bar-f').forEach(b=>b.style.width=b.style.getPropertyValue('--w'));rvObserver.unobserve(e.target)}});},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+const rvObserver=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('on');
+      e.target.querySelectorAll('.sk-bar-f').forEach(b=>b.style.width=b.style.getPropertyValue('--w'));
+      rvObserver.unobserve(e.target);
+    }
+  });
+},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
 document.querySelectorAll('.rv').forEach(el=>rvObserver.observe(el));
-const barObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.width=getComputedStyle(e.target).getPropertyValue('--w');barObs.unobserve(e.target)}});},{threshold:.5});
+
+const barObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.width=getComputedStyle(e.target).getPropertyValue('--w');
+      barObs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
 document.querySelectorAll('.sk-bar-f').forEach(el=>barObs.observe(el));
 
 const sections=document.querySelectorAll('section[id]');
 const navAnchors=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{let cur='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});navAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));},{passive:true});
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});
+  navAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+},{passive:true});
 
-const ham=document.getElementById('hamBtn');const mob=document.getElementById('mobileMenu');
+const ham=document.getElementById('hamBtn');
+const mob=document.getElementById('mobileMenu');
 ham.addEventListener('click',()=>{ham.classList.toggle('open');mob.classList.toggle('open');});
 function closeMob(){ham.classList.remove('open');mob.classList.remove('open');}
 
 function dlPDF(){
-  // Додано 'main' після репозиторію та замінено дужки на %28 і %29
   const cvUrl='https://raw.githubusercontent.com/tetiana-a/aiAutomationDev/main/Tetiana_Kotolup_CV_ENv4%284%29.pdf';
   const a=document.createElement('a');a.href=cvUrl;a.download='Tetiana_Kotolup_CV_ENv4.pdf';a.target='_blank';
   document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),400);
 }
-/* ══════════════════════════════════════════
-   CANVAS BACKGROUND — реагує на музику і тему
-   canvas position:fixed → видно на всій сторінці
-══════════════════════════════════════════ */
+
+/* ── CANVAS BACKGROUND ── */
 (function(){
   const c=document.getElementById('matrixCanvas');
   if(!c)return;
@@ -688,14 +1049,10 @@ function dlPDF(){
 
   function makeRing(){
     return{
-      x:Math.random()*W,
-      y:Math.random()*H,
-      r:10+Math.random()*50,
-      maxR:80+Math.random()*280,
-      speed:0.3+Math.random()*0.85,
-      alpha:0.12+Math.random()*0.2,
-      phase:Math.random()*Math.PI*2,
-      hue:Math.random()>0.7
+      x:Math.random()*W,y:Math.random()*H,
+      r:10+Math.random()*50,maxR:80+Math.random()*280,
+      speed:0.3+Math.random()*0.85,alpha:0.12+Math.random()*0.2,
+      phase:Math.random()*Math.PI*2,hue:Math.random()>0.7
     };
   }
 
@@ -707,44 +1064,24 @@ function dlPDF(){
 
   function draw(){
     ctx.clearRect(0,0,W,H);
-
-    /* читаємо стан музики кожного кадру */
     const musicBtn=document.getElementById('musicBtn');
     const musicOn=musicBtn&&musicBtn.dataset.on==='true';
-
-    /* плавний pulseTarget залежно від музики */
     musicTarget=musicOn?1.4+0.6*Math.abs(Math.sin(t*3.5)):1;
     musicPulse+=(musicTarget-musicPulse)*0.08;
-
     t+=0.013;
-
-    /* читаємо тему кожного кадру — миттєва реакція */
     const isDark=document.documentElement.getAttribute('data-theme')!=='light';
-
     rings.forEach(rg=>{
       rg.r+=rg.speed*musicPulse;
-      if(rg.r>rg.maxR*musicPulse){
-        Object.assign(rg,makeRing());
-        rg.r=10;
-      }
+      if(rg.r>rg.maxR*musicPulse){Object.assign(rg,makeRing());rg.r=10;}
       const fade=1-(rg.r-10)/(rg.maxR-10);
       const pulse=0.4+0.6*Math.abs(Math.sin(t*1.8+rg.phase));
       const a=rg.alpha*fade*pulse*(musicOn?Math.min(1.6,musicPulse):1);
-
       let stroke;
-      if(isDark){
-        stroke=rg.hue?`rgba(160,140,255,${(a*0.7).toFixed(3)})`:`rgba(239,239,239,${a.toFixed(3)})`;
-      }else{
-        stroke=rg.hue?`rgba(80,60,180,${(a*0.5).toFixed(3)})`:`rgba(12,12,12,${a.toFixed(3)})`;
-      }
-
-      ctx.beginPath();
-      ctx.arc(rg.x,rg.y,rg.r,0,Math.PI*2);
-      ctx.strokeStyle=stroke;
-      ctx.lineWidth=musicOn?1.5*musicPulse:1.1;
-      ctx.stroke();
+      if(isDark){stroke=rg.hue?`rgba(160,140,255,${(a*0.7).toFixed(3)})`:`rgba(239,239,239,${a.toFixed(3)})`;}
+      else{stroke=rg.hue?`rgba(80,60,180,${(a*0.5).toFixed(3)})`:`rgba(12,12,12,${a.toFixed(3)})`;}
+      ctx.beginPath();ctx.arc(rg.x,rg.y,rg.r,0,Math.PI*2);
+      ctx.strokeStyle=stroke;ctx.lineWidth=musicOn?1.5*musicPulse:1.1;ctx.stroke();
     });
-
     requestAnimationFrame(draw);
   }
 
@@ -770,16 +1107,11 @@ const musicLbl=document.getElementById('musicLbl');
 musicBtn.addEventListener('click',async()=>{
   const isOn=musicBtn.dataset.on==='true';
   if(isOn){
-    bgAudio.pause();
-    musicBtn.dataset.on='false';
-    musicLbl.textContent='Music';
-    localStorage.setItem('tk_music','off');
+    bgAudio.pause();musicBtn.dataset.on='false';musicLbl.textContent='Music';localStorage.setItem('tk_music','off');
   }else{
     bgAudio.volume=0.4;
     try{await bgAudio.play();}catch(e){}
-    musicBtn.dataset.on='true';
-    musicLbl.textContent='On';
-    localStorage.setItem('tk_music','on');
+    musicBtn.dataset.on='true';musicLbl.textContent='On';localStorage.setItem('tk_music','on');
   }
 });
 </script>
