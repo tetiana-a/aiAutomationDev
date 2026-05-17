@@ -1,0 +1,421 @@
+{
+  "name": "02_dialogue_analysis_GrowthLab",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -528,
+        64
+      ],
+      "id": "e7a2a812-4086-4873-8723-d7c703fb9646",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -528,
+        256
+      ],
+      "id": "b9173de7-df95-4b1d-bd4f-e0914f6a5b63",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "lead",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.zohoCrm",
+      "typeVersion": 1,
+      "position": [
+        -256,
+        112
+      ],
+      "id": "a4f03d98-e67c-45b6-9cd2-526ea6393468",
+      "name": "Get many leads",
+      "credentials": {
+        "zohoOAuth2Api": {
+          "id": "__RECONNECT_IN_N8N__",
+          "name": "Zoho Crm"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -32,
+        112
+      ],
+      "id": "1f4075f9-02ac-4111-b59d-e8aa100777fb",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3712041d-2976-4fbd-9a96-c694746e6cb0",
+              "leftValue": "={{ $json.Skype_ID }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        304,
+        176
+      ],
+      "id": "325465d2-a552-469d-8dd7-b3e76de93a3a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "options": {
+          "groupMessages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        96
+      ],
+      "id": "24d9a247-13ca-408b-a441-1bf8d018f461",
+      "name": "Chat Memory Manager"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('If').item.json.Skype_ID }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        560,
+        288
+      ],
+      "id": "f61e1d09-980c-4d93-a11e-e44d44391c81",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "__RECONNECT_IN_N8N__",
+          "name": "n8n"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.messages }}",
+        "options": {
+          "systemMessage": "Ти — агент аналізу якості кваліфікаційних діалогів. Твоя задача — отримати JSON з перепискою між клієнтом і агентом кваліфікації, проаналізувати його та записати результат у Google Таблицю через функцію \"Append row in sheet in Google Sheets\".\n\n## ВХІДНІ ДАНІ\nТи отримуєш JSON-масив з об'єктами, що містять:\n- `messages` — масив повідомлень з полями `human` (репліка клієнта), `ai` (репліка агента), `tool` (результат виклику інструменту)\n- `messagesCount` — кількість повідомлень\n\n## ТВОЯ ЗАДАЧА\nПроаналізувати діалог за трьома параметрами та записати їх у таблицю.\n\n### 1. ПОМИЛКИ АГЕНТА\nВиявити недоліки у роботі кваліфікаційного агента. Перевіряй:\n- Чи дотримана логічна послідовність кваліфікації (бізнес → оборот → бюджет → проблема → ЛПР → таймлайн → контакт)\n- Чи не задавалися повторні запитання\n- Чи коректно агент реагував на репліки клієнта (емпатія, релевантність)\n- Чи не пропустив агент важливих уточнень\n- Чи правильно зібрані та передані дані у CRM (повнота, точність)\n- Чи не було тиску, маніпуляцій або передчасного закриття\n- Граматичні/орфографічні помилки в репліках агента\n- Якщо помилок немає — пиши \"Помилок не виявлено\"\n\n**Формат:** короткий перелік через крапку з комою (макс. 2-3 речення)\n\n### 2. ПРОБЛЕМА КЛІЄНТА\nЧітко і коротко сформулювати головний біль клієнта — те, що мотивує його шукати рішення.\n- Має бути конкретно (не \"проблеми з маркетингом\", а \"висока ціна залучення клієнта при бюджеті $5K+\")\n- Включати контекст (масштаб, сфера) тільки якщо це підсилює суть болю\n- Максимум 1-2 речення\n\n### 3. УСПІШНИЙ ПАТЕРН\nВизначити, які саме дії/фрази/підходи агента спрацювали — чому клієнт продовжив рух по воронці й залишив контакт.\nАналізуй:\n- Які формулювання викликали довіру\n- Як агент знімав заперечення / показував експертизу\n- Які тригери (соціальні докази, релевантність до болю, швидкість) зіграли роль\n- В який момент відбувся ключовий перелом у діалозі\n\n**Формат:** 2-4 речення з конкретикою (цитуй ключові фрази, якщо доречно)\n\n## ВИКЛИК ФУНКЦІЇ\nПісля аналізу виклич `Append row in sheet in Google Sheets` зі структурою:\n\n{\n  \"Помилки\": \"<результат аналізу п.1>\",\n  \"Проблема клієнта\": \"<результат аналізу п.2>\",\n  \"Успішний патерн\": \"<результат аналізу п.3>\"\n}\n\n## ВАЖЛИВО\n- Пиши українською мовою\n- Будь конкретним, уникай загальних фраз (\"добре працював\", \"було ок\")\n- Не вигадуй фактів, яких немає в діалозі\n- Якщо діалог обірвався або клієнт не залишив контакт — у \"Успішному патерні\" вкажи це і пиши \"Кваліфікація не завершена\"\n- Не додавай жодних коментарів поза викликом функції — твій єдиний вихід це запис у таблицю"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        944,
+        96
+      ],
+      "id": "10308926-f4b6-4068-9ad8-461d52dd375d",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-sonnet-4-5-20250929",
+          "cachedResultName": "Claude Sonnet 4.5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        944,
+        288
+      ],
+      "id": "2b3f1955-b12c-4b32-b448-9c8dbd13334c",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "__RECONNECT_IN_N8N__",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1I8_XHkJpszzmUF6TNl3XzjSCscL8Mv9QOGfi0sjHVHA",
+          "mode": "list",
+          "cachedResultName": "tables_of_leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1I8_XHkJpszzmUF6TNl3XzjSCscL8Mv9QOGfi0sjHVHA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Лист1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1I8_XHkJpszzmUF6TNl3XzjSCscL8Mv9QOGfi0sjHVHA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('If').item.json.id }}",
+            "client": "={{ $('If').item.json.Full_Name }}",
+            "phone ": "={{ $('If').item.json.Phone }}",
+            "помилки": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('_______', ``, 'string') }}",
+            "проблема кліента": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('________________', ``, 'string') }}",
+            "упішний патерн": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('______________', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "client",
+              "displayName": "client",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "phone ",
+              "displayName": "phone ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "помилки",
+              "displayName": "помилки",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "проблема кліента",
+              "displayName": "проблема кліента",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "упішний патерн",
+              "displayName": "упішний патерн",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        1104,
+        304
+      ],
+      "id": "52dfed90-2d21-4b7b-b634-a8e0ba8f948a",
+      "name": "Append row in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "__RECONNECT_IN_N8N__",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get many leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many leads": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get many leads",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Memory Manager": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "6fed89e1-6f30-430a-810e-0b81c8d5bb35",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f90b8c2c84720a3c64e61f90607f74031c50ffded3ec18174644d0c71d872e52"
+  },
+  "id": "VJjckHPiZhOMAJ9v",
+  "tags": []
+}

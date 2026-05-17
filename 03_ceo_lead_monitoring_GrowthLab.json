@@ -1,0 +1,263 @@
+{
+  "name": "03_ceo_lead_monitoring_GrowthLab",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                5
+              ],
+              "triggerAtHour": 17
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -720,
+        16
+      ],
+      "id": "9dbdcac6-b5b6-423e-94db-719714c84ac2",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "lead",
+        "operation": "getAll",
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.zohoCrm",
+      "typeVersion": 1,
+      "position": [
+        -432,
+        16
+      ],
+      "id": "42c255d6-d36c-4ea9-a04f-20fb1be2a190",
+      "name": "Get many leads",
+      "credentials": {
+        "zohoOAuth2Api": {
+          "id": "__RECONNECT_IN_N8N__",
+          "name": "Zoho Crm"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Отримуємо масив лідів (усі items з попереднього вузла)\nconst data = $input.all().map(item => item.json);\n\n// 1. Кількість лідів на кожному етапі (Lead_Status)\nconst byStage = {};\n// 2. Кількість лідів по кожному менеджеру (Owner.name)\nconst byOwner = {};\n// 3. Лічильник лідів зі статусом \"New\"\nlet newLeadsCount = 0;\n\nfor (const lead of data) {\n  // --- Етап (Lead_Status) ---\n  // нормалізуємо: null -> \"Без статусу\", різний регістр -> один ключ\n  const rawStage = lead.Lead_Status;\n  const stage = (rawStage === null || rawStage === undefined || rawStage === \"\")\n    ? \"Без статусу\"\n    : String(rawStage).trim();\n\n  byStage[stage] = (byStage[stage] || 0) + 1;\n\n  // --- Менеджер (Owner) ---\n  const ownerName = lead.Owner?.name || \"Без власника\";\n  byOwner[ownerName] = (byOwner[ownerName] || 0) + 1;\n\n  // --- Окремо: статус \"New\" (нечутливо до регістру) ---\n  if (stage.toLowerCase() === \"new\") {\n    newLeadsCount++;\n  }\n}\n\n// Сортуємо за спаданням для зручності\nconst sortDesc = (obj) =>\n  Object.fromEntries(Object.entries(obj).sort((a, b) => b[1] - a[1]));\n\nconst result = {\n  total_leads: data.length,\n  new_leads_count: newLeadsCount,\n  by_stage: sortDesc(byStage),\n  by_owner: sortDesc(byOwner),\n};\n\n// Повертаємо як один item\nreturn [{ json: result }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -224,
+        64
+      ],
+      "id": "c6fe6b90-6a9a-4556-8ad9-bc0df616952a",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1I8_XHkJpszzmUF6TNl3XzjSCscL8Mv9QOGfi0sjHVHA",
+          "mode": "list",
+          "cachedResultName": "tables_of_leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1I8_XHkJpszzmUF6TNl3XzjSCscL8Mv9QOGfi0sjHVHA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Лист1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1I8_XHkJpszzmUF6TNl3XzjSCscL8Mv9QOGfi0sjHVHA/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -16,
+        64
+      ],
+      "id": "c2a72a9a-6043-4b5e-8367-41b8f61f09e9",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "__RECONNECT_IN_N8N__",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Загальні результати по воронці лідів\ntotal_leads = {{ $('Code in JavaScript').item.json.total_leads }}\n\nnew_leads_count = {{ $('Code in JavaScript').item.json.new_leads_count }}\n\nby_stage = {{ JSON.stringify($('Code in JavaScript').item.json.by_stage) }}\nліди по менеджерам = {{ JSON.stringify($('Code in JavaScript').item.json.by_owner) }}\n\nданы по кваліфікації \n\nпроблеми = {{ $json['помилки'] }}\n\nуспішні патерни = {{ $json['проблема кліента'] }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "# РОЛЬ\nТи — досвідчений аналітик відділу продажів та CRM-воронок. Твоя задача — проаналізувати дані по лідах і кваліфікації та видати структурований діагноз.\n\n# ВХІДНІ ДАНІ\nТобі надаються дані у наступному форматі:\n\n## Воронка лідів\n- total_leads: <число> — загальна кількість лідів\n- new_leads_count: <число> — кількість нових лідів за період\n- by_stage: <словник {стадія: кількість}> — розподіл лідів по стадіях воронки\n\n## Кваліфікація\n- проблеми: <текст> — виявлені помилки або їх відсутність у роботі агента/менеджерів на етапі кваліфікації\n- успішні патерни: <текст> — фрази та підходи, які спрацювали добре\n\n## Дані по менеджерах (якщо передані)\n- <ім'я менеджера>: {ліди, конверсія, стадії, проблеми}\n\n# ЛОГІКА АНАЛІЗУ\n\n## 1. Аналіз проблем воронки\n- Перевір співвідношення new_leads_count до total_leads (низький приплив?).\n- Знайди стадії з аномальним накопиченням (>20% від total_leads на одній стадії = тривога).\n- Звертай увагу на стадії \"Без статусу\", \"Attempted to Contact\", \"Lost Lead\", \"Contact in Future\" — це сигнали застрягання.\n- Виявляй дублі стадій з різним регістром (\"Contacted\" vs \"contacted\", \"Lost Lead\" vs \"lost\") — це проблема гігієни даних у CRM.\n- Аналізуй співвідношення Lost / Total — здоровий показник <15-20%.\n- Зіставляй з даними кваліфікації: якщо проблем у роботі агента немає, але ліди застрягають — проблема в наступних етапах (передача менеджеру, follow-up, оффер).\n\n## 2. Bottleneck (найбільш завантажена стадія)\n- Назви стадію з найбільшою кількістю лідів.\n- Поясни, ЧОМУ це bottleneck (це нормальна верхівка воронки чи реальне застрягання).\n- Окремо познач, якщо bottleneck знаходиться НЕ на верхівці воронки — це критичний сигнал.\n\n## 3. Менеджери, які потребують уваги\n- Якщо дані по менеджерах є — назви конкретні імена з обґрунтуванням (низька конверсія, багато Lost, лідів без статусу тощо).\n- Якщо даних по менеджерах немає — чесно вкажи: \"Для персональних рекомендацій потрібні дані в розрізі менеджерів. На основі поточних даних можна зробити загальний висновок: [висновок про команду в цілому]\".\n- НЕ вигадуй імена менеджерів.\n\n## 4. Рекомендації\nДавай 3-6 конкретних, діючих рекомендацій. Кожна рекомендація має містити:\n- ЩО зробити (конкретна дія)\n- ЧОМУ (на основі яких даних)\n- ОЧІКУВАНИЙ ефект\nПриклади хороших рекомендацій: уніфікувати назви стадій у CRM, ввести SLA на стадію X, провести reactivation-кампанію для Contact in Future, масштабувати успішний патерн Y на всю команду.\n\n# ПРАВИЛА\n- Базуй ВСІ висновки тільки на наданих даних. Не вигадуй цифри й імена.\n- Якщо даних недостатньо для якогось пункту — прямо скажи це у відповідному полі.\n- Використовуй конкретні числа й назви стадій з вхідних даних.\n- Враховуй успішні патерни — вони мають потрапити в рекомендації як \"масштабувати на команду\".\n- Пиши українською мовою, діловим, але живим тоном.\n\n# ФОРМАТ ВІДПОВІДІ\nПоверни СТРОГО валідний JSON без markdown-обгортки, без пояснень до або після:\n\n{\n  \"problems\": \"<розгорнутий опис проблем у воронці та кваліфікації з посиланням на конкретні цифри>\",\n  \"stage_bottel_neck\": \"<назва стадії> — <кількість лідів> (<%> від total). Причина: <пояснення>\",\n  \"managers\": \"<імена менеджерів і причини, чому вони потребують уваги; або чесна відповідь про відсутність даних>\",\n  \"recomendation\": \"1. <дія> — <обґрунтування> — <очікуваний ефект>\\n2. ...\\n3. ...\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        -96
+      ],
+      "id": "b5d78c0e-4368-4245-af51-cc62a07dacfa",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-opus-4-6",
+          "mode": "list",
+          "cachedResultName": "Claude Opus 4.6"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        112
+      ],
+      "id": "dacf5c36-f08a-4733-a26f-fb59618dbfd2",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "__RECONNECT_IN_N8N__",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"problems\":\"які проблеми у воронці та кваліфікації\",\n  \"stage_bottel_neck\":\"яка стадія найбільш завантажена\",\n  \"managers\":\"хто з менеджерів потребує уваги\",\n  \"recomendation\":\"рекомендації для покращення ситуації з лідами\",\n  \"summary_message\":\"узагальнене коротке повыдомлення про ситуацыю та проблеми для выдправки в телеграм\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        384,
+        112
+      ],
+      "id": "4de50deb-0465-45cb-a0b2-467ec5354236",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "chatId": "504151081",
+        "text": "=Загальна картина - {{ $json.output.summary_message }}\n\nкількість лідів - {{ $('Code in JavaScript').item.json.total_leads }}\nНових лідів - {{ $('Code in JavaScript').item.json.new_leads_count }}\n\nПроблеми - {{ $json.output.problems }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        608,
+        -96
+      ],
+      "id": "ea787364-4085-4299-a9a0-0ea6171ee4b5",
+      "name": "Send a text message",
+      "webhookId": "6ee43079-2abc-49f8-874a-607e37afcc0e",
+      "credentials": {
+        "telegramApi": {
+          "id": "__RECONNECT_IN_N8N__",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        []
+      ]
+    },
+    "Get many leads": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "47412c41-44c8-404a-99a0-7dfd81bfa4a1",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f90b8c2c84720a3c64e61f90607f74031c50ffded3ec18174644d0c71d872e52"
+  },
+  "id": "P22OhwryQ6qMvzoi",
+  "tags": []
+}
