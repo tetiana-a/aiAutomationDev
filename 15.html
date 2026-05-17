@@ -4,368 +4,1229 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GrowthLab AI — Project Details</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-/* ══════════════════════════════════════
-   THEMES & VARIABLES
-══════════════════════════════════════ */
-:root { --tt: background .5s cubic-bezier(.4,0,.2,1), color .5s cubic-bezier(.4,0,.2,1), border-color .5s cubic-bezier(.4,0,.2,1); }
-[data-theme="dark"] {
-  --bg:#080808; --bg2:#101010; --bg3:#181818;
-  --line:rgba(255,255,255,.07); --line2:rgba(255,255,255,.13);
-  --txt:#efefef; --txt2:#a0a0a0; --txt3:#555555;
-  --tag:rgba(255,255,255,.05); --hov:rgba(255,255,255,.03);
-  --accent:#f59e0b;
+/* ═══════════════════════════════════════════════════════════════
+   2026 AQUATIC DESIGN SYSTEM
+   Professional Underwater Aesthetic
+════════════════════════════════════════════════════════════════ */
+:root {
+  --tt: all .5s cubic-bezier(.4,0,.2,1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+
+[data-theme="dark"] {
+  --bg-deep: #020810;
+  --bg: #050d18;
+  --bg2: #0a1628;
+  --bg3: #0f1f35;
+  --surface: rgba(15, 35, 60, 0.6);
+  --surface-hover: rgba(20, 45, 75, 0.7);
+  --glass: rgba(10, 30, 55, 0.4);
+  --glass-border: rgba(80, 180, 220, 0.15);
+  --line: rgba(80, 180, 220, 0.08);
+  --line2: rgba(80, 180, 220, 0.18);
+  --txt: #e8f4fc;
+  --txt2: #8ba8c4;
+  --txt3: #4a6a8a;
+  --accent: #f5a623;
+  --accent-glow: rgba(245, 166, 35, 0.4);
+  --cyan: #22d3ee;
+  --cyan-glow: rgba(34, 211, 238, 0.3);
+  --teal: #14b8a6;
+  --gradient-1: #0ea5e9;
+  --gradient-2: #06b6d4;
+  --gradient-3: #14b8a6;
+}
+
 [data-theme="light"] {
-  --bg:#f7f7f5; --bg2:#eeeeed; --bg3:#e4e4e2;
-  --line:rgba(0,0,0,.07); --line2:rgba(0,0,0,.13);
-  --txt:#0c0c0c; --txt2:#565656; --txt3:#a0a0a0;
-  --tag:rgba(0,0,0,.04); --hov:rgba(0,0,0,.025);
-  --accent:#d97706;
+  --bg-deep: #e8f4fc;
+  --bg: #f0f7fc;
+  --bg2: #ffffff;
+  --bg3: #e2eef8;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-hover: rgba(255, 255, 255, 0.95);
+  --glass: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(14, 165, 233, 0.2);
+  --line: rgba(14, 165, 233, 0.1);
+  --line2: rgba(14, 165, 233, 0.2);
+  --txt: #0a1628;
+  --txt2: #3a5a7a;
+  --txt3: #6a8aaa;
+  --accent: #d97706;
+  --accent-glow: rgba(217, 119, 6, 0.3);
+  --cyan: #0891b2;
+  --cyan-glow: rgba(8, 145, 178, 0.2);
+  --teal: #0d9488;
+  --gradient-1: #0ea5e9;
+  --gradient-2: #06b6d4;
+  --gradient-3: #14b8a6;
 }
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--txt);font-family:'Syne',sans-serif;font-weight:400;line-height:1.75;font-size:19px;overflow-x:hidden;transition:var(--tt)}
-::selection{background:var(--txt);color:var(--bg)}
-a{color:inherit;text-decoration:none}
-body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E")}
-#cursor-dot{position:fixed;width:8px;height:8px;border-radius:50%;background:var(--txt);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);transition:width .3s,height .3s,opacity .3s;will-change:transform}
-#cursor-ring{position:fixed;width:30px;height:30px;border-radius:50%;border:1px solid var(--txt2);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .4s cubic-bezier(.4,0,.2,1),height .4s,border-color .3s,opacity .3s;will-change:transform;opacity:.5}
-@media(hover:none){#cursor-dot,#cursor-ring{display:none}body{cursor:auto}}
-.wrap{max-width:1000px;margin:0 auto;padding:0 40px}
-@media(max-width:900px){.wrap{padding:0 24px}}
-@media(max-width:480px){body{font-size:17px}}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt)}
-.nav-in{max-width:1000px;margin:0 auto;padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt)}
-.nav-links{display:flex;gap:20px;align-items:center}
-.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
-.nav-links a:hover{color:var(--txt)}
-.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.lang-sw{display:flex;align-items:center;gap:2px;background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:3px;overflow:hidden}
-.lang-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:2px;transition:background .2s,color .2s}
-.lang-btn.active{background:var(--txt);color:var(--bg)}
-.theme-tog{width:42px;height:22px;background:var(--bg3);border:1px solid var(--line2);border-radius:11px;cursor:pointer;position:relative;flex-shrink:0;transition:var(--tt)}
-.theme-tog::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--txt);top:3px;left:3px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
-[data-theme="light"] .theme-tog::before{transform:translateX(20px)}
-.audio-btn{width:30px;height:30px;background:var(--bg3);border:1px solid var(--line);border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:background .2s}
-.audio-btn svg{width:14px;height:14px}
-
-.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 0 60px;overflow:hidden}
-.hero-content{position:relative;z-index:1}
-.hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:20px;opacity:0;animation:fadeUp .7s .3s both}
-.eye-line{width:28px;height:1px;background:var(--txt3)}
-.eye-txt{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--txt);opacity:0;animation:fadeUp .7s .45s both}
-.hero-tagline{margin-top:15px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--txt2);opacity:0;animation:fadeUp .7s .55s both}
-.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px;opacity:0;animation:fadeUp .7s .65s both}
-.h-tag{background:var(--tag);border:1px solid var(--line);padding:6px 12px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt2)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-
-.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.4,0,.2,1),transform .8s cubic-bezier(.4,0,.2,1)}
-.rv.on{opacity:1;transform:translateY(0)}
-
-.sec{padding:80px 0;border-top:1px solid var(--line)}
-.sec-head{margin-bottom:40px}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,38px);font-weight:400;letter-spacing:-.02em;line-height:1.1}
-.sec-sub{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-top:8px;display:block}
-
-.text-block p{font-size:17px;color:var(--txt2);line-height:1.8;margin-bottom:1.2em}
-.text-block strong{color:var(--txt);font-weight:600}
-.code-block{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-top:20px}
-.code-header{padding:10px 16px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.code-lang{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-transform:uppercase}
-.copy-btn{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--tag);border:1px solid var(--line);color:var(--txt2);padding:4px 10px;border-radius:2px;cursor:pointer;transition:background .2s}
-pre{padding:20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;color:var(--txt);white-space:pre-wrap}
-
-.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:30px}
-.link-card{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:20px;display:flex;align-items:center;gap:16px;transition:border-color .3s,background .2s}
-.link-card:hover{border-color:var(--line2);background:var(--hov)}
-.link-icon{width:44px;height:44px;border-radius:6px;background:var(--tag);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.link-icon svg{width:20px;height:20px;color:var(--txt)}
-.link-info{flex:1;min-width:0}
-.link-label{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:4px}
-.link-title{font-size:15px;color:var(--txt);word-break:break-all}
-.link-arrow{color:var(--txt3);transition:transform .3s}
-.link-card:hover .link-arrow{transform:translateX(4px)}
-
-.arch-block{background:var(--bg2);border:1px solid var(--line);border-radius:4px;padding:30px;margin-top:30px;overflow-x:auto}
-.arch-flow{display:flex;align-items:center;gap:12px;flex-wrap:nowrap;justify-content:center;min-width:700px}
-.arch-node{background:var(--bg3);border:1px solid var(--line2);padding:12px 18px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt);white-space:nowrap;text-align:center}
-.arch-arrow{color:var(--txt3);font-size:18px;flex-shrink:0}
-@media(max-width:700px){.arch-block{padding:20px}.arch-flow{min-width:auto;flex-wrap:wrap;gap:8px}.arch-arrow{display:none}}
-
-.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
-@media(max-width:600px){.results-grid{grid-template-columns:1fr}}
-.res-box{padding:20px;background:var(--bg2);border:1px solid var(--line);border-radius:3px}
-.res-box-title{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:10px;border-bottom:1px solid var(--line);padding-bottom:6px}
-.res-list{list-style:none}
-.res-list li{font-size:13px;color:var(--txt2);margin-bottom:6px;padding-left:12px;position:relative}
-.res-list li::before{content:'';position:absolute;left:0;top:7px;width:4px;height:4px;background:var(--accent);border-radius:50%}
-
-.tech-stack{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
-.tech-item{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--line);padding:10px 16px;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:border-color .2s}
-.tech-item:hover{border-color:var(--line2)}
-.tech-item svg{width:16px;height:16px;color:var(--txt3)}
-
-.workflow-section{margin-top:40px;padding-top:40px;border-top:1px dashed var(--line)}
-.workflow-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:8px}
-.workflow-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:15px}
-
-/* ══════════════════════════════════════
-   JSON BUTTONS (SMALLER)
-══════════════════════════════════════ */
-.json-downloads{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
-.json-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--tag);border:1px solid var(--line);
-  padding:6px 10px;border-radius:3px;       /* Зменшено padding */
-  font-family:'JetBrains Mono',monospace;
-  font-size:9px;                            /* Зменшено font-size */
-  color:var(--txt2);
-  transition:border-color .2s,background .2s
+body{
+  background:var(--bg-deep);
+  color:var(--txt);
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:400;
+  line-height:1.7;
+  font-size:18px;
+  overflow-x:hidden;
+  transition:var(--tt);
+  min-height:100vh;
 }
-.json-btn:hover{border-color:var(--accent);background:var(--hov)}
-.json-btn svg{width:12px;height:12px}        /* Зменшено іконку */
+::selection{background:var(--cyan);color:var(--bg-deep)}
+a{color:inherit;text-decoration:none}
 
-/* ══════════════════════════════════════
-   SCREENSHOTS GRID
-══════════════════════════════════════ */
-.screenshots-block{margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.screenshot-item{background:var(--bg2);border:1px solid var(--line);border-radius:4px;overflow:hidden;transition:border-color .3s}
-.screenshot-item:hover{border-color:var(--line2)}
-.screenshot-item img{width:100%;height:auto;display:block;border-bottom:1px solid var(--line);background:var(--bg3)}
-.screenshot-label{padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:8px}
-.screenshot-label::before{content:'▣';color:var(--accent);font-size:12px}
+/* ═══════════════════════════════════════════════════════════════
+   AQUATIC BACKGROUND EFFECTS
+════════════════════════════════════════════════════════════════ */
+.aquatic-bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
 
-footer{border-top:1px solid var(--line);padding:30px 0;text-align:center}
-.footer-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt3);transition:color .2s}
-a,button{cursor:pointer}
+/* Floating organic blobs */
+.blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  opacity:0.5;
+  animation:blob-float 20s ease-in-out infinite;
+}
+.blob-1{
+  width:600px;height:600px;
+  background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2));
+  top:-200px;left:-100px;
+  animation-delay:0s;
+}
+.blob-2{
+  width:500px;height:500px;
+  background:linear-gradient(135deg,var(--gradient-2),var(--gradient-3));
+  bottom:-150px;right:-100px;
+  animation-delay:-7s;
+}
+.blob-3{
+  width:400px;height:400px;
+  background:linear-gradient(135deg,var(--teal),var(--cyan));
+  top:40%;left:50%;
+  animation-delay:-14s;
+}
+
+@keyframes blob-float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(30px,-50px) scale(1.05)}
+  50%{transform:translate(-20px,30px) scale(0.95)}
+  75%{transform:translate(40px,20px) scale(1.02)}
+}
+
+/* Caustic light pattern */
+.caustics{
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02' numOctaves='3' seed='1'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23c)'/%3E%3C/svg%3E");
+  opacity:0.03;
+  mix-blend-mode:overlay;
+  animation:caustics-move 30s linear infinite;
+}
+
+@keyframes caustics-move{
+  0%{transform:translate(0,0)}
+  100%{transform:translate(-50px,-50px)}
+}
+
+/* Grain texture */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CURSOR
+════════════════════════════════════════════════════════════════ */
+#cursor-dot{
+  position:fixed;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  pointer-events:none;
+  z-index:99999;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 20px var(--accent-glow),0 0 40px var(--accent-glow);
+  transition:width .2s,height .2s;
+}
+#cursor-ring{
+  position:fixed;
+  width:40px;height:40px;
+  border-radius:50%;
+  border:1px solid var(--cyan);
+  pointer-events:none;
+  z-index:99998;
+  transform:translate(-50%,-50%);
+  transition:width .3s var(--ease-out-expo),height .3s,border-color .2s;
+  opacity:.4;
+}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════════════════════════════ */
+.wrap{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 clamp(24px,5vw,60px);
+  position:relative;
+  z-index:1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION - Glass Style
+════════════════════════════════════════════════════════════════ */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:1000;
+  padding:16px 0;
+  transition:var(--tt);
+}
+.nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 clamp(24px,5vw,60px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.nav-glass{
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:100px;
+  padding:12px 24px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+.nav-logo{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.08em;
+  color:var(--txt);
+}
+.nav-link{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--txt3);
+  transition:color .2s;
+  position:relative;
+}
+.nav-link::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;left:0;
+  width:0;height:1px;
+  background:var(--accent);
+  transition:width .3s var(--ease-out-expo);
+}
+.nav-link:hover{color:var(--txt)}
+.nav-link:hover::after{width:100%}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.lang-switch{
+  display:flex;
+  background:rgba(0,0,0,.2);
+  border-radius:6px;
+  padding:2px;
+}
+.lang-btn{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--txt3);
+  background:transparent;
+  border:none;
+  padding:6px 10px;
+  border-radius:4px;
+  cursor:pointer;
+  transition:all .2s;
+}
+.lang-btn.active{
+  background:var(--accent);
+  color:var(--bg-deep);
+  box-shadow:0 0 20px var(--accent-glow);
+}
+.theme-btn{
+  width:36px;height:36px;
+  border-radius:50%;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--txt);
+  transition:all .2s;
+}
+.theme-btn:hover{
+  background:var(--surface-hover);
+  box-shadow:0 0 20px var(--cyan-glow);
+}
+.audio-btn{
+  width:36px;height:36px;
+  border-radius:50%;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--txt);
+  transition:all .2s;
+}
+.audio-btn.playing{
+  background:var(--accent);
+  color:var(--bg-deep);
+  box-shadow:0 0 25px var(--accent-glow);
+}
+
+/* Mobile */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:1.5px;background:var(--txt);transition:all .3s;border-radius:1px}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media(max-width:768px){
+  .nav-glass{padding:10px 16px;gap:16px}
+  .nav-link{display:none}
+  .hamburger{display:flex}
+}
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:70px;left:16px;right:16px;
+  background:var(--glass);
+  backdrop-filter:blur(30px);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  padding:24px;
+  z-index:999;
+  flex-direction:column;
+  gap:16px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--txt2);
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO - Immersive Title
+════════════════════════════════════════════════════════════════ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:120px 0 80px;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);
+  border-radius:100px;
+  padding:8px 16px;
+  margin-bottom:32px;
+  width:fit-content;
+  opacity:0;
+  animation:reveal .8s .2s var(--ease-out-expo) forwards;
+}
+.badge-dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 10px var(--accent-glow);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(.8)}
+}
+.badge-text{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--txt2);
+}
+
+.hero-title{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(48px,8vw,96px);
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-.03em;
+  color:var(--txt);
+  margin-bottom:24px;
+  opacity:0;
+  animation:reveal .8s .3s var(--ease-out-expo) forwards;
+}
+.hero-title em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--cyan),var(--teal));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero-desc{
+  font-size:clamp(16px,2vw,20px);
+  color:var(--txt2);
+  max-width:600px;
+  line-height:1.7;
+  margin-bottom:40px;
+  opacity:0;
+  animation:reveal .8s .4s var(--ease-out-expo) forwards;
+}
+
+.hero-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  opacity:0;
+  animation:reveal .8s .5s var(--ease-out-expo) forwards;
+}
+.tag{
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);
+  padding:10px 18px;
+  border-radius:100px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  letter-spacing:.05em;
+  color:var(--txt2);
+  transition:all .2s;
+}
+.tag:hover{
+  background:var(--surface-hover);
+  border-color:var(--cyan);
+  color:var(--txt);
+  box-shadow:0 0 20px var(--cyan-glow);
+}
+
+@keyframes reveal{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTIONS
+════════════════════════════════════════════════════════════════ */
+.sec{
+  padding:100px 0;
+  position:relative;
+}
+.sec-header{
+  margin-bottom:48px;
+}
+.sec-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  margin-bottom:16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.sec-eyebrow::before{
+  content:'';
+  width:40px;height:1px;
+  background:linear-gradient(90deg,var(--cyan),transparent);
+}
+.sec-title{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(32px,5vw,52px);
+  font-weight:400;
+  line-height:1.1;
+  letter-spacing:-.02em;
+}
+
+/* Reveal animation */
+.rv{
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity .8s var(--ease-out-expo),transform .8s var(--ease-out-expo);
+}
+.rv.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLASS CARDS
+════════════════════════════════════════════════════════════════ */
+.glass-card{
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  padding:32px;
+  transition:all .3s var(--ease-out-expo);
+  position:relative;
+  overflow:hidden;
+}
+.glass-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+}
+.glass-card:hover{
+  border-color:rgba(80,180,220,.3);
+  box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px var(--cyan-glow);
+  transform:translateY(-4px);
+}
+
+.links-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+  margin-top:32px;
+}
+.link-card{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.link-icon{
+  width:52px;height:52px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  box-shadow:0 8px 24px rgba(14,165,233,.3);
+}
+.link-icon svg{width:22px;height:22px;color:#fff}
+.link-content{flex:1;min-width:0}
+.link-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--txt3);
+  margin-bottom:4px;
+}
+.link-url{
+  font-size:14px;
+  color:var(--txt);
+  word-break:break-all;
+}
+.link-arrow{
+  color:var(--txt3);
+  transition:transform .3s var(--ease-out-expo);
+}
+.link-card:hover .link-arrow{
+  transform:translateX(6px);
+  color:var(--accent);
+}
+
+/* JSON Downloads */
+.json-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+.json-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(0,0,0,.3);
+  border:1px solid var(--glass-border);
+  padding:10px 16px;
+  border-radius:10px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--txt2);
+  transition:all .2s;
+}
+.json-btn:hover{
+  background:var(--accent);
+  color:var(--bg-deep);
+  border-color:var(--accent);
+  box-shadow:0 0 30px var(--accent-glow);
+}
+.json-btn svg{width:14px;height:14px}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTENT BLOCKS
+════════════════════════════════════════════════════════════════ */
+.text-content p{
+  font-size:17px;
+  color:var(--txt2);
+  line-height:1.85;
+  margin-bottom:1.5em;
+}
+.text-content strong{
+  color:var(--txt);
+  font-weight:500;
+}
+
+/* Architecture Flow */
+.arch-container{
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:20px;
+  padding:40px;
+  margin-top:32px;
+  overflow-x:auto;
+}
+.arch-flow{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:nowrap;
+  min-width:max-content;
+}
+.arch-node{
+  background:rgba(0,0,0,.3);
+  border:1px solid var(--glass-border);
+  padding:16px 24px;
+  border-radius:12px;
+  text-align:center;
+  transition:all .2s;
+}
+.arch-node:hover{
+  border-color:var(--cyan);
+  box-shadow:0 0 30px var(--cyan-glow);
+}
+.arch-node-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;
+  color:var(--txt);
+  font-weight:500;
+}
+.arch-node-sub{
+  font-size:9px;
+  color:var(--txt3);
+  margin-top:4px;
+}
+.arch-arrow{
+  color:var(--cyan);
+  font-size:20px;
+  opacity:.5;
+}
+@media(max-width:700px){
+  .arch-flow{flex-wrap:wrap;justify-content:center}
+  .arch-arrow{display:none}
+}
+
+/* Tech Stack Pills */
+.tech-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:32px;
+}
+.tech-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--glass);
+  backdrop-filter:blur(10px);
+  border:1px solid var(--glass-border);
+  padding:12px 18px;
+  border-radius:12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--txt2);
+  transition:all .2s;
+}
+.tech-pill:hover{
+  border-color:var(--cyan);
+  color:var(--txt);
+  box-shadow:0 0 20px var(--cyan-glow);
+}
+.tech-pill svg{width:16px;height:16px;opacity:.7}
+
+/* ═══════════════════════════════════════════════════════════════
+   WORKFLOW SECTIONS
+════════════════════════════════════════════════════════════════ */
+.workflow-block{
+  margin-top:60px;
+  padding-top:60px;
+  border-top:1px solid var(--line);
+}
+.workflow-number{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  font-weight:600;
+  color:var(--accent);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.workflow-number::before{
+  content:'';
+  width:30px;height:1px;
+  background:var(--accent);
+  box-shadow:0 0 10px var(--accent-glow);
+}
+.workflow-title{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(24px,4vw,36px);
+  font-weight:400;
+  margin-bottom:20px;
+}
+.workflow-desc{
+  font-size:17px;
+  color:var(--txt2);
+  line-height:1.8;
+  max-width:700px;
+  margin-bottom:32px;
+}
+
+/* Screenshots */
+.screens-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:20px;
+}
+.screenshot-card{
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  overflow:hidden;
+  transition:all .3s var(--ease-out-expo);
+}
+.screenshot-card:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 30px 60px rgba(0,0,0,.4),0 0 50px var(--cyan-glow);
+  border-color:var(--cyan);
+}
+.screenshot-img{
+  width:100%;
+  aspect-ratio:16/10;
+  object-fit:cover;
+  border-bottom:1px solid var(--glass-border);
+}
+.screenshot-label{
+  padding:16px 20px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--txt3);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.screenshot-label::before{
+  content:'';
+  width:8px;height:8px;
+  border-radius:2px;
+  background:var(--accent);
+  box-shadow:0 0 10px var(--accent-glow);
+}
+
+/* Results Grid */
+.results-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+  margin-top:24px;
+}
+@media(max-width:700px){
+  .results-row{grid-template-columns:1fr}
+}
+.result-box{
+  background:rgba(0,0,0,.25);
+  border:1px solid var(--glass-border);
+  border-radius:14px;
+  padding:24px;
+}
+.result-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--cyan);
+  margin-bottom:16px;
+  padding-bottom:12px;
+  border-bottom:1px solid var(--line);
+}
+.result-list{list-style:none}
+.result-list li{
+  font-size:13px;
+  color:var(--txt2);
+  padding:8px 0;
+  padding-left:16px;
+  position:relative;
+}
+.result-list li::before{
+  content:'';
+  position:absolute;
+  left:0;top:14px;
+  width:5px;height:5px;
+  background:var(--accent);
+  border-radius:50%;
+  box-shadow:0 0 8px var(--accent-glow);
+}
+
+/* Code Block */
+.code-container{
+  background:rgba(0,0,0,.4);
+  border:1px solid var(--glass-border);
+  border-radius:16px;
+  overflow:hidden;
+  margin-top:40px;
+}
+.code-header{
+  padding:14px 20px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.code-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--txt3);
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+.copy-btn{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  background:var(--glass);
+  border:1px solid var(--glass-border);
+  color:var(--txt2);
+  padding:8px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:all .2s;
+}
+.copy-btn:hover{
+  background:var(--accent);
+  color:var(--bg-deep);
+  border-color:var(--accent);
+}
+.copy-btn.copied{
+  background:var(--teal);
+  border-color:var(--teal);
+}
+pre{
+  padding:24px;
+  overflow-x:auto;
+  font-family:'JetBrains Mono',monospace;
+  font-size:13px;
+  line-height:1.7;
+  color:var(--txt);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════════════════════ */
+footer{
+  padding:60px 0;
+  border-top:1px solid var(--line);
+  margin-top:60px;
+}
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:20px;
+}
+.footer-brand{
+  font-family:'Instrument Serif',serif;
+  font-size:20px;
+}
+.footer-info{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--txt3);
+  text-align:right;
+  line-height:2;
+}
+@media(max-width:600px){
+  .footer-inner{flex-direction:column;align-items:flex-start}
+  .footer-info{text-align:left}
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FLOATING PARTICLES
+════════════════════════════════════════════════════════════════ */
+.particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+  overflow:hidden;
+}
+.particle{
+  position:absolute;
+  width:3px;height:3px;
+  background:var(--cyan);
+  border-radius:50%;
+  opacity:.3;
+  animation:float-up 15s linear infinite;
+}
+@keyframes float-up{
+  0%{transform:translateY(100vh) rotate(0deg);opacity:0}
+  10%{opacity:.3}
+  90%{opacity:.3}
+  100%{transform:translateY(-100px) rotate(720deg);opacity:0}
+}
+
+a,button{cursor:none}
+@media(hover:none){a,button{cursor:auto}}
 </style>
 </head>
 
 <body>
+<!-- Aquatic Background -->
+<div class="aquatic-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="caustics"></div>
+</div>
 
+<!-- Floating Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Cursor -->
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 
-<nav id="nav">
-  <div class="nav-in">
-    <a href="index.html" class="nav-logo">T. KOTOLUP</a>
-    <nav class="nav-links">
-      <a href="index.html" data-i18n="nav_back">Back to Portfolio</a>
-    </nav>
-    <div class="nav-right">
-      <div class="lang-sw" id="langSw">
-        <button class="lang-btn active" data-lang-btn="en">EN</button>
-        <button class="lang-btn" data-lang-btn="uk">UA</button>
-        <button class="lang-btn" data-lang-btn="cs">CZ</button>
+<!-- ═══════════════════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-glass">
+      <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+      <a href="index.html" class="nav-link" data-i18n="nav_back">Back to Portfolio</a>
+      
+      <div class="nav-actions">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="uk">UA</button>
+          <button class="lang-btn" data-lang="cs">CZ</button>
+        </div>
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+        <button class="audio-btn" id="audioBtn" aria-label="Toggle audio">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+        </button>
+        <button class="hamburger" id="hamBtn" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-      <button class="theme-tog" id="themeBtn" aria-label="Toggle theme"></button>
-      <button class="audio-btn" id="audioBtn" aria-label="Play Music">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-        </svg>
-      </button>
     </div>
   </div>
 </nav>
 
-<section class="hero" id="top">
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-i18n="nav_back" onclick="closeMobile()">Back to Portfolio</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════════ -->
+<section class="hero">
   <div class="wrap">
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <div class="eye-line"></div>
-        <div class="eye-txt" data-i18n="hero_type">AI Sales Automation</div>
-      </div>
-      <h1 class="hero-title" data-i18n="hero_title">GrowthLab AI</h1>
-      <div class="hero-tagline" data-i18n="hero_tagline">AI-powered sales ecosystem for automated lead qualification, CRM integration, dialogue analysis & CEO reporting.</div>
-      <div class="hero-tags">
-        <span class="h-tag">n8n</span>
-        <span class="h-tag">Anthropic Claude</span>
-        <span class="h-tag">Zoho CRM</span>
-        <span class="h-tag">Telegram Bot</span>
-        <span class="h-tag">Google Sheets</span>
-        <span class="h-tag">2025</span>
-      </div>
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text" data-i18n="hero_type">AI Sales Automation</span>
+    </div>
+    
+    <h1 class="hero-title" data-i18n="hero_title">GrowthLab <em>AI</em></h1>
+    
+    <p class="hero-desc" data-i18n="hero_desc">AI-powered sales ecosystem for automated lead qualification, CRM integration, dialogue analysis & executive reporting delivered via Telegram.</p>
+    
+    <div class="hero-tags">
+      <span class="tag">n8n</span>
+      <span class="tag">Anthropic Claude</span>
+      <span class="tag">Zoho CRM</span>
+      <span class="tag">Telegram Bot</span>
+      <span class="tag">Google Sheets</span>
+      <span class="tag">2025</span>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     PROJECT LINKS
+════════════════════════════════════════════════════════════════ -->
 <section class="sec">
   <div class="wrap">
     <div class="rv">
-      <h2 class="sec-title" data-i18n="links_title">Project Links</h2>
-      <span class="sec-sub" data-i18n="links_sub">Demo & Resources</span>
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_project">Project Resources</div>
+        <h2 class="sec-title" data-i18n="links_title">Links & Downloads</h2>
+      </div>
 
       <div class="links-grid">
-        <a href="https://github.com/tetiana-a/AI-Sales-Automation" target="_blank" rel="noopener" class="link-card">
+        <a href="https://github.com/tetiana-a/AI-Sales-Automation" target="_blank" rel="noopener" class="glass-card link-card">
           <div class="link-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
             </svg>
           </div>
-          <div class="link-info">
+          <div class="link-content">
             <div class="link-label">Source Code</div>
-            <div class="link-title">github.com/tetiana-a/AI-Sales-Automation</div>
+            <div class="link-url">github.com/tetiana-a/AI-Sales-Automation</div>
           </div>
           <span class="link-arrow">→</span>
         </a>
 
-        <a href="https://tetiana-a.github.io/AI-Sales-Automation/" target="_blank" rel="noopener" class="link-card">
+        <a href="https://tetiana-a.github.io/AI-Sales-Automation/" target="_blank" rel="noopener" class="glass-card link-card">
           <div class="link-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="2" y1="12" x2="22" y2="12"></line>
-              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             </svg>
           </div>
-          <div class="link-info">
+          <div class="link-content">
             <div class="link-label">Live Demo</div>
-            <div class="link-title">AI Sales Automation Chatbot</div>
+            <div class="link-url">AI Sales Automation Chatbot</div>
           </div>
           <span class="link-arrow">→</span>
         </a>
       </div>
 
-      <!-- ════════════════════════════════════════════════════════════
-           JSON FILES DOWNLOAD BUTTONS
-           Файли JSON повинні бути в тій самій папці, що й цей HTML файл.
-           Або вкажіть правильний шлях (наприклад, "json/01_...json")
-      ════════════════════════════════════════════════════════════ -->
-      <div class="json-downloads">
-        
-        <!-- ФАЙЛ 1: Workflow 1 JSON -->
+      <div class="json-row">
+        <!-- JSON 1 -->
         <a href="01_basic_chat_qualification_GrowthLab.json" download class="json-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
           WF 1: Qualification
         </a>
-
-        <!-- ФАЙЛ 2: Workflow 2 JSON -->
+        <!-- JSON 2 -->
         <a href="02_dialogue_analysis_GrowthLab.json" download class="json-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
           WF 2: Analysis
         </a>
-
-        <!-- ФАЙЛ 3: Workflow 3 JSON -->
+        <!-- JSON 3 -->
         <a href="03_ceo_lead_monitoring_GrowthLab.json" download class="json-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
           WF 3: CEO Report
         </a>
-
       </div>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     CONTEXT
+════════════════════════════════════════════════════════════════ -->
 <section class="sec">
   <div class="wrap">
-    <div class="text-block rv">
-      <h2 class="sec-title" data-i18n="context_title">Context & Problem</h2>
-      <span class="sec-sub">Business Case</span>
-      <p data-i18n="context_p1">GrowthLab is an AI sales automation company. The system was built to automatically qualify incoming leads, transfer data to CRM, analyze dialogues, and generate CEO reports.</p>
-      <p data-i18n="context_p2"><strong>The Challenge:</strong> Before automation, leads were processed manually. Managers could lose requests, not all dialogues were analyzed, and the CEO had no quick report on lead quality, funnel bottlenecks, or communication issues.</p>
-      <p><strong data-i18n="goal_title">Goal:</strong> <span data-i18n="goal_text">Build an AI ecosystem of three workflows: AI chatbot for BANT qualification, dialogue analysis pipeline, and CEO reporting system via Telegram.</span></p>
+    <div class="rv">
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_context">Business Case</div>
+        <h2 class="sec-title" data-i18n="context_title">Context & Challenge</h2>
+      </div>
+      
+      <div class="text-content">
+        <p data-i18n="context_p1">GrowthLab is an AI sales automation company. The system was built to automatically qualify incoming leads, transfer data to CRM, analyze dialogues, and generate CEO reports.</p>
+        <p data-i18n="context_p2"><strong>Before automation:</strong> Leads were processed manually. Managers could lose requests, not all dialogues were analyzed, and the CEO had no quick report on lead quality, funnel bottlenecks, or communication issues.</p>
+        <p><strong data-i18n="goal_title">Goal:</strong> <span data-i18n="goal_text">Build an AI ecosystem of three workflows: AI chatbot for BANT qualification, dialogue analysis pipeline, and CEO reporting system via Telegram.</span></p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     ARCHITECTURE
+════════════════════════════════════════════════════════════════ -->
 <section class="sec">
   <div class="wrap">
     <div class="rv">
-      <h2 class="sec-title" data-i18n="arch_title">System Architecture</h2>
-      <span class="sec-sub" data-i18n="arch_sub">Three-Workflow Ecosystem</span>
-      <div class="text-block"><p data-i18n="arch_desc">The ecosystem consists of three interconnected n8n workflows that handle the entire sales pipeline from initial lead capture to executive reporting.</p></div>
-
-      <div class="arch-block">
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_arch">Technical Design</div>
+        <h2 class="sec-title" data-i18n="arch_title">System Architecture</h2>
+      </div>
+      
+      <div class="arch-container">
         <div class="arch-flow">
-          <div class="arch-node">Web Chat<br><span style="color:var(--txt3);font-size:9px">Lead Input</span></div>
+          <div class="arch-node">
+            <div class="arch-node-title">Web Chat</div>
+            <div class="arch-node-sub">Lead Input</div>
+          </div>
           <span class="arch-arrow">→</span>
-          <div class="arch-node">AI Agent<br><span style="color:var(--txt3);font-size:9px">BANT Qualification</span></div>
+          <div class="arch-node">
+            <div class="arch-node-title">AI Agent</div>
+            <div class="arch-node-sub">BANT Analysis</div>
+          </div>
           <span class="arch-arrow">→</span>
-          <div class="arch-node">Zoho CRM<br><span style="color:var(--txt3);font-size:9px">Lead Storage</span></div>
+          <div class="arch-node">
+            <div class="arch-node-title">Zoho CRM</div>
+            <div class="arch-node-sub">Lead Storage</div>
+          </div>
           <span class="arch-arrow">→</span>
-          <div class="arch-node">Analysis<br><span style="color:var(--txt3);font-size:9px">Google Sheets</span></div>
+          <div class="arch-node">
+            <div class="arch-node-title">Analysis</div>
+            <div class="arch-node-sub">Google Sheets</div>
+          </div>
           <span class="arch-arrow">→</span>
-          <div class="arch-node">Telegram<br><span style="color:var(--txt3);font-size:9px">CEO Report</span></div>
+          <div class="arch-node">
+            <div class="arch-node-title">Telegram</div>
+            <div class="arch-node-sub">CEO Report</div>
+          </div>
         </div>
       </div>
 
-      <div class="tech-stack">
-        <div class="tech-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>n8n</div>
-        <div class="tech-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>Anthropic Claude</div>
-        <div class="tech-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>Zoho CRM</div>
-        <div class="tech-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>Google Sheets</div>
-        <div class="tech-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.73 18.9L15.83 4.41c-.52-1.21-2.12-1.21-2.64 0L7.27 18.9c-.47 1.09.35 2.27 1.52 2.27h4.22c-.04-.15-.07-.32-.07-.5v-3.5l-2.44-1.47 3.44-2.03 3.44 2.03-2.44 1.47v3.5c0 .18-.03.35-.07.5h4.22c1.17 0 1.99-1.18 1.52-2.27z"></path><circle cx="12" cy="12" r="10"></circle></svg>Telegram Bot</div>
-        <div class="tech-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>Postgres Memory</div>
-        <div class="tech-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>Webhooks</div>
-        <div class="tech-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>AI Agents</div>
+      <div class="tech-pills">
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          n8n
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          Anthropic Claude
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Zoho CRM
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg>
+          Google Sheets
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.73 18.9L15.83 4.41c-.52-1.21-2.12-1.21-2.64 0L7.27 18.9c-.47 1.09.35 2.27 1.52 2.27h4.22c-.04-.15-.07-.32-.07-.5v-3.5l-2.44-1.47 3.44-2.03 3.44 2.03-2.44 1.47v3.5c0 .18-.03.35-.07.5h4.22c1.17 0 1.99-1.18 1.52-2.27z"/><circle cx="12" cy="12" r="10"/></svg>
+          Telegram Bot
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Postgres Memory
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Webhooks
+        </div>
+        <div class="tech-pill">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          AI Agents
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     WORKFLOW IMPLEMENTATION
-══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════════════════════════
+     WORKFLOWS
+════════════════════════════════════════════════════════════════ -->
 <section class="sec">
   <div class="wrap">
     <div class="rv">
-      <h2 class="sec-title" data-i18n="impl_title">Workflow Implementation</h2>
-      <span class="sec-sub" data-i18n="impl_sub">Three Interconnected Systems</span>
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_workflows">Implementation</div>
+        <h2 class="sec-title" data-i18n="workflows_title">Three Interconnected Systems</h2>
+      </div>
 
-      <!-- ═════════════════════════════════════
-           WORKFLOW 1: AI Lead Qualification
-           ═════════════════════════════════════ -->
-      <div class="workflow-section">
-        <div class="workflow-num">01</div>
+      <!-- Workflow 1 -->
+      <div class="workflow-block">
+        <div class="workflow-number">01</div>
         <h3 class="workflow-title" data-i18n="wf1_title">AI Lead Qualification Chatbot</h3>
-        
-        <div class="text-block">
-          <p data-i18n="wf1_desc">First workflow handles AI qualification through web chat. AI Agent conducts BANT analysis, collecting information about business, budget, decision maker, problem, and timeline. After qualification, a lead is created in Zoho CRM with sessionId stored in Skype_ID field.</p>
-        </div>
+        <p class="workflow-desc" data-i18n="wf1_desc">First workflow handles AI qualification through web chat. AI Agent conducts BANT analysis, collecting information about business, budget, decision maker, problem, and timeline. After qualification, a lead is created in Zoho CRM with sessionId stored in Skype_ID field.</p>
 
-        <!-- ══ SCREENSHOTS 1 ══ -->
-        <div class="screenshots-block">
-          <div class="screenshot-item">
-            <!-- FOTO 1: Chatbot UI (wf2.png) -->
-            <img src="wf2.png" alt="Chatbot UI">
+        <div class="screens-grid">
+          <div class="screenshot-card">
+            <img src="wf2.png" alt="Chatbot UI" class="screenshot-img">
             <div class="screenshot-label">Chatbot UI — Web Interface</div>
           </div>
-          <div class="screenshot-item">
-            <!-- FOTO 2: Workflow Schema (wf1.png) -->
-            <img src="wf1.png" alt="Workflow Schema">
+          <div class="screenshot-card">
+            <img src="wf1.png" alt="Workflow Schema" class="screenshot-img">
             <div class="screenshot-label">n8n Workflow Schema</div>
           </div>
         </div>
 
-        <div class="results-grid" style="margin-top:20px">
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf1_bant">BANT Framework</div>
-            <ul class="res-list">
+        <div class="results-row">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf1_bant">BANT Framework</div>
+            <ul class="result-list">
               <li data-i18n="b1">Business context</li>
               <li data-i18n="b2">Authority (Decision Maker)</li>
               <li data-i18n="b3">Need/Problem</li>
               <li data-i18n="b4">Timeline</li>
             </ul>
           </div>
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf1_data">Data Collection</div>
-            <ul class="res-list">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf1_data">Data Collection</div>
+            <ul class="result-list">
               <li data-i18n="d1">Company information</li>
               <li data-i18n="d2">Budget range</li>
               <li data-i18n="d3">Contact phone</li>
               <li data-i18n="d4">Session tracking</li>
             </ul>
           </div>
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf1_out">Output</div>
-            <ul class="res-list">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf1_out">Output</div>
+            <ul class="result-list">
               <li data-i18n="o1">Zoho CRM lead</li>
               <li data-i18n="o2">Qualification score</li>
               <li data-i18n="o3">Lead segmentation</li>
@@ -375,53 +1236,45 @@ a,button{cursor:pointer}
         </div>
       </div>
 
-      <!-- ═════════════════════════════════════
-           WORKFLOW 2: AI Dialogue Analysis
-           ═════════════════════════════════════ -->
-      <div class="workflow-section">
-        <div class="workflow-num">02</div>
+      <!-- Workflow 2 -->
+      <div class="workflow-block">
+        <div class="workflow-number">02</div>
         <h3 class="workflow-title" data-i18n="wf2_title">AI Dialogue Analysis</h3>
-        
-        <div class="text-block">
-          <p data-i18n="wf2_desc">Second workflow automatically analyzes all AI dialogues after qualification. Through Postgres Chat Memory, the system retrieves message history, AI analyzes agent errors, client problems, and successful communication patterns. Results are recorded in Google Sheets for further analytics.</p>
-        </div>
+        <p class="workflow-desc" data-i18n="wf2_desc">Second workflow automatically analyzes all AI dialogues after qualification. Through Postgres Chat Memory, the system retrieves message history, AI analyzes agent errors, client problems, and successful communication patterns. Results are recorded in Google Sheets for further analytics.</p>
 
-        <!-- ══ SCREENSHOTS 2 ══ -->
-        <div class="screenshots-block">
-          <div class="screenshot-item">
-            <!-- FOTO 3: Google Sheets (табл.png) -->
-            <img src="табл.png" alt="Google Sheets Analysis">
+        <div class="screens-grid">
+          <div class="screenshot-card">
+            <img src="табл.png" alt="Google Sheets Analysis" class="screenshot-img">
             <div class="screenshot-label">Google Sheets — Analysis Dashboard</div>
           </div>
-          <div class="screenshot-item">
-            <!-- FOTO 4: Workflow Schema (Snímek obrazovky (4347).png) -->
-            <img src="Snímek obrazovky (4347).png" alt="Workflow Schema">
+          <div class="screenshot-card">
+            <img src="Snímek obrazovky (4347).png" alt="Workflow Schema" class="screenshot-img">
             <div class="screenshot-label">n8n Workflow Schema</div>
           </div>
         </div>
 
-        <div class="results-grid" style="margin-top:20px">
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf2_in">Input Sources</div>
-            <ul class="res-list">
+        <div class="results-row">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf2_in">Input Sources</div>
+            <ul class="result-list">
               <li data-i18n="i1">Postgres Chat Memory</li>
               <li data-i18n="i2">Session history</li>
               <li data-i18n="i3">Message logs</li>
               <li data-i18n="i4">Timestamp data</li>
             </ul>
           </div>
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf2_anal">Analysis Types</div>
-            <ul class="res-list">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf2_anal">Analysis Types</div>
+            <ul class="result-list">
               <li data-i18n="a1">Agent error detection</li>
               <li data-i18n="a2">Client problem extraction</li>
               <li data-i18n="a3">Success patterns</li>
               <li data-i18n="a4">Sentiment analysis</li>
             </ul>
           </div>
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf2_rep">Reporting</div>
-            <ul class="res-list">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf2_rep">Reporting</div>
+            <ul class="result-list">
               <li data-i18n="r1">Google Sheets export</li>
               <li data-i18n="r2">Analytics dashboard</li>
               <li data-i18n="r3">Pattern tracking</li>
@@ -431,53 +1284,45 @@ a,button{cursor:pointer}
         </div>
       </div>
 
-      <!-- ═════════════════════════════════════
-           WORKFLOW 3: CEO Lead Monitoring
-           ═════════════════════════════════════ -->
-      <div class="workflow-section">
-        <div class="workflow-num">03</div>
+      <!-- Workflow 3 -->
+      <div class="workflow-block">
+        <div class="workflow-number">03</div>
         <h3 class="workflow-title" data-i18n="wf3_title">CEO Lead Monitoring & Reporting</h3>
-        
-        <div class="text-block">
-          <p data-i18n="wf3_desc">Third workflow performs CEO analytics of the entire CRM funnel. System collects leads from Zoho CRM, analyzes bottlenecks, HOT lead count, new requests, funnel problems and recommendations. After analysis, AI automatically generates CEO Sales Report and sends it to Telegram.</p>
-        </div>
+        <p class="workflow-desc" data-i18n="wf3_desc">Third workflow performs CEO analytics of the entire CRM funnel. System collects leads from Zoho CRM, analyzes bottlenecks, HOT lead count, new requests, funnel problems and recommendations. After analysis, AI automatically generates CEO Sales Report and sends it to Telegram.</p>
 
-        <!-- ══ SCREENSHOTS 3 ══ -->
-        <div class="screenshots-block">
-          <div class="screenshot-item">
-            <!-- FOTO 5: Telegram CEO Report (wf3.png) -->
-            <img src="wf3.png" alt="Telegram CEO Report">
+        <div class="screens-grid">
+          <div class="screenshot-card">
+            <img src="wf3.png" alt="Telegram CEO Report" class="screenshot-img">
             <div class="screenshot-label">Telegram — CEO Sales Report</div>
           </div>
-          <div class="screenshot-item">
-            <!-- FOTO 6: Workflow Schema (Snímek obrazovky (4348).png) -->
-            <img src="Snímek obrazovky (4348).png" alt="Workflow Schema">
+          <div class="screenshot-card">
+            <img src="Snímek obrazovky (4348).png" alt="Workflow Schema" class="screenshot-img">
             <div class="screenshot-label">n8n Workflow Schema</div>
           </div>
         </div>
 
-        <div class="results-grid" style="margin-top:20px">
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf3_data">Data Sources</div>
-            <ul class="res-list">
+        <div class="results-row">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf3_data">Data Sources</div>
+            <ul class="result-list">
               <li data-i18n="ds1">Zoho CRM pipeline</li>
               <li data-i18n="ds2">Lead status data</li>
               <li data-i18n="ds3">Conversion metrics</li>
               <li data-i18n="ds4">Historical trends</li>
             </ul>
           </div>
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf3_anal">Analytics</div>
-            <ul class="res-list">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf3_anal">Analytics</div>
+            <ul class="result-list">
               <li data-i18n="an1">Bottleneck detection</li>
               <li data-i18n="an2">HOT lead tracking</li>
               <li data-i18n="an3">Funnel problems</li>
               <li data-i18n="an4">AI recommendations</li>
             </ul>
           </div>
-          <div class="res-box">
-            <div class="res-box-title" data-i18n="wf3_del">Delivery</div>
-            <ul class="res-list">
+          <div class="result-box">
+            <div class="result-title" data-i18n="wf3_del">Delivery</div>
+            <ul class="result-list">
               <li data-i18n="de1">Telegram CEO Report</li>
               <li data-i18n="de2">Executive summary</li>
               <li data-i18n="de3">Action items</li>
@@ -487,64 +1332,70 @@ a,button{cursor:pointer}
         </div>
       </div>
 
-      <div class="code-block">
+      <!-- Code Block -->
+      <div class="code-container">
         <div class="code-header">
-          <span class="code-lang">n8n Workflow Structure</span>
+          <span class="code-title" data-i18n="code_title">n8n Workflow Structure</span>
           <button class="copy-btn" onclick="copyCode(this)">COPY</button>
         </div>
         <pre id="codeContent">// Workflow 1: AI Lead Qualification
 {
   "trigger": "Webhook (Chat Message)",
   "nodes": ["AI Agent (Claude)", "Postgres Chat Memory", "Structured Output Parser", "Zoho CRM Create Lead"],
-  "output": { "lead_score": "HOT | WARM | COLD", "bant_data": { "business": "extracted info", "budget": "range", "authority": "decision maker", "need": "problem description", "timeline": "implementation date" }, "crm_id": "Zoho lead ID", "session_id": "stored in Skype_ID" }
+  "output": { "lead_score": "HOT | WARM | COLD", "session_id": "stored in Skype_ID" }
 }
 
 // Workflow 2: Dialogue Analysis
 {
   "trigger": "Schedule / Manual",
   "nodes": ["Postgres Chat Memory (Read)", "AI Analysis (Claude)", "Google Sheets Append"],
-  "output": { "agent_errors": "list of mistakes", "client_problem": "extracted issue", "success_patterns": "what worked", "recommendations": "improvement areas" }
+  "output": { "agent_errors": "list of mistakes", "success_patterns": "what worked" }
 }
 
 // Workflow 3: CEO Reporting
 {
   "trigger": "Schedule (Daily/Weekly)",
   "nodes": ["Zoho CRM Fetch Leads", "AI Analytics (Claude)", "Telegram Send Message"],
-  "output": { "total_leads": "count", "hot_leads": "qualified count", "bottlenecks": "funnel issues", "recommendations": "action items" }
+  "output": { "hot_leads": "qualified count", "bottlenecks": "funnel issues" }
 }</pre>
       </div>
     </div>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     RESULTS
+════════════════════════════════════════════════════════════════ -->
 <section class="sec">
   <div class="wrap">
     <div class="rv">
-      <h2 class="sec-title" data-i18n="output_title">Results</h2>
-      <span class="sec-sub" data-i18n="output_sub">Project Outcomes</span>
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_results">Outcomes</div>
+        <h2 class="sec-title" data-i18n="results_title">Results</h2>
+      </div>
 
-      <div class="results-grid">
-        <div class="res-box">
-          <div class="res-box-title" data-i18n="res_auto">Automation</div>
-          <ul class="res-list">
+      <div class="results-row">
+        <div class="result-box">
+          <div class="result-title" data-i18n="res_auto">Automation</div>
+          <ul class="result-list">
             <li data-i18n="au1">Automated BANT qualification</li>
             <li data-i18n="au2">Zoho CRM integration</li>
             <li data-i18n="au3">AI dialogue analysis</li>
             <li data-i18n="au4">CEO monitoring system</li>
           </ul>
         </div>
-        <div class="res-box">
-          <div class="res-box-title" data-i18n="res_intel">Intelligence</div>
-          <ul class="res-list">
+        <div class="result-box">
+          <div class="result-title" data-i18n="res_intel">Intelligence</div>
+          <ul class="result-list">
             <li data-i18n="in1">Structured AI scoring</li>
             <li data-i18n="in2">HOT/WARM/COLD segmentation</li>
             <li data-i18n="in3">Pattern recognition</li>
             <li data-i18n="in4">Sentiment analysis</li>
           </ul>
         </div>
-        <div class="res-box">
-          <div class="res-box-title" data-i18n="res_report">Reporting</div>
-          <ul class="res-list">
+        <div class="result-box">
+          <div class="result-title" data-i18n="res_report">Reporting</div>
+          <ul class="result-list">
             <li data-i18n="rp1">Telegram executive reports</li>
             <li data-i18n="rp2">Google Sheets analytics</li>
             <li data-i18n="rp3">Postgres memory architecture</li>
@@ -556,30 +1407,45 @@ a,button{cursor:pointer}
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
-    <a href="index.html" class="footer-link" data-i18n="footer_link">← Back to Portfolio</a>
+    <div class="footer-inner">
+      <div class="footer-brand">Tetiana Kotolup</div>
+      <div class="footer-info">
+        AI Automation Developer<br>
+        kotolup24@gmail.com · @tetiana_K888 · 2025
+      </div>
+    </div>
   </div>
 </footer>
 
 <audio id="bgMusic" loop><source src="011.mp3" type="audio/mpeg"></audio>
 
 <script>
-/* ════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════════
    TRANSLATIONS
-════════════════════════════════════════ */
+════════════════════════════════════════════════════════════════ */
 const i18n = {
   en: {
-    nav_back: 'Back to Portfolio', hero_type: 'AI Sales Automation', hero_title: 'GrowthLab AI',
-    hero_tagline: 'AI-powered sales ecosystem for automated lead qualification, CRM integration, dialogue analysis & CEO reporting.',
-    links_title: 'Project Links', links_sub: 'Demo & Resources',
-    context_title: 'Context & Problem',
+    nav_back: 'Back to Portfolio',
+    hero_type: 'AI Sales Automation',
+    hero_title: 'GrowthLab AI',
+    hero_desc: 'AI-powered sales ecosystem for automated lead qualification, CRM integration, dialogue analysis & executive reporting delivered via Telegram.',
+    sec_project: 'Project Resources',
+    links_title: 'Links & Downloads',
+    sec_context: 'Business Case',
+    context_title: 'Context & Challenge',
     context_p1: 'GrowthLab is an AI sales automation company. The system was built to automatically qualify incoming leads, transfer data to CRM, analyze dialogues, and generate CEO reports.',
-    context_p2: '<strong>The Challenge:</strong> Before automation, leads were processed manually. Managers could lose requests, not all dialogues were analyzed, and the CEO had no quick report on lead quality, funnel bottlenecks, or communication issues.',
-    goal_title: 'Goal:', goal_text: 'Build an AI ecosystem of three workflows: AI chatbot for BANT qualification, dialogue analysis pipeline, and CEO reporting system via Telegram.',
-    arch_title: 'System Architecture', arch_sub: 'Three-Workflow Ecosystem',
-    arch_desc: 'The ecosystem consists of three interconnected n8n workflows that handle the entire sales pipeline from initial lead capture to executive reporting.',
-    impl_title: 'Workflow Implementation', impl_sub: 'Three Interconnected Systems',
+    context_p2: '<strong>Before automation:</strong> Leads were processed manually. Managers could lose requests, not all dialogues were analyzed, and the CEO had no quick report on lead quality, funnel bottlenecks, or communication issues.',
+    goal_title: 'Goal:',
+    goal_text: 'Build an AI ecosystem of three workflows: AI chatbot for BANT qualification, dialogue analysis pipeline, and CEO reporting system via Telegram.',
+    sec_arch: 'Technical Design',
+    arch_title: 'System Architecture',
+    sec_workflows: 'Implementation',
+    workflows_title: 'Three Interconnected Systems',
     wf1_title: 'AI Lead Qualification Chatbot',
     wf1_desc: 'First workflow handles AI qualification through web chat. AI Agent conducts BANT analysis, collecting information about business, budget, decision maker, problem, and timeline. After qualification, a lead is created in Zoho CRM with sessionId stored in Skype_ID field.',
     wf1_bant: 'BANT Framework', b1: 'Business context', b2: 'Authority (Decision Maker)', b3: 'Need/Problem', b4: 'Timeline',
@@ -595,23 +1461,30 @@ const i18n = {
     wf3_data: 'Data Sources', ds1: 'Zoho CRM pipeline', ds2: 'Lead status data', ds3: 'Conversion metrics', ds4: 'Historical trends',
     wf3_anal: 'Analytics', an1: 'Bottleneck detection', an2: 'HOT lead tracking', an3: 'Funnel problems', an4: 'AI recommendations',
     wf3_del: 'Delivery', de1: 'Telegram CEO Report', de2: 'Executive summary', de3: 'Action items', de4: 'Scheduled delivery',
-    output_title: 'Results', output_sub: 'Project Outcomes',
+    code_title: 'n8n Workflow Structure',
+    sec_results: 'Outcomes',
+    results_title: 'Results',
     res_auto: 'Automation', au1: 'Automated BANT qualification', au2: 'Zoho CRM integration', au3: 'AI dialogue analysis', au4: 'CEO monitoring system',
     res_intel: 'Intelligence', in1: 'Structured AI scoring', in2: 'HOT/WARM/COLD segmentation', in3: 'Pattern recognition', in4: 'Sentiment analysis',
-    res_report: 'Reporting', rp1: 'Telegram executive reports', rp2: 'Google Sheets analytics', rp3: 'Postgres memory architecture', rp4: 'Real-time dashboards',
-    footer_link: '← Back to Portfolio'
+    res_report: 'Reporting', rp1: 'Telegram executive reports', rp2: 'Google Sheets analytics', rp3: 'Postgres memory architecture', rp4: 'Real-time dashboards'
   },
   uk: {
-    nav_back: 'Назад до портфоліо', hero_type: 'AI Автоматизація Продажів', hero_title: 'GrowthLab AI',
-    hero_tagline: 'AI-екосистема продажів для автоматичної кваліфікації лідів, інтеграції CRM, аналізу діалогів та CEO-звітності.',
-    links_title: 'Посилання на проект', links_sub: 'Демо та Ресурси',
-    context_title: 'Контекст та Проблема',
+    nav_back: 'Назад до портфоліо',
+    hero_type: 'AI Автоматизація Продажів',
+    hero_title: 'GrowthLab AI',
+    hero_desc: 'AI-екосистема продажів для автоматичної кваліфікації лідів, інтеграції CRM, аналізу діалогів та CEO-звітності через Telegram.',
+    sec_project: 'Ресурси Проекту',
+    links_title: 'Посилання та Завантаження',
+    sec_context: 'Бізнес-кейс',
+    context_title: 'Контекст та Виклик',
     context_p1: 'GrowthLab — компанія у сфері AI-автоматизації продажів. Система створена для автоматичної кваліфікації вхідних лідів, передачі даних у CRM, аналізу діалогів та формування CEO-звіту.',
-    context_p2: '<strong>Виклик:</strong> До автоматизації ліди оброблялися вручну. Менеджери могли втрачати заявки, не всі діалоги аналізувалися, а керівник не мав швидкого звіту по якості лідів, bottleneck воронки та проблемах у комунікації.',
-    goal_title: 'Мета:', goal_text: 'Побудувати AI-екосистему з трьох workflow: AI-чатбот для BANT-кваліфікації, пайплайн аналізу діалогів та систему CEO-звітності через Telegram.',
-    arch_title: 'Архітектура Системи', arch_sub: 'Екосистема з Трьох Workflow',
-    arch_desc: 'Екосистема складається з трьох взаємопов\'язаних n8n workflow, які обробляють весь пайплайн продажів від початкового захвату ліда до виконавчої звітності.',
-    impl_title: 'Реалізація Workflow', impl_sub: 'Три Взаємопов\'язані Системи',
+    context_p2: '<strong>До автоматизації:</strong> Ліди оброблялися вручну. Менеджери могли втрачати заявки, не всі діалоги аналізувалися, а керівник не мав швидкого звіту по якості лідів, bottleneck воронки та проблемах у комунікації.',
+    goal_title: 'Мета:',
+    goal_text: 'Побудувати AI-екосистему з трьох workflow: AI-чатбот для BANT-кваліфікації, пайплайн аналізу діалогів та систему CEO-звітності через Telegram.',
+    sec_arch: 'Технічний Дизайн',
+    arch_title: 'Архітектура Системи',
+    sec_workflows: 'Реалізація',
+    workflows_title: 'Три Взаємопов\'язані Системи',
     wf1_title: 'AI Чат-бот Кваліфікації Лідів',
     wf1_desc: 'Перший workflow відповідає за AI-кваліфікацію через веб-чат. AI Agent проводить BANT-аналіз, збирає інформацію про бізнес, бюджет, ЛПР, проблему та timeline. Після кваліфікації створюється lead у Zoho CRM, sessionId зберігається в Skype_ID.',
     wf1_bant: 'BANT Фреймворк', b1: 'Контекст бізнесу', b2: 'Authority (ЛПР)', b3: 'Потреба/Проблема', b4: 'Timeline',
@@ -627,23 +1500,30 @@ const i18n = {
     wf3_data: 'Джерела Даних', ds1: 'Пайплайн Zoho CRM', ds2: 'Дані статусів лідів', ds3: 'Метрики конверсії', ds4: 'Історичні тренди',
     wf3_anal: 'Аналітика', an1: 'Виявлення bottleneck', an2: 'Відстеження HOT lead', an3: 'Проблеми воронки', an4: 'AI рекомендації',
     wf3_del: 'Доставка', de1: 'Telegram CEO Report', de2: 'Executive summary', de3: 'Пункти дій', de4: 'Запланована доставка',
-    output_title: 'Результати', output_sub: 'Наслідки Проекту',
+    code_title: 'Структура n8n Workflow',
+    sec_results: 'Результати',
+    results_title: 'Результати',
     res_auto: 'Автоматизація', au1: 'Автоматична BANT-кваліфікація', au2: 'Інтеграція Zoho CRM', au3: 'AI аналіз діалогів', au4: 'Система CEO моніторингу',
     res_intel: 'Інтелект', in1: 'Структурований AI скоринг', in2: 'HOT/WARM/COLD сегментація', in3: 'Розпізнавання патернів', in4: 'Аналіз сентименту',
-    res_report: 'Звітність', rp1: 'Telegram executive звіти', rp2: 'Google Sheets аналітика', rp3: 'Postgres memory архітектура', rp4: 'Real-time дашборди',
-    footer_link: '← Назад до портфоліо'
+    res_report: 'Звітність', rp1: 'Telegram executive звіти', rp2: 'Google Sheets аналітика', rp3: 'Postgres memory архітектура', rp4: 'Real-time дашборди'
   },
   cs: {
-    nav_back: 'Zpět na portfólio', hero_type: 'AI Automatizace Prodeje', hero_title: 'GrowthLab AI',
-    hero_tagline: 'AI ekosystém prodeje pro automatickou kvalifikaci leadů, CRM integraci, analýzu dialogů a CEO reportingu.',
-    links_title: 'Odkazy na Projekt', links_sub: 'Demo & Zdroje',
-    context_title: 'Kontext a Problém',
+    nav_back: 'Zpět na portfólio',
+    hero_type: 'AI Automatizace Prodeje',
+    hero_title: 'GrowthLab AI',
+    hero_desc: 'AI ekosystém prodeje pro automatickou kvalifikaci leadů, CRM integraci, analýzu dialogů a CEO reporting přes Telegram.',
+    sec_project: 'Zdroje Projektu',
+    links_title: 'Odkazy a Stažení',
+    sec_context: 'Obchodní Případ',
+    context_title: 'Kontext a Výzva',
     context_p1: 'GrowthLab je společnost v oblasti AI automatizace prodeje. Systém byl vytvořen pro automatickou kvalifikaci příchozích leadů, přenos dat do CRM, analýzu dialogů a generování CEO reportů.',
-    context_p2: '<strong>Výzva:</strong> Před automatizací byly leady zpracovávány ručně. Manažeři mohli ztratit žádosti, ne všechny dialogy byly analyzovány a ředitel neměl rychlý přehled o kvalitě leadů, úzkých hrdlech trychtýře a problémech v komunikaci.',
-    goal_title: 'Cíl:', goal_text: 'Postavit AI ekosystém ze tří workflow: AI chatbot pro BANT kvalifikaci, pipeline analýzy dialogů a systém CEO reportingu přes Telegram.',
-    arch_title: 'Architektura Systému', arch_sub: 'Ekosystém Tří Workflow',
-    arch_desc: 'Ekosystém se skládá ze tří propojených n8n workflow, které zpracovávají celý prodejní pipeline od počátečního zachycení leadu až po výkonné reportování.',
-    impl_title: 'Implementace Workflow', impl_sub: 'Tři Propojené Systémy',
+    context_p2: '<strong>Před automatizací:</strong> Leady byly zpracovávány ručně. Manažeři mohli ztratit žádosti, ne všechny dialogy byly analyzovány a ředitel neměl rychlý přehled o kvalitě leadů, úzkých hrdlech trychtýře a problémech v komunikaci.',
+    goal_title: 'Cíl:',
+    goal_text: 'Postavit AI ekosystém ze tří workflow: AI chatbot pro BANT kvalifikaci, pipeline analýzy dialogů a systém CEO reportingu přes Telegram.',
+    sec_arch: 'Technický Design',
+    arch_title: 'Architektura Systému',
+    sec_workflows: 'Implementace',
+    workflows_title: 'Tři Propojené Systémy',
     wf1_title: 'AI Chatbot Kvalifikace Leadů',
     wf1_desc: 'První workflow zajišťuje AI kvalifikaci přes web chat. AI Agent provádí BANT analýzu, sbírá informace o byznysu, rozpočtu, rozhodujícím člověku, problému a timeline. Po kvalifikaci se vytvoří lead v Zoho CRM s sessionId uloženým v Skype_ID.',
     wf1_bant: 'BANT Framework', b1: 'Kontext byznysu', b2: 'Authority (Rozhodující osoba)', b3: 'Potřeba/Problém', b4: 'Timeline',
@@ -659,63 +1539,161 @@ const i18n = {
     wf3_data: 'Zdroje Dat', ds1: 'Zoho CRM pipeline', ds2: 'Data stavů leadů', ds3: 'Metriky konverze', ds4: 'Historické trendy',
     wf3_anal: 'Analytika', an1: 'Detekce úzkých hrdel', an2: 'Sledování HOT leadů', an3: 'Problémy trychtýře', an4: 'AI doporučení',
     wf3_del: 'Doručení', de1: 'Telegram CEO Report', de2: 'Executive summary', de3: 'Akční položky', de4: 'Plánované doručení',
-    output_title: 'Výsledky', output_sub: 'Výstupy Projektu',
+    code_title: 'Struktura n8n Workflow',
+    sec_results: 'Výsledky',
+    results_title: 'Výsledky',
     res_auto: 'Automatizace', au1: 'Automatická BANT kvalifikace', au2: 'Zoho CRM integrace', au3: 'AI analýza dialogů', au4: 'Systém CEO monitoringu',
     res_intel: 'Intelligence', in1: 'Strukturované AI skórování', in2: 'HOT/WARM/COLD segmentace', in3: 'Rozpoznávání vzorů', in4: 'Analýza sentimentu',
-    res_report: 'Reporting', rp1: 'Telegram executive reporty', rp2: 'Google Sheets analytika', rp3: 'Postgres memory architektura', rp4: 'Real-time dashboardy',
-    footer_link: '← Zpět na portfólio'
+    res_report: 'Reporting', rp1: 'Telegram executive reporty', rp2: 'Google Sheets analytika', rp3: 'Postgres memory architektura', rp4: 'Real-time dashboardy'
   }
 };
 
+/* ═══════════════════════════════════════════════════════════════
+   INITIALIZATION
+════════════════════════════════════════════════════════════════ */
+let currentLang = 'en';
+
+/* Theme */
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+
+/* Audio */
+const audioBtn = document.getElementById('audioBtn');
+const bgMusic = document.getElementById('bgMusic');
+let isPlaying = false;
+
+audioBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    audioBtn.classList.remove('playing');
+  } else {
+    bgMusic.play().catch(()=>{});
+    audioBtn.classList.add('playing');
+  }
+  isPlaying = !isPlaying;
+});
+
+/* Hamburger */
+const hamBtn = document.getElementById('hamBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+hamBtn.addEventListener('click', () => {
+  hamBtn.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  hamBtn.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+
+/* Language */
+function applyLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang === 'uk' ? 'uk' : lang === 'cs' ? 'cs' : 'en');
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  
+  document.querySelectorAll('[data-lang]').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+  
+  localStorage.setItem('lang', lang);
+}
+
+document.querySelectorAll('[data-lang]').forEach(b => {
+  b.addEventListener('click', () => applyLang(b.getAttribute('data-lang')));
+});
+
+/* Reveal */
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObserver.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+document.querySelectorAll('.rv').forEach(el => revealObserver.observe(el));
+
+/* Copy */
+function copyCode(btn) {
+  const code = document.getElementById('codeContent').innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    const orig = btn.innerText;
+    btn.innerText = 'COPIED';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.innerText = orig;
+      btn.classList.remove('copied');
+    }, 1500);
+  });
+}
+
 /* Cursor */
 (function(){
-  if(!window.matchMedia('(hover:hover)').matches) return;
-  const dot=document.getElementById('cursor-dot');
-  const ring=document.getElementById('cursor-ring');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'},{passive:true});
-  function lerpRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lerpRing)}
-  lerpRing();
-  document.querySelectorAll('a,button').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{ring.style.width='44px';ring.style.height='44px';ring.style.opacity='1'});
-    el.addEventListener('mouseleave',()=>{ring.style.width='30px';ring.style.height='30px';ring.style.opacity='.5'});
+  if (!window.matchMedia('(hover:hover)').matches) return;
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX;
+    my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
+  }, { passive: true });
+  
+  function animate() {
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+  
+  document.querySelectorAll('a, button, .glass-card, .tech-pill, .tag').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '60px';
+      ring.style.height = '60px';
+      ring.style.borderColor = 'var(--cyan)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '40px';
+      ring.style.height = '40px';
+      ring.style.borderColor = 'var(--cyan)';
+    });
   });
 })();
 
-/* Theme toggle */
-document.getElementById('themeBtn').addEventListener('click',()=>{
-  const h=document.documentElement;
-  h.setAttribute('data-theme',h.getAttribute('data-theme')==='dark'?'light':'dark');
-});
+/* Particles */
+(function(){
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 15; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDelay = Math.random() * 15 + 's';
+    p.style.animationDuration = (10 + Math.random() * 10) + 's';
+    container.appendChild(p);
+  }
+})();
 
-/* Audio toggle */
-const audioBtn=document.getElementById('audioBtn');
-const bgMusic=document.getElementById('bgMusic');
-let isPlaying=false;
-audioBtn.addEventListener('click',()=>{
-  if(isPlaying){bgMusic.pause();audioBtn.style.background='';audioBtn.style.borderColor='';audioBtn.style.color='';}
-  else{bgMusic.play().catch(()=>{});audioBtn.style.background='var(--txt)';audioBtn.style.borderColor='var(--txt)';audioBtn.style.color='var(--bg)';}
-  isPlaying=!isPlaying;
-});
-
-/* Language system */
-function applyLang(lang){
-  const t=i18n[lang];
-  document.documentElement.setAttribute('data-lang',lang);
-  document.documentElement.setAttribute('lang',lang==='uk'?'uk':lang==='cs'?'cs':'en');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(t[key]!==undefined)el.innerHTML=t[key];});
-  document.querySelectorAll('[data-lang-btn]').forEach(b=>{b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang);});
-}
-document.getElementById('langSw').addEventListener('click',e=>{const btn=e.target.closest('[data-lang-btn]');if(btn)applyLang(btn.getAttribute('data-lang-btn'));});
-applyLang('en');
-
-/* Reveal */
-const rvObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');rvObserver.unobserve(e.target);}});},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
-document.querySelectorAll('.rv').forEach(el=>rvObserver.observe(el));
-
-/* Copy code */
-function copyCode(btn){const code=document.getElementById('codeContent').innerText;navigator.clipboard.writeText(code).then(()=>{const orig=btn.innerText;btn.innerText='COPIED!';setTimeout(()=>btn.innerText=orig,1200);});}
+/* Init */
+const savedTheme = localStorage.getItem('theme') || 'dark';
+const savedLang = localStorage.getItem('lang') || 'en';
+document.documentElement.setAttribute('data-theme', savedTheme);
+applyLang(savedLang);
 </script>
-
 </body>
 </html>
