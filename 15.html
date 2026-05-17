@@ -115,9 +115,22 @@ pre{padding:20px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-siz
 .workflow-section{margin-top:40px;padding-top:40px;border-top:1px dashed var(--line)}
 .workflow-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:8px}
 .workflow-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:400;margin-bottom:15px}
-.json-downloads{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
-.json-btn{display:inline-flex;align-items:center;gap:8px;background:var(--tag);border:1px solid var(--line);padding:10px 16px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:border-color .2s,background .2s}
+
+/* ══════════════════════════════════════
+   JSON BUTTONS (SMALLER)
+══════════════════════════════════════ */
+.json-downloads{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.json-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--tag);border:1px solid var(--line);
+  padding:6px 10px;border-radius:3px;       /* Зменшено padding */
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;                            /* Зменшено font-size */
+  color:var(--txt2);
+  transition:border-color .2s,background .2s
+}
 .json-btn:hover{border-color:var(--accent);background:var(--hov)}
+.json-btn svg{width:12px;height:12px}        /* Зменшено іконку */
 
 /* ══════════════════════════════════════
    SCREENSHOTS GRID
@@ -220,19 +233,31 @@ a,button{cursor:pointer}
         </a>
       </div>
 
+      <!-- ════════════════════════════════════════════════════════════
+           JSON FILES DOWNLOAD BUTTONS
+           Файли JSON повинні бути в тій самій папці, що й цей HTML файл.
+           Або вкажіть правильний шлях (наприклад, "json/01_...json")
+      ════════════════════════════════════════════════════════════ -->
       <div class="json-downloads">
+        
+        <!-- ФАЙЛ 1: Workflow 1 JSON -->
         <a href="01_basic_chat_qualification_GrowthLab.json" download class="json-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Workflow 1: Chat Qualification
+          WF 1: Qualification
         </a>
+
+        <!-- ФАЙЛ 2: Workflow 2 JSON -->
         <a href="02_dialogue_analysis_GrowthLab.json" download class="json-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Workflow 2: Dialogue Analysis
+          WF 2: Analysis
         </a>
+
+        <!-- ФАЙЛ 3: Workflow 3 JSON -->
         <a href="03_ceo_lead_monitoring_GrowthLab.json" download class="json-btn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Workflow 3: CEO Monitoring
+          WF 3: CEO Report
         </a>
+
       </div>
     </div>
   </div>
@@ -308,19 +333,12 @@ a,button{cursor:pointer}
         <!-- ══ SCREENSHOTS 1 ══ -->
         <div class="screenshots-block">
           <div class="screenshot-item">
-            <!-- ═══════════════════════════════════════════════════════════════
-                 WORKFLOW 1 - IMAGE 1: Chatbot UI
-                 Вставте сюди посилання на фото: Snímek obrazovky (4341).png
-                 Приклад: src="https://i.imgur.com/XXXXX.png"
-            ═══════════════════════════════════════════════════════════════ -->
+            <!-- FOTO 1: Chatbot UI (wf2.png) -->
             <img src="wf2.png" alt="Chatbot UI">
             <div class="screenshot-label">Chatbot UI — Web Interface</div>
           </div>
           <div class="screenshot-item">
-            <!-- ═══════════════════════════════════════════════════════════════
-                 WORKFLOW 1 - IMAGE 2: Workflow Schema
-                 Вставте сюди посилання на фото: Snímek obrazovky (4340).png
-            ═══════════════════════════════════════════════════════════════ -->
+            <!-- FOTO 2: Workflow Schema (wf1.png) -->
             <img src="wf1.png" alt="Workflow Schema">
             <div class="screenshot-label">n8n Workflow Schema</div>
           </div>
@@ -371,18 +389,12 @@ a,button{cursor:pointer}
         <!-- ══ SCREENSHOTS 2 ══ -->
         <div class="screenshots-block">
           <div class="screenshot-item">
-            <!-- ═══════════════════════════════════════════════════════════════
-                 WORKFLOW 2 - IMAGE 1: Google Sheets
-                 Вставте сюди посилання на фото: Snímek obrazovky (4345).png
-            ═══════════════════════════════════════════════════════════════ -->
+            <!-- FOTO 3: Google Sheets (табл.png) -->
             <img src="табл.png" alt="Google Sheets Analysis">
             <div class="screenshot-label">Google Sheets — Analysis Dashboard</div>
           </div>
           <div class="screenshot-item">
-            <!-- ═══════════════════════════════════════════════════════════════
-                 WORKFLOW 2 - IMAGE 2: Workflow Schema
-                 Вставте сюди посилання на фото: Snímek obrazovky (4344).png
-            ═══════════════════════════════════════════════════════════════ -->
+            <!-- FOTO 4: Workflow Schema (Snímek obrazovky (4347).png) -->
             <img src="Snímek obrazovky (4347).png" alt="Workflow Schema">
             <div class="screenshot-label">n8n Workflow Schema</div>
           </div>
@@ -433,18 +445,12 @@ a,button{cursor:pointer}
         <!-- ══ SCREENSHOTS 3 ══ -->
         <div class="screenshots-block">
           <div class="screenshot-item">
-            <!-- ═══════════════════════════════════════════════════════════════
-                 WORKFLOW 3 - IMAGE 1: Telegram CEO Report
-                 Вставте сюди посилання на фото: Snímek obrazovky (4346).png
-            ═══════════════════════════════════════════════════════════════ -->
+            <!-- FOTO 5: Telegram CEO Report (wf3.png) -->
             <img src="wf3.png" alt="Telegram CEO Report">
             <div class="screenshot-label">Telegram — CEO Sales Report</div>
           </div>
           <div class="screenshot-item">
-            <!-- ═══════════════════════════════════════════════════════════════
-                 WORKFLOW 3 - IMAGE 2: Workflow Schema
-                 Вставте сюди посилання на фото: Snímek obrazovky (4342).png
-            ═══════════════════════════════════════════════════════════════ -->
+            <!-- FOTO 6: Workflow Schema (Snímek obrazovky (4348).png) -->
             <img src="Snímek obrazovky (4348).png" alt="Workflow Schema">
             <div class="screenshot-label">n8n Workflow Schema</div>
           </div>
