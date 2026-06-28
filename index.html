@@ -188,6 +188,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
     <a href="#" class="nav-logo">T. KOTOLUP</a>
     <nav class="nav-links" id="nav-links">
       <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#experience" data-i18n="nav_exp">Experience</a>
       <a href="#skills" data-i18n="nav_skills">Skills</a>
       <a href="#certs" data-i18n="nav_certs">Certs</a>
       <a href="#case" data-i18n="nav_case">Case</a>
@@ -211,6 +212,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" data-i18n="nav_about" onclick="closeMob()">About</a>
+  <a href="#experience" data-i18n="nav_exp" onclick="closeMob()">Experience</a>
   <a href="#skills" data-i18n="nav_skills" onclick="closeMob()">Skills</a>
   <a href="#certs" data-i18n="nav_certs" onclick="closeMob()">Certs</a>
   <a href="#case" data-i18n="nav_case" onclick="closeMob()">Case</a>
@@ -299,10 +301,70 @@ footer{border-top:1px solid var(--line);padding:52px 0}
   </div>
 </section>
 
-<section class="sec" id="skills">
+<!-- WORK EXPERIENCE SECTION ADDED -->
+<section class="sec" id="experience">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="sec-num">02</span>
+      <h2 class="sec-title" data-i18n="exp_title">Work Experience</h2>
+    </div>
+    
+    <div class="case-box rv rv-d1" style="margin-bottom: 24px;">
+      <div class="case-hdr">
+        <div>
+          <div class="case-kicker" data-i18n="exp1_role">AI Automation Engineer</div>
+          <h3 class="case-ttl">HAPP <span style="font-size: 14px; color: var(--txt3); font-family: 'JetBrains Mono', monospace;">(Freelance / Contract)</span></h3>
+          <p class="case-tag" style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--txt3); text-transform: uppercase; letter-spacing: 0.1em; margin-top:10px;">Apr 2026 – Jun 2026</p>
+        </div>
+      </div>
+      <div class="case-body" style="grid-template-columns: 1fr;">
+        <div class="c-blk" style="border-right: none; border-bottom: none;">
+          <ul class="c-list">
+            <li data-i18n="exp1_1">Designed and developed AI-powered workflows using n8n.</li>
+            <li data-i18n="exp1_2">Built AI voice assistants and Telegram AI bots for customer communication.</li>
+            <li data-i18n="exp1_3">Integrated OpenAI API, REST APIs, webhooks, CRM systems and Google Sheets.</li>
+            <li data-i18n="exp1_4">Automated lead qualification, customer support and business workflows.</li>
+            <li data-i18n="exp1_5">Implemented prompt engineering and optimized AI workflows for production use.</li>
+            <li data-i18n="exp1_6">Collaborated on deploying AI automation solutions that reduced manual work and improved operational efficiency.</li>
+          </ul>
+          <div class="c-blk-lbl" style="margin-top: 24px;" data-i18n="exp_tech">Technologies</div>
+          <div class="stack-wrap">
+            <span class="st">n8n</span><span class="st">OpenAI API</span><span class="st">Telegram Bot API</span><span class="st">REST API</span><span class="st">Webhooks</span><span class="st">Google Sheets</span><span class="st">CRM</span><span class="st">JSON</span><span class="st">Prompt Engineering</span><span class="st">AI Agents</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case-box rv rv-d2">
+      <div class="case-hdr">
+        <div>
+          <div class="case-kicker" data-i18n="exp2_role">Full-Stack Developer</div>
+          <h3 class="case-ttl" data-i18n="exp2_type">Freelance</h3>
+          <p class="case-tag" style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--txt3); text-transform: uppercase; letter-spacing: 0.1em; margin-top:10px;">2023 – 2025</p>
+        </div>
+      </div>
+      <div class="case-body" style="grid-template-columns: 1fr;">
+        <div class="c-blk" style="border-right: none; border-bottom: none;">
+          <p class="case-tag" data-i18n="exp2_intro" style="margin-bottom: 20px;">Delivered production web applications across Real Estate & Construction and e-commerce industries — full cycle from requirements to deployment:</p>
+          <ul class="c-list">
+            <li data-i18n="exp2_1">Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — full-stack React + Node.js online shop with product catalog, cart, checkout, admin panel and email notifications. Deployed on Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]</li>
+            <li data-i18n="exp2_2">HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — business website for a construction company. End-to-end: client communication, design, frontend & backend, testing, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]</li>
+            <li data-i18n="exp2_3">Built landing pages, multi-page sites and portfolio sites; integrated contact forms, product catalogs and basic CMS functionality.</li>
+          </ul>
+          <div class="c-blk-lbl" style="margin-top: 24px;" data-i18n="exp_stack">Stack</div>
+          <div class="stack-wrap">
+            <span class="st">HTML5</span><span class="st">CSS3</span><span class="st">JavaScript</span><span class="st">React.js</span><span class="st">Node.js</span><span class="st">Express</span><span class="st">REST API</span><span class="st">Three.js</span><span class="st">Git</span><span class="st">GitHub Pages</span><span class="st">Railway</span><span class="st">Tilda</span><span class="st">WordPress</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">03</span>
       <h2 class="sec-title" data-i18n="skills_title">Key Expertise</h2>
     </div>
     <table class="sk-table rv rv-d1">
@@ -369,7 +431,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 <section class="sec" id="certs">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="sec-num">03</span>
+      <span class="sec-num">04</span>
       <h2 class="sec-title" data-i18n="certs_title">Certificates</h2>
     </div>
     <div class="certs-grid">
@@ -428,7 +490,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 <section class="sec" id="case">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="sec-num">04</span>
+      <span class="sec-num">05</span>
       <h2 class="sec-title" data-i18n="case_sec_title">Featured Case</h2>
     </div>
     <div class="case-box rv rv-d1">
@@ -507,7 +569,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 <section class="sec" id="projects">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="sec-num">05</span>
+      <span class="sec-num">06</span>
       <h2 class="sec-title" data-i18n="proj_title">All Projects</h2>
     </div>
     <div class="proj-grid" id="proj-grid"></div>
@@ -532,7 +594,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 <script>
 const i18n={
 en:{
-  nav_about:"About",nav_skills:"Skills",nav_certs:"Certs",nav_case:"Case",nav_projects:"Projects",
+  nav_about:"About",nav_exp:"Experience",nav_skills:"Skills",nav_certs:"Certs",nav_case:"Case",nav_projects:"Projects",
   btn_details:"Details",btn_site:"Website ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Voice Agents · Full-Stack AI Products",
   hero_desc:"I design and build production-ready AI automations, voice agents, and full-stack AI products — from n8n pipelines and AI phone agents to SaaS backends with PostgreSQL. From idea to live system, systematically and predictably.",
@@ -551,6 +613,19 @@ en:{
   ap5:"Test on real scenarios and optimise token costs",
   ap6:"Evaluate ROI of automation and SaaS implementation",
   about_tools_lbl:"Tools & Stack",about_contact_lbl:"Contact",
+  
+  exp_title:"Work Experience", exp1_role:"AI Automation Engineer", exp_tech:"Technologies", exp2_role:"Full-Stack Developer", exp2_type:"Freelance", exp2_intro:"Delivered production web applications across Real Estate & Construction and e-commerce industries — full cycle from requirements to deployment:",
+  exp1_1:"Designed and developed AI-powered workflows using n8n.",
+  exp1_2:"Built AI voice assistants and Telegram AI bots for customer communication.",
+  exp1_3:"Integrated OpenAI API, REST APIs, webhooks, CRM systems and Google Sheets.",
+  exp1_4:"Automated lead qualification, customer support and business workflows.",
+  exp1_5:"Implemented prompt engineering and optimized AI workflows for production use.",
+  exp1_6:"Collaborated on deploying AI automation solutions that reduced manual work and improved operational efficiency.",
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — full-stack React + Node.js online shop with product catalog, cart, checkout, admin panel and email notifications. Deployed on Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — business website for a construction company. End-to-end: client communication, design, frontend & backend, testing, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_3:"Built landing pages, multi-page sites and portfolio sites; integrated contact forms, product catalogs and basic CMS functionality.",
+  exp_stack:"Stack",
+
   skills_title:"Key Expertise",
   sk1_name:"Workflow Automation",sk1_desc:"n8n pipelines with complex branching, error handling, scheduled jobs, retry logic and webhook triggers. Used across all 12 n8n projects including LegisFlow, GrowthLab AI and AI call analytics.",
   sk2_name:"AI Voice Agents",sk2_desc:"Building AI voice agents with Vapi, Retell AI, Bland AI — natural conversation flow, function calling, CRM integration, appointment booking. Voice-first AI systems for sales and support automation.",
@@ -592,7 +667,6 @@ en:{
   res_b1:"Scale-ready",res_b2:"Data-driven",res_b3:"Monetization-ready",
   proj_title:"All Projects",
   projects:[
-    // ── LIVE SaaS (featured) ──────────────────────────────────────────────
     {idx:"15/15",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI sales ecosystem with 3 n8n workflows: BANT qualification chatbot, dialogue analysis pipeline, CEO reporting to Telegram. Zoho CRM integration, Postgres Chat Memory, HOT/WARM/COLD lead segmentation.",
       tags:["n8n","Anthropic Claude","Zoho CRM","Google Sheets","Telegram Bot","Postgres Memory","AI Agents","Webhooks"],
@@ -609,7 +683,6 @@ en:{
       desc:"Telegram bot + web interface for automated legal document analysis. Accepts PDF, extracts text, detects risks. n8n workflow: PDF → chunking → GPT-4o → structured risk report. Instant compliance analysis for any contract.",
       tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],
       site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
-    // ── n8n automations (not featured) ───────────────────────────────────
     {idx:"01/15",id:"voice-image",title:"Voice → Image Generator",year:"2025",featured:false,
       desc:"Telegram voice message → AssemblyAI transcription → prompt building → DALL-E 3 image → sent back to chat.",
       tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],
@@ -657,7 +730,7 @@ en:{
   ]
 },
 uk:{
-  nav_about:"Про мене",nav_skills:"Навички",nav_certs:"Сертифікати",nav_case:"Кейс",nav_projects:"Проекти",
+  nav_about:"Про мене",nav_exp:"Досвід",nav_skills:"Навички",nav_certs:"Сертифікати",nav_case:"Кейс",nav_projects:"Проекти",
   btn_details:"Деталі",btn_site:"Сайт ↗",btn_bot:"Telegram Бот ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Голосові Агенти · Full-Stack AI продукти",
   hero_desc:"Проєктую та будую production-ready AI автоматизації, голосових агентів та full-stack AI продукти — від n8n пайплайнів і AI телефонних агентів до SaaS бекендів з PostgreSQL. Від ідеї до живої системи — системно та прогнозовано.",
@@ -676,6 +749,19 @@ uk:{
   ap5:"Тестую на реальних сценаріях та оптимізую витрати токенів",
   ap6:"Оцінюю ROI від впровадження автоматизації та SaaS",
   about_tools_lbl:"Стек та інструменти",about_contact_lbl:"Контакти",
+
+  exp_title:"Досвід роботи", exp1_role:"AI Automation Engineer", exp_tech:"Технології", exp2_role:"Full-Stack Developer", exp2_type:"Фріланс", exp2_intro:"Розробка production веб-додатків для нерухомості, будівництва та e-commerce — повний цикл від вимог до релізу:",
+  exp1_1:"Проєктування та розробка AI-автоматизацій за допомогою n8n.",
+  exp1_2:"Створення AI голосових асистентів та Telegram AI ботів для комунікації з клієнтами.",
+  exp1_3:"Інтеграція OpenAI API, REST API, вебхуків, CRM-систем та Google Sheets.",
+  exp1_4:"Автоматизація кваліфікації лідів, підтримки клієнтів та бізнес-процесів.",
+  exp1_5:"Впровадження промпт-інжинірингу та оптимізація AI-воркфлоу для production.",
+  exp1_6:"Співпраця у розгортанні рішень з AI-автоматизації, що зменшили ручну роботу та підвищили ефективність.",
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Посилання</a> — full-stack React + Node.js інтернет-магазин з каталогом, кошиком, оформленням замовлень, адмінпанеллю та email-сповіщеннями. Деплой на Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Посилання</a> — бізнес-сайт будівельної компанії. End-to-end: комунікація з клієнтом, дизайн, frontend та backend розробка, тестування та деплой. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_3:"Створення лендінгів, багосторінкових сайтів та портфоліо; інтеграція контактних форм, каталогів товарів та базового CMS-функціоналу.",
+  exp_stack:"Стек",
+
   skills_title:"Ключові навички",
   sk1_name:"Автоматизація процесів",sk1_desc:"n8n пайплайни зі складним розгалуженням, error handling, scheduled jobs, retry-логікою та webhook тригерами. Застосовано у всіх 12 n8n проектах включно з LegisFlow, GrowthLab AI та AI call analytics.",
   sk2_name:"AI Голосові Агенти",sk2_desc:"Створення AI голосових агентів з Vapi, Retell AI, Bland AI — природний діалог, function calling, CRM інтеграція, запис на зустрічі. Voice-first AI системи для автоматизації продажів та підтримки.",
@@ -780,7 +866,7 @@ uk:{
   ]
 },
 cs:{
-  nav_about:"O mně",nav_skills:"Dovednosti",nav_certs:"Certifikáty",nav_case:"Případ",nav_projects:"Projekty",
+  nav_about:"O mně",nav_exp:"Zkušenosti",nav_skills:"Dovednosti",nav_certs:"Certifikáty",nav_case:"Případ",nav_projects:"Projekty",
   btn_details:"Detaily",btn_site:"Web ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Hlasoví Agenti · Full-Stack AI produkty",
   hero_desc:"Navrhuji a vytvářím produkční AI automatizace, hlasové agenty a full-stack AI produkty — od n8n pipelines a AI telefonních agentů po SaaS backendy s PostgreSQL. Od nápadu po živý systém — systematicky a předvídatelně.",
@@ -799,6 +885,19 @@ cs:{
   ap5:"Testuji na reálných scénářích a optimalizuji náklady na tokeny",
   ap6:"Hodnotím ROI automatizace a implementace SaaS",
   about_tools_lbl:"Stack a nástroje",about_contact_lbl:"Kontakt",
+
+  exp_title:"Pracovní zkušenosti", exp1_role:"AI Automation Engineer", exp_tech:"Technologie", exp2_role:"Full-Stack Developer", exp2_type:"Freelance", exp2_intro:"Vývoj produkčních webových aplikací pro realitní a stavební branže a e-commerce — celý cyklus od požadavků po nasazení:",
+  exp1_1:"Návrh a vývoj AI automatizací pomocí n8n.",
+  exp1_2:"Tvorba AI hlasových asistentů a Telegram AI botů pro komunikaci s klienty.",
+  exp1_3:"Integrace OpenAI API, REST API, webhooků, CRM systémů a Google Sheets.",
+  exp1_4:"Automatizace kvalifikace leadů, zákaznické podpory a obchodních procesů.",
+  exp1_5:"Implementace prompt inženýrství a optimalizace AI workflow pro produkci.",
+  exp1_6:"Spolupráce na nasazení AI automatizačních řešení, která snížila ruční práci a zlepšila efektivitu.",
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Odkaz</a> — full-stack React + Node.js e-shop s katalogem, košíkem, pokladnou, admin panelem a e-mailovými notifikacemi. Nasazeno na Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Odkaz</a> — firemní web stavební společnosti. End-to-end: komunikace s klientem, design, frontend a backend vývoj, testování a nasazení. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_3:"Tvorba landing page, vícestránkových webů a portfolií; integrace kontaktních formulářů, katalogů produktů a základních CMS funkcí.",
+  exp_stack:"Stack",
+
   skills_title:"Klíčové dovednosti",
   sk1_name:"Automatizace procesů",sk1_desc:"n8n pipelines s komplexním větvením, zpracováním chyb, plánovanými úlohami, retry logikou a webhook triggery. Použito ve všech 12 n8n projektech včetně LegisFlow, GrowthLab AI.",
   sk2_name:"AI Hlasoví Agenti",sk2_desc:"Tvorba AI hlasových agentů s Vapi, Retell AI, Bland AI — přirozený rozhovor, function calling, CRM integrace, objednávání schůzek. Voice-first AI systémy pro automatizaci prodeje a podpory.",
@@ -1042,7 +1141,7 @@ function closeMob(){ham.classList.remove('open');mob.classList.remove('open');}
 
 function dlPDF(){
   const cvUrl='https://raw.githubusercontent.com/tetiana-a/aiAutomationDev/main/Tetiana_Kotolup_CV_ENv4%284%29.pdf';
-  const a=document.createElement('a');a.href=cvUrl;a.download='Tetiana_Kotolup_CV_ENv4.pdf';a.target='_blank';
+  const a=document.createElement('a');a.href=cvUrl;a.download='Tetiana_Kotolup_AI_Automation_Developer_Resume.pdf';a.target='_blank';
   document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),400);
 }
 
