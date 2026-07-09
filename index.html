@@ -48,6 +48,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2);padding:8px 0;border-bottom:1px solid var(--line)}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:110px 0 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;cursor:none}
+.hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}
+.hero-video-base{filter:grayscale(1) brightness(.3) contrast(1.15)}
+.hero-video-reveal{-webkit-mask-image:radial-gradient(circle var(--reveal-r,130px) at var(--mx,50%) var(--my,38%),#000 55%,transparent 100%);mask-image:radial-gradient(circle var(--reveal-r,130px) at var(--mx,50%) var(--my,38%),#000 55%,transparent 100%)}
+@property --reveal-r{syntax:'<length>';inherits:true;initial-value:130px}
+.hero-bg.is-active .hero-video-reveal{--reveal-r:230px;transition:--reveal-r .5s cubic-bezier(.16,1,.3,1)}
+.hero-cursor-ring{position:absolute;top:0;left:0;width:230px;height:230px;margin-left:-115px;margin-top:-115px;border-radius:50%;border:1px solid var(--line2);box-shadow:0 0 40px 6px rgba(255,255,255,.06),inset 0 0 30px rgba(255,255,255,.04);pointer-events:none;z-index:2;opacity:0;transform:translate(var(--mx,50%),var(--my,38%)) scale(.7);transition:opacity .4s ease,transform .12s ease-out}
+.hero-bg.is-active .hero-cursor-ring{opacity:1;transform:translate(var(--mx,50%),var(--my,38%)) scale(1)}
+.hero-hint{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);z-index:2;display:flex;align-items:center;gap:9px;padding:8px 18px;border-radius:100px;background:var(--bg2);border:1px solid var(--line2);backdrop-filter:blur(6px);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);opacity:1;transition:opacity .5s ease;pointer-events:none;white-space:nowrap}
+.hero-bg.is-active .hero-hint{opacity:0}
+.hero-overlay-v{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0%,transparent 26%,transparent 62%,var(--bg) 100%)}
+@media(max-width:768px){.hero-cursor-ring{display:none}.hero-hint{font-size:9px;padding:7px 14px}}
 .hero-content{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 48px}
 .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .3s both}
 .eye-line{width:28px;height:1px;background:var(--txt3)}
@@ -220,7 +232,23 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 </div>
 
 <section class="hero" id="top">
-  <canvas id="matrixCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.65;z-index:0"></canvas>
+  <div class="hero-bg" id="heroBg">
+    <!--
+        ██████████████████████████████████████████████████████
+        █  ЗАВАНТАЖТЕ ВІДЕО, ШЛЯХ ЗАЛИШЕНО БЕЗ ЗМІН              █
+        ██████████████████████████████████████████████████████
+    -->
+    <video class="hero-video-base" autoplay muted loop playsinline>
+        <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
+    </video>
+    <video class="hero-video-reveal" autoplay muted loop playsinline>
+        <source src="https://videos.pexels.com/video-files/3571264/3571264-uhd_2560_1440_30fps.mp4" type="video/mp4">
+    </video>
+    <div class="hero-cursor-ring" id="heroRing"></div>
+    <div class="hero-hint" id="heroHint" data-i18n="hero_hint">Move your mouse to reveal</div>
+  </div>
+  <canvas id="matrixCanvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;opacity:.5;z-index:0"></canvas>
+  <div class="hero-overlay-v"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="eye-line"></div>
@@ -597,6 +625,7 @@ en:{
   nav_about:"About",nav_exp:"Experience",nav_skills:"Skills",nav_certs:"Certs",nav_case:"Case",nav_projects:"Projects",
   btn_details:"Details",btn_site:"Website ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Voice Agents · Full-Stack AI Products",
+  hero_hint:"Move your mouse to reveal",
   hero_desc:"I design and build production-ready AI automations, voice agents, and full-stack AI products — from n8n pipelines and AI phone agents to SaaS backends with PostgreSQL. From idea to live system, systematically and predictably.",
   stat_projects:"Projects",stat_certs:"Certificates",stat_saas:"Live SaaS",stat_first:"AI-first approach",
   about_title:"About me",about_who_lbl:"Who I am",
@@ -733,6 +762,7 @@ uk:{
   nav_about:"Про мене",nav_exp:"Досвід",nav_skills:"Навички",nav_certs:"Сертифікати",nav_case:"Кейс",nav_projects:"Проекти",
   btn_details:"Деталі",btn_site:"Сайт ↗",btn_bot:"Telegram Бот ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Голосові Агенти · Full-Stack AI продукти",
+  hero_hint:"Рухайте мишкою, щоб побачити",
   hero_desc:"Проєктую та будую production-ready AI автоматизації, голосових агентів та full-stack AI продукти — від n8n пайплайнів і AI телефонних агентів до SaaS бекендів з PostgreSQL. Від ідеї до живої системи — системно та прогнозовано.",
   stat_projects:"Проектів",stat_certs:"Сертифікатів",stat_saas:"Live SaaS",stat_first:"AI-first підхід",
   about_title:"Про мене",about_who_lbl:"Хто я",
@@ -869,6 +899,7 @@ cs:{
   nav_about:"O mně",nav_exp:"Zkušenosti",nav_skills:"Dovednosti",nav_certs:"Certifikáty",nav_case:"Případ",nav_projects:"Projekty",
   btn_details:"Detaily",btn_site:"Web ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Hlasoví Agenti · Full-Stack AI produkty",
+  hero_hint:"Pohněte myší pro odhalení",
   hero_desc:"Navrhuji a vytvářím produkční AI automatizace, hlasové agenty a full-stack AI produkty — od n8n pipelines a AI telefonních agentů po SaaS backendy s PostgreSQL. Od nápadu po živý systém — systematicky a předvídatelně.",
   stat_projects:"Projektů",stat_certs:"Certifikátů",stat_saas:"Live SaaS",stat_first:"AI-first přístup",
   about_title:"O mně",about_who_lbl:"Kdo jsem",
@@ -1144,6 +1175,53 @@ function dlPDF(){
   const a=document.createElement('a');a.href=cvUrl;a.download='Tetiana_Kotolup_AI_Automation_Developer_Resume.pdf';a.target='_blank';
   document.body.appendChild(a);a.click();setTimeout(()=>a.remove(),400);
 }
+
+/* ── HERO VIDEO FLASHLIGHT REVEAL ── */
+(function(){
+  const heroBg=document.getElementById('heroBg');
+  if(!heroBg)return;
+  const heroHint=document.getElementById('heroHint');
+
+  function setHeroPos(clientX,clientY){
+    const rect=heroBg.getBoundingClientRect();
+    const x=clientX-rect.left;
+    const y=clientY-rect.top;
+    heroBg.style.setProperty('--mx',x+'px');
+    heroBg.style.setProperty('--my',y+'px');
+  }
+
+  heroBg.addEventListener('mouseenter',()=>heroBg.classList.add('is-active'));
+  heroBg.addEventListener('mouseleave',()=>heroBg.classList.remove('is-active'));
+  heroBg.addEventListener('mousemove',e=>setHeroPos(e.clientX,e.clientY));
+
+  heroBg.addEventListener('touchstart',e=>{
+    heroBg.classList.add('is-active');
+    const t=e.touches[0];
+    setHeroPos(t.clientX,t.clientY);
+  },{passive:true});
+  heroBg.addEventListener('touchmove',e=>{
+    const t=e.touches[0];
+    setHeroPos(t.clientX,t.clientY);
+  },{passive:true});
+  heroBg.addEventListener('touchend',()=>{
+    setTimeout(()=>heroBg.classList.remove('is-active'),1200);
+  });
+
+  let idleT=0,idleRunning=true;
+  function idleDrift(){
+    if(!idleRunning)return;
+    idleT+=0.012;
+    const rect=heroBg.getBoundingClientRect();
+    const cx=rect.width*0.5+Math.sin(idleT)*rect.width*0.16;
+    const cy=rect.height*0.38+Math.cos(idleT*0.8)*rect.height*0.08;
+    heroBg.style.setProperty('--mx',cx+'px');
+    heroBg.style.setProperty('--my',cy+'px');
+    requestAnimationFrame(idleDrift);
+  }
+  idleDrift();
+  heroBg.addEventListener('mousemove',()=>{idleRunning=false;if(heroHint)heroHint.style.opacity='0';},{once:true});
+  heroBg.addEventListener('touchstart',()=>{idleRunning=false;if(heroHint)heroHint.style.opacity='0';},{once:true});
+})();
 
 /* ── CANVAS BACKGROUND ── */
 (function(){
