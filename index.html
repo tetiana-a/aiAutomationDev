@@ -58,9 +58,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .hero-bg.is-active .hero-cursor-ring{opacity:1;transform:translate(var(--mx,50%),var(--my,38%)) scale(1)}
 .hero-hint{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);z-index:2;display:flex;align-items:center;gap:9px;padding:8px 18px;border-radius:100px;background:var(--bg2);border:1px solid var(--line2);backdrop-filter:blur(6px);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);opacity:1;transition:opacity .5s ease;pointer-events:none;white-space:nowrap}
 .hero-bg.is-active .hero-hint{opacity:0}
-.hero-overlay-v{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0%,transparent 26%,transparent 62%,var(--bg) 100%)}
+.hero-overlay-v{position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.3) 20%,rgba(0,0,0,.4) 55%,rgba(0,0,0,.85) 100%),
+    radial-gradient(ellipse 60% 70% at 22% 55%,rgba(0,0,0,.45) 0%,transparent 70%);
+}
+[data-theme="light"] .hero-overlay-v{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.22) 20%,rgba(255,255,255,.32) 55%,rgba(255,255,255,.82) 100%),
+    radial-gradient(ellipse 60% 70% at 22% 55%,rgba(255,255,255,.4) 0%,transparent 70%);
+}
 @media(max-width:768px){.hero-cursor-ring{display:none}.hero-hint{font-size:9px;padding:7px 14px}}
 .hero-content{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 48px}
+.hero-name{text-shadow:0 4px 30px rgba(0,0,0,.55)}
+[data-theme="light"] .hero-name{text-shadow:0 4px 24px rgba(255,255,255,.6)}
+.hero-eyebrow{padding:7px 16px 7px 6px;background:var(--bg2);border:1px solid var(--line2);border-radius:100px;width:fit-content;backdrop-filter:blur(6px)}
+.hero-avatar{box-shadow:0 12px 40px rgba(0,0,0,.45)}
 .hero-eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .3s both}
 .eye-line{width:28px;height:1px;background:var(--txt3)}
 .eye-txt{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--txt3)}
@@ -1178,10 +1191,18 @@ function dlPDF(){
 
 /* ── HERO VIDEO FLASHLIGHT REVEAL ── */
 (function(){
+  const heroSection=document.getElementById('top');
   const heroBg=document.getElementById('heroBg');
-  if(!heroBg)return;
+  if(!heroSection||!heroBg)return;
   const heroHint=document.getElementById('heroHint');
 
+  // Listen on the whole hero SECTION (not just the video layer) so that
+  // moving the mouse over text/avatar/stats still updates the reveal position.
+  // Those elements sit visually above the video (higher z-index) which means
+  // they — not the video layer — receive the raw mousemove event; listening
+  // only on #heroBg made the flashlight freeze the moment the cursor crossed
+  // over any text. Listening on the ancestor section fixes that, since
+  // mousemove always bubbles up to it regardless of which child was hit.
   function setHeroPos(clientX,clientY){
     const rect=heroBg.getBoundingClientRect();
     const x=clientX-rect.left;
@@ -1190,20 +1211,31 @@ function dlPDF(){
     heroBg.style.setProperty('--my',y+'px');
   }
 
-  heroBg.addEventListener('mouseenter',()=>heroBg.classList.add('is-active'));
-  heroBg.addEventListener('mouseleave',()=>heroBg.classList.remove('is-active'));
-  heroBg.addEventListener('mousemove',e=>setHeroPos(e.clientX,e.clientY));
+  function insideHero(clientX,clientY){
+    const rect=heroSection.getBoundingClientRect();
+    return clientX>=rect.left&&clientX<=rect.right&&clientY>=rect.top&&clientY<=rect.bottom;
+  }
 
-  heroBg.addEventListener('touchstart',e=>{
+  heroSection.addEventListener('mousemove',e=>{
+    if(!insideHero(e.clientX,e.clientY)){
+      heroBg.classList.remove('is-active');
+      return;
+    }
+    heroBg.classList.add('is-active');
+    setHeroPos(e.clientX,e.clientY);
+  });
+  heroSection.addEventListener('mouseleave',()=>heroBg.classList.remove('is-active'));
+
+  heroSection.addEventListener('touchstart',e=>{
     heroBg.classList.add('is-active');
     const t=e.touches[0];
     setHeroPos(t.clientX,t.clientY);
   },{passive:true});
-  heroBg.addEventListener('touchmove',e=>{
+  heroSection.addEventListener('touchmove',e=>{
     const t=e.touches[0];
     setHeroPos(t.clientX,t.clientY);
   },{passive:true});
-  heroBg.addEventListener('touchend',()=>{
+  heroSection.addEventListener('touchend',()=>{
     setTimeout(()=>heroBg.classList.remove('is-active'),1200);
   });
 
@@ -1219,8 +1251,8 @@ function dlPDF(){
     requestAnimationFrame(idleDrift);
   }
   idleDrift();
-  heroBg.addEventListener('mousemove',()=>{idleRunning=false;if(heroHint)heroHint.style.opacity='0';},{once:true});
-  heroBg.addEventListener('touchstart',()=>{idleRunning=false;if(heroHint)heroHint.style.opacity='0';},{once:true});
+  heroSection.addEventListener('mousemove',()=>{idleRunning=false;if(heroHint)heroHint.style.opacity='0';},{once:true});
+  heroSection.addEventListener('touchstart',()=>{idleRunning=false;if(heroHint)heroHint.style.opacity='0';},{once:true});
 })();
 
 /* ── CANVAS BACKGROUND ── */
