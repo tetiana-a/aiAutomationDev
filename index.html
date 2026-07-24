@@ -223,6 +223,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <div class="lang-sw" id="langSw">
         <button class="lang-btn active" data-lang-btn="en">EN</button>
         <button class="lang-btn" data-lang-btn="uk">UA</button>
+        <button class="lang-btn" data-lang-btn="ru">RU</button>
         <button class="lang-btn" data-lang-btn="cs">CZ</button>
       </div>
       <button class="theme-tog" id="themeBtn" aria-label="Toggle theme"></button>
@@ -1049,6 +1050,107 @@ cs:{
   ]
 }};
 
+i18n.ru={
+  ...i18n.en,
+  nav_about:"Обо мне",nav_exp:"Опыт",nav_skills:"Навыки",nav_certs:"Сертификаты",nav_case:"Кейс",nav_projects:"Проекты",
+  btn_details:"Подробнее",btn_site:"Сайт ↗",btn_bot:"Telegram-бот ↗",btn_github:"GitHub ↗",
+  hero_eyebrow:"AI Automation Developer · Голосовые AI-агенты · Full-Stack AI-продукты",
+  hero_hint:"Двигайте мышью, чтобы увидеть",
+  hero_desc:"Проектирую и создаю готовые к работе AI-автоматизации, голосовых агентов и full-stack AI-продукты — от n8n-процессов и телефонных AI-агентов до SaaS-бэкендов с PostgreSQL. От идеи до работающей системы — системно и предсказуемо.",
+  stat_projects:"Проектов",stat_certs:"Сертификатов",stat_saas:"Рабочих SaaS",stat_first:"AI-first подход",
+  about_title:"Обо мне",about_who_lbl:"Кто я",
+  about_who_p1:"<strong>Татьяна Котолуп</strong> — AI Automation Developer. Создаю автоматизации в n8n, голосовых AI-агентов, Telegram AI-ботов и full-stack AI SaaS-продукты с использованием Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude и React.",
+  edu_lbl:"Образование",edu_degree:"Диплом младшего специалиста",
+  edu_school:"Черкасский государственный бизнес-колледж · 2017<br>Специальность: Техник компьютерных систем",
+  edu_nostri:"✓ Нострифицирован в Чехии · 18-20-M/01 Informační technologie · KÚ JMK 2021",
+  about_who_p2:"Завершаю программу <strong>AI No-Code Developer</strong>. 4 работающих AI SaaS-продукта развёрнуты в production.",
+  about_approach_lbl:"Мой подход",
+  ap1:"Анализирую бизнес-процессы и нахожу точки потери времени",
+  ap2:"Проектирую логику AI-агента под конкретную задачу",
+  ap3:"Создаю голосовых AI-агентов с естественным диалогом",
+  ap4:"Разворачиваю production-бэкенды с PostgreSQL, Prisma и Supabase",
+  ap5:"Тестирую на реальных сценариях и оптимизирую расходы токенов",
+  ap6:"Оцениваю ROI от внедрения автоматизации и SaaS",
+  about_tools_lbl:"Стек и инструменты",about_contact_lbl:"Контакты",
+
+  exp_title:"Опыт работы",exp1_role:"AI Automation Engineer",exp_tech:"Технологии",exp2_role:"Full-Stack Developer",exp2_type:"Фриланс",
+  exp2_intro:"Разработка production-веб-приложений для недвижимости, строительства и e-commerce — полный цикл от требований до запуска:",
+  exp1_1:"Проектирование и разработка AI-автоматизаций с помощью n8n.",
+  exp1_2:"Создание голосовых AI-ассистентов и Telegram AI-ботов для общения с клиентами.",
+  exp1_3:"Интеграция OpenAI API, REST API, вебхуков, CRM-систем и Google Sheets.",
+  exp1_4:"Автоматизация квалификации лидов, клиентской поддержки и бизнес-процессов.",
+  exp1_5:"Внедрение промпт-инжиниринга и оптимизация AI-процессов для production.",
+  exp1_6:"Участие во внедрении AI-автоматизаций, которые сократили ручную работу и повысили операционную эффективность.",
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Ссылка</a> — full-stack интернет-магазин на React + Node.js с каталогом, корзиной, оформлением заказов, админ-панелью и email-уведомлениями. Развёрнут на Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Ссылка</a> — бизнес-сайт строительной компании. Полный цикл: общение с клиентом, дизайн, frontend и backend, тестирование и развёртывание. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_3:"Создание лендингов, многостраничных сайтов и портфолио; интеграция контактных форм, каталогов товаров и базовых функций CMS.",
+  exp_stack:"Стек",
+
+  skills_title:"Ключевые навыки",
+  sk1_name:"Автоматизация процессов",sk1_desc:"n8n-процессы со сложным ветвлением, обработкой ошибок, запланированными задачами, retry-логикой и webhook-триггерами. Использованы во всех 12 проектах n8n, включая LegisFlow, GrowthLab AI и аналитику AI-звонков.",
+  sk2_name:"Голосовые AI-агенты",sk2_desc:"Создание голосовых AI-агентов с Vapi, Retell AI и Bland AI: естественный диалог, вызов функций, интеграция с CRM и запись на встречи. Voice-first AI-системы для автоматизации продаж и поддержки.",
+  sk3_name:"AI-интеграция и промптинг",sk3_desc:"OpenAI GPT-4o / GPT-4o-mini, Anthropic Claude, структурированный JSON-вывод, ансамблевая оценка моделей, разбиение больших документов, моделирование Financial DNA и BANT-квалификация.",
+  sk4_name:"Разработка Telegram-ботов",sk4_desc:"Production Telegram-боты на Telegraf (Node.js) и n8n: маршрутизация команд, уведомления в реальном времени, обработка голоса, генерация изображений DALL-E и лимиты SaaS по использованию. Более 6 работающих ботов.",
+  sk5_name:"Backend и API-разработка",sk5_desc:"Node.js / TypeScript, REST API на Express.js, JWT-аутентификация и событийные процессы на вебхуках. Использовано в WealthMirror AI, GrowthLab AI и AI CRM; развёрнуто на Render и Vercel.",
+  sk6_name:"Базы данных и ORM",sk6_desc:"PostgreSQL с Prisma ORM и Supabase. Проектирование схем для CRM, финансовых данных пользователей, воронок продаж, квот использования и логики монетизации SaaS.",
+  sk7_name:"Интеграции API и сервисов",sk7_desc:"Google Suite API (Sheets, Calendar, Drive, Gmail), Zoho CRM, AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank и NocoDB DataTable. Более 12 сторонних интеграций.",
+  sk8_name:"Голосовой и визуальный AI",sk8_desc:"Транскрибация AssemblyAI с опросом каждые 30 секунд, генерация изображений DALL-E 3 из голосовых сообщений, извлечение текста из PDF с разбиением и преобразование голоса в структурированные данные.",
+  sk9_name:"Frontend и React",sk9_desc:"React.js-панель для AI CRM: управление клиентами и встречами, синхронизация через вебхуки в реальном времени. Адаптивные HTML/CSS-интерфейсы и развёртывание на Vercel.",
+
+  certs_title:"Сертификаты",
+  cert9_desc:"243-часовая программа: no-code автоматизация в n8n, промпт-инжиниринг и AI-агенты, автоматизация маркетинга, продаж и поддержки, создание production-ready AI-агента",
+  cert1_desc:"Когнитивные процессы и поведенческие модели — помогают создавать ориентированные на человека автоматизации",
+  cert2_desc:"AI в маркетинге: автоматизация контента, персонализация и аналитика",
+  cert3_desc:"Адаптивная вёрстка, Flexbox, Grid, CSS-анимации, формы и валидация",
+  cert4_desc:"Функции, массивы, объекты, DOM, обработчики событий, отладка и Chrome DevTools",
+  cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions и безопасность GCP",
+  cert6_desc:"Backend-разработка, базы данных, формы, сессии, защита от XSS и обработка ошибок",
+  cert7_desc:"ChatGPT в деловой коммуникации: автоматизация переписки, отчётов и презентаций",
+  cert8_desc:"12 часов индивидуального менторства от экспертов отрасли: цели, карьерное развитие и стратегия",
+
+  case_sec_title:"Избранный кейс",
+  case_kicker:"Экосистема AI-продаж · n8n + Claude + Zoho CRM + Telegram",
+  case_title:"GrowthLab AI<br>Экосистема автоматизации продаж",
+  case_tagline:"Компания не понимала, почему теряются лиды. Создана AI-экосистема, которая автоматически квалифицирует лиды, анализирует все диалоги и отправляет отчёты руководителю в Telegram — 3 взаимосвязанных процесса работают 24/7.",
+  case_prob_lbl:"Проблема",case_sol_lbl:"Решение · 3 процесса",case_proc_lbl:"Процесс",case_res_lbl:"Результаты",
+  case_p1:"Лиды обрабатывались вручную — высокий риск потери",
+  case_p2:"Не было системного анализа диалогов",
+  case_p3:"У руководителя не было быстрого отчёта о качестве воронки",
+  case_p4:"Узкие места оставались незаметными до последнего",
+  p_chat:"Чат",
+  case_pr1:"Процесс 1: AI-чатбот проводит BANT-квалификацию",
+  case_pr2:"Собирает данные о бизнесе, бюджете, полномочиях, потребности и сроках",
+  case_pr3:"Процесс 2: анализирует все диалоги через Postgres Memory",
+  case_pr4:"Выявляет ошибки агента, проблемы клиентов и успешные паттерны",
+  case_pr5:"Процесс 3: аналитика всей CRM-воронки для руководителя",
+  case_pr6:"Автоматически создаёт сегментацию HOT/WARM/COLD",
+  res_quant:"Количественные",res_qual:"Качественные",res_biz:"Для бизнеса",
+  res_q1:"Автоквалификация",res_q2:"Без ручной работы",
+  res_ql1:"Полная прозрачность",res_ql2:"Данные в реальном времени",res_ql3:"Контроль руководителя",
+  res_b1:"Готово к масштабированию",res_b2:"Решения на основе данных",res_b3:"Готово к монетизации",
+  proj_title:"Все проекты",
+  projects:i18n.en.projects.map(p=>{
+    const ru={
+      growthlab:["Экосистема AI-продаж GrowthLab","AI-экосистема продаж из 3 процессов n8n: чатбот для BANT-квалификации, анализ диалогов и отчёты руководителю в Telegram. Интеграция с Zoho CRM, Postgres Chat Memory и сегментация лидов HOT/WARM/COLD."],
+      wealthmirror:["WealthMirror AI","Рабочий AI SaaS для анализа финансовых решений в реальном времени через Telegram. Webhook-бэкенд: запрос пользователя → анализ OpenAI → структурированный результат → PostgreSQL. Financial DNA, монетизация по использованию, развёртывание на Render."],
+      aicrm:["AI CRM-система","AI-CRM автоматизирует управление клиентами и встречами. Telegram-бот служит интерфейсом на естественном языке, React-панель и AI-слой синхронизируются через вебхуки. JWT-аутентификация и REST API."],
+      legisflow:["LegisFlow — юридический AI-агент","Telegram-бот и веб-интерфейс для автоматического анализа юридических документов. Принимает PDF, извлекает текст и выявляет риски. n8n: PDF → разбиение → GPT-4o → структурированный отчёт."],
+      "voice-image":["Голос → изображение","Голосовое сообщение в Telegram → транскрибация AssemblyAI → создание промпта → изображение DALL-E 3 → отправка в чат."],
+      "ua-months":["Динамический генератор месяцев","Многоразовый модуль n8n с логикой дат — формирует месяцы от текущего до декабря в виде структурированного JSON без обслуживания."],
+      "tg-gcal":["Telegram → Google Calendar","AI извлекает название, дату и время из сообщения Telegram, проверяет данные, создаёт событие в календаре и отправляет подтверждение."],
+      "btc-alert":["Уведомление о цене BTC → Telegram","Проверяет цену BTC каждые 15 минут и отправляет уведомления только при значимом изменении состояния — без спама."],
+      "currency-report":["Ежедневный отчёт о курсах валют","Автоматизация по расписанию в 09:00 получает курсы USD/EUR через PrivatBank API и отправляет оформленное HTML-письмо."],
+      "weather-kyiv-brno":["Погода в Киеве и Брно","Ежедневно в 08:30 отправляет погоду для двух городов с использованием OpenWeatherMap API, пакетной обработки и AI-форматирования."],
+      "daily-motivation":["Ежедневная мотивация → Telegram","Каждый день в 09:00 генерирует оригинальную мотивационную фразу, обрабатывает её в JavaScript и отправляет с хештегами."],
+      "site-monitor":["Мониторинг доступности сайта","HEAD-запрос каждые 5 минут; уведомление отправляется только при ошибке со статусом ≥ 400. Лёгкий и надёжный мониторинг."],
+      "ai-jokes":["Мультимодельная оценка контента","Параллельная генерация GPT-4o-mini, оценка GPT-4o по шкале 1–10 и выбор лучшего результата — практический ансамблевый подход."],
+      "monthly-sales":["Ежемесячная аналитика продаж","Детерминированный процесс рассчитывает количество заказов, выручку и средний чек за текущий месяц по данным Google Sheets."],
+      "img-url-drive":["Изображение по URL → Google Drive","Загружает бинарный файл по URL внутри n8n и сохраняет его в нужную папку Google Drive с автоматически созданным именем."]
+    }[p.id];
+    return {...p,title:ru[0],desc:ru[1]};
+  })
+};
+
 const projectMap={
   'voice-image'  :'v.html',
   'ua-months'    :'1.html',
@@ -1111,7 +1213,7 @@ function applyLang(lang){
   curLang=lang;localStorage.setItem('tk_lang',lang);
   const t=i18n[lang];
   document.documentElement.setAttribute('data-lang',lang);
-  document.documentElement.setAttribute('lang',lang==='uk'?'uk':lang==='cs'?'cs':'en');
+  document.documentElement.setAttribute('lang',lang==='uk'?'uk':lang==='ru'?'ru':lang==='cs'?'cs':'en');
   document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(t[k]!==undefined)el.innerHTML=t[k]});
   const skNames=document.querySelectorAll('.sk-name');
   const skDescs=document.querySelectorAll('.sk-desc');
