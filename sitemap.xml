@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/1.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/2.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/3.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/4.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/5.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/6.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/7.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/8.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/9.html</loc></url>
-  <url><loc>https://tetiana-a.github.io/aiAutomationDev/10.html</loc></url>
-
+<!-- Замінити BASE_URL на свій домен. Покласти файл у корінь репозиторію (поруч з index.html) -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://BASE_URL/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://BASE_URL/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://BASE_URL/?lang=uk"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://BASE_URL/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://BASE_URL/?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://BASE_URL/?lang=en"/>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
 </urlset>
