@@ -36,23 +36,91 @@
 <meta name="twitter:description" content="n8n · AI Voice Agents · Telegram AI bots · OpenAI · Anthropic Claude · Full-Stack AI SaaS">
 <meta name="twitter:image" content="https://tetianakotolup.com/foto.jpeg">
 
-<!-- === Structured Data (JSON-LD) === -->
+<!-- === Structured Data (JSON-LD): Person / ProfessionalService ===
+     Це основне джерело, з якого AI-системи (ChatGPT, Claude, Perplexity, Google AI Overviews)
+     та класичні пошуковики машинно "розуміють", хто ти і чим займаєшся.
+     Коли з'являться профілі на LinkedIn / Djinni / Upwork — додай їх URL у масив "sameAs" нижче,
+     це створює "ланцюг довіри" між усіма твоїми профілями. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Tetiana Kotolup",
   "jobTitle": "AI Automation Developer",
+  "description": "AI Automation Developer building n8n workflows, AI voice agents, Telegram AI bots, and full-stack AI SaaS products with OpenAI GPT-4o, Anthropic Claude, Node.js, PostgreSQL, and React.",
   "url": "https://tetianakotolup.com/",
   "image": "https://tetianakotolup.com/foto.jpeg",
   "email": "mailto:kotolup24@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Brno",
+    "addressCountry": "CZ"
+  },
+  "knowsLanguage": ["en", "uk", "ru", "cs"],
+  "knowsAbout": [
+    "n8n workflow automation", "AI voice agents", "OpenAI GPT-4o integration",
+    "Anthropic Claude integration", "Telegram bot development", "Node.js",
+    "TypeScript", "PostgreSQL", "React.js", "Prisma ORM", "Supabase"
+  ],
   "sameAs": [
     "https://github.com/tetiana-a",
     "https://t.me/tetiana_K888"
   ],
-  "knowsAbout": [
-    "n8n", "OpenAI GPT-4o", "Anthropic Claude", "AI Voice Agents",
-    "Telegram Bot Development", "Node.js", "TypeScript", "PostgreSQL", "React"
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Self-employed (OSVČ)"
+  }
+}
+</script>
+
+<!-- === Structured Data (JSON-LD): FAQPage ===
+     AI-системи і Google особливо охоче цитують дослівно сторінки з блоком питання-відповідь.
+     Відповіді нижче співпадають слово в слово з видимим FAQ-блоком на сторінці (секція #faq). -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Tetiana Kotolup?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tetiana Kotolup is an AI Automation Developer based in Brno, Czech Republic, specializing in n8n workflow automation, AI voice agents, Telegram AI bots, and full-stack AI SaaS products built with OpenAI GPT-4o, Anthropic Claude, Node.js, and PostgreSQL."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What services does Tetiana Kotolup provide?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "She designs and builds production-ready n8n automation workflows, AI voice agents for sales and support, Telegram AI bots, and full-stack AI SaaS products — from initial process analysis through deployment on platforms like Render, Vercel, and Railway."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What technologies does Tetiana Kotolup work with?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Her core stack includes n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase, and voice AI platforms such as Vapi, Retell AI, and Bland AI."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is Tetiana Kotolup located and does she work remotely?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "She is based in Brno, Czech Republic, and works remotely with clients internationally."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I contact Tetiana Kotolup?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can reach her by email at kotolup24@gmail.com, via Telegram at @tetiana_K888, or through her portfolio at https://tetianakotolup.com/."
+      }
+    }
   ]
 }
 </script>
@@ -253,6 +321,12 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 .eq-bar:nth-child(4){--d:.6s;height:14px}
 @keyframes eq-anim{from{transform:scaleY(.25)}to{transform:scaleY(1)}}
 .music-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase}
+.faq-list{display:flex;flex-direction:column;border:1px solid var(--line)}
+.faq-item{border-bottom:1px solid var(--line);padding:26px 30px;background:var(--bg);transition:background .25s}
+.faq-item:last-child{border-bottom:none}
+.faq-item:hover{background:var(--bg2)}
+.faq-q{font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:var(--txt);margin-bottom:10px}
+.faq-a{font-size:14px;color:var(--txt2);line-height:1.75;max-width:760px}
 </style>
 </head>
 <body>
@@ -268,6 +342,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <a href="#certs" data-i18n="nav_certs">Certs</a>
       <a href="#case" data-i18n="nav_case">Case</a>
       <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-right">
       <div class="lang-sw" id="langSw">
@@ -292,6 +367,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
   <a href="#certs" data-i18n="nav_certs" onclick="closeMob()">Certs</a>
   <a href="#case" data-i18n="nav_case" onclick="closeMob()">Case</a>
   <a href="#projects" data-i18n="nav_projects" onclick="closeMob()">Projects</a>
+  <a href="#faq" onclick="closeMob()">FAQ</a>
 </div>
 <section class="hero" id="top">
   <div class="hero-bg" id="heroBg">
@@ -655,6 +731,36 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <h2 class="sec-title" data-i18n="proj_title">All Projects</h2>
     </div>
     <div class="proj-grid" id="proj-grid"></div>
+  </div>
+</section>
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title">FAQ</h2>
+    </div>
+    <div class="faq-list rv rv-d1">
+      <div class="faq-item">
+        <div class="faq-q">Who is Tetiana Kotolup?</div>
+        <div class="faq-a">Tetiana Kotolup is an AI Automation Developer based in Brno, Czech Republic, specializing in n8n workflow automation, AI voice agents, Telegram AI bots, and full-stack AI SaaS products built with OpenAI GPT-4o, Anthropic Claude, Node.js, and PostgreSQL.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What services does Tetiana Kotolup provide?</div>
+        <div class="faq-a">She designs and builds production-ready n8n automation workflows, AI voice agents for sales and support, Telegram AI bots, and full-stack AI SaaS products — from initial process analysis through deployment on platforms like Render, Vercel, and Railway.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What technologies does Tetiana Kotolup work with?</div>
+        <div class="faq-a">Her core stack includes n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase, and voice AI platforms such as Vapi, Retell AI, and Bland AI.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Where is Tetiana Kotolup located and does she work remotely?</div>
+        <div class="faq-a">She is based in Brno, Czech Republic, and works remotely with clients internationally.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How can I contact Tetiana Kotolup?</div>
+        <div class="faq-a">You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.</div>
+      </div>
+    </div>
   </div>
 </section>
 <footer>
