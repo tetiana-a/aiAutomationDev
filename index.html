@@ -303,6 +303,29 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .p-btn.accent{background:var(--txt);color:var(--bg);border-color:transparent}
 .p-btn.accent:hover{opacity:.82}
 @media(max-width:600px){.proj-grid{grid-template-columns:1fr}}
+.proj-folder{margin-top:2px;border:1px solid var(--line);background:var(--bg)}
+.folder-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 28px;cursor:pointer;transition:background .2s;user-select:none}
+.folder-header:hover{background:var(--bg2)}
+.folder-left{display:flex;align-items:center;gap:14px;min-width:0}
+.folder-icon{width:36px;height:36px;border:1px solid var(--line2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:var(--tag)}
+.folder-title{font-family:'Playfair Display',serif;font-size:19px;color:var(--txt);line-height:1.3}
+.folder-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+.folder-chevron{width:18px;height:18px;color:var(--txt3);transition:transform .35s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+.proj-folder.open .folder-chevron{transform:rotate(180deg)}
+.folder-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
+.mini-list{border-top:1px solid var(--line)}
+.mini-row{display:flex;align-items:flex-start;gap:16px;padding:16px 28px;border-bottom:1px solid var(--line);transition:background .2s}
+.mini-row:last-child{border-bottom:none}
+.mini-row:hover{background:var(--bg2)}
+.mini-idx{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);width:38px;flex-shrink:0;padding-top:3px}
+.mini-main{flex:1;min-width:0}
+.mini-title{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--txt);margin-bottom:4px}
+.mini-desc{font-size:12px;color:var(--txt2);line-height:1.55;margin-bottom:8px}
+.mini-tags{display:flex;flex-wrap:wrap;gap:4px}
+.mini-tag{background:var(--tag);border:1px solid var(--line);padding:2px 7px;border-radius:2px;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)}
+.mini-btn{flex-shrink:0;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt);border:1px solid var(--line2);padding:7px 11px;border-radius:3px;background:transparent;cursor:pointer;transition:background .2s,border-color .2s;margin-top:2px}
+.mini-btn:hover{background:var(--hov);border-color:var(--txt3)}
+@media(max-width:700px){.folder-header{padding:18px 20px}.mini-row{flex-direction:column;gap:10px;padding:16px 20px}.mini-idx{display:none}.mini-btn{align-self:flex-start}}
 footer{border-top:1px solid var(--line);padding:52px 0}
 .ft-in{max-width:1160px;margin:0 auto;padding:0 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
 .ft-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:400}
@@ -731,6 +754,21 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <h2 class="sec-title" data-i18n="proj_title">All Projects</h2>
     </div>
     <div class="proj-grid" id="proj-grid"></div>
+    <div class="proj-folder rv rv-d1" id="projFolder">
+      <div class="folder-header" onclick="toggleFolder()">
+        <div class="folder-left">
+          <div class="folder-icon">⚙</div>
+          <div>
+            <div class="folder-title" data-i18n="folder_title">Quick Automations</div>
+            <div class="folder-sub" id="folderSub"></div>
+          </div>
+        </div>
+        <svg class="folder-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="folder-body" id="folderBody">
+        <div class="mini-list" id="folderList"></div>
+      </div>
+    </div>
   </div>
 </section>
 <section class="sec" id="faq">
@@ -851,6 +889,8 @@ en:{
   res_ql1:"Full transparency",res_ql2:"Real-time insights",res_ql3:"CEO visibility",
   res_b1:"Scale-ready",res_b2:"Data-driven",res_b3:"Monetization-ready",
   proj_title:"All Projects",
+  folder_title:"Quick Automations",
+  folder_sub:"{n} lightweight n8n workflows — click to expand",
   projects:[
     {idx:"15/16",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI sales ecosystem with 3 n8n workflows: BANT qualification chatbot, dialogue analysis pipeline, CEO reporting to Telegram. Zoho CRM integration, Postgres Chat Memory, HOT/WARM/COLD lead segmentation.",
@@ -991,6 +1031,8 @@ uk:{
   res_ql1:"Повна прозорість",res_ql2:"Real-time інсайти",res_ql3:"CEO видимість",
   res_b1:"Готово до масштабування",res_b2:"Data-driven",res_b3:"Готово до монетизації",
   proj_title:"Усі проекти",
+  folder_title:"Швидкі автоматизації",
+  folder_sub:"{n} легких n8n-воркфлоу — натисніть, щоб розгорнути",
   projects:[
     {idx:"15/16",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI екосистема продажів з 3 n8n workflow: BANT кваліфікація чат-бот, пайплайн аналізу діалогів, CEO звітність в Telegram. Інтеграція Zoho CRM, Postgres Chat Memory, HOT/WARM/COLD сегментація лідів.",
@@ -1131,6 +1173,8 @@ cs:{
   res_ql1:"Plná transparentnost",res_ql2:"Real-time vhledy",res_ql3:"CEO viditelnost",
   res_b1:"Připraveno k škálování",res_b2:"Data-driven",res_b3:"Připraveno k monetizaci",
   proj_title:"Všechny projekty",
+  folder_title:"Rychlé automatizace",
+  folder_sub:"{n} lehkých n8n workflow — klikněte pro rozbalení",
   projects:[
     {idx:"15/16",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI ekosystém prodeje se 3 n8n workflow: BANT kvalifikační chatbot, pipeline analýzy dialogů, CEO reportování do Telegram. Zoho CRM integrace, Postgres Chat Memory, HOT/WARM/COLD segmentace leadů.",
@@ -1273,6 +1317,8 @@ i18n.ru={
   res_ql1:"Полная прозрачность",res_ql2:"Данные в реальном времени",res_ql3:"Контроль руководителя",
   res_b1:"Готово к масштабированию",res_b2:"Решения на основе данных",res_b3:"Готово к монетизации",
   proj_title:"Все проекты",
+  folder_title:"Быстрые автоматизации",
+  folder_sub:"{n} лёгких n8n-воркфлоу — нажмите, чтобы развернуть",
   projects:i18n.en.projects.map(p=>{
     const ru={
       growthlab:["Экосистема AI-продаж GrowthLab","AI-экосистема продаж из 3 процессов n8n: чатбот для BANT-квалификации, анализ диалогов и отчёты руководителю в Telegram. Интеграция с Zoho CRM, Postgres Chat Memory и сегментация лидов HOT/WARM/COLD."],
@@ -1317,6 +1363,12 @@ function openProject(id){
   const file=projectMap[id];
   if(file)window.open(file,'_blank','noopener');
 }
+function toggleFolder(){
+  const folder=document.getElementById('projFolder');
+  const body=document.getElementById('folderBody');
+  const isOpen=folder.classList.toggle('open');
+  body.style.maxHeight=isOpen?body.scrollHeight+'px':'0px';
+}
 (function(){
   if(!window.matchMedia('(hover:hover)').matches)return;
   const dot=document.getElementById('cursor-dot');
@@ -1359,26 +1411,27 @@ function applyLang(lang){
   skKeys.forEach(([nk,dk],i)=>{if(skNames[i]&&t[nk])skNames[i].innerHTML=t[nk];if(skDescs[i]&&t[dk])skDescs[i].innerHTML=t[dk]});
   const grid=document.getElementById('proj-grid');
   grid.innerHTML='';
-  t.projects.forEach((p,i)=>{
+  const featured=t.projects.filter(p=>p.featured);
+  const mini=t.projects.filter(p=>!p.featured);
+  featured.forEach((p,i)=>{
     const delay=`rv-d${(i%4)+1}`;
     const el=document.createElement('div');
     el.className=`p-card rv ${delay}`;
-    let acts='';
-    if(p.featured){
-      acts=`<div class="p-actions"><button class="p-btn accent" onclick="openProject('${p.id}')">${t.btn_details}</button>`;
-      if(p.site)acts+=`<a href="${p.site}" target="_blank" rel="noopener" class="p-btn">${t.btn_site}</a>`;
-      if(p.bot)acts+=`<a href="${p.bot}" target="_blank" rel="noopener" class="p-btn">${t.btn_bot}</a>`;
-      if(p.github)acts+=`<a href="${p.github}" target="_blank" rel="noopener" class="p-btn">${t.btn_github}</a>`;
-      acts+=`</div>`;
-    }else{
-      acts=`<div class="p-actions"><button class="p-btn" onclick="openProject('${p.id}')">${t.btn_details}</button></div>`;
-    }
-    const badge=p.featured
-      ?`<span style="font-family:'JetBrains Mono',monospace;font-size:8px;background:var(--txt);color:var(--bg);padding:2px 7px;border-radius:2px;margin-left:8px;">${p.year} · Live</span>`
-      :`<span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-left:6px;">${p.year}</span>`;
+    let acts=`<div class="p-actions"><button class="p-btn accent" onclick="openProject('${p.id}')">${t.btn_details}</button>`;
+    if(p.site)acts+=`<a href="${p.site}" target="_blank" rel="noopener" class="p-btn">${t.btn_site}</a>`;
+    if(p.bot)acts+=`<a href="${p.bot}" target="_blank" rel="noopener" class="p-btn">${t.btn_bot}</a>`;
+    if(p.github)acts+=`<a href="${p.github}" target="_blank" rel="noopener" class="p-btn">${t.btn_github}</a>`;
+    acts+=`</div>`;
+    const badge=`<span style="font-family:'JetBrains Mono',monospace;font-size:8px;background:var(--txt);color:var(--bg);padding:2px 7px;border-radius:2px;margin-left:8px;">${p.year} · Live</span>`;
     el.innerHTML=`<div class="p-idx">${p.idx}${badge}</div><div class="p-ttl">${p.title}</div><div class="p-desc">${p.desc}</div><div class="p-tags">${p.tags.map(tag=>`<span class="p-tag">${tag}</span>`).join('')}</div>${acts}`;
     grid.appendChild(el);
   });
+  const folderList=document.getElementById('folderList');
+  folderList.innerHTML=mini.map(p=>`<div class="mini-row"><div class="mini-idx">${p.idx}</div><div class="mini-main"><div class="mini-title">${p.title}</div><div class="mini-desc">${p.desc}</div><div class="mini-tags">${p.tags.map(tag=>`<span class="mini-tag">${tag}</span>`).join('')}</div></div><button class="mini-btn" onclick="openProject('${p.id}')">${t.btn_details}</button></div>`).join('');
+  document.getElementById('folderSub').textContent=(t.folder_sub||'').replace('{n}',mini.length);
+  const projFolder=document.getElementById('projFolder');
+  const folderBody=document.getElementById('folderBody');
+  if(projFolder.classList.contains('open')){folderBody.style.maxHeight=folderBody.scrollHeight+'px';}
   document.querySelectorAll('.rv:not(.on)').forEach(el=>rvObserver.observe(el));
   document.querySelectorAll('[data-lang-btn]').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang));
 }
