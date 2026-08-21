@@ -303,7 +303,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .p-btn.accent{background:var(--txt);color:var(--bg);border-color:transparent}
 .p-btn.accent:hover{opacity:.82}
 @media(max-width:600px){.proj-grid{grid-template-columns:1fr}}
-.proj-folder{margin-top:2px;border:1px solid var(--line);background:var(--bg)}
+.proj-folder{margin-top:2px;border:1px solid var(--line2);background:var(--bg);transition:border-color .25s}
+.proj-folder:hover{border-color:var(--txt3)}
 .folder-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 28px;cursor:pointer;transition:background .2s;user-select:none}
 .folder-header:hover{background:var(--bg2)}
 .folder-left{display:flex;align-items:center;gap:14px;min-width:0}
@@ -312,6 +313,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .folder-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
 .folder-chevron{width:18px;height:18px;color:var(--txt3);transition:transform .35s cubic-bezier(.4,0,.2,1);flex-shrink:0}
 .proj-folder.open .folder-chevron{transform:rotate(180deg)}
+.folder-right{display:flex;align-items:center;gap:14px;flex-shrink:0}
+.folder-badge{display:flex;align-items:center;gap:6px;background:var(--txt);color:var(--bg);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.04em;padding:6px 12px;border-radius:100px;flex-shrink:0;animation:badgePulse 2.2s ease-in-out infinite}
+.folder-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--bg);opacity:.6;animation:badgeDot 2.2s ease-in-out infinite}
+.proj-folder.open .folder-badge{animation:none}
+.proj-folder.open .folder-badge::before{animation:none;opacity:.3}
+@keyframes badgePulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.07);opacity:.85}}
+@keyframes badgeDot{0%,100%{opacity:.4}50%{opacity:1}}
 .folder-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1)}
 .mini-list{border-top:1px solid var(--line)}
 .mini-row{display:flex;align-items:flex-start;gap:16px;padding:16px 28px;border-bottom:1px solid var(--line);transition:background .2s}
@@ -418,7 +426,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
     <div class="hero-role">n8n · OpenAI GPT-4o · Anthropic Claude · Telegram Bot API · AI Voice Agents · Node.js · TypeScript · PostgreSQL · React</div>
     <p class="hero-desc" data-i18n="hero_desc">I design and build production-ready AI automations, voice agents, and full-stack AI products — from n8n pipelines and AI phone agents to SaaS backends with PostgreSQL. From idea to live system, systematically and predictably.</p>
     <div class="hero-stats">
-      <div><div class="stat-n">16</div><div class="stat-l" data-i18n="stat_projects">Projects</div></div>
+      <div><div class="stat-n">17</div><div class="stat-l" data-i18n="stat_projects">Projects</div></div>
       <div><div class="stat-n">9</div><div class="stat-l" data-i18n="stat_certs">Certificates</div></div>
       <div><div class="stat-n">4</div><div class="stat-l" data-i18n="stat_saas">Live SaaS</div></div>
       <div><div class="stat-n">AI</div><div class="stat-l" data-i18n="stat_first">First approach</div></div>
@@ -763,7 +771,10 @@ footer{border-top:1px solid var(--line);padding:52px 0}
             <div class="folder-sub" id="folderSub"></div>
           </div>
         </div>
-        <svg class="folder-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <div class="folder-right">
+          <span class="folder-badge" id="folderBadge"></span>
+          <svg class="folder-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
       </div>
       <div class="folder-body" id="folderBody">
         <div class="mini-list" id="folderList"></div>
@@ -890,72 +901,77 @@ en:{
   res_b1:"Scale-ready",res_b2:"Data-driven",res_b3:"Monetization-ready",
   proj_title:"All Projects",
   folder_title:"Quick Automations",
-  folder_sub:"{n} lightweight n8n workflows — click to expand",
+  folder_sub:"{n} more small n8n workflows inside — click to expand",
+  folder_badge:"+{n} projects",
   projects:[
-    {idx:"15/16",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
+    {idx:"15/17",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI sales ecosystem with 3 n8n workflows: BANT qualification chatbot, dialogue analysis pipeline, CEO reporting to Telegram. Zoho CRM integration, Postgres Chat Memory, HOT/WARM/COLD lead segmentation.",
       tags:["n8n","Anthropic Claude","Zoho CRM","Google Sheets","Telegram Bot","Postgres Memory","AI Agents","Webhooks"],
       site:"https://tetiana-a.github.io/AI-Sales-Automation/",bot:null,github:"https://github.com/tetiana-a/AI-Sales-Automation"},
-    {idx:"14/16",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
+    {idx:"14/17",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
       desc:"Production AI SaaS delivering real-time financial decision analysis via Telegram. Webhook backend: user input → OpenAI analysis → structured insight → PostgreSQL. Financial DNA user modeling, usage-based monetization, deployed on Render.",
       tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],
       site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
-    {idx:"13/16",id:"aicrm",title:"AI CRM System",year:"2026",featured:true,
+    {idx:"13/17",id:"aicrm",title:"AI CRM System",year:"2026",featured:true,
       desc:"AI-driven CRM automating client and appointment management. Telegram bot as natural-language interface. React dashboard + AI automation layer synced via webhooks. JWT auth, REST API backend.",
       tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],
       site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
-    {idx:"12/16",id:"legisflow",title:"LegisFlow — Legal AI Agent",year:"2026",featured:true,
+    {idx:"12/17",id:"legisflow",title:"LegisFlow — Legal AI Agent",year:"2026",featured:true,
       desc:"Telegram bot + web interface for automated legal document analysis. Accepts PDF, extracts text, detects risks. n8n workflow: PDF → chunking → GPT-4o → structured risk report. Instant compliance analysis for any contract.",
       tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],
       site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
-    {idx:"01/16",id:"voice-image",title:"Voice → Image Generator",year:"2025",featured:false,
+    {idx:"01/17",id:"voice-image",title:"Voice → Image Generator",year:"2025",featured:false,
       desc:"Telegram voice message → AssemblyAI transcription → prompt building → DALL-E 3 image → sent back to chat.",
       tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],
       site:null,bot:null,github:null},
-    {idx:"02/16",id:"ua-months",title:"Dynamic Ukrainian Month Generator",year:"2025",featured:false,
+    {idx:"02/17",id:"ua-months",title:"Dynamic Ukrainian Month Generator",year:"2025",featured:false,
       desc:"Reusable date-logic n8n module — outputs months from current to December as structured JSON with zero maintenance.",
       tags:["n8n","JavaScript","JSON","Date logic"],
       site:null,bot:null,github:null},
-    {idx:"03/16",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
+    {idx:"03/17",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
       desc:"AI extracts title/date/time from Telegram text, validates inputs, creates Calendar event, confirms in chat.",
       tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],
       site:null,bot:null,github:null},
-    {idx:"04/16",id:"btc-alert",title:"BTC Price Alert → Telegram",year:"2025",featured:false,
+    {idx:"04/17",id:"btc-alert",title:"BTC Price Alert → Telegram",year:"2025",featured:false,
       desc:"Checks BTC price every 15 min, sends alerts only on meaningful state changes — no spam, stateful logic.",
       tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"05/16",id:"currency-report",title:"Daily Currency Report",year:"2025",featured:false,
+    {idx:"05/17",id:"currency-report",title:"Daily Currency Report",year:"2025",featured:false,
       desc:"Scheduled 09:00 automation — fetches USD/EUR from PrivatBank API and sends a styled HTML email. Fully hands-free.",
       tags:["n8n","Cron","REST API","JavaScript","Gmail API"],
       site:null,bot:null,github:null},
-    {idx:"06/16",id:"weather-kyiv-brno",title:"Daily Weather (Kyiv + Brno)",year:"2025",featured:false,
+    {idx:"06/17",id:"weather-kyiv-brno",title:"Daily Weather (Kyiv + Brno)",year:"2025",featured:false,
       desc:"Daily 08:30 weather updates for two cities using batching, OpenWeatherMap API and AI-powered formatting.",
       tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],
       site:null,bot:null,github:null},
-    {idx:"07/16",id:"daily-motivation",title:"Daily Motivation → Telegram",year:"2025",featured:false,
+    {idx:"07/17",id:"daily-motivation",title:"Daily Motivation → Telegram",year:"2025",featured:false,
       desc:"Daily 09:00 — generates an original motivational quote, cleans it in JS, posts formatted message with hashtags.",
       tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"08/16",id:"site-monitor",title:"Website Availability Monitor",year:"2025",featured:false,
+    {idx:"08/17",id:"site-monitor",title:"Website Availability Monitor",year:"2025",featured:false,
       desc:"HEAD request every 5 minutes; alert only on error status (≥ 400). Lightweight and reliable uptime monitoring.",
       tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"09/16",id:"ai-jokes",title:"Multi-Model Joke Evaluator",year:"2025",featured:false,
+    {idx:"09/17",id:"ai-jokes",title:"Multi-Model Joke Evaluator",year:"2025",featured:false,
       desc:"Parallel GPT-4o-mini generation + GPT-4o judge scoring (1–10) and best-pick — real ensemble evaluation pattern.",
       tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],
       site:null,bot:null,github:null},
-    {idx:"10/16",id:"monthly-sales",title:"Monthly Sales Analytics",year:"2025",featured:false,
+    {idx:"10/17",id:"monthly-sales",title:"Monthly Sales Analytics",year:"2025",featured:false,
       desc:"Deterministic pipeline aggregating orders, revenue and average check for current month from Google Sheets data.",
       tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],
       site:null,bot:null,github:null},
-    {idx:"11/16",id:"img-url-drive",title:"Image URL → Google Drive",year:"2025",featured:false,
+    {idx:"11/17",id:"img-url-drive",title:"Image URL → Google Drive",year:"2025",featured:false,
       desc:"Downloads binary from URL inside n8n, uploads to specific Drive folder with smart filename generation logic.",
       tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],
       site:null,bot:null,github:null},
-    {idx:"16/16",id:"apulia",title:"Apulia Olive Oil CZ",year:"2026",featured:true,
+    {idx:"16/17",id:"apulia",title:"Apulia Olive Oil CZ",year:"2026",featured:true,
       desc:"Single-page sales website for exclusive Italian olive oil distribution on the Czech market — 8 languages, WhatsApp ordering, GDPR Consent Mode v2. Promoted live via Google Ads Performance Max, Meta Ads and TikTok.",
       tags:["HTML/CSS/JS","i18n (8 languages)","Google Ads Performance Max","Meta Ads","GDPR Consent Mode v2","JSON-LD","GitHub Pages"],
-      site:"https://apuliaoliveoil.cz/",bot:null,github:"https://github.com/italian-n/apulia/tree/main"}
+      site:"https://apuliaoliveoil.cz/",bot:null,github:"https://github.com/italian-n/apulia/tree/main"},
+    {idx:"17/17",id:"realitka",title:"RealityPraha — AI Ticket Routing & SLA Agent",year:"2026",featured:true,
+      desc:"Autonomous AI agent for a Prague real estate office: classifies incoming client emails in under a minute (Chain-of-Thought), assigns the right owner, calculates SLA deadlines and runs 3-level escalation — zero human dispatchers. 24-node n8n workflow across two parallel tracks (inbound classification + SLA watcher).",
+      tags:["n8n","OpenAI GPT-4o-mini","Chain of Thought","Google Sheets API","Slack API","Gmail OAuth2","SLA Logic"],
+      site:"https://tetiana-a.github.io/realitka/",bot:null,github:"https://github.com/tetiana-a/realitka"}
   ]
 },
 uk:{
@@ -1032,72 +1048,77 @@ uk:{
   res_b1:"Готово до масштабування",res_b2:"Data-driven",res_b3:"Готово до монетизації",
   proj_title:"Усі проекти",
   folder_title:"Швидкі автоматизації",
-  folder_sub:"{n} легких n8n-воркфлоу — натисніть, щоб розгорнути",
+  folder_sub:"{n} ще проектів усередині — натисніть, щоб розгорнути",
+  folder_badge:"+{n} проектів",
   projects:[
-    {idx:"15/16",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
+    {idx:"15/17",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI екосистема продажів з 3 n8n workflow: BANT кваліфікація чат-бот, пайплайн аналізу діалогів, CEO звітність в Telegram. Інтеграція Zoho CRM, Postgres Chat Memory, HOT/WARM/COLD сегментація лідів.",
       tags:["n8n","Anthropic Claude","Zoho CRM","Google Sheets","Telegram Bot","Postgres Memory","AI Agents","Webhooks"],
       site:"https://tetiana-a.github.io/AI-Sales-Automation/",bot:null,github:"https://github.com/tetiana-a/AI-Sales-Automation"},
-    {idx:"14/16",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
+    {idx:"14/17",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
       desc:"Production AI SaaS для аналізу фінансових рішень у реальному часі через Telegram. Webhook backend: запит → OpenAI → структурований інсайт → PostgreSQL. Financial DNA моделювання, usage-based монетизація, Render.",
       tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],
       site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
-    {idx:"13/16",id:"aicrm",title:"AI CRM Система",year:"2026",featured:true,
+    {idx:"13/17",id:"aicrm",title:"AI CRM Система",year:"2026",featured:true,
       desc:"AI CRM що автоматизує управління клієнтами та записами. Telegram бот як інтерфейс природною мовою. React дашборд + AI шар синхронізовані через webhooks. JWT, REST API бекенд.",
       tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],
       site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
-    {idx:"12/16",id:"legisflow",title:"LegisFlow — AI агент для юрдокументів",year:"2026",featured:true,
+    {idx:"12/17",id:"legisflow",title:"LegisFlow — AI агент для юрдокументів",year:"2026",featured:true,
       desc:"Telegram бот + веб-інтерфейс для аналізу юридичних документів. Приймає PDF, визначає ризики. n8n: PDF → чанкінг → GPT-4o → структурований звіт про ризики.",
       tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],
       site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
-    {idx:"01/16",id:"voice-image",title:"Голос → Зображення (Telegram)",year:"2025",featured:false,
+    {idx:"01/17",id:"voice-image",title:"Голос → Зображення (Telegram)",year:"2025",featured:false,
       desc:"Голосове повідомлення → транскрипт AssemblyAI → промпт → DALL-E 3 зображення → назад у чат.",
       tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],
       site:null,bot:null,github:null},
-    {idx:"02/16",id:"ua-months",title:"Динамічний генератор місяців",year:"2025",featured:false,
+    {idx:"02/17",id:"ua-months",title:"Динамічний генератор місяців",year:"2025",featured:false,
       desc:"Перевикористовуваний n8n модуль: місяці від поточного до грудня у structured JSON — без ручних оновлень.",
       tags:["n8n","JavaScript","JSON","Date logic"],
       site:null,bot:null,github:null},
-    {idx:"03/16",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
+    {idx:"03/17",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
       desc:"AI витягує назву/дату/час з повідомлення, валідує, створює подію та надсилає підтвердження.",
       tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],
       site:null,bot:null,github:null},
-    {idx:"04/16",id:"btc-alert",title:"BTC алерт → Telegram",year:"2025",featured:false,
+    {idx:"04/17",id:"btc-alert",title:"BTC алерт → Telegram",year:"2025",featured:false,
       desc:"Перевіряє ціну BTC кожні 15 хв, шле алерти лише при зміні стану — без спаму, stateful логіка.",
       tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"05/16",id:"currency-report",title:"Щоденний звіт по курсу валют",year:"2025",featured:false,
+    {idx:"05/17",id:"currency-report",title:"Щоденний звіт по курсу валют",year:"2025",featured:false,
       desc:"Автоматизація о 09:00 — курси USD/EUR з PrivatBank API → стилізований HTML-лист. Повністю автономно.",
       tags:["n8n","Cron","REST API","JavaScript","Gmail API"],
       site:null,bot:null,github:null},
-    {idx:"06/16",id:"weather-kyiv-brno",title:"Погода (Київ + Брно) → Telegram",year:"2025",featured:false,
+    {idx:"06/17",id:"weather-kyiv-brno",title:"Погода (Київ + Брно) → Telegram",year:"2025",featured:false,
       desc:"Щодня о 08:30 — погода для двох міст з batching, OpenWeatherMap API та AI форматуванням.",
       tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],
       site:null,bot:null,github:null},
-    {idx:"07/16",id:"daily-motivation",title:"Щоденна мотивація → Telegram",year:"2025",featured:false,
+    {idx:"07/17",id:"daily-motivation",title:"Щоденна мотивація → Telegram",year:"2025",featured:false,
       desc:"Щодня о 09:00 — генерує оригінальну фразу, чистить у JS, надсилає форматоване повідомлення з хештегами.",
       tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"08/16",id:"site-monitor",title:"Моніторинг доступності сайту",year:"2025",featured:false,
+    {idx:"08/17",id:"site-monitor",title:"Моніторинг доступності сайту",year:"2025",featured:false,
       desc:"HEAD-запит кожні 5 хвилин; алерт лише при помилці (≥ 400). Легкий і надійний uptime monitor.",
       tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"09/16",id:"ai-jokes",title:"Multi-Model оцінка якості контенту",year:"2025",featured:false,
+    {idx:"09/17",id:"ai-jokes",title:"Multi-Model оцінка якості контенту",year:"2025",featured:false,
       desc:"Паралельна генерація GPT-4o-mini + оцінка GPT-4o (1–10) і вибір найкращого — ensemble evaluation патерн.",
       tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],
       site:null,bot:null,github:null},
-    {idx:"10/16",id:"monthly-sales",title:"Місячна аналітика продажів",year:"2025",featured:false,
+    {idx:"10/17",id:"monthly-sales",title:"Місячна аналітика продажів",year:"2025",featured:false,
       desc:"Детермінований пайплайн: замовлення, виручка та середній чек за поточний місяць з Google Sheets.",
       tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],
       site:null,bot:null,github:null},
-    {idx:"11/16",id:"img-url-drive",title:"Завантаження картинки → Google Drive",year:"2025",featured:false,
+    {idx:"11/17",id:"img-url-drive",title:"Завантаження картинки → Google Drive",year:"2025",featured:false,
       desc:"Завантажує binary за URL всередині n8n, заливає в Google Drive з розумною назвою файлу.",
       tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],
       site:null,bot:null,github:null},
-    {idx:"16/16",id:"apulia",title:"Apulia Olive Oil CZ",year:"2026",featured:true,
+    {idx:"16/17",id:"apulia",title:"Apulia Olive Oil CZ",year:"2026",featured:true,
       desc:"Односторінковий продажний сайт для ексклюзивної дистрибуції італійської оливкової олії на чеському ринку — 8 мов, замовлення через WhatsApp, GDPR Consent Mode v2. Активно просувається через Google Ads Performance Max, Meta Ads та TikTok.",
       tags:["HTML/CSS/JS","i18n (8 мов)","Google Ads Performance Max","Meta Ads","GDPR Consent Mode v2","JSON-LD","GitHub Pages"],
-      site:"https://apuliaoliveoil.cz/",bot:null,github:"https://github.com/italian-n/apulia/tree/main"}
+      site:"https://apuliaoliveoil.cz/",bot:null,github:"https://github.com/italian-n/apulia/tree/main"},
+    {idx:"17/17",id:"realitka",title:"RealityPraha — AI-агент маршрутизації тікетів та SLA",year:"2026",featured:true,
+      desc:"Автономний AI-агент для празького агентства нерухомості: класифікує вхідні листи клієнтів менш ніж за хвилину (Chain-of-Thought), призначає відповідального, розраховує дедлайни SLA та запускає 3-рівневу ескалацію — без диспетчерів-людей. 24-нодовий n8n-воркфлоу з двома паралельними треками (класифікація вхідних + SLA watcher).",
+      tags:["n8n","OpenAI GPT-4o-mini","Chain of Thought","Google Sheets API","Slack API","Gmail OAuth2","SLA Logic"],
+      site:"https://tetiana-a.github.io/realitka/",bot:null,github:"https://github.com/tetiana-a/realitka"}
   ]
 },
 cs:{
@@ -1174,72 +1195,77 @@ cs:{
   res_b1:"Připraveno k škálování",res_b2:"Data-driven",res_b3:"Připraveno k monetizaci",
   proj_title:"Všechny projekty",
   folder_title:"Rychlé automatizace",
-  folder_sub:"{n} lehkých n8n workflow — klikněte pro rozbalení",
+  folder_sub:"{n} dalších projektů uvnitř — klikněte pro rozbalení",
+  folder_badge:"+{n} projektů",
   projects:[
-    {idx:"15/16",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
+    {idx:"15/17",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI ekosystém prodeje se 3 n8n workflow: BANT kvalifikační chatbot, pipeline analýzy dialogů, CEO reportování do Telegram. Zoho CRM integrace, Postgres Chat Memory, HOT/WARM/COLD segmentace leadů.",
       tags:["n8n","Anthropic Claude","Zoho CRM","Google Sheets","Telegram Bot","Postgres Memory","AI Agents","Webhooks"],
       site:"https://tetiana-a.github.io/AI-Sales-Automation/",bot:null,github:"https://github.com/tetiana-a/AI-Sales-Automation"},
-    {idx:"14/16",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
+    {idx:"14/17",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
       desc:"Production AI SaaS pro analýzu finančních rozhodnutí v reálném čase přes Telegram. Webhook backend: dotaz → OpenAI → strukturovaný výsledek → PostgreSQL. Financial DNA modelování, usage-based monetizace, Render.",
       tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],
       site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
-    {idx:"13/16",id:"aicrm",title:"AI CRM systém",year:"2026",featured:true,
+    {idx:"13/17",id:"aicrm",title:"AI CRM systém",year:"2026",featured:true,
       desc:"AI CRM automatizující správu klientů přes Telegram bot (přirozený jazyk). React dashboard + AI vrstva synchronizované přes webhooky. JWT autentizace, REST API backend.",
       tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],
       site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
-    {idx:"12/16",id:"legisflow",title:"LegisFlow — AI agent pro právní dokumenty",year:"2026",featured:true,
+    {idx:"12/17",id:"legisflow",title:"LegisFlow — AI agent pro právní dokumenty",year:"2026",featured:true,
       desc:"Telegram bot + webové rozhraní pro analýzu právních dokumentů. Přijímá PDF, detekuje rizika. n8n: PDF → chunkování → GPT-4o → strukturovaná zpráva o rizicích.",
       tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],
       site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
-    {idx:"01/16",id:"voice-image",title:"Hlas → Obrázek (Telegram)",year:"2025",featured:false,
+    {idx:"01/17",id:"voice-image",title:"Hlas → Obrázek (Telegram)",year:"2025",featured:false,
       desc:"Hlasová zpráva → přepis AssemblyAI → vytvoření promptu → DALL-E 3 obrázek → zpět do chatu.",
       tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],
       site:null,bot:null,github:null},
-    {idx:"02/16",id:"ua-months",title:"Dynamický generátor měsíců",year:"2025",featured:false,
+    {idx:"02/17",id:"ua-months",title:"Dynamický generátor měsíců",year:"2025",featured:false,
       desc:"Znovupoužitelný n8n modul: měsíce od aktuálního do prosince jako structured JSON — bez údržby.",
       tags:["n8n","JavaScript","JSON","Date logic"],
       site:null,bot:null,github:null},
-    {idx:"03/16",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
+    {idx:"03/17",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
       desc:"AI vytáhne název/datum/čas z Telegram zprávy, validuje, vytvoří událost a pošle potvrzení.",
       tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],
       site:null,bot:null,github:null},
-    {idx:"04/16",id:"btc-alert",title:"Alert ceny BTC → Telegram",year:"2025",featured:false,
+    {idx:"04/17",id:"btc-alert",title:"Alert ceny BTC → Telegram",year:"2025",featured:false,
       desc:"Kontroluje BTC každých 15 min, posílá alerty jen při změně stavu — bez spamu, stavová logika.",
       tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"05/16",id:"currency-report",title:"Denní report kurzů měn",year:"2025",featured:false,
+    {idx:"05/17",id:"currency-report",title:"Denní report kurzů měn",year:"2025",featured:false,
       desc:"Automatizace v 09:00 — kurzy USD/EUR z PrivatBank → stylovaný HTML e-mail. Plně autonomní.",
       tags:["n8n","Cron","REST API","JavaScript","Gmail API"],
       site:null,bot:null,github:null},
-    {idx:"06/16",id:"weather-kyiv-brno",title:"Počasí (Kyjev + Brno) → Telegram",year:"2025",featured:false,
+    {idx:"06/17",id:"weather-kyiv-brno",title:"Počasí (Kyjev + Brno) → Telegram",year:"2025",featured:false,
       desc:"Denně v 08:30 — počasí pro dvě města s batching, OpenWeatherMap API a AI formátováním.",
       tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],
       site:null,bot:null,github:null},
-    {idx:"07/16",id:"daily-motivation",title:"Denní motivace → Telegram",year:"2025",featured:false,
+    {idx:"07/17",id:"daily-motivation",title:"Denní motivace → Telegram",year:"2025",featured:false,
       desc:"Každý den v 09:00 — generuje originální citát, vyčistí v JS, odešle formátovanou zprávu s hashtagy.",
       tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"08/16",id:"site-monitor",title:"Monitoring dostupnosti webu",year:"2025",featured:false,
+    {idx:"08/17",id:"site-monitor",title:"Monitoring dostupnosti webu",year:"2025",featured:false,
       desc:"HEAD request každých 5 minut; alert jen při chybě (≥ 400). Lehký a spolehlivý uptime monitoring.",
       tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],
       site:null,bot:null,github:null},
-    {idx:"09/16",id:"ai-jokes",title:"Multi-Model hodnocení kvality obsahu",year:"2025",featured:false,
+    {idx:"09/17",id:"ai-jokes",title:"Multi-Model hodnocení kvality obsahu",year:"2025",featured:false,
       desc:"Paralelní generování GPT-4o-mini + hodnocení GPT-4o (1–10) a výběr nejlepšího — ensemble evaluace.",
       tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],
       site:null,bot:null,github:null},
-    {idx:"10/16",id:"monthly-sales",title:"Měsíční analýza prodejů",year:"2025",featured:false,
+    {idx:"10/17",id:"monthly-sales",title:"Měsíční analýza prodejů",year:"2025",featured:false,
       desc:"Deterministický pipeline: objednávky, tržby a průměrný nákup za aktuální měsíc z Google Sheets.",
       tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],
       site:null,bot:null,github:null},
-    {idx:"11/16",id:"img-url-drive",title:"Stažení obrázku → Google Drive",year:"2025",featured:false,
+    {idx:"11/17",id:"img-url-drive",title:"Stažení obrázku → Google Drive",year:"2025",featured:false,
       desc:"Stáhne binary z URL v n8n, nahraje do Google Drive složky se smart názvem souboru.",
       tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],
       site:null,bot:null,github:null},
-    {idx:"16/16",id:"apulia",title:"Apulia Olive Oil CZ",year:"2026",featured:true,
+    {idx:"16/17",id:"apulia",title:"Apulia Olive Oil CZ",year:"2026",featured:true,
       desc:"Jednostránkový prodejní web pro exkluzivní distribuci italského olivového oleje na českém trhu — 8 jazyků, objednávky přes WhatsApp, GDPR Consent Mode v2. Aktivně propagováno přes Google Ads Performance Max, Meta Ads a TikTok.",
       tags:["HTML/CSS/JS","i18n (8 jazyků)","Google Ads Performance Max","Meta Ads","GDPR Consent Mode v2","JSON-LD","GitHub Pages"],
-      site:"https://apuliaoliveoil.cz/",bot:null,github:"https://github.com/italian-n/apulia/tree/main"}
+      site:"https://apuliaoliveoil.cz/",bot:null,github:"https://github.com/italian-n/apulia/tree/main"},
+    {idx:"17/17",id:"realitka",title:"RealityPraha — AI agent pro směrování tiketů a SLA",year:"2026",featured:true,
+      desc:"Autonomní AI agent pro pražskou realitní kancelář: klasifikuje příchozí e-maily klientů za méně než minutu (Chain-of-Thought), přiřadí odpovědnou osobu, vypočítá SLA termíny a spouští 3-úrovňovou eskalaci — bez lidských dispečerů. n8n workflow o 24 uzlech ve dvou paralelních drahách (klasifikace příchozích + SLA watcher).",
+      tags:["n8n","OpenAI GPT-4o-mini","Chain of Thought","Google Sheets API","Slack API","Gmail OAuth2","SLA Logic"],
+      site:"https://tetiana-a.github.io/realitka/",bot:null,github:"https://github.com/tetiana-a/realitka"}
   ]
 }};
 i18n.ru={
@@ -1318,7 +1344,8 @@ i18n.ru={
   res_b1:"Готово к масштабированию",res_b2:"Решения на основе данных",res_b3:"Готово к монетизации",
   proj_title:"Все проекты",
   folder_title:"Быстрые автоматизации",
-  folder_sub:"{n} лёгких n8n-воркфлоу — нажмите, чтобы развернуть",
+  folder_sub:"{n} ещё проектов внутри — нажмите, чтобы развернуть",
+  folder_badge:"+{n} проектов",
   projects:i18n.en.projects.map(p=>{
     const ru={
       growthlab:["Экосистема AI-продаж GrowthLab","AI-экосистема продаж из 3 процессов n8n: чатбот для BANT-квалификации, анализ диалогов и отчёты руководителю в Telegram. Интеграция с Zoho CRM, Postgres Chat Memory и сегментация лидов HOT/WARM/COLD."],
@@ -1336,7 +1363,8 @@ i18n.ru={
       "ai-jokes":["Мультимодельная оценка контента","Параллельная генерация GPT-4o-mini, оценка GPT-4o по шкале 1–10 и выбор лучшего результата — практический ансамблевый подход."],
       "monthly-sales":["Ежемесячная аналитика продаж","Детерминированный процесс рассчитывает количество заказов, выручку и средний чек за текущий месяц по данным Google Sheets."],
       "img-url-drive":["Изображение по URL → Google Drive","Загружает бинарный файл по URL внутри n8n и сохраняет его в нужную папку Google Drive с автоматически созданным именем."],
-      apulia:["Apulia Olive Oil CZ","Одностраничный продающий сайт для эксклюзивной дистрибуции итальянского оливкового масла на чешском рынке — 8 языков, заказы через WhatsApp, GDPR Consent Mode v2. Активно продвигается через Google Ads Performance Max, Meta Ads и TikTok."]
+      apulia:["Apulia Olive Oil CZ","Одностраничный продающий сайт для эксклюзивной дистрибуции итальянского оливкового масла на чешском рынке — 8 языков, заказы через WhatsApp, GDPR Consent Mode v2. Активно продвигается через Google Ads Performance Max, Meta Ads и TikTok."],
+      realitka:["RealityPraha — AI-агент маршрутизации тикетов и SLA","Автономный AI-агент для пражского агентства недвижимости: классифицирует входящие письма клиентов менее чем за минуту (Chain-of-Thought), назначает ответственного, рассчитывает дедлайны SLA и запускает 3-уровневую эскалацию — без диспетчеров-людей. n8n-воркфлоу из 24 узлов на двух параллельных треках (классификация входящих + SLA watcher)."]
     }[p.id];
     return {...p,title:ru[0],desc:ru[1]};
   })
@@ -1357,7 +1385,8 @@ const projectMap={
   'aicrm'        :'13.html',
   'legisflow'    :'14.html',
   'growthlab'    :'15.html',
-  'apulia'       :'16.html'
+  'apulia'       :'16.html',
+  'realitka'     :'https://tetiana-a.github.io/realitka/'
 };
 function openProject(id){
   const file=projectMap[id];
@@ -1429,6 +1458,7 @@ function applyLang(lang){
   const folderList=document.getElementById('folderList');
   folderList.innerHTML=mini.map(p=>`<div class="mini-row"><div class="mini-idx">${p.idx}</div><div class="mini-main"><div class="mini-title">${p.title}</div><div class="mini-desc">${p.desc}</div><div class="mini-tags">${p.tags.map(tag=>`<span class="mini-tag">${tag}</span>`).join('')}</div></div><button class="mini-btn" onclick="openProject('${p.id}')">${t.btn_details}</button></div>`).join('');
   document.getElementById('folderSub').textContent=(t.folder_sub||'').replace('{n}',mini.length);
+  document.getElementById('folderBadge').textContent=(t.folder_badge||'+{n}').replace('{n}',mini.length);
   const projFolder=document.getElementById('projFolder');
   const folderBody=document.getElementById('folderBody');
   if(projFolder.classList.contains('open')){folderBody.style.maxHeight=folderBody.scrollHeight+'px';}
