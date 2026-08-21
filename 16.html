@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="dark" data-lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apulia Olive Oil CZ — Project Details</title>
+<meta name="description" content="Apulia Olive Oil CZ — premium Italian olive oil landing page for the Czech market. Built by Tetiana Kotolup, AI Automation & Full-Stack Developer.">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   OLIVE GROVE DESIGN SYSTEM
+   Dark olive / grove-at-dusk aesthetic
+════════════════════════════════════════════════════════════════ */
+:root {
+  --tt: all .5s cubic-bezier(.4,0,.2,1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+[data-theme="dark"] {
+  --bg-deep: #060f08;
+  --bg: #0a1810;
+  --bg2: #0f2417;
+  --bg3: #16321f;
+  --surface: rgba(30, 55, 35, 0.55);
+  --surface-hover: rgba(38, 68, 42, 0.7);
+  --glass: rgba(18, 40, 24, 0.45);
+  --glass-border: rgba(201, 168, 76, 0.16);
+  --line: rgba(201, 168, 76, 0.08);
+  --line2: rgba(201, 168, 76, 0.2);
+  --txt: #f2ecd8;
+  --txt2: #a9b79a;
+  --txt3: #5f7358;
+  --accent: #d98f4e;
+  --accent-glow: rgba(217, 143, 78, 0.4);
+  --gold: #c9a84c;
+  --gold-glow: rgba(201, 168, 76, 0.3);
+  --olive: #7c9a4e;
+  --gradient-1: #3d5a2a;
+  --gradient-2: #6b8f3f;
+  --gradient-3: #c9a84c;
+}
+
+[data-theme="light"] {
+  --bg-deep: #f3efe1;
+  --bg: #f7f4e9;
+  --bg2: #ffffff;
+  --bg3: #ece5cd;
+  --surface: rgba(255, 255, 255, 0.8);
+  --surface-hover: rgba(255, 255, 255, 0.95);
+  --glass: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(107, 143, 63, 0.25);
+  --line: rgba(107, 143, 63, 0.12);
+  --line2: rgba(107, 143, 63, 0.25);
+  --txt: #17250f;
+  --txt2: #48592f;
+  --txt3: #7c8a5f;
+  --accent: #b5651d;
+  --accent-glow: rgba(181, 101, 29, 0.28);
+  --gold: #9c7a1f;
+  --gold-glow: rgba(156, 122, 31, 0.22);
+  --olive: #5c7a35;
+  --gradient-1: #3d5a2a;
+  --gradient-2: #6b8f3f;
+  --gradient-3: #c9a84c;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg-deep);
+  color:var(--txt);
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:400;
+  line-height:1.7;
+  font-size:18px;
+  overflow-x:hidden;
+  transition:var(--tt);
+  min-height:100vh;
+}
+::selection{background:var(--gold);color:var(--bg-deep)}
+a{color:inherit;text-decoration:none}
+
+/* ═══════════════════════════════════════════════════════════════
+   GROVE BACKGROUND EFFECTS
+════════════════════════════════════════════════════════════════ */
+.grove-bg{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  overflow:hidden;
+}
+.blob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+  opacity:0.45;
+  animation:blob-float 22s ease-in-out infinite;
+}
+.blob-1{
+  width:620px;height:620px;
+  background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2));
+  top:-220px;left:-120px;
+  animation-delay:0s;
+}
+.blob-2{
+  width:520px;height:520px;
+  background:linear-gradient(135deg,var(--gradient-2),var(--gradient-3));
+  bottom:-160px;right:-120px;
+  animation-delay:-8s;
+}
+.blob-3{
+  width:420px;height:420px;
+  background:linear-gradient(135deg,var(--gold),var(--olive));
+  top:42%;left:52%;
+  animation-delay:-15s;
+}
+@keyframes blob-float{
+  0%,100%{transform:translate(0,0) scale(1)}
+  25%{transform:translate(30px,-50px) scale(1.05)}
+  50%{transform:translate(-20px,30px) scale(0.95)}
+  75%{transform:translate(40px,20px) scale(1.02)}
+}
+.dapple{
+  position:absolute;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' seed='7'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23c)'/%3E%3C/svg%3E");
+  opacity:0.035;
+  mix-blend-mode:overlay;
+  animation:dapple-move 32s linear infinite;
+}
+@keyframes dapple-move{
+  0%{transform:translate(0,0)}
+  100%{transform:translate(-50px,-50px)}
+}
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CURSOR
+════════════════════════════════════════════════════════════════ */
+#cursor-dot{
+  position:fixed;width:6px;height:6px;border-radius:50%;
+  background:var(--accent);pointer-events:none;z-index:99999;
+  transform:translate(-50%,-50%);
+  box-shadow:0 0 20px var(--accent-glow),0 0 40px var(--accent-glow);
+  transition:width .2s,height .2s;
+}
+#cursor-ring{
+  position:fixed;width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--gold);pointer-events:none;z-index:99998;
+  transform:translate(-50%,-50%);
+  transition:width .3s var(--ease-out-expo),height .3s,border-color .2s;
+  opacity:.4;
+}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}}
+
+/* ═══════════════════════════════════════════════════════════════
+   LAYOUT
+════════════════════════════════════════════════════════════════ */
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(24px,5vw,60px);position:relative;z-index:1}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0;transition:var(--tt)}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 clamp(24px,5vw,60px);display:flex;align-items:center;justify-content:space-between}
+.nav-glass{
+  background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--glass-border);border-radius:100px;padding:12px 24px;
+  display:flex;align-items:center;gap:24px;
+}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:.08em;color:var(--txt)}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);transition:color .2s;position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s var(--ease-out-expo)}
+.nav-link:hover{color:var(--txt)}
+.nav-link:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.lang-switch{display:flex;background:rgba(0,0,0,.2);border-radius:6px;padding:2px}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);background:transparent;border:none;padding:6px 9px;border-radius:4px;cursor:pointer;transition:all .2s}
+.lang-btn.active{background:var(--accent);color:var(--bg-deep);box-shadow:0 0 20px var(--accent-glow)}
+.theme-btn{width:36px;height:36px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:all .2s}
+.theme-btn:hover{background:var(--surface-hover);box-shadow:0 0 20px var(--gold-glow)}
+.audio-btn{width:36px;height:36px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:all .2s}
+.audio-btn:hover{background:var(--surface-hover);box-shadow:0 0 20px var(--gold-glow)}
+.audio-btn.playing{background:var(--accent);color:var(--bg-deep);box-shadow:0 0 25px var(--accent-glow)}
+.audio-btn.playing svg{animation:pulse 1.4s ease-in-out infinite}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:1.5px;background:var(--txt);transition:all .3s;border-radius:1px}
+.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media(max-width:768px){.nav-glass{padding:10px 16px;gap:16px}.nav-link{display:none}.hamburger{display:flex}}
+.mobile-menu{display:none;position:fixed;top:70px;left:16px;right:16px;background:var(--glass);backdrop-filter:blur(30px);border:1px solid var(--glass-border);border-radius:16px;padding:24px;z-index:999;flex-direction:column;gap:16px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);padding:12px 0;border-bottom:1px solid var(--line)}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO
+════════════════════════════════════════════════════════════════ */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 80px}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:100px;padding:8px 16px;margin-bottom:32px;width:fit-content;opacity:0;animation:reveal .8s .2s var(--ease-out-expo) forwards}
+.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.badge-text{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)}
+.hero-title{font-family:'Instrument Serif',serif;font-size:clamp(44px,8vw,92px);font-weight:400;line-height:1;letter-spacing:-.03em;color:var(--txt);margin-bottom:24px;opacity:0;animation:reveal .8s .3s var(--ease-out-expo) forwards}
+.hero-title em{font-style:italic;background:linear-gradient(135deg,var(--gold),var(--olive));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-desc{font-size:clamp(16px,2vw,20px);color:var(--txt2);max-width:620px;line-height:1.7;margin-bottom:40px;opacity:0;animation:reveal .8s .4s var(--ease-out-expo) forwards}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:reveal .8s .5s var(--ease-out-expo) forwards}
+.tag{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);padding:10px 18px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;color:var(--txt2);transition:all .2s}
+.tag:hover{background:var(--surface-hover);border-color:var(--gold);color:var(--txt);box-shadow:0 0 20px var(--gold-glow)}
+@keyframes reveal{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTIONS
+════════════════════════════════════════════════════════════════ */
+.sec{padding:100px 0;position:relative}
+.sec-header{margin-bottom:48px}
+.sec-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sec-eyebrow::before{content:'';width:40px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+.sec-title{font-family:'Instrument Serif',serif;font-size:clamp(30px,5vw,50px);font-weight:400;line-height:1.1;letter-spacing:-.02em}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease-out-expo),transform .8s var(--ease-out-expo)}
+.rv.visible{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLASS CARDS
+════════════════════════════════════════════════════════════════ */
+.glass-card{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;padding:32px;transition:all .3s var(--ease-out-expo);position:relative;overflow:hidden}
+.glass-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent)}
+.glass-card:hover{border-color:rgba(201,168,76,.35);box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 40px var(--gold-glow);transform:translateY(-4px)}
+.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px}
+.link-card{display:flex;align-items:center;gap:20px}
+.link-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--gradient-1),var(--gradient-2));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 24px rgba(107,143,63,.35)}
+.link-icon svg{width:22px;height:22px;color:#fff}
+.link-content{flex:1;min-width:0}
+.link-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.link-url{font-size:14px;color:var(--txt);word-break:break-all}
+.link-arrow{color:var(--txt3);transition:transform .3s var(--ease-out-expo)}
+.link-card:hover .link-arrow{transform:translateX(6px);color:var(--accent)}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTENT / TABLE
+════════════════════════════════════════════════════════════════ */
+.text-content p{font-size:17px;color:var(--txt2);line-height:1.85;margin-bottom:1.5em}
+.text-content strong{color:var(--txt);font-weight:500}
+
+.price-table{width:100%;border-collapse:collapse;margin-top:32px;background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;overflow:hidden}
+.price-table th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);text-align:left;padding:18px 24px;border-bottom:1px solid var(--line2)}
+.price-table td{padding:20px 24px;border-bottom:1px solid var(--line);font-size:15px;color:var(--txt2)}
+.price-table tr:last-child td{border-bottom:none}
+.price-table td.pname{color:var(--txt);font-weight:500}
+.price-table .best{color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-left:8px}
+
+/* Feature Pills / Tech Pills */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:32px}
+.feat-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:18px;padding:26px}
+.feat-icon{font-size:22px;margin-bottom:14px}
+.feat-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;color:var(--txt);margin-bottom:8px}
+.feat-desc{font-size:13.5px;color:var(--txt2);line-height:1.6}
+
+.tech-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.tech-pill{display:flex;align-items:center;gap:8px;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);padding:12px 18px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:all .2s}
+.tech-pill:hover{border-color:var(--gold);color:var(--txt);box-shadow:0 0 20px var(--gold-glow)}
+
+/* Marketing channel blocks */
+.workflow-block{margin-top:60px;padding-top:60px;border-top:1px solid var(--line)}
+.workflow-number{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;color:var(--accent);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.workflow-number::before{content:'';width:30px;height:1px;background:var(--accent);box-shadow:0 0 10px var(--accent-glow)}
+.workflow-title{font-family:'Instrument Serif',serif;font-size:clamp(22px,4vw,32px);font-weight:400;margin-bottom:16px}
+.workflow-desc{font-size:16px;color:var(--txt2);line-height:1.8;max-width:700px}
+
+/* Screenshots / Evidence gallery */
+.screens-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:32px}
+.screenshot-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:16px;overflow:hidden;transition:all .3s var(--ease-out-expo)}
+.screenshot-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 30px 60px rgba(0,0,0,.4),0 0 50px var(--gold-glow);border-color:var(--gold)}
+.screenshot-img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-bottom:1px solid var(--glass-border);cursor:zoom-in}
+.screenshot-label{padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);display:flex;align-items:center;gap:8px}
+.screenshot-label::before{content:'';width:8px;height:8px;border-radius:2px;background:var(--accent);box-shadow:0 0 10px var(--accent-glow)}
+
+/* Results */
+.results-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+@media(max-width:700px){.results-row{grid-template-columns:1fr}}
+.result-box{background:rgba(0,0,0,.22);border:1px solid var(--glass-border);border-radius:14px;padding:24px}
+.result-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.result-list{list-style:none}
+.result-list li{font-size:13px;color:var(--txt2);padding:8px 0;padding-left:16px;position:relative}
+.result-list li::before{content:'';position:absolute;left:0;top:14px;width:5px;height:5px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent-glow)}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(6,15,8,.92);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:100000;padding:40px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox img{max-width:100%;max-height:100%;border-radius:12px;border:1px solid var(--glass-border);box-shadow:0 30px 80px rgba(0,0,0,.6)}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════════════════════ */
+footer{padding:60px 0;border-top:1px solid var(--line);margin-top:60px}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.footer-brand{font-family:'Instrument Serif',serif;font-size:20px}
+.footer-info{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-align:right;line-height:2}
+@media(max-width:600px){.footer-inner{flex-direction:column;align-items:flex-start}.footer-info{text-align:left}}
+
+/* Particles */
+.particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.particle{position:absolute;width:3px;height:3px;background:var(--gold);border-radius:50%;opacity:.3;animation:float-up 16s linear infinite}
+@keyframes float-up{0%{transform:translateY(100vh) rotate(0deg);opacity:0}10%{opacity:.3}90%{opacity:.3}100%{transform:translateY(-100px) rotate(720deg);opacity:0}}
+
+a,button{cursor:none}
+@media(hover:none){a,button{cursor:auto}}
+</style>
+</head>
+
+<body>
+<div class="grove-bg">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="dapple"></div>
+</div>
+
+<div class="particles" id="particles"></div>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-glass">
+      <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+      <a href="index.html" class="nav-link" data-i18n="nav_back">Zpět na portfolio</a>
+
+      <div class="nav-actions">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="cs">CZ</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="uk">UA</button>
+          <button class="lang-btn" data-lang="ru">RU</button>
+        </div>
+        <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+        <button class="audio-btn" id="audioBtn" aria-label="Toggle audio">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/>
+          </svg>
+        </button>
+        <button class="hamburger" id="hamBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" data-i18n="nav_back" onclick="closeMobile()">Zpět na portfolio</a>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text" data-i18n="hero_type">🫒 Prodejní web · Google Ads · Meta Ads</span>
+    </div>
+
+    <h1 class="hero-title"><em>Apulia</em> Olive Oil CZ</h1>
+
+    <p class="hero-desc" data-i18n="hero_desc">Prémiový italský olivový olej přímo z Apulie — jednostránkový prodejní web pro český trh, s 8 jazykovými verzemi, WhatsApp objednávkami a GDPR-compliant reklamním trackingem.</p>
+
+    <div class="hero-tags">
+      <span class="tag">HTML / CSS / JS</span>
+      <span class="tag">Google Ads Performance Max</span>
+      <span class="tag">Meta Ads</span>
+      <span class="tag">TikTok</span>
+      <span class="tag">WhatsApp Business</span>
+      <span class="tag">GDPR Consent Mode v2</span>
+      <span class="tag">2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     LINKS
+════════════════════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_project">Zdroje projektu</div>
+        <h2 class="sec-title" data-i18n="links_title">Odkazy</h2>
+      </div>
+
+      <div class="links-grid">
+        <a href="https://apuliaoliveoil.cz/" target="_blank" rel="noopener" class="glass-card link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div class="link-content">
+            <div class="link-label" data-i18n="link_live">Live Site</div>
+            <div class="link-url">apuliaoliveoil.cz</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <a href="https://github.com/italian-n/apulia/tree/main" target="_blank" rel="noopener" class="glass-card link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </div>
+          <div class="link-content">
+            <div class="link-label" data-i18n="link_source">Source Code</div>
+            <div class="link-url">github.com/italian-n/apulia</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <a href="https://wa.me/420604264270" target="_blank" rel="noopener" class="glass-card link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </div>
+          <div class="link-content">
+            <div class="link-label" data-i18n="link_whatsapp">WhatsApp Business</div>
+            <div class="link-url">+420 604 264 270</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@apulia.olive.oil.c" target="_blank" rel="noopener" class="glass-card link-card">
+          <div class="link-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          </div>
+          <div class="link-content">
+            <div class="link-label" data-i18n="link_tiktok">TikTok</div>
+            <div class="link-url">@apulia.olive.oil.c</div>
+          </div>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CONTEXT
+════════════════════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_context">O projektu</div>
+        <h2 class="sec-title" data-i18n="context_title">Kontext a cíl</h2>
+      </div>
+
+      <div class="text-content">
+        <p data-i18n="context_p1">Jednostránkový (single-page) prodejní web pro exkluzivní distribuci prémiového olivového oleje z Apulie (Itálie) na českém trhu. Web slouží jako digitální vizitka a prodejní kanál — objednávky se zpracovávají přímo přes WhatsApp, bez nutnosti registrace nebo košíku.</p>
+        <p data-i18n="context_p2"><strong>Cíl:</strong> Postavit rychlý, plně responzivní web bez backendu, s podporou 8 jazyků, GDPR-compliant reklamním trackingem a plynulým propojením na WhatsApp jako hlavní prodejní kanál — a poté web aktivně propagovat přes Google Ads, Meta Ads a TikTok.</p>
+      </div>
+
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th data-i18n="th_product">Produkt</th>
+            <th data-i18n="th_size">Balení</th>
+            <th data-i18n="th_price">Cena</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="pname" data-i18n="p1_name">Extra Panenský Olivový Olej</td>
+            <td>5 L</td>
+            <td>1 290 Kč</td>
+          </tr>
+          <tr>
+            <td class="pname" data-i18n="p2_name">Olivový Olej Vergine <span class="best" data-i18n="p2_best">★ nejprodávanější</span></td>
+            <td>10 L</td>
+            <td>1 690 Kč</td>
+          </tr>
+          <tr>
+            <td class="pname" data-i18n="p3_name">Olivový Olej na Smažení</td>
+            <td>10 L</td>
+            <td>1 490 Kč</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FEATURES
+════════════════════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_feat">Funkce webu</div>
+        <h2 class="sec-title" data-i18n="feat_title">Co web umí</h2>
+      </div>
+
+      <div class="feat-grid">
+        <div class="glass-card feat-card">
+          <div class="feat-icon">🌍</div>
+          <div class="feat-title" data-i18n="f1_title">8 jazykových verzí</div>
+          <div class="feat-desc" data-i18n="f1_desc">Čeština (výchozí), angličtina, ukrajinština, ruština, italština, němčina, polština, slovenština.</div>
+        </div>
+        <div class="glass-card feat-card">
+          <div class="feat-icon">💬</div>
+          <div class="feat-title" data-i18n="f2_title">Objednávky přes WhatsApp</div>
+          <div class="feat-desc" data-i18n="f2_desc">Žádná registrace, žádný košík — objednávka jedním kliknutím.</div>
+        </div>
+        <div class="glass-card feat-card">
+          <div class="feat-icon">🍪</div>
+          <div class="feat-title" data-i18n="f3_title">GDPR Consent Mode v2</div>
+          <div class="feat-desc" data-i18n="f3_desc">Reklamní sledování se aktivuje až po souhlasu návštěvníka.</div>
+        </div>
+        <div class="glass-card feat-card">
+          <div class="feat-icon">📊</div>
+          <div class="feat-title" data-i18n="f4_title">Google Ads conversion tracking</div>
+          <div class="feat-desc" data-i18n="f4_desc">Sledování kliknutí na tlačítko „Koupit" u každého produktu.</div>
+        </div>
+        <div class="glass-card feat-card">
+          <div class="feat-icon">📄</div>
+          <div class="feat-title" data-i18n="f5_title">Certifikáty ke stažení</div>
+          <div class="feat-desc" data-i18n="f5_desc">Technické listy a laboratorní rozbory (COI/EU normy) přímo z webu.</div>
+        </div>
+        <div class="glass-card feat-card">
+          <div class="feat-icon">📱</div>
+          <div class="feat-title" data-i18n="f6_title">Plně responzivní</div>
+          <div class="feat-desc" data-i18n="f6_desc">Mobil, tablet i desktop, včetně touch-friendly ovládání.</div>
+        </div>
+        <div class="glass-card feat-card">
+          <div class="feat-icon">🎥</div>
+          <div class="feat-title" data-i18n="f7_title">Video prezentace produktů</div>
+          <div class="feat-desc" data-i18n="f7_desc">Krátká videa přímo na kartách jednotlivých olejů.</div>
+        </div>
+        <div class="glass-card feat-card">
+          <div class="feat-icon">⚡</div>
+          <div class="feat-title" data-i18n="f8_title">Statický web bez backendu</div>
+          <div class="feat-desc" data-i18n="f8_desc">Hostováno na GitHub Pages — rychlé načítání, nulová latence serveru.</div>
+        </div>
+      </div>
+
+      <div class="tech-pills">
+        <div class="tech-pill">HTML5 / CSS3 / JS</div>
+        <div class="tech-pill" data-i18n="tp_i18n">Vlastní i18n systém</div>
+        <div class="tech-pill">Google Tag (gtag.js)</div>
+        <div class="tech-pill">Consent Mode v2</div>
+        <div class="tech-pill">JSON-LD (Schema.org)</div>
+        <div class="tech-pill">GitHub Pages</div>
+        <div class="tech-pill" data-i18n="tp_domain">Vlastní doména</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MARKETING — PROOF GALLERY
+════════════════════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_marketing">Marketing a reklama</div>
+        <h2 class="sec-title" data-i18n="marketing_title">Web je aktivně propagován</h2>
+      </div>
+
+      <!-- Google Ads -->
+      <div class="workflow-block" style="margin-top:0;padding-top:0;border-top:none">
+        <div class="workflow-number">🔍 Google Ads</div>
+        <h3 class="workflow-title" data-i18n="m1_title">Performance Max kampaň</h3>
+        <p class="workflow-desc" data-i18n="m1_desc">Kampaň cílená na klíčová slova jako „olivový olej Brno" a „italský olivový olej" — s conversion trackingem na kliknutí „Koupit", cenovými rozšířeními, sitelinky a WhatsApp chat assetem. Reálný výsledek: reklama se zobrazuje ve Sponsorovaných výsledcích Google vedle konkurence v oboru.</p>
+
+        <div class="screens-grid">
+          <div class="screenshot-card">
+            <img src="ads-search-result.png" alt="Google search sponsored result" class="screenshot-img" onclick="openLightbox(this.src)">
+            <div class="screenshot-label" data-i18n="m1_shot1">Google Search — sponzorovaný výsledek</div>
+          </div>
+          <div class="screenshot-card">
+            <img src="ads-campaign.png" alt="Google Ads campaign asset group" class="screenshot-img" onclick="openLightbox(this.src)">
+            <div class="screenshot-label" data-i18n="m1_shot2">Google Ads — Asset group, aktivní kampaň</div>
+          </div>
+          <div class="screenshot-card">
+            <img src="ads-billing.png" alt="Google Ads billing and clicks" class="screenshot-img" onclick="openLightbox(this.src)">
+            <div class="screenshot-label" data-i18n="m1_shot3">Google Ads — reálné kliky a náklady</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Meta -->
+      <div class="workflow-block">
+        <div class="workflow-number">📘 Facebook / Instagram</div>
+        <h3 class="workflow-title" data-i18n="m2_title">Meta Ads</h3>
+        <p class="workflow-desc" data-i18n="m2_desc">Reklama cílená na uživatele v Brně a okolí se zájmem o gastronomii a italskou kuchyni — využívá stejná produktová videa jako web.</p>
+      </div>
+
+      <!-- TikTok -->
+      <div class="workflow-block">
+        <div class="workflow-number">🎵 TikTok</div>
+        <h3 class="workflow-title" data-i18n="m3_title">Organický i placený obsah</h3>
+        <p class="workflow-desc" data-i18n="m3_desc">Účet @apulia.olive.oil.c — krátká videa představující produkt a jeho původ.</p>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="workflow-block">
+        <div class="workflow-number">💬 WhatsApp Business</div>
+        <h3 class="workflow-title" data-i18n="m4_title">Hlavní prodejní kanál</h3>
+        <p class="workflow-desc" data-i18n="m4_desc">Všechny objednávky, dotazy a chat asset v reklamách vedou na jedno číslo — bez ztráty leadů mezi kanály.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     RESULTS
+════════════════════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="rv">
+      <div class="sec-header">
+        <div class="sec-eyebrow" data-i18n="sec_results">Výsledek</div>
+        <h2 class="sec-title" data-i18n="results_title">Co bylo doručeno</h2>
+      </div>
+
+      <div class="results-row">
+        <div class="result-box">
+          <div class="result-title" data-i18n="res_dev">Vývoj</div>
+          <ul class="result-list">
+            <li data-i18n="rd1">Web od nuly do produkce</li>
+            <li data-i18n="rd2">8 jazykových verzí</li>
+            <li data-i18n="rd3">Vlastní doména + GitHub Pages</li>
+            <li data-i18n="rd4">JSON-LD SEO struktura</li>
+          </ul>
+        </div>
+        <div class="result-box">
+          <div class="result-title" data-i18n="res_comp">Compliance</div>
+          <ul class="result-list">
+            <li data-i18n="rc1">GDPR cookie banner</li>
+            <li data-i18n="rc2">Google Consent Mode v2</li>
+            <li data-i18n="rc3">Certifikáty a lab. rozbory</li>
+            <li data-i18n="rc4">Transparentní ceny</li>
+          </ul>
+        </div>
+        <div class="result-box">
+          <div class="result-title" data-i18n="res_mkt">Marketing</div>
+          <ul class="result-list">
+            <li data-i18n="rm1">Google Ads Performance Max — live</li>
+            <li data-i18n="rm2">Meta Ads kampaň</li>
+            <li data-i18n="rm3">TikTok organický + placený obsah</li>
+            <li data-i18n="rm4">WhatsApp jako single funnel</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     AUTHOR
+════════════════════════════════════════════════════════════════ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="rv glass-card" style="padding:40px">
+      <div class="sec-eyebrow" data-i18n="sec_author">Autor</div>
+      <p class="text-content" style="font-size:17px;color:var(--txt2);line-height:1.85">
+        <span data-i18n="author_p">Web vyvinula a spravuje <strong style="color:var(--txt)">Tetiana Kotolup</strong> — AI Automation Developer &amp; Full-Stack Developer.</span>
+        <a href="index.html" style="color:var(--gold);text-decoration:underline">tetianakotolup.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">Tetiana Kotolup</div>
+      <div class="footer-info">
+        AI Automation Developer<br>
+        kotolup24@gmail.com · @tetiana_K888 · 2026
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<audio id="bgMusic" loop><source src="011.mp3" type="audio/mpeg"></audio>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   TRANSLATIONS — CZ / EN / UA / RU
+════════════════════════════════════════════════════════════════ */
+const i18n = {
+  cs: {
+    nav_back:'Zpět na portfolio',
+    hero_type:'🫒 Prodejní web · Google Ads · Meta Ads',
+    hero_desc:'Prémiový italský olivový olej přímo z Apulie — jednostránkový prodejní web pro český trh, s 8 jazykovými verzemi, WhatsApp objednávkami a GDPR-compliant reklamním trackingem.',
+    sec_project:'Zdroje projektu', links_title:'Odkazy',
+    link_live:'Live Site', link_source:'Source Code', link_whatsapp:'WhatsApp Business', link_tiktok:'TikTok',
+    sec_context:'O projektu', context_title:'Kontext a cíl',
+    context_p1:'Jednostránkový (single-page) prodejní web pro exkluzivní distribuci prémiového olivového oleje z Apulie (Itálie) na českém trhu. Web slouží jako digitální vizitka a prodejní kanál — objednávky se zpracovávají přímo přes WhatsApp, bez nutnosti registrace nebo košíku.',
+    context_p2:'<strong>Cíl:</strong> Postavit rychlý, plně responzivní web bez backendu, s podporou 8 jazyků, GDPR-compliant reklamním trackingem a plynulým propojením na WhatsApp jako hlavní prodejní kanál — a poté web aktivně propagovat přes Google Ads, Meta Ads a TikTok.',
+    th_product:'Produkt', th_size:'Balení', th_price:'Cena',
+    p1_name:'Extra Panenský Olivový Olej', p2_name:'Olivový Olej Vergine', p2_best:'★ nejprodávanější', p3_name:'Olivový Olej na Smažení',
+    sec_feat:'Funkce webu', feat_title:'Co web umí',
+    f1_title:'8 jazykových verzí', f1_desc:'Čeština (výchozí), angličtina, ukrajinština, ruština, italština, němčina, polština, slovenština.',
+    f2_title:'Objednávky přes WhatsApp', f2_desc:'Žádná registrace, žádný košík — objednávka jedním kliknutím.',
+    f3_title:'GDPR Consent Mode v2', f3_desc:'Reklamní sledování se aktivuje až po souhlasu návštěvníka.',
+    f4_title:'Google Ads conversion tracking', f4_desc:'Sledování kliknutí na tlačítko „Koupit" u každého produktu.',
+    f5_title:'Certifikáty ke stažení', f5_desc:'Technické listy a laboratorní rozbory (COI/EU normy) přímo z webu.',
+    f6_title:'Plně responzivní', f6_desc:'Mobil, tablet i desktop, včetně touch-friendly ovládání.',
+    f7_title:'Video prezentace produktů', f7_desc:'Krátká videa přímo na kartách jednotlivých olejů.',
+    f8_title:'Statický web bez backendu', f8_desc:'Hostováno na GitHub Pages — rychlé načítání, nulová latence serveru.',
+    tp_i18n:'Vlastní i18n systém', tp_domain:'Vlastní doména',
+    sec_marketing:'Marketing a reklama', marketing_title:'Web je aktivně propagován',
+    m1_title:'Performance Max kampaň',
+    m1_desc:'Kampaň cílená na klíčová slova jako „olivový olej Brno" a „italský olivový olej" — s conversion trackingem na kliknutí „Koupit", cenovými rozšířeními, sitelinky a WhatsApp chat assetem. Reálný výsledek: reklama se zobrazuje ve Sponzorovaných výsledcích Google vedle konkurence v oboru.',
+    m1_shot1:'Google Search — sponzorovaný výsledek', m1_shot2:'Google Ads — Asset group, aktivní kampaň', m1_shot3:'Google Ads — reálné kliky a náklady',
+    m2_title:'Meta Ads', m2_desc:'Reklama cílená na uživatele v Brně a okolí se zájmem o gastronomii a italskou kuchyni — využívá stejná produktová videa jako web.',
+    m3_title:'Organický i placený obsah', m3_desc:'Účet @apulia.olive.oil.c — krátká videa představující produkt a jeho původ.',
+    m4_title:'Hlavní prodejní kanál', m4_desc:'Všechny objednávky, dotazy a chat asset v reklamách vedou na jedno číslo — bez ztráty leadů mezi kanály.',
+    sec_results:'Výsledek', results_title:'Co bylo doručeno',
+    res_dev:'Vývoj', rd1:'Web od nuly do produkce', rd2:'8 jazykových verzí', rd3:'Vlastní doména + GitHub Pages', rd4:'JSON-LD SEO struktura',
+    res_comp:'Compliance', rc1:'GDPR cookie banner', rc2:'Google Consent Mode v2', rc3:'Certifikáty a lab. rozbory', rc4:'Transparentní ceny',
+    res_mkt:'Marketing', rm1:'Google Ads Performance Max — live', rm2:'Meta Ads kampaň', rm3:'TikTok organický + placený obsah', rm4:'WhatsApp jako single funnel',
+    sec_author:'Autor', author_p:'Web vyvinula a spravuje <strong style="color:var(--txt)">Tetiana Kotolup</strong> — AI Automation Developer &amp; Full-Stack Developer.'
+  },
+  en: {
+    nav_back:'Back to Portfolio',
+    hero_type:'🫒 Sales Website · Google Ads · Meta Ads',
+    hero_desc:'Premium Italian olive oil straight from Apulia — a single-page sales website for the Czech market, with 8 language versions, WhatsApp ordering and GDPR-compliant ad tracking.',
+    sec_project:'Project Resources', links_title:'Links',
+    link_live:'Live Site', link_source:'Source Code', link_whatsapp:'WhatsApp Business', link_tiktok:'TikTok',
+    sec_context:'About the Project', context_title:'Context & Goal',
+    context_p1:'A single-page sales website for the exclusive distribution of premium olive oil from Apulia (Italy) on the Czech market. The site acts as a digital storefront and sales channel — orders are handled directly via WhatsApp, with no registration or cart needed.',
+    context_p2:'<strong>Goal:</strong> Build a fast, fully responsive, backend-free website with 8 language versions, GDPR-compliant ad tracking, and a seamless link to WhatsApp as the main sales channel — then actively promote it via Google Ads, Meta Ads and TikTok.',
+    th_product:'Product', th_size:'Package', th_price:'Price',
+    p1_name:'Extra Virgin Olive Oil', p2_name:'Olive Oil Vergine', p2_best:'★ best-seller', p3_name:'Frying Olive Oil',
+    sec_feat:'Website Features', feat_title:'What the site does',
+    f1_title:'8 language versions', f1_desc:'Czech (default), English, Ukrainian, Russian, Italian, German, Polish, Slovak.',
+    f2_title:'WhatsApp ordering', f2_desc:'No registration, no cart — order with a single click.',
+    f3_title:'GDPR Consent Mode v2', f3_desc:'Ad tracking only activates after visitor consent.',
+    f4_title:'Google Ads conversion tracking', f4_desc:'Tracks clicks on the "Buy" button for every product.',
+    f5_title:'Downloadable certificates', f5_desc:'Technical sheets and lab analyses (COI/EU standards) right from the site.',
+    f6_title:'Fully responsive', f6_desc:'Mobile, tablet and desktop, with touch-friendly controls.',
+    f7_title:'Product video presentations', f7_desc:'Short videos directly on each oil\'s product card.',
+    f8_title:'Static, backend-free site', f8_desc:'Hosted on GitHub Pages — fast load times, zero server latency.',
+    tp_i18n:'Custom i18n system', tp_domain:'Custom domain',
+    sec_marketing:'Marketing & Advertising', marketing_title:'The site is actively promoted',
+    m1_title:'Performance Max campaign',
+    m1_desc:'A campaign targeting keywords like "olive oil Brno" and "Italian olive oil" — with conversion tracking on "Buy" clicks, price extensions, sitelinks and a WhatsApp chat asset. Real result: the ad appears in Google\'s Sponsored results next to competitors in the niche.',
+    m1_shot1:'Google Search — sponsored result', m1_shot2:'Google Ads — asset group, active campaign', m1_shot3:'Google Ads — real clicks and spend',
+    m2_title:'Meta Ads', m2_desc:'Ads targeting users in Brno and surrounding areas interested in gastronomy and Italian cuisine — using the same product videos as the site.',
+    m3_title:'Organic & paid content', m3_desc:'The @apulia.olive.oil.c account — short videos showcasing the product and its origin.',
+    m4_title:'Main sales channel', m4_desc:'All orders, inquiries and the ad chat asset lead to one number — no leads lost between channels.',
+    sec_results:'Outcome', results_title:'What was delivered',
+    res_dev:'Development', rd1:'Website from scratch to production', rd2:'8 language versions', rd3:'Custom domain + GitHub Pages', rd4:'JSON-LD SEO structure',
+    res_comp:'Compliance', rc1:'GDPR cookie banner', rc2:'Google Consent Mode v2', rc3:'Certificates & lab analyses', rc4:'Transparent pricing',
+    res_mkt:'Marketing', rm1:'Google Ads Performance Max — live', rm2:'Meta Ads campaign', rm3:'TikTok organic + paid content', rm4:'WhatsApp as a single funnel',
+    sec_author:'Author', author_p:'The site was built and is maintained by <strong style="color:var(--txt)">Tetiana Kotolup</strong> — AI Automation Developer &amp; Full-Stack Developer.'
+  },
+  uk: {
+    nav_back:'Назад до портфоліо',
+    hero_type:'🫒 Продажний сайт · Google Ads · Meta Ads',
+    hero_desc:'Преміальна італійська оливкова олія прямо з Апулії — односторінковий продажний сайт для чеського ринку, з 8 мовними версіями, замовленнями через WhatsApp та GDPR-сумісним рекламним трекінгом.',
+    sec_project:'Ресурси проекту', links_title:'Посилання',
+    link_live:'Живий сайт', link_source:'Вихідний код', link_whatsapp:'WhatsApp Business', link_tiktok:'TikTok',
+    sec_context:'Про проект', context_title:'Контекст і мета',
+    context_p1:'Односторінковий продажний сайт для ексклюзивної дистрибуції преміальної оливкової олії з Апулії (Італія) на чеському ринку. Сайт слугує цифровою візитівкою та каналом продажів — замовлення обробляються напряму через WhatsApp, без реєстрації чи кошика.',
+    context_p2:'<strong>Мета:</strong> Побудувати швидкий, повністю адаптивний сайт без бекенду, з підтримкою 8 мов, GDPR-сумісним рекламним трекінгом та прямим зв\'язком з WhatsApp як основним каналом продажів — а потім активно просувати сайт через Google Ads, Meta Ads і TikTok.',
+    th_product:'Продукт', th_size:'Обсяг', th_price:'Ціна',
+    p1_name:'Оливкова олія Extra Virgin', p2_name:'Оливкова олія Vergine', p2_best:'★ бестселер', p3_name:'Оливкова олія для смаження',
+    sec_feat:'Функції сайту', feat_title:'Що вміє сайт',
+    f1_title:'8 мовних версій', f1_desc:'Чеська (за замовчуванням), англійська, українська, російська, італійська, німецька, польська, словацька.',
+    f2_title:'Замовлення через WhatsApp', f2_desc:'Без реєстрації, без кошика — замовлення в одне натискання.',
+    f3_title:'GDPR Consent Mode v2', f3_desc:'Рекламний трекінг активується лише після згоди відвідувача.',
+    f4_title:'Google Ads conversion tracking', f4_desc:'Відстеження кліків по кнопці «Купити» для кожного продукту.',
+    f5_title:'Сертифікати для завантаження', f5_desc:'Технічні листи та лабораторні аналізи (норми COI/ЄС) прямо на сайті.',
+    f6_title:'Повністю адаптивний', f6_desc:'Мобільний, планшет і десктоп, включно з touch-керуванням.',
+    f7_title:'Відеопрезентації продуктів', f7_desc:'Короткі відео прямо на картках кожної олії.',
+    f8_title:'Статичний сайт без бекенду', f8_desc:'Хостинг на GitHub Pages — швидке завантаження, нульова затримка сервера.',
+    tp_i18n:'Власна i18n система', tp_domain:'Власний домен',
+    sec_marketing:'Маркетинг і реклама', marketing_title:'Сайт активно просувається',
+    m1_title:'Кампанія Performance Max',
+    m1_desc:'Кампанія націлена на ключові слова на кшталт «olivový olej Brno» та «italský olivový olej» — з conversion tracking на клік «Купити», ціновими розширеннями, сайтлінками та WhatsApp chat asset. Реальний результат: реклама з\'являється у Спонсорованих результатах Google поряд з конкурентами в ніші.',
+    m1_shot1:'Google Search — спонсорований результат', m1_shot2:'Google Ads — Asset group, активна кампанія', m1_shot3:'Google Ads — реальні кліки та витрати',
+    m2_title:'Meta Ads', m2_desc:'Реклама націлена на користувачів у Брно та околицях, зацікавлених у гастрономії та італійській кухні — використовує ті самі відео продуктів, що й сайт.',
+    m3_title:'Органічний та платний контент', m3_desc:'Акаунт @apulia.olive.oil.c — короткі відео, що представляють продукт та його походження.',
+    m4_title:'Головний канал продажів', m4_desc:'Усі замовлення, запити та chat asset у рекламі ведуть на один номер — без втрати лідів між каналами.',
+    sec_results:'Результат', results_title:'Що було зроблено',
+    res_dev:'Розробка', rd1:'Сайт з нуля до продакшену', rd2:'8 мовних версій', rd3:'Власний домен + GitHub Pages', rd4:'JSON-LD SEO структура',
+    res_comp:'Комплаєнс', rc1:'GDPR cookie banner', rc2:'Google Consent Mode v2', rc3:'Сертифікати та лаб. аналізи', rc4:'Прозорі ціни',
+    res_mkt:'Маркетинг', rm1:'Google Ads Performance Max — live', rm2:'Кампанія Meta Ads', rm3:'TikTok органічний + платний контент', rm4:'WhatsApp як єдина воронка',
+    sec_author:'Автор', author_p:'Сайт розробила та підтримує <strong style="color:var(--txt)">Тетяна Котолуп</strong> — AI Automation Developer &amp; Full-Stack Developer.'
+  },
+  ru: {
+    nav_back:'Назад в портфолио',
+    hero_type:'🫒 Продающий сайт · Google Ads · Meta Ads',
+    hero_desc:'Премиальное итальянское оливковое масло прямо из Апулии — одностраничный продающий сайт для чешского рынка, с 8 языковыми версиями, заказами через WhatsApp и GDPR-совместимым рекламным трекингом.',
+    sec_project:'Ресурсы проекта', links_title:'Ссылки',
+    link_live:'Живой сайт', link_source:'Исходный код', link_whatsapp:'WhatsApp Business', link_tiktok:'TikTok',
+    sec_context:'О проекте', context_title:'Контекст и цель',
+    context_p1:'Одностраничный продающий сайт для эксклюзивной дистрибуции премиального оливкового масла из Апулии (Италия) на чешском рынке. Сайт служит цифровой визиткой и каналом продаж — заказы обрабатываются напрямую через WhatsApp, без регистрации или корзины.',
+    context_p2:'<strong>Цель:</strong> Построить быстрый, полностью адаптивный сайт без бэкенда, с поддержкой 8 языков, GDPR-совместимым рекламным трекингом и прямой связью с WhatsApp как основным каналом продаж — а затем активно продвигать сайт через Google Ads, Meta Ads и TikTok.',
+    th_product:'Продукт', th_size:'Объём', th_price:'Цена',
+    p1_name:'Оливковое масло Extra Virgin', p2_name:'Оливковое масло Vergine', p2_best:'★ бестселлер', p3_name:'Оливковое масло для жарки',
+    sec_feat:'Функции сайта', feat_title:'Что умеет сайт',
+    f1_title:'8 языковых версий', f1_desc:'Чешский (по умолчанию), английский, украинский, русский, итальянский, немецкий, польский, словацкий.',
+    f2_title:'Заказы через WhatsApp', f2_desc:'Без регистрации, без корзины — заказ в один клик.',
+    f3_title:'GDPR Consent Mode v2', f3_desc:'Рекламный трекинг активируется только после согласия посетителя.',
+    f4_title:'Google Ads conversion tracking', f4_desc:'Отслеживание кликов по кнопке «Купить» для каждого продукта.',
+    f5_title:'Сертификаты для скачивания', f5_desc:'Технические листы и лабораторные анализы (нормы COI/ЕС) прямо на сайте.',
+    f6_title:'Полностью адаптивный', f6_desc:'Мобильный, планшет и десктоп, включая touch-управление.',
+    f7_title:'Видеопрезентации продуктов', f7_desc:'Короткие видео прямо на карточках каждого масла.',
+    f8_title:'Статичный сайт без бэкенда', f8_desc:'Хостинг на GitHub Pages — быстрая загрузка, нулевая задержка сервера.',
+    tp_i18n:'Собственная система i18n', tp_domain:'Собственный домен',
+    sec_marketing:'Маркетинг и реклама', marketing_title:'Сайт активно продвигается',
+    m1_title:'Кампания Performance Max',
+    m1_desc:'Кампания нацелена на ключевые слова вроде «olivový olej Brno» и «italský olivový olej» — с conversion tracking на клик «Купить», ценовыми расширениями, сайтлинками и WhatsApp chat asset. Реальный результат: объявление показывается в Спонсорских результатах Google рядом с конкурентами в нише.',
+    m1_shot1:'Google Search — спонсорский результат', m1_shot2:'Google Ads — Asset group, активная кампания', m1_shot3:'Google Ads — реальные клики и расходы',
+    m2_title:'Meta Ads', m2_desc:'Реклама нацелена на пользователей в Брно и окрестностях, интересующихся гастрономией и итальянской кухней — использует те же видео продуктов, что и сайт.',
+    m3_title:'Органический и платный контент', m3_desc:'Аккаунт @apulia.olive.oil.c — короткие видео, представляющие продукт и его происхождение.',
+    m4_title:'Главный канал продаж', m4_desc:'Все заказы, вопросы и chat asset в рекламе ведут на один номер — без потери лидов между каналами.',
+    sec_results:'Результат', results_title:'Что было сделано',
+    res_dev:'Разработка', rd1:'Сайт с нуля до продакшена', rd2:'8 языковых версий', rd3:'Собственный домен + GitHub Pages', rd4:'JSON-LD SEO структура',
+    res_comp:'Комплаенс', rc1:'GDPR cookie banner', rc2:'Google Consent Mode v2', rc3:'Сертификаты и лаб. анализы', rc4:'Прозрачные цены',
+    res_mkt:'Маркетинг', rm1:'Google Ads Performance Max — live', rm2:'Кампания Meta Ads', rm3:'TikTok органический + платный контент', rm4:'WhatsApp как единая воронка',
+    sec_author:'Автор', author_p:'Сайт разработала и поддерживает <strong style="color:var(--txt)">Тетяна Котолуп</strong> — AI Automation Developer &amp; Full-Stack Developer.'
+  }
+};
+
+let currentLang = 'cs';
+
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  const html = document.documentElement;
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('apulia-theme', next);
+});
+
+const audioBtn = document.getElementById('audioBtn');
+const bgMusic = document.getElementById('bgMusic');
+let isPlaying = false;
+audioBtn.addEventListener('click', () => {
+  if (isPlaying) {
+    bgMusic.pause();
+    audioBtn.classList.remove('playing');
+  } else {
+    bgMusic.play().catch(()=>{});
+    audioBtn.classList.add('playing');
+  }
+  isPlaying = !isPlaying;
+});
+
+const hamBtn = document.getElementById('hamBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+hamBtn.addEventListener('click', () => {
+  hamBtn.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile(){ hamBtn.classList.remove('open'); mobileMenu.classList.remove('open'); }
+
+function applyLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+  document.documentElement.setAttribute('data-lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  document.querySelectorAll('[data-lang]').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+  });
+
+  localStorage.setItem('apulia-lang', lang);
+}
+
+document.querySelectorAll('[data-lang]').forEach(b => {
+  b.addEventListener('click', () => applyLang(b.getAttribute('data-lang')));
+});
+
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+document.querySelectorAll('.rv').forEach(el => revealObserver.observe(el));
+
+function openLightbox(src){
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+/* Cursor */
+(function(){
+  if (!window.matchMedia('(hover:hover)').matches) return;
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    dot.style.left=mx+'px'; dot.style.top=my+'px';
+  }, {passive:true});
+  function animate(){
+    rx += (mx-rx)*0.15; ry += (my-ry)*0.15;
+    ring.style.left=rx+'px'; ring.style.top=ry+'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+  document.querySelectorAll('a, button, .glass-card, .tech-pill, .tag, .screenshot-img').forEach(el => {
+    el.addEventListener('mouseenter', () => { ring.style.width='60px'; ring.style.height='60px'; ring.style.borderColor='var(--gold)'; });
+    el.addEventListener('mouseleave', () => { ring.style.width='40px'; ring.style.height='40px'; ring.style.borderColor='var(--gold)'; });
+  });
+})();
+
+/* Particles */
+(function(){
+  const container = document.getElementById('particles');
+  for (let i=0;i<15;i++){
+    const p=document.createElement('div');
+    p.className='particle';
+    p.style.left=Math.random()*100+'%';
+    p.style.animationDelay=Math.random()*15+'s';
+    p.style.animationDuration=(10+Math.random()*10)+'s';
+    container.appendChild(p);
+  }
+})();
+
+const savedTheme = localStorage.getItem('apulia-theme') || 'dark';
+const savedLang = localStorage.getItem('apulia-lang') || 'cs';
+document.documentElement.setAttribute('data-theme', savedTheme);
+applyLang(savedLang);
+</script>
+</body>
+</html>
