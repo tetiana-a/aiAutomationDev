@@ -17,6 +17,7 @@
 <link rel="alternate" hreflang="uk" href="https://tetianakotolup.com/?lang=uk">
 <link rel="alternate" hreflang="ru" href="https://tetianakotolup.com/?lang=ru">
 <link rel="alternate" hreflang="cs" href="https://tetianakotolup.com/?lang=cs">
+<link rel="alternate" hreflang="it" href="https://tetianakotolup.com/?lang=it">
 <link rel="alternate" hreflang="x-default" href="https://tetianakotolup.com/?lang=en">
 
 <!-- === Open Graph === -->
@@ -29,6 +30,7 @@
 <meta property="og:locale:alternate" content="uk_UA">
 <meta property="og:locale:alternate" content="ru_RU">
 <meta property="og:locale:alternate" content="cs_CZ">
+<meta property="og:locale:alternate" content="it_IT">
 
 <!-- === Twitter/X Card === -->
 <meta name="twitter:card" content="summary_large_image">
@@ -402,6 +404,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
         <button class="lang-btn" data-lang-btn="uk">UA</button>
         <button class="lang-btn" data-lang-btn="ru">RU</button>
         <button class="lang-btn" data-lang-btn="cs">CZ</button>
+        <button class="lang-btn" data-lang-btn="it">IT</button>
       </div>
       <button class="theme-tog" id="themeBtn" aria-label="Toggle theme"></button>
       <button class="pdf-btn" onclick="dlPDF()">
@@ -805,13 +808,12 @@ footer{border-top:1px solid var(--line);padding:52px 0}
     </div>
   </div>
 </section>
-<section class="sec" id="otherwork">
+<section class="sec" id="otherwork" style="padding:56px 0 88px">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="sec-num">07</span>
-      <h2 class="sec-title" data-i18n="ow_title">Other Professional Experience</h2>
+    <div class="sec-head rv" style="margin-bottom:20px">
+      <span class="sec-num" style="opacity:.6">07</span>
+      <h2 class="sec-title" style="font-size:clamp(20px,2.6vw,26px);font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--txt2)" data-i18n="ow_title">Other Professional Experience</h2>
     </div>
-    <p class="lead rv" data-i18n="ow_lead" style="margin-bottom:40px;">Before and alongside IT, a track record of reliable, hands-on work — production, logistics, and customer-facing roles in both the Czech Republic and Ukraine.</p>
 
     <div class="proj-folder rv rv-d1" id="owFolder">
       <div class="folder-header" onclick="toggleOwFolder()">
@@ -949,11 +951,10 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <span data-i18n="license_text">Driving licence, category B (Czech Republic) — active driver</span>
     </div>
 
-    <div class="sec-head" style="margin-top:64px;margin-bottom:0;">
-      <span class="sec-num" data-i18n="ow_skills_num">07.1</span>
-      <h2 class="sec-title" style="font-size:clamp(24px,3.5vw,36px);" data-i18n="ow_skills_title">What This Experience Delivers</h2>
+    <div class="sec-head" style="margin-top:36px;margin-bottom:0;">
+      <h2 class="sec-title" style="font-size:12px;font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);" data-i18n="ow_skills_title">What This Experience Delivers</h2>
     </div>
-    <p class="lead" data-i18n="ow_skills_lead" style="margin-bottom:0;">Transferable skills built over years of hands-on, accountable work — the same discipline now applied to automation projects.</p>
+    <p class="lead" data-i18n="ow_skills_lead" style="margin-bottom:0;font-size:13px;color:var(--txt3);max-width:36rem;">Transferable skills built over years of hands-on, accountable work — the same discipline now applied to automation projects.</p>
 
     <div class="value-grid">
       <div class="value-card">
@@ -994,13 +995,31 @@ footer{border-top:1px solid var(--line);padding:52px 0}
   </div>
 </section>
 
-<section class="sec" id="faq">
+<section class="sec" id="faq" style="padding:56px 0 88px">
   <div class="wrap">
-    <div class="sec-head rv">
-      <span class="sec-num">08</span>
-      <h2 class="sec-title">FAQ</h2>
+    <div class="sec-head rv" style="margin-bottom:20px">
+      <span class="sec-num" style="opacity:.6">08</span>
+      <h2 class="sec-title" style="font-size:clamp(20px,2.6vw,26px);font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.02em;text-transform:uppercase;color:var(--txt2)">FAQ</h2>
     </div>
-    <div class="faq-list rv rv-d1">
+
+    <div class="proj-folder rv rv-d1" id="faqFolder">
+      <div class="folder-header" onclick="toggleFaqFolder()">
+        <div class="folder-left">
+          <div class="folder-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div>
+            <div class="folder-title" data-i18n="faq_folder_title">Frequently Asked Questions</div>
+            <div class="folder-sub" data-i18n="faq_folder_sub">5 questions — click to expand</div>
+          </div>
+        </div>
+        <div class="folder-right">
+          <span class="folder-badge" data-i18n="faq_folder_badge">+5</span>
+          <svg class="folder-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="folder-body" id="faqFolderBody">
+        <div style="padding:8px 28px 32px">
+
+    <div class="faq-list">
       <div class="faq-item">
         <div class="faq-q">Who is Tetiana Kotolup?</div>
         <div class="faq-a">Tetiana Kotolup is an AI Automation Developer based in Brno, Czech Republic, specializing in n8n workflow automation, AI voice agents, Telegram AI bots, and full-stack AI SaaS products built with OpenAI GPT-4o, Anthropic Claude, Node.js, and PostgreSQL.</div>
@@ -1020,6 +1039,10 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <div class="faq-item">
         <div class="faq-q">How can I contact Tetiana Kotolup?</div>
         <div class="faq-a">You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.</div>
+      </div>
+    </div>
+
+        </div>
       </div>
     </div>
   </div>
@@ -1121,6 +1144,9 @@ en:{
   ow_folder_title:"Full work history",
   ow_folder_sub:"8 roles across Czech Republic & Ukraine — click to expand",
   ow_folder_badge:"+8 roles",
+  faq_folder_title:"Frequently Asked Questions",
+  faq_folder_sub:"5 questions — click to expand",
+  faq_folder_badge:"+5",
   job1_title:"Driver — Medical Supplies Distribution",
   job1_date:"Jul 2025 – Mar 2026 · Permanent position",
   job1_b1:"Safe and timely distribution of medicines and medical supplies across the entire Czech Republic",
@@ -1328,6 +1354,9 @@ uk:{
   ow_folder_title:"Повна історія роботи",
   ow_folder_sub:"8 позицій у Чехії та Україні — натисніть, щоб розгорнути",
   ow_folder_badge:"+8 позицій",
+  faq_folder_title:"Часті запитання",
+  faq_folder_sub:"5 запитань — натисніть, щоб розгорнути",
+  faq_folder_badge:"+5",
   job1_title:"Водій — доставка медичних матеріалів",
   job1_date:"Лип 2025 – Бер 2026 · Постійна посада",
   job1_b1:"Безпечна та своєчасна доставка ліків і медичних матеріалів по всій Чехії",
@@ -1535,6 +1564,9 @@ cs:{
   ow_folder_title:"Kompletní pracovní historie",
   ow_folder_sub:"8 pozic v Česku a na Ukrajině — klikněte pro rozbalení",
   ow_folder_badge:"+8 pozic",
+  faq_folder_title:"Časté dotazy",
+  faq_folder_sub:"5 otázek — klikněte pro rozbalení",
+  faq_folder_badge:"+5",
   job1_title:"Řidič — rozvoz zdravotnického materiálu",
   job1_date:"Čvc 2025 – Bře 2026 · Pracovní poměr na dobu neurčitou",
   job1_b1:"Zajištění bezpečné a včasné distribuce léčiv a zdravotnického materiálu po celé ČR",
@@ -1659,6 +1691,216 @@ cs:{
       tags:["n8n","OpenAI GPT-4o-mini","Chain of Thought","Google Sheets API","Slack API","Gmail OAuth2","SLA Logic"],
       site:"https://tetiana-a.github.io/realitka/",bot:null,github:"https://github.com/tetiana-a/realitka"}
   ]
+},
+it:{
+  nav_about:"Chi sono",nav_exp:"Esperienza",nav_skills:"Competenze",nav_certs:"Certificati",nav_case:"Caso studio",nav_projects:"Progetti",nav_otherwork:"Altra esperienza",
+  btn_details:"Dettagli",btn_site:"Sito web ↗",btn_bot:"Bot Telegram ↗",btn_github:"GitHub ↗",
+  hero_eyebrow:"AI Automation Developer · Agenti Vocali AI · Prodotti AI Full-Stack",
+  hero_hint:"Muovi il mouse per rivelare",
+  hero_desc:"Progetto e sviluppo automazioni AI pronte per la produzione, agenti vocali e prodotti AI full-stack — dalle pipeline n8n e agenti telefonici AI ai backend SaaS con PostgreSQL. Dall'idea al sistema live, in modo sistematico e prevedibile.",
+  stat_projects:"Progetti",stat_certs:"Certificati",stat_saas:"SaaS Live",stat_first:"Approccio AI-first",
+  about_title:"Chi sono",about_who_lbl:"Chi sono",
+  about_who_p1:"<strong>Tetiana Kotolup</strong> — AI Automation Developer. Sviluppo automazioni n8n, agenti vocali AI, bot AI per Telegram e prodotti AI SaaS full-stack con Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude e React.",
+  edu_lbl:"Istruzione",edu_degree:"Diploma di Specialista Junior",
+  edu_school:"Cherkasy State Business College · 2017<br>Specializzazione: Tecnico di Sistemi Informatici",
+  edu_leader:"— Rappresentante di classe (starosta) per tutta la durata degli studi",
+  edu_nostri:"✓ Nostrificato in Repubblica Ceca · 18-20-M/01 Informační technologie · KÚ JMK 2021",
+  about_who_p2:'Sto completando il programma <strong>AI No-Code Developer</strong>. 4 prodotti AI SaaS live distribuiti in produzione.',
+  about_approach_lbl:"Il mio approccio",
+  ap1:"Analizzo i processi aziendali e individuo i colli di bottiglia che fanno perdere tempo",
+  ap2:"Progetto la logica dell'agente AI su misura per il compito specifico",
+  ap3:"Sviluppo agenti vocali AI con un flusso di conversazione naturale",
+  ap4:"Distribuisco backend di produzione con PostgreSQL, Prisma, Supabase",
+  ap5:"Testo su scenari reali e ottimizzo i costi dei token",
+  ap6:"Valuto il ROI dell'automazione e dell'implementazione SaaS",
+  about_tools_lbl:"Strumenti e Stack",about_contact_lbl:"Contatti",
+  exp_title:"Esperienza lavorativa", exp1_role:"AI Automation Engineer", exp_tech:"Tecnologie", exp2_role:"Full-Stack Developer", exp2_type:"Freelance", exp2_intro:"Realizzazione di applicazioni web di produzione nei settori immobiliare, edile ed e-commerce — ciclo completo dai requisiti al deployment:",
+  exp1_1:"Progettazione e sviluppo di workflow basati su AI utilizzando n8n.",
+  exp1_2:"Creazione di assistenti vocali AI e bot AI per Telegram per la comunicazione con i clienti.",
+  exp1_3:"Integrazione di OpenAI API, REST API, webhook, sistemi CRM e Google Sheets.",
+  exp1_4:"Automazione della qualificazione dei lead, del supporto clienti e dei processi aziendali.",
+  exp1_5:"Implementazione del prompt engineering e ottimizzazione dei workflow AI per l'uso in produzione.",
+  exp1_6:"Collaborazione al deployment di soluzioni di automazione AI che hanno ridotto il lavoro manuale e migliorato l'efficienza operativa.",
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — negozio online full-stack React + Node.js con catalogo prodotti, carrello, checkout, pannello admin e notifiche email. Distribuito su Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — sito web aziendale per un\'impresa edile. End-to-end: comunicazione con il cliente, design, sviluppo frontend e backend, test, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_3:"Creazione di landing page, siti multi-pagina e portfolio; integrazione di moduli di contatto, cataloghi prodotti e funzionalità CMS di base.",
+  exp_stack:"Stack",
+  skills_title:"Competenze chiave",
+  sk1_name:"Automazione dei workflow",sk1_desc:"Pipeline n8n con ramificazioni complesse, gestione errori, job pianificati, logica di retry e trigger webhook. Utilizzato in tutti i 12 progetti n8n inclusi LegisFlow, GrowthLab AI e l'analisi delle chiamate AI.",
+  sk2_name:"Agenti Vocali AI",sk2_desc:"Sviluppo di agenti vocali AI con Vapi, Retell AI, Bland AI — flusso di conversazione naturale, function calling, integrazione CRM, prenotazione appuntamenti. Sistemi AI voice-first per l'automazione di vendite e supporto.",
+  sk3_name:"Integrazione e Prompting AI",sk3_desc:"OpenAI GPT-4o / GPT-4o-mini, Anthropic Claude, output JSON strutturato, valutazione ensemble multi-modello, chunking per documenti di grandi dimensioni, modellazione Financial DNA, sistemi di qualificazione BANT.",
+  sk4_name:"Sviluppo Bot Telegram",sk4_desc:"Bot Telegram di produzione tramite Telegraf (Node.js) e n8n: routing dei comandi, avvisi in tempo reale, elaborazione vocale, generazione immagini DALL-E, limiti SaaS basati sull'utilizzo. 6+ bot live in produzione.",
+  sk5_name:"Sviluppo Backend e API",sk5_desc:"Node.js / TypeScript, REST API Express.js, autenticazione JWT, pipeline di eventi basate su webhook. Applicato in WealthMirror AI, GrowthLab AI e AI CRM — distribuito su Render e Vercel.",
+  sk6_name:"Database e ORM",sk6_desc:"PostgreSQL con Prisma ORM, istanze gestite Supabase. Schemi progettati per CRM (clienti + appuntamenti), dati finanziari degli utenti, pipeline di vendita, quote di utilizzo e logica di monetizzazione SaaS.",
+  sk7_name:"Integrazioni API e Servizi",sk7_desc:"API Google Suite (Sheets, Calendar, Drive, Gmail), Zoho CRM, AssemblyAI, CoinGecko, OpenWeatherMap, PrivatBank, NocoDB DataTable. 12+ integrazioni di terze parti tra i progetti.",
+  sk8_name:"AI Vocale e Immagini",sk8_desc:"Pipeline di trascrizione AssemblyAI con polling ogni 30 secondi, generazione immagini DALL-E 3 da messaggi vocali, estrazione testo PDF con chunking, pipeline voice-to-structured-data.",
+  sk9_name:"Frontend e React",sk9_desc:"Dashboard React.js per AI CRM — gestione clienti, viste appuntamenti, sincronizzazione webhook in tempo reale. Interfacce responsive HTML/CSS, deployment Vercel. Interfacce web LegisFlow e GrowthLab.",
+  certs_title:"Certificati",
+  cert9_desc:"Programma di 243 ore: automazione no-code con n8n, prompt engineering e agenti AI, automazione di marketing/vendite/servizio clienti, costruzione di un agente AI pronto per la produzione",
+  cert1_desc:"Processi cognitivi e modelli comportamentali — rafforza la costruzione di automazioni centrate sull'uomo",
+  cert2_desc:"AI nel marketing: automazione dei contenuti, personalizzazione, analytics",
+  cert3_desc:"Layout responsive, Flexbox, Grid, animazioni CSS, moduli, validazione",
+  cert4_desc:"Funzioni, array, oggetti, DOM, event listener, debugging, Chrome DevTools",
+  cert5_desc:"Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions, sicurezza GCP",
+  cert6_desc:"Sviluppo back-end, database, moduli, sessioni, protezione XSS, gestione errori",
+  cert7_desc:"ChatGPT nella comunicazione aziendale: automazione di corrispondenza, report e presentazioni",
+  cert8_desc:"12 ore di mentoring individuale da esperti del settore: definizione obiettivi, sviluppo di carriera, strategia",
+  case_sec_title:"Caso Studio in Evidenza",
+  case_kicker:"Ecosistema AI per le Vendite · n8n + Claude + Zoho CRM + Telegram",
+  case_title:"GrowthLab AI<br>Ecosistema di Automazione Vendite",
+  case_tagline:"L'azienda non riusciva a capire perché i lead venivano persi. Ho costruito un ecosistema AI che qualifica i lead automaticamente, analizza tutti i dialoghi e invia report al CEO su Telegram — 3 workflow interconnessi attivi 24/7.",
+  case_prob_lbl:"Problema",case_sol_lbl:"Soluzione · 3 workflow",case_proc_lbl:"Processo",case_res_lbl:"Risultati",
+  case_p1:"Lead elaborati manualmente — alto rischio di perdita",
+  case_p2:"Nessuna analisi sistematica dei dialoghi",
+  case_p3:"Il CEO non aveva un report rapido sulla qualità del funnel",
+  case_p4:"Colli di bottiglia invisibili fino a quando non era troppo tardi",
+  p_chat:"Chat",
+  case_pr1:"Workflow 1: il chatbot AI conduce la qualificazione BANT",
+  case_pr2:"Raccoglie business, budget, autorità, necessità, tempistiche",
+  case_pr3:"Workflow 2: analizza tutti i dialoghi tramite Postgres Memory",
+  case_pr4:"Rileva errori dell'agente, problemi del cliente, pattern di successo",
+  case_pr5:"Workflow 3: analisi CEO dell'intero funnel CRM",
+  case_pr6:"Genera automaticamente la segmentazione HOT/WARM/COLD",
+  res_quant:"Quantitativi",res_qual:"Qualitativi",res_biz:"Business",
+  res_q1:"Auto-qualificati",res_q2:"Zero lavoro manuale",
+  res_ql1:"Trasparenza totale",res_ql2:"Insight in tempo reale",res_ql3:"Visibilità per il CEO",
+  res_b1:"Pronto per la scalabilità",res_b2:"Guidato dai dati",res_b3:"Pronto per la monetizzazione",
+  proj_title:"Tutti i Progetti",
+  folder_title:"Automazioni Rapide",
+  folder_sub:"{n} altri piccoli workflow n8n all'interno — clicca per espandere",
+  folder_badge:"+{n} progetti",
+  ow_title:"Altra Esperienza Professionale",
+  ow_lead:"Prima e parallelamente all'IT, un percorso di lavoro affidabile e concreto — ruoli nella produzione, nella logistica e a contatto con i clienti sia in Repubblica Ceca che in Ucraina.",
+  ow_folder_title:"Storia lavorativa completa",
+  ow_folder_sub:"8 ruoli tra Repubblica Ceca e Ucraina — clicca per espandere",
+  ow_folder_badge:"+8 ruoli",
+  faq_folder_title:"Domande Frequenti",
+  faq_folder_sub:"5 domande — clicca per espandere",
+  faq_folder_badge:"+5",
+  job1_title:"Autista — Distribuzione di Materiale Medico",
+  job1_date:"Lug 2025 – Mar 2026 · Posizione permanente",
+  job1_b1:"Distribuzione sicura e puntuale di farmaci e materiale medico in tutta la Repubblica Ceca",
+  job1_b2:"Affidabilità e rigoroso rispetto dei percorsi e degli orari stabiliti",
+  job2_title:"Impiego Secondario (DPČ)",
+  job2_date:"Nov 2025 – presente",
+  job2_b1:"Contratto di lavoro supplementare parallelo alla posizione principale",
+  job3_title:"Trasporto Merci su Strada — Licenza Aziendale Propria",
+  job3_company:"OSVČ · Licenza commerciale",
+  job3_date:"Valida a tempo indeterminato dal 30 ott 2024",
+  job3_b1:"Trasporto nazionale con veicoli fino a 3,5 t (merci o animali)",
+  job3_b2:"Trasporto internazionale con veicoli fino a 2,5 t (merci o animali)",
+  job3_b3:"Classificazione CZ-NACE: trasporto merci su strada",
+  job4_title:"Lavoratrice Autonoma (OSVČ)",
+  job4_date:"Apr – Giu 2025 (4 mesi)",
+  job4_b1:"Attività imprenditoriale indipendente con licenza commerciale",
+  job5_title:"Operaia nella Produzione Tessile",
+  job5_date:"Mar 2018 – Mar 2025 (7 anni)",
+  job5_b1:"Utilizzo di macchinari e attrezzature nella lavorazione delle fibre",
+  job5_b2:"Ruolo stabile e di lunga durata in un ambiente produttivo",
+  job5_b3:"Formazione e inserimento di nuovi dipendenti",
+  job5_b4:"Resistenza fisica ed emotiva sotto la pressione della produzione",
+  job6_title:"Operaia di Montaggio Elettrico",
+  job6_company:"TOV \"UKR TECH\" · Cherkasy, Ucraina",
+  job6_date:"Giu 2017 – Gen 2018",
+  job6_b1:"Operatrice di saldatura, montaggio di stabilizzatori di tensione",
+  job6_b2:"Formazione e inserimento del personale, supervisione del team",
+  job6_b3:"Manutenzione veicoli",
+  job7_title:"Assistente alle Vendite",
+  job7_company:"DELIKAT · Cherkasy, Ucraina",
+  job7_date:"Ott 2016 – Mag 2017",
+  job7_b1:"Cura del cliente, utilizzo di attrezzature d'ufficio",
+  job7_b2:"Formazione del personale, preparazione della documentazione",
+  job8_title:"Vari Lavori Stagionali e Secondari",
+  job8_company:"Repubblica Ceca e Ucraina",
+  job8_date:"2016 – 2025 · in parallelo all'impiego principale",
+  job8_b1:"Ruoli a breve termine e stagionali (brigády) svolti in parallelo a posizioni a tempo pieno in entrambi i paesi",
+  job8_b2:"Capacità di adattamento rapido a nuovi team, strumenti e ambienti di lavoro",
+  license_text:"Patente di guida, categoria B (Repubblica Ceca) — guidatrice attiva",
+  ow_skills_num:"07.1",
+  ow_skills_title:"Cosa Offre Questa Esperienza",
+  ow_skills_lead:"Competenze trasferibili costruite in anni di lavoro concreto e responsabile — la stessa disciplina applicata oggi ai progetti di automazione.",
+  v1_title:"Affidabilità sotto pressione",
+  v1_desc:"7 anni in un unico ruolo produttivo senza alcuna interruzione; logistica medica puntuale senza scadenze mancate.",
+  v2_title:"Leadership delle persone",
+  v2_desc:"Ripetutamente incaricata di formare e inserire nuovo personale in tre aziende diverse — anche come rappresentante di classe eletta al college.",
+  v3_title:"Logistica e pianificazione dei percorsi",
+  v3_desc:"Distribuzione sicura e puntuale di materiale medico regolamentato a livello nazionale entro finestre temporali rigorose.",
+  v4_title:"Resilienza e concentrazione",
+  v4_desc:"Anni di lavoro produttivo impegnativo — mantenendo calma, precisione e produttività sotto pressione fisica e temporale prolungata.",
+  v5_title:"Precisione tecnica",
+  v5_desc:"Saldatura, montaggio e utilizzo di macchinari — la stessa attenzione ai dettagli che ora applico nel debug dei workflow di automazione.",
+  v6_title:"Proprietà e responsabilità",
+  v6_desc:"Ho gestito una mia attività di trasporto su licenza e un'attività OSVČ — piena responsabilità dei risultati, non solo dei compiti.",
+  projects:[
+    {idx:"15/17",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
+      desc:"Ecosistema AI per le vendite con 3 workflow n8n: chatbot di qualificazione BANT, pipeline di analisi dei dialoghi, reportistica CEO su Telegram. Integrazione Zoho CRM, Postgres Chat Memory, segmentazione lead HOT/WARM/COLD.",
+      tags:["n8n","Anthropic Claude","Zoho CRM","Google Sheets","Telegram Bot","Postgres Memory","AI Agents","Webhooks"],
+      site:"https://tetiana-a.github.io/AI-Sales-Automation/",bot:null,github:"https://github.com/tetiana-a/AI-Sales-Automation"},
+    {idx:"14/17",id:"wealthmirror",title:"WealthMirror AI",year:"2026",featured:true,
+      desc:"AI SaaS di produzione che fornisce analisi delle decisioni finanziarie in tempo reale via Telegram. Backend webhook: input utente → analisi OpenAI → insight strutturato → PostgreSQL. Modellazione utente Financial DNA, monetizzazione basata sull'utilizzo, distribuito su Render.",
+      tags:["Node.js","TypeScript","OpenAI API","Telegraf","PostgreSQL","Prisma","Supabase","Render"],
+      site:null,bot:"https://t.me/sass88888888_bot",github:"https://github.com/tetiana-a/wealthmirror-ai"},
+    {idx:"13/17",id:"aicrm",title:"AI CRM System",year:"2026",featured:true,
+      desc:"CRM basato su AI che automatizza la gestione clienti e appuntamenti. Bot Telegram come interfaccia in linguaggio naturale. Dashboard React + livello di automazione AI sincronizzati tramite webhook. Autenticazione JWT, backend REST API.",
+      tags:["React.js","Node.js","Express.js","PostgreSQL","Supabase","Prisma","OpenAI API","Telegram Bot API","JWT"],
+      site:"https://ai-crm-sage.vercel.app",bot:"https://t.me/ai_crm13007_bot",github:"https://github.com/tetiana-a/ai-crm"},
+    {idx:"12/17",id:"legisflow",title:"LegisFlow — Agente AI Legale",year:"2026",featured:true,
+      desc:"Bot Telegram + interfaccia web per l'analisi automatizzata di documenti legali. Accetta PDF, estrae testo, rileva rischi. Workflow n8n: PDF → chunking → GPT-4o → report strutturato dei rischi. Analisi di conformità istantanea per qualsiasi contratto.",
+      tags:["n8n","OpenAI GPT-4o","Telegram Bot API","JavaScript","Vercel","PDF Processing"],
+      site:"https://legisflow-ai.vercel.app",bot:"https://t.me/legisflow_workflow_bot",github:"https://github.com/tetianaa/LegisFlow"},
+    {idx:"01/17",id:"voice-image",title:"Generatore Voce → Immagine",year:"2025",featured:false,
+      desc:"Messaggio vocale Telegram → trascrizione AssemblyAI → costruzione del prompt → immagine DALL-E 3 → inviata di nuovo in chat.",
+      tags:["n8n","Telegram","AssemblyAI","OpenAI","DALL-E 3"],
+      site:null,bot:null,github:null},
+    {idx:"02/17",id:"ua-months",title:"Generatore Dinamico dei Mesi Ucraini",year:"2025",featured:false,
+      desc:"Modulo n8n riutilizzabile per la logica delle date — restituisce i mesi dal corrente a dicembre come JSON strutturato senza manutenzione.",
+      tags:["n8n","JavaScript","JSON","Date logic"],
+      site:null,bot:null,github:null},
+    {idx:"03/17",id:"tg-gcal",title:"Telegram → Google Calendar",year:"2025",featured:false,
+      desc:"L'AI estrae titolo/data/ora dal testo Telegram, valida gli input, crea l'evento nel Calendar, conferma in chat.",
+      tags:["n8n","Telegram","OpenAI","IF routing","Google Calendar API"],
+      site:null,bot:null,github:null},
+    {idx:"04/17",id:"btc-alert",title:"Avviso Prezzo BTC → Telegram",year:"2025",featured:false,
+      desc:"Controlla il prezzo BTC ogni 15 minuti, invia avvisi solo su cambiamenti di stato significativi — niente spam, logica stateful.",
+      tags:["n8n","CoinGecko API","JavaScript","Static Data","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"05/17",id:"currency-report",title:"Report Giornaliero delle Valute",year:"2025",featured:false,
+      desc:"Automazione programmata alle 09:00 — recupera USD/EUR dall'API PrivatBank e invia un'email HTML formattata. Completamente automatico.",
+      tags:["n8n","Cron","REST API","JavaScript","Gmail API"],
+      site:null,bot:null,github:null},
+    {idx:"06/17",id:"weather-kyiv-brno",title:"Meteo Giornaliero (Kyiv + Brno)",year:"2025",featured:false,
+      desc:"Aggiornamenti meteo giornalieri alle 08:30 per due città usando batching, API OpenWeatherMap e formattazione basata su AI.",
+      tags:["n8n","Cron","OpenWeatherMap API","Split in Batches","OpenAI"],
+      site:null,bot:null,github:null},
+    {idx:"07/17",id:"daily-motivation",title:"Motivazione Giornaliera → Telegram",year:"2025",featured:false,
+      desc:"Ogni giorno alle 09:00 — genera una citazione motivazionale originale, la ripulisce in JS, pubblica un messaggio formattato con hashtag.",
+      tags:["n8n","Cron","OpenAI","JavaScript","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"08/17",id:"site-monitor",title:"Monitor di Disponibilità del Sito Web",year:"2025",featured:false,
+      desc:"Richiesta HEAD ogni 5 minuti; avviso solo in caso di stato di errore (≥ 400). Monitoraggio uptime leggero e affidabile.",
+      tags:["n8n","Cron","HTTP (HEAD)","IF routing","Telegram"],
+      site:null,bot:null,github:null},
+    {idx:"09/17",id:"ai-jokes",title:"Valutatore di Battute Multi-Modello",year:"2025",featured:false,
+      desc:"Generazione parallela GPT-4o-mini + valutazione giudice GPT-4o (1–10) e selezione della migliore — vero pattern di valutazione ensemble.",
+      tags:["n8n","OpenAI","GPT-4o-mini","GPT-4o","Merge"],
+      site:null,bot:null,github:null},
+    {idx:"10/17",id:"monthly-sales",title:"Analisi Mensile delle Vendite",year:"2025",featured:false,
+      desc:"Pipeline deterministica che aggrega ordini, ricavi e scontrino medio del mese corrente dai dati di Google Sheets.",
+      tags:["n8n","Google Sheets","JavaScript","Deterministic logic"],
+      site:null,bot:null,github:null},
+    {idx:"11/17",id:"img-url-drive",title:"URL Immagine → Google Drive",year:"2025",featured:false,
+      desc:"Scarica i dati binari da un URL all'interno di n8n, li carica in una cartella Drive specifica con logica di generazione automatica del nome file.",
+      tags:["n8n","HTTP (binary)","Google Drive API","Expressions","JavaScript"],
+      site:null,bot:null,github:null},
+    {idx:"16/17",id:"apulia",title:"Apulia Olive Oil CZ",year:"2026",featured:true,
+      desc:"Sito web di vendita a pagina singola per la distribuzione esclusiva di olio d'oliva italiano premium sul mercato ceco — 8 lingue, ordini via WhatsApp, GDPR Consent Mode v2. Promosso attivamente tramite Google Ads Performance Max, Meta Ads e TikTok.",
+      tags:["HTML/CSS/JS","i18n (8 lingue)","Google Ads Performance Max","Meta Ads","GDPR Consent Mode v2","JSON-LD","GitHub Pages"],
+      site:"https://apuliaoliveoil.cz/",bot:null,github:"https://github.com/italian-n/apulia/tree/main"},
+    {idx:"17/17",id:"realitka",title:"RealityPraha — Agente AI per Instradamento Ticket e SLA",year:"2026",featured:true,
+      desc:"Agente AI autonomo per un'agenzia immobiliare di Praga: classifica le email in arrivo dei clienti in meno di un minuto (Chain-of-Thought), assegna il responsabile corretto, calcola le scadenze SLA ed esegue un'escalation a 3 livelli — zero dispatcher umani. Workflow n8n a 24 nodi su due percorsi paralleli (classificazione in entrata + monitoraggio SLA).",
+      tags:["n8n","OpenAI GPT-4o-mini","Chain of Thought","Google Sheets API","Slack API","Gmail OAuth2","SLA Logic"],
+      site:"https://tetiana-a.github.io/realitka/",bot:null,github:"https://github.com/tetiana-a/realitka"}
+  ]
 }};
 i18n.ru={
   ...i18n.en,
@@ -1744,6 +1986,9 @@ i18n.ru={
   ow_folder_title:"Полная история работы",
   ow_folder_sub:"8 позиций в Чехии и Украине — нажмите, чтобы развернуть",
   ow_folder_badge:"+8 позиций",
+  faq_folder_title:"Часто задаваемые вопросы",
+  faq_folder_sub:"5 вопросов — нажмите, чтобы развернуть",
+  faq_folder_badge:"+5",
   job1_title:"Водитель — доставка медицинских материалов",
   job1_date:"Июл 2025 – Мар 2026 · Постоянная должность",
   job1_b1:"Безопасная и своевременная доставка лекарств и медицинских материалов по всей Чехии",
@@ -1856,6 +2101,12 @@ function toggleOwFolder(){
   const isOpen=folder.classList.toggle('open');
   body.style.maxHeight=isOpen?body.scrollHeight+'px':'0px';
 }
+function toggleFaqFolder(){
+  const folder=document.getElementById('faqFolder');
+  const body=document.getElementById('faqFolderBody');
+  const isOpen=folder.classList.toggle('open');
+  body.style.maxHeight=isOpen?body.scrollHeight+'px':'0px';
+}
 (function(){
   if(!window.matchMedia('(hover:hover)').matches)return;
   const dot=document.getElementById('cursor-dot');
@@ -1923,6 +2174,9 @@ function applyLang(lang){
   const owFolder=document.getElementById('owFolder');
   const owFolderBody=document.getElementById('owFolderBody');
   if(owFolder.classList.contains('open')){owFolderBody.style.maxHeight=owFolderBody.scrollHeight+'px';}
+  const faqFolder=document.getElementById('faqFolder');
+  const faqFolderBody=document.getElementById('faqFolderBody');
+  if(faqFolder.classList.contains('open')){faqFolderBody.style.maxHeight=faqFolderBody.scrollHeight+'px';}
   document.querySelectorAll('.rv:not(.on)').forEach(el=>rvObserver.observe(el));
   document.querySelectorAll('[data-lang-btn]').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang));
 }
