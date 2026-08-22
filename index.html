@@ -265,6 +265,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .c-link{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt);opacity:.5;display:flex;align-items:center;gap:3px;transition:opacity .2s}
 .c-link:hover{opacity:1}
 .case-box{border:1px solid var(--line);overflow:hidden}
+.job-timeline{display:flex;flex-direction:column;border:1px solid var(--line)}
+.job-item{padding:28px 32px;border-bottom:1px solid var(--line);background:var(--bg);transition:background .25s}
+.job-item:last-child{border-bottom:none}
+.job-item:hover{background:var(--bg2)}
+.job-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px 20px;margin-bottom:10px}
+.job-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--txt);line-height:1.3}
+.job-company{font-size:13px;color:var(--txt2);margin-top:3px}
+.job-date{font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--txt3);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;flex-shrink:0;padding-top:4px}
+.job-list{display:flex;flex-direction:column;gap:7px;margin-top:10px}
+.job-list li{display:flex;gap:9px;font-size:13.5px;color:var(--txt2);line-height:1.55;list-style:none}
+.job-list li::before{content:'—';font-family:'JetBrains Mono',monospace;color:var(--txt3);flex-shrink:0;font-size:11px;margin-top:2px}
+.license-box{margin-top:24px;padding:16px 20px;background:var(--tag);border:1px solid var(--line);border-radius:2px;font-size:13px;color:var(--txt2);display:flex;align-items:center;gap:12px}
+.license-icon{flex-shrink:0;color:var(--txt3)}
+.value-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:2px;margin-top:40px;border:1px solid var(--line)}
+.value-card{background:var(--bg);border:1px solid var(--line);padding:24px 26px;transition:background .25s}
+.value-card:hover{background:var(--bg2)}
+.value-icon{font-size:20px;margin-bottom:12px}
+.value-title{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--txt);margin-bottom:8px;line-height:1.35}
+.value-desc{font-size:12.5px;color:var(--txt2);line-height:1.65}
+@media(max-width:600px){.job-item{padding:22px 20px}.job-title{font-size:16px}}
 .case-hdr{padding:44px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start}
 .case-kicker{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--txt3);margin-bottom:14px}
 .case-ttl{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,42px);font-weight:400;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
@@ -373,6 +393,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <a href="#certs" data-i18n="nav_certs">Certs</a>
       <a href="#case" data-i18n="nav_case">Case</a>
       <a href="#projects" data-i18n="nav_projects">Projects</a>
+      <a href="#otherwork" data-i18n="nav_otherwork">Other Experience</a>
       <a href="#faq">FAQ</a>
     </nav>
     <div class="nav-right">
@@ -398,6 +419,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
   <a href="#certs" data-i18n="nav_certs" onclick="closeMob()">Certs</a>
   <a href="#case" data-i18n="nav_case" onclick="closeMob()">Case</a>
   <a href="#projects" data-i18n="nav_projects" onclick="closeMob()">Projects</a>
+  <a href="#otherwork" data-i18n="nav_otherwork" onclick="closeMob()">Other Experience</a>
   <a href="#faq" onclick="closeMob()">FAQ</a>
 </div>
 <section class="hero" id="top">
@@ -446,7 +468,8 @@ footer{border-top:1px solid var(--line);padding:52px 0}
         <div class="edu-box">
           <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt3);margin-bottom:7px;" data-i18n="edu_lbl">Education</div>
           <strong style="color:var(--txt);font-size:12px;" data-i18n="edu_degree">Junior Specialist Diploma</strong><br>
-          <span style="font-size:11px;" data-i18n="edu_school">Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician</span><br><br>
+          <span style="font-size:11px;" data-i18n="edu_school">Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician</span><br>
+          <span style="font-size:10px;color:var(--txt3);" data-i18n="edu_leader">— Group leader (starosta) throughout studies</span><br><br>
           <span style="font-size:10px;color:var(--txt3);" data-i18n="edu_nostri">✓ Nostrified in CZ · 18-20-M/01 Informační technologie · KÚ JMK 2021</span>
         </div>
         <p style="margin-top:12px;" data-i18n="about_who_p2">Completing the <strong style="color:var(--txt)">AI No-Code Developer</strong> program. 4 live AI SaaS products deployed in production.</p>
@@ -765,7 +788,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
     <div class="proj-folder rv rv-d1" id="projFolder">
       <div class="folder-header" onclick="toggleFolder()">
         <div class="folder-left">
-          <div class="folder-icon">⚙</div>
+          <div class="folder-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
           <div>
             <div class="folder-title" data-i18n="folder_title">Quick Automations</div>
             <div class="folder-sub" id="folderSub"></div>
@@ -782,10 +805,199 @@ footer{border-top:1px solid var(--line);padding:52px 0}
     </div>
   </div>
 </section>
-<section class="sec" id="faq">
+<section class="sec" id="otherwork">
   <div class="wrap">
     <div class="sec-head rv">
       <span class="sec-num">07</span>
+      <h2 class="sec-title" data-i18n="ow_title">Other Professional Experience</h2>
+    </div>
+    <p class="lead rv" data-i18n="ow_lead" style="margin-bottom:40px;">Before and alongside IT, a track record of reliable, hands-on work — production, logistics, and customer-facing roles in both the Czech Republic and Ukraine.</p>
+
+    <div class="proj-folder rv rv-d1" id="owFolder">
+      <div class="folder-header" onclick="toggleOwFolder()">
+        <div class="folder-left">
+          <div class="folder-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><path d="M2 13h20"/></svg></div>
+          <div>
+            <div class="folder-title" data-i18n="ow_folder_title">Full work history</div>
+            <div class="folder-sub" id="owFolderSub" data-i18n="ow_folder_sub">8 roles across Czech Republic &amp; Ukraine — click to expand</div>
+          </div>
+        </div>
+        <div class="folder-right">
+          <span class="folder-badge" id="owFolderBadge" data-i18n="ow_folder_badge">+8 roles</span>
+          <svg class="folder-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="folder-body" id="owFolderBody">
+        <div style="padding:8px 28px 32px">
+
+    <div class="job-timeline">
+      <div class="job-item">
+        <div class="job-top">
+          <div>
+            <div class="job-title" data-i18n="job1_title">Driver — Medical Supplies Distribution</div>
+            <div class="job-company">Hordin s.r.o.</div>
+          </div>
+          <div class="job-date" data-i18n="job1_date">Jul 2025 – Mar 2026 · Permanent position</div>
+        </div>
+        <ul class="job-list">
+          <li data-i18n="job1_b1">Safe and timely distribution of medicines and medical supplies across the entire Czech Republic</li>
+          <li data-i18n="job1_b2">Reliability and strict adherence to route and time schedules</li>
+        </ul>
+      </div>
+
+      <div class="job-item">
+        <div class="job-top">
+          <div>
+            <div class="job-title" data-i18n="job2_title">Secondary Employment (DPČ)</div>
+          </div>
+          <div class="job-date" data-i18n="job2_date">Nov 2025 – present</div>
+        </div>
+        <ul class="job-list">
+          <li data-i18n="job2_b1">Supplementary work agreement alongside the main position</li>
+        </ul>
+      </div>
+
+      <div class="job-item">
+        <div class="job-top">
+          <div>
+            <div class="job-title" data-i18n="job3_title">Road Freight Transport — Own Business Permit</div>
+            <div class="job-company" data-i18n="job3_company">OSVČ · Trade licence</div>
+          </div>
+          <div class="job-date" data-i18n="job3_date">Valid indefinitely from 30 Oct 2024</div>
+        </div>
+        <ul class="job-list">
+          <li data-i18n="job3_b1">National transport with vehicles up to 3.5 t (goods or animals)</li>
+          <li data-i18n="job3_b2">International transport with vehicles up to 2.5 t (goods or animals)</li>
+          <li data-i18n="job3_b3">CZ-NACE classification: road freight transport</li>
+        </ul>
+      </div>
+
+      <div class="job-item">
+        <div class="job-top">
+          <div>
+            <div class="job-title" data-i18n="job4_title">Self-Employed (OSVČ)</div>
+          </div>
+          <div class="job-date" data-i18n="job4_date">Apr – Jun 2025 (4 months)</div>
+        </div>
+        <ul class="job-list">
+          <li data-i18n="job4_b1">Independent business activity under a trade licence</li>
+        </ul>
+      </div>
+
+      <div class="job-item">
+        <div class="job-top">
+          <div>
+            <div class="job-title" data-i18n="job5_title">Textile Production Worker</div>
+            <div class="job-company">Nová Mosilana, a.s. · Brno-Černovice</div>
+          </div>
+          <div class="job-date" data-i18n="job5_date">Mar 2018 – Mar 2025 (7 years)</div>
+        </div>
+        <ul class="job-list">
+          <li data-i18n="job5_b1">Operating machinery and equipment in fibre processing</li>
+          <li data-i18n="job5_b2">Long-term, stable role in a production environment</li>
+          <li data-i18n="job5_b3">Training and onboarding new employees</li>
+          <li data-i18n="job5_b4">Physical endurance and emotional resilience under production pressure</li>
+        </ul>
+      </div>
+
+      <div class="job-item">
+        <div class="job-top">
+          <div>
+            <div class="job-title" data-i18n="job6_title">Electrical Assembly Worker</div>
+            <div class="job-company" data-i18n="job6_company">TOV "UKR TECH" · Cherkasy, Ukraine</div>
+          </div>
+          <div class="job-date" data-i18n="job6_date">Jun 2017 – Jan 2018</div>
+        </div>
+        <ul class="job-list">
+          <li data-i18n="job6_b1">Soldering operator, assembly of voltage stabilisers</li>
+          <li data-i18n="job6_b2">Training and onboarding staff, team supervision</li>
+          <li data-i18n="job6_b3">Vehicle servicing</li>
+        </ul>
+      </div>
+
+      <div class="job-item">
+        <div class="job-top">
+          <div>
+            <div class="job-title" data-i18n="job7_title">Sales Assistant</div>
+            <div class="job-company" data-i18n="job7_company">DELIKAT · Cherkasy, Ukraine</div>
+          </div>
+          <div class="job-date" data-i18n="job7_date">Oct 2016 – May 2017</div>
+        </div>
+        <ul class="job-list">
+          <li data-i18n="job7_b1">Customer care, operating office equipment</li>
+          <li data-i18n="job7_b2">Training and onboarding staff, preparing documentation</li>
+        </ul>
+      </div>
+
+      <div class="job-item">
+        <div class="job-top">
+          <div>
+            <div class="job-title" data-i18n="job8_title">Various Seasonal & Side Jobs</div>
+            <div class="job-company" data-i18n="job8_company">Czech Republic &amp; Ukraine</div>
+          </div>
+          <div class="job-date" data-i18n="job8_date">2016 – 2025 · alongside main employment</div>
+        </div>
+        <ul class="job-list">
+          <li data-i18n="job8_b1">Short-term and seasonal roles (brigády) taken in parallel with full-time positions in both countries</li>
+          <li data-i18n="job8_b2">Comfortable adapting quickly to new teams, tools, and work environments</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="license-box">
+      <svg class="license-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11"/><rect x="3" y="11" width="18" height="6" rx="2"/><circle cx="7.5" cy="17" r="1.5"/><circle cx="16.5" cy="17" r="1.5"/></svg>
+      <span data-i18n="license_text">Driving licence, category B (Czech Republic) — active driver</span>
+    </div>
+
+    <div class="sec-head" style="margin-top:64px;margin-bottom:0;">
+      <span class="sec-num" data-i18n="ow_skills_num">07.1</span>
+      <h2 class="sec-title" style="font-size:clamp(24px,3.5vw,36px);" data-i18n="ow_skills_title">What This Experience Delivers</h2>
+    </div>
+    <p class="lead" data-i18n="ow_skills_lead" style="margin-bottom:0;">Transferable skills built over years of hands-on, accountable work — the same discipline now applied to automation projects.</p>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9.4 8 11 4.5-1.6 8-6 8-11V5l-8-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div class="value-title" data-i18n="v1_title">Reliability under pressure</div>
+        <div class="value-desc" data-i18n="v1_desc">7 years in one production role with zero disruption; on-time medical logistics with no missed deadlines.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div class="value-title" data-i18n="v2_title">People leadership</div>
+        <div class="value-desc" data-i18n="v2_desc">Repeatedly trusted to train and onboard new staff across three different companies — including as elected group leader in college.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="14" height="11"/><path d="M15 9h4l3 4v4h-7z"/><circle cx="6" cy="19" r="2"/><circle cx="17.5" cy="19" r="2"/></svg></div>
+        <div class="value-title" data-i18n="v3_title">Logistics & route planning</div>
+        <div class="value-desc" data-i18n="v3_desc">Safe, on-time distribution of regulated medical materials nationwide under strict time windows.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+        <div class="value-title" data-i18n="v4_title">Resilience & focus</div>
+        <div class="value-desc" data-i18n="v4_desc">Years of demanding production work — staying calm, precise, and productive under sustained physical and time pressure.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.6 5.6L2 19l3 3 7.1-7.1a4 4 0 0 0 5.6-5.6l-3 3-2-2 3-3z"/></svg></div>
+        <div class="value-title" data-i18n="v5_title">Technical precision</div>
+        <div class="value-desc" data-i18n="v5_desc">Soldering, assembly, and machine operation — the same attention to detail I now bring to debugging automation workflows.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div class="value-title" data-i18n="v6_title">Ownership & accountability</div>
+        <div class="value-desc" data-i18n="v6_desc">Ran my own licensed transport business and OSVČ activity — full responsibility for outcomes, not just tasks.</div>
+      </div>
+    </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="sec-num">08</span>
       <h2 class="sec-title">FAQ</h2>
     </div>
     <div class="faq-list rv rv-d1">
@@ -828,7 +1040,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 <script>
 const i18n={
 en:{
-  nav_about:"About",nav_exp:"Experience",nav_skills:"Skills",nav_certs:"Certs",nav_case:"Case",nav_projects:"Projects",
+  nav_about:"About",nav_exp:"Experience",nav_skills:"Skills",nav_certs:"Certs",nav_case:"Case",nav_projects:"Projects",nav_otherwork:"Other Experience",
   btn_details:"Details",btn_site:"Website ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Voice Agents · Full-Stack AI Products",
   hero_hint:"Move your mouse to reveal",
@@ -838,6 +1050,7 @@ en:{
   about_who_p1:"<strong>Tetiana Kotolup</strong> — AI Automation Developer. I build n8n automations, AI voice agents, Telegram AI bots, and full-stack AI SaaS products with Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude and React.",
   edu_lbl:"Education",edu_degree:"Junior Specialist Diploma",
   edu_school:"Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician",
+  edu_leader:"— Group leader (starosta) throughout studies",
   edu_nostri:"✓ Nostrified in CZ · 18-20-M/01 Informační technologie · KÚ JMK 2021",
   about_who_p2:'Completing the <strong>AI No-Code Developer</strong> program. 4 live AI SaaS products deployed in production.',
   about_approach_lbl:"My approach",
@@ -903,6 +1116,65 @@ en:{
   folder_title:"Quick Automations",
   folder_sub:"{n} more small n8n workflows inside — click to expand",
   folder_badge:"+{n} projects",
+  ow_title:"Other Professional Experience",
+  ow_lead:"Before and alongside IT, a track record of reliable, hands-on work — production, logistics, and customer-facing roles in both the Czech Republic and Ukraine.",
+  ow_folder_title:"Full work history",
+  ow_folder_sub:"8 roles across Czech Republic & Ukraine — click to expand",
+  ow_folder_badge:"+8 roles",
+  job1_title:"Driver — Medical Supplies Distribution",
+  job1_date:"Jul 2025 – Mar 2026 · Permanent position",
+  job1_b1:"Safe and timely distribution of medicines and medical supplies across the entire Czech Republic",
+  job1_b2:"Reliability and strict adherence to route and time schedules",
+  job2_title:"Secondary Employment (DPČ)",
+  job2_date:"Nov 2025 – present",
+  job2_b1:"Supplementary work agreement alongside the main position",
+  job3_title:"Road Freight Transport — Own Business Permit",
+  job3_company:"OSVČ · Trade licence",
+  job3_date:"Valid indefinitely from 30 Oct 2024",
+  job3_b1:"National transport with vehicles up to 3.5 t (goods or animals)",
+  job3_b2:"International transport with vehicles up to 2.5 t (goods or animals)",
+  job3_b3:"CZ-NACE classification: road freight transport",
+  job4_title:"Self-Employed (OSVČ)",
+  job4_date:"Apr – Jun 2025 (4 months)",
+  job4_b1:"Independent business activity under a trade licence",
+  job5_title:"Textile Production Worker",
+  job5_date:"Mar 2018 – Mar 2025 (7 years)",
+  job5_b1:"Operating machinery and equipment in fibre processing",
+  job5_b2:"Long-term, stable role in a production environment",
+  job5_b3:"Training and onboarding new employees",
+  job5_b4:"Physical endurance and emotional resilience under production pressure",
+  job6_title:"Electrical Assembly Worker",
+  job6_company:"TOV \"UKR TECH\" · Cherkasy, Ukraine",
+  job6_date:"Jun 2017 – Jan 2018",
+  job6_b1:"Soldering operator, assembly of voltage stabilisers",
+  job6_b2:"Training and onboarding staff, team supervision",
+  job6_b3:"Vehicle servicing",
+  job7_title:"Sales Assistant",
+  job7_company:"DELIKAT · Cherkasy, Ukraine",
+  job7_date:"Oct 2016 – May 2017",
+  job7_b1:"Customer care, operating office equipment",
+  job7_b2:"Training and onboarding staff, preparing documentation",
+  job8_title:"Various Seasonal & Side Jobs",
+  job8_company:"Czech Republic & Ukraine",
+  job8_date:"2016 – 2025 · alongside main employment",
+  job8_b1:"Short-term and seasonal roles (brigády) taken in parallel with full-time positions in both countries",
+  job8_b2:"Comfortable adapting quickly to new teams, tools, and work environments",
+  license_text:"Driving licence, category B (Czech Republic) — active driver",
+  ow_skills_num:"07.1",
+  ow_skills_title:"What This Experience Delivers",
+  ow_skills_lead:"Transferable skills built over years of hands-on, accountable work — the same discipline now applied to automation projects.",
+  v1_title:"Reliability under pressure",
+  v1_desc:"7 years in one production role with zero disruption; on-time medical logistics with no missed deadlines.",
+  v2_title:"People leadership",
+  v2_desc:"Repeatedly trusted to train and onboard new staff across three different companies — including as elected group leader in college.",
+  v3_title:"Logistics & route planning",
+  v3_desc:"Safe, on-time distribution of regulated medical materials nationwide under strict time windows.",
+  v4_title:"Resilience & focus",
+  v4_desc:"Years of demanding production work — staying calm, precise, and productive under sustained physical and time pressure.",
+  v5_title:"Technical precision",
+  v5_desc:"Soldering, assembly, and machine operation — the same attention to detail I now bring to debugging automation workflows.",
+  v6_title:"Ownership & accountability",
+  v6_desc:"Ran my own licensed transport business and OSVČ activity — full responsibility for outcomes, not just tasks.",
   projects:[
     {idx:"15/17",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI sales ecosystem with 3 n8n workflows: BANT qualification chatbot, dialogue analysis pipeline, CEO reporting to Telegram. Zoho CRM integration, Postgres Chat Memory, HOT/WARM/COLD lead segmentation.",
@@ -975,7 +1247,7 @@ en:{
   ]
 },
 uk:{
-  nav_about:"Про мене",nav_exp:"Досвід",nav_skills:"Навички",nav_certs:"Сертифікати",nav_case:"Кейс",nav_projects:"Проекти",
+  nav_about:"Про мене",nav_exp:"Досвід",nav_skills:"Навички",nav_certs:"Сертифікати",nav_case:"Кейс",nav_projects:"Проекти",nav_otherwork:"Досвід поза IT",
   btn_details:"Деталі",btn_site:"Сайт ↗",btn_bot:"Telegram Бот ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Голосові Агенти · Full-Stack AI продукти",
   hero_hint:"Рухайте мишкою, щоб побачити",
@@ -985,6 +1257,7 @@ uk:{
   about_who_p1:"<strong>Тетяна Котолуп</strong> — AI Automation Developer. Будую n8n автоматизації, AI голосових агентів, Telegram AI боти та full-stack AI SaaS продукти з Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude та React.",
   edu_lbl:"Освіта",edu_degree:"Диплом молодшого спеціаліста",
   edu_school:"Черкаський державний бізнес-коледж · 2017<br>Спеціальність: Технік комп'ютерних систем",
+  edu_leader:"— Староста групи протягом усього навчання",
   edu_nostri:"✓ Нострифікований в ЧР · 18-20-M/01 Informační technologie · KÚ JMK 2021",
   about_who_p2:"Завершую програму <strong>AI No-Code Developer</strong>. 4 живі AI SaaS продукти у production.",
   about_approach_lbl:"Мій підхід",
@@ -1050,6 +1323,65 @@ uk:{
   folder_title:"Швидкі автоматизації",
   folder_sub:"{n} ще проектів усередині — натисніть, щоб розгорнути",
   folder_badge:"+{n} проектів",
+  ow_title:"Досвід поза IT",
+  ow_lead:"До та паралельно з IT — досвід надійної фізичної роботи: виробництво, логістика та робота з клієнтами в Чехії та Україні.",
+  ow_folder_title:"Повна історія роботи",
+  ow_folder_sub:"8 позицій у Чехії та Україні — натисніть, щоб розгорнути",
+  ow_folder_badge:"+8 позицій",
+  job1_title:"Водій — доставка медичних матеріалів",
+  job1_date:"Лип 2025 – Бер 2026 · Постійна посада",
+  job1_b1:"Безпечна та своєчасна доставка ліків і медичних матеріалів по всій Чехії",
+  job1_b2:"Надійність і дотримання встановлених маршрутів та графіків",
+  job2_title:"Додаткова зайнятість (DPČ)",
+  job2_date:"Лис 2025 – дотепер",
+  job2_b1:"Додаткова трудова угода паралельно з основною роботою",
+  job3_title:"Автомобільні вантажні перевезення — власна ліцензія",
+  job3_company:"ФОП · Ліцензія на діяльність",
+  job3_date:"Чинна безстроково з 30.10.2024",
+  job3_b1:"Внутрішні перевезення транспортом до 3,5 т (вантажі або тварини)",
+  job3_b2:"Міжнародні перевезення транспортом до 2,5 т (вантажі або тварини)",
+  job3_b3:"Класифікація CZ-NACE: автомобільні вантажні перевезення",
+  job4_title:"ФОП — самостійна підприємницька діяльність",
+  job4_date:"Кві – Чер 2025 (4 місяці)",
+  job4_b1:"Підприємницька діяльність за ліцензією на діяльність",
+  job5_title:"Робітниця текстильного виробництва",
+  job5_date:"Бер 2018 – Бер 2025 (7 років)",
+  job5_b1:"Обслуговування верстатів та обладнання з обробки волокон",
+  job5_b2:"Довготривала стабільна посада у виробничому цеху",
+  job5_b3:"Навчання та введення в роботу нових співробітників",
+  job5_b4:"Фізична витривалість та емоційна стійкість при вирішенні проблем",
+  job6_title:"Робітник з електромонтажу",
+  job6_company:"ТОВ «УКР ТЕХ» · Черкаси, Україна",
+  job6_date:"Чер 2017 – Січ 2018",
+  job6_b1:"Оператор паяння, монтаж стабілізаторів напруги",
+  job6_b2:"Навчання та введення в роботу співробітників, керівництво людьми",
+  job6_b3:"Обслуговування автомобілів",
+  job7_title:"Продавець-консультант",
+  job7_company:"DELIKAT · Черкаси, Україна",
+  job7_date:"Жов 2016 – Тра 2017",
+  job7_b1:"Обслуговування клієнтів, робота з офісною технікою",
+  job7_b2:"Навчання співробітників, підготовка документації",
+  job8_title:"Різні сезонні та підробітки",
+  job8_company:"Чехія та Україна",
+  job8_date:"2016 – 2025 · паралельно з основною роботою",
+  job8_b1:"Короткострокові та сезонні підробітки (бригади), які виконувала паралельно з основною зайнятістю в обох країнах",
+  job8_b2:"Легко адаптуюся до нових команд, інструментів та робочого середовища",
+  license_text:"Посвідчення водія категорії B (Чехія) — активний водій",
+  ow_skills_num:"07.1",
+  ow_skills_title:"Що дає цей досвід",
+  ow_skills_lead:"Навички, напрацьовані роками відповідальної фізичної роботи — та сама дисципліна, яку я тепер застосовую в проєктах автоматизації.",
+  v1_title:"Надійність під тиском",
+  v1_desc:"7 років на одній виробничій позиції без жодного збою; своєчасна медична логістика без пропущених дедлайнів.",
+  v2_title:"Керівництво людьми",
+  v2_desc:"Неодноразово довіряли навчати та вводити в роботу нових співробітників у трьох різних компаніях — а також була старостою групи в коледжі.",
+  v3_title:"Логістика та планування маршрутів",
+  v3_desc:"Безпечна, своєчасна доставка регульованих медичних матеріалів по всій країні у жорстких часових рамках.",
+  v4_title:"Витривалість та концентрація",
+  v4_desc:"Роки напруженої виробничої праці — спокій, точність і продуктивність під постійним фізичним і часовим тиском.",
+  v5_title:"Технічна точність",
+  v5_desc:"Паяння, монтаж, обслуговування верстатів — та сама увага до деталей, яку я тепер застосовую при налагодженні автоматизацій.",
+  v6_title:"Відповідальність за результат",
+  v6_desc:"Керувала власним ліцензованим транспортним бізнесом та діяльністю ФОП — повна відповідальність за результат, а не лише за завдання.",
   projects:[
     {idx:"15/17",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI екосистема продажів з 3 n8n workflow: BANT кваліфікація чат-бот, пайплайн аналізу діалогів, CEO звітність в Telegram. Інтеграція Zoho CRM, Postgres Chat Memory, HOT/WARM/COLD сегментація лідів.",
@@ -1122,7 +1454,7 @@ uk:{
   ]
 },
 cs:{
-  nav_about:"O mně",nav_exp:"Zkušenosti",nav_skills:"Dovednosti",nav_certs:"Certifikáty",nav_case:"Případ",nav_projects:"Projekty",
+  nav_about:"O mně",nav_exp:"Zkušenosti",nav_skills:"Dovednosti",nav_certs:"Certifikáty",nav_case:"Případ",nav_projects:"Projekty",nav_otherwork:"Zkušenosti mimo IT",
   btn_details:"Detaily",btn_site:"Web ↗",btn_bot:"Telegram Bot ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · AI Hlasoví Agenti · Full-Stack AI produkty",
   hero_hint:"Pohněte myší pro odhalení",
@@ -1132,6 +1464,7 @@ cs:{
   about_who_p1:"<strong>Tetiana Kotolup</strong> — AI Automation Developer. Vytvářím n8n automatizace, AI hlasové agenty, Telegram AI boty a full-stack AI SaaS produkty s Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude a React.",
   edu_lbl:"Vzdělání",edu_degree:"Diplom mladšího specialisty",
   edu_school:"Čerkaská státní obchodní škola · 2017<br>Specializace: Technik počítačových systémů",
+  edu_leader:"— Vedoucí studijní skupiny (староста) po celou dobu studia",
   edu_nostri:"✓ Nostrifikováno v ČR · 18-20-M/01 Informační technologie · KÚ JMK 2021",
   about_who_p2:"Absolvuji program <strong>AI No-Code Developer</strong>. 4 živé AI SaaS produkty v produkci.",
   about_approach_lbl:"Můj přístup",
@@ -1197,6 +1530,65 @@ cs:{
   folder_title:"Rychlé automatizace",
   folder_sub:"{n} dalších projektů uvnitř — klikněte pro rozbalení",
   folder_badge:"+{n} projektů",
+  ow_title:"Zkušenosti mimo IT",
+  ow_lead:"Před IT i souběžně s ním — zkušenost se spolehlivou manuální prací: výroba, logistika a práce s klienty v Česku i na Ukrajině.",
+  ow_folder_title:"Kompletní pracovní historie",
+  ow_folder_sub:"8 pozic v Česku a na Ukrajině — klikněte pro rozbalení",
+  ow_folder_badge:"+8 pozic",
+  job1_title:"Řidič — rozvoz zdravotnického materiálu",
+  job1_date:"Čvc 2025 – Bře 2026 · Pracovní poměr na dobu neurčitou",
+  job1_b1:"Zajištění bezpečné a včasné distribuce léčiv a zdravotnického materiálu po celé ČR",
+  job1_b2:"Spolehlivost a dodržování stanovených trasových a časových plánů",
+  job2_title:"Vedlejší pracovní poměr (DPČ)",
+  job2_date:"Lis 2025 – doposud",
+  job2_b1:"Doplňkový pracovní poměr souběžně s hlavním zaměstnáním",
+  job3_title:"Silniční motorová dopravní činnost — vlastní oprávnění",
+  job3_company:"OSVČ · Živnostenský list",
+  job3_date:"Platnost na dobu neurčitou od 30. 10. 2024",
+  job3_b1:"Vnitrostátní přeprava vozidly do 3,5 t (vozidly nebo soupravami pro zvířata nebo věci)",
+  job3_b2:"Mezinárodní přeprava vozidly do 2,5 t (vozidly nebo soupravami pro zvířata nebo věci)",
+  job3_b3:"Klasifikace CZ-NACE: silniční nákladní doprava",
+  job4_title:"OSVČ — samostatná výdělečná činnost",
+  job4_date:"Dub – Čvn 2025 (4 měsíce)",
+  job4_b1:"Podnikání na živnostenský list",
+  job5_title:"Dělnice v textilní výrobě",
+  job5_date:"Bře 2018 – Bře 2025 (7 let)",
+  job5_b1:"Obsluha strojů a zařízení při úpravě vláken",
+  job5_b2:"Dlouhodobá, stabilní pozice ve výrobním provozu",
+  job5_b3:"Školení a zaučení nových zaměstnanců",
+  job5_b4:"Fyzická vytrvalost a emoční odolnost při řešení problémů",
+  job6_title:"Elektro montážní dělník",
+  job6_company:"TOV \"UKR TECH\" · Čerkasy, Ukrajina",
+  job6_date:"Čvn 2017 – Led 2018",
+  job6_b1:"Pájecí operátor, montáž stabilizátorů napětí",
+  job6_b2:"Školení a zaučení zaměstnanců, vedení lidí",
+  job6_b3:"Servis automobilů",
+  job7_title:"Prodejní asistent",
+  job7_company:"DELIKAT · Čerkasy, Ukrajina",
+  job7_date:"Říj 2016 – Kvě 2017",
+  job7_b1:"Péče o zákazníky, obsluha kancelářské techniky",
+  job7_b2:"Školení a zaučení zaměstnanců, příprava podkladů a dokumentů",
+  job8_title:"Různé sezónní práce a přivýdělky",
+  job8_company:"Česká republika a Ukrajina",
+  job8_date:"2016 – 2025 · souběžně s hlavním zaměstnáním",
+  job8_b1:"Krátkodobé a sezónní brigády vykonávané souběžně s hlavním zaměstnáním v obou zemích",
+  job8_b2:"Rychlá adaptace na nové týmy, nástroje a pracovní prostředí",
+  license_text:"Řidičský průkaz kategorie B (ČR) — aktivní řidič",
+  ow_skills_num:"07.1",
+  ow_skills_title:"Co tato zkušenost přináší",
+  ow_skills_lead:"Přenositelné dovednosti získané roky odpovědné manuální práce — stejná disciplína, kterou dnes uplatňuji v projektech automatizace.",
+  v1_title:"Spolehlivost pod tlakem",
+  v1_desc:"7 let na jedné výrobní pozici bez jediného výpadku; včasná zdravotnická logistika bez zmeškaných termínů.",
+  v2_title:"Vedení lidí",
+  v2_desc:"Opakovaně mi bylo svěřeno školení a zaučování nových zaměstnanců ve třech různých firmách — a byla jsem i vedoucí studijní skupiny na škole.",
+  v3_title:"Logistika a plánování tras",
+  v3_desc:"Bezpečná a včasná distribuce regulovaného zdravotnického materiálu po celé zemi v přísných časových oknech.",
+  v4_title:"Odolnost a soustředění",
+  v4_desc:"Roky náročné výrobní práce — klid, přesnost a produktivita pod trvalým fyzickým a časovým tlakem.",
+  v5_title:"Technická preciznost",
+  v5_desc:"Pájení, montáž, obsluha strojů — stejná pozornost k detailu, kterou dnes uplatňuji při ladění automatizací.",
+  v6_title:"Odpovědnost za výsledek",
+  v6_desc:"Vedla jsem vlastní licencované dopravní podnikání a činnost OSVČ — plná odpovědnost za výsledek, ne jen za úkoly.",
   projects:[
     {idx:"15/17",id:"growthlab",title:"GrowthLab AI Sales Ecosystem",year:"2025",featured:true,
       desc:"AI ekosystém prodeje se 3 n8n workflow: BANT kvalifikační chatbot, pipeline analýzy dialogů, CEO reportování do Telegram. Zoho CRM integrace, Postgres Chat Memory, HOT/WARM/COLD segmentace leadů.",
@@ -1270,7 +1662,7 @@ cs:{
 }};
 i18n.ru={
   ...i18n.en,
-  nav_about:"Обо мне",nav_exp:"Опыт",nav_skills:"Навыки",nav_certs:"Сертификаты",nav_case:"Кейс",nav_projects:"Проекты",
+  nav_about:"Обо мне",nav_exp:"Опыт",nav_skills:"Навыки",nav_certs:"Сертификаты",nav_case:"Кейс",nav_projects:"Проекты",nav_otherwork:"Опыт вне IT",
   btn_details:"Подробнее",btn_site:"Сайт ↗",btn_bot:"Telegram-бот ↗",btn_github:"GitHub ↗",
   hero_eyebrow:"AI Automation Developer · Голосовые AI-агенты · Full-Stack AI-продукты",
   hero_hint:"Двигайте мышью, чтобы увидеть",
@@ -1280,6 +1672,7 @@ i18n.ru={
   about_who_p1:"<strong>Татьяна Котолуп</strong> — AI Automation Developer. Создаю автоматизации в n8n, голосовых AI-агентов, Telegram AI-ботов и full-stack AI SaaS-продукты с использованием Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude и React.",
   edu_lbl:"Образование",edu_degree:"Диплом младшего специалиста",
   edu_school:"Черкасский государственный бизнес-колледж · 2017<br>Специальность: Техник компьютерных систем",
+  edu_leader:"— Староста группы на протяжении всей учёбы",
   edu_nostri:"✓ Нострифицирован в Чехии · 18-20-M/01 Informační technologie · KÚ JMK 2021",
   about_who_p2:"Завершаю программу <strong>AI No-Code Developer</strong>. 4 работающих AI SaaS-продукта развёрнуты в production.",
   about_approach_lbl:"Мой подход",
@@ -1346,6 +1739,65 @@ i18n.ru={
   folder_title:"Быстрые автоматизации",
   folder_sub:"{n} ещё проектов внутри — нажмите, чтобы развернуть",
   folder_badge:"+{n} проектов",
+  ow_title:"Опыт вне IT",
+  ow_lead:"До и параллельно с IT — опыт надёжной физической работы: производство, логистика и работа с клиентами в Чехии и Украине.",
+  ow_folder_title:"Полная история работы",
+  ow_folder_sub:"8 позиций в Чехии и Украине — нажмите, чтобы развернуть",
+  ow_folder_badge:"+8 позиций",
+  job1_title:"Водитель — доставка медицинских материалов",
+  job1_date:"Июл 2025 – Мар 2026 · Постоянная должность",
+  job1_b1:"Безопасная и своевременная доставка лекарств и медицинских материалов по всей Чехии",
+  job1_b2:"Надёжность и соблюдение установленных маршрутов и графиков",
+  job2_title:"Дополнительная занятость (DPČ)",
+  job2_date:"Ноя 2025 – по настоящее время",
+  job2_b1:"Дополнительное трудовое соглашение параллельно с основной работой",
+  job3_title:"Автомобильные грузоперевозки — собственная лицензия",
+  job3_company:"ИП · Лицензия на деятельность",
+  job3_date:"Действует бессрочно с 30.10.2024",
+  job3_b1:"Внутренние перевозки транспортом до 3,5 т (грузы или животные)",
+  job3_b2:"Международные перевозки транспортом до 2,5 т (грузы или животные)",
+  job3_b3:"Классификация CZ-NACE: автомобильные грузоперевозки",
+  job4_title:"ИП — самостоятельная предпринимательская деятельность",
+  job4_date:"Апр – Июн 2025 (4 месяца)",
+  job4_b1:"Предпринимательская деятельность по лицензии",
+  job5_title:"Работница текстильного производства",
+  job5_date:"Мар 2018 – Мар 2025 (7 лет)",
+  job5_b1:"Обслуживание станков и оборудования при обработке волокон",
+  job5_b2:"Долгосрочная, стабильная позиция на производстве",
+  job5_b3:"Обучение и введение в должность новых сотрудников",
+  job5_b4:"Физическая выносливость и эмоциональная устойчивость при решении проблем",
+  job6_title:"Рабочий электромонтажник",
+  job6_company:"ООО «УКР ТЕХ» · Черкассы, Украина",
+  job6_date:"Июн 2017 – Янв 2018",
+  job6_b1:"Оператор пайки, монтаж стабилизаторов напряжения",
+  job6_b2:"Обучение сотрудников, руководство людьми",
+  job6_b3:"Обслуживание автомобилей",
+  job7_title:"Продавец-консультант",
+  job7_company:"DELIKAT · Черкассы, Украина",
+  job7_date:"Окт 2016 – Май 2017",
+  job7_b1:"Обслуживание клиентов, работа с офисной техникой",
+  job7_b2:"Обучение сотрудников, подготовка документации",
+  job8_title:"Различные сезонные подработки",
+  job8_company:"Чехия и Украина",
+  job8_date:"2016 – 2025 · параллельно с основной работой",
+  job8_b1:"Краткосрочные и сезонные подработки (бригады), выполняемые параллельно с основной занятостью в обеих странах",
+  job8_b2:"Легко адаптируюсь к новым командам, инструментам и рабочей среде",
+  license_text:"Водительское удостоверение категории B (Чехия) — активный водитель",
+  ow_skills_num:"07.1",
+  ow_skills_title:"Что даёт этот опыт",
+  ow_skills_lead:"Навыки, наработанные годами ответственной физической работы — та же дисциплина, которую я теперь применяю в проектах автоматизации.",
+  v1_title:"Надёжность под давлением",
+  v1_desc:"7 лет на одной производственной позиции без единого сбоя; своевременная медицинская логистика без пропущенных дедлайнов.",
+  v2_title:"Руководство людьми",
+  v2_desc:"Неоднократно доверяли обучать и вводить в должность новых сотрудников в трёх разных компаниях — а также была старостой группы в колледже.",
+  v3_title:"Логистика и планирование маршрутов",
+  v3_desc:"Безопасная, своевременная доставка регулируемых медицинских материалов по всей стране в жёстких временных рамках.",
+  v4_title:"Выносливость и концентрация",
+  v4_desc:"Годы напряжённой производственной работы — спокойствие, точность и продуктивность под постоянным физическим и временным давлением.",
+  v5_title:"Техническая точность",
+  v5_desc:"Пайка, монтаж, обслуживание станков — то же внимание к деталям, которое я теперь применяю при отладке автоматизаций.",
+  v6_title:"Ответственность за результат",
+  v6_desc:"Вела собственный лицензированный транспортный бизнес и деятельность ИП — полная ответственность за результат, а не только за задачи.",
   projects:i18n.en.projects.map(p=>{
     const ru={
       growthlab:["Экосистема AI-продаж GrowthLab","AI-экосистема продаж из 3 процессов n8n: чатбот для BANT-квалификации, анализ диалогов и отчёты руководителю в Telegram. Интеграция с Zoho CRM, Postgres Chat Memory и сегментация лидов HOT/WARM/COLD."],
@@ -1386,7 +1838,7 @@ const projectMap={
   'legisflow'    :'14.html',
   'growthlab'    :'15.html',
   'apulia'       :'16.html',
-  'realitka'     :'https://tetiana-a.github.io/realitka/'
+  'realitka'     :'17.html'
 };
 function openProject(id){
   const file=projectMap[id];
@@ -1395,6 +1847,12 @@ function openProject(id){
 function toggleFolder(){
   const folder=document.getElementById('projFolder');
   const body=document.getElementById('folderBody');
+  const isOpen=folder.classList.toggle('open');
+  body.style.maxHeight=isOpen?body.scrollHeight+'px':'0px';
+}
+function toggleOwFolder(){
+  const folder=document.getElementById('owFolder');
+  const body=document.getElementById('owFolderBody');
   const isOpen=folder.classList.toggle('open');
   body.style.maxHeight=isOpen?body.scrollHeight+'px':'0px';
 }
@@ -1462,6 +1920,9 @@ function applyLang(lang){
   const projFolder=document.getElementById('projFolder');
   const folderBody=document.getElementById('folderBody');
   if(projFolder.classList.contains('open')){folderBody.style.maxHeight=folderBody.scrollHeight+'px';}
+  const owFolder=document.getElementById('owFolder');
+  const owFolderBody=document.getElementById('owFolderBody');
+  if(owFolder.classList.contains('open')){owFolderBody.style.maxHeight=owFolderBody.scrollHeight+'px';}
   document.querySelectorAll('.rv:not(.on)').forEach(el=>rvObserver.observe(el));
   document.querySelectorAll('[data-lang-btn]').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang));
 }
