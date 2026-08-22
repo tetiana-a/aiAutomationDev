@@ -144,15 +144,17 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;o
 .wrap{max-width:1160px;margin:0 auto;padding:0 48px}
 @media(max-width:900px){.wrap{padding:0 28px}}
 @media(max-width:480px){.wrap{padding:0 20px}}
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt)}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt),transform .35s cubic-bezier(.4,0,.2,1)}
+nav.nav-hidden{transform:translateY(-100%)}
 .nav-in{max-width:1160px;margin:0 auto;padding:0 48px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt)}
 .nav-links{display:flex;gap:32px;align-items:center}
 .nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
+.nav-links a.minor{font-size:8px;letter-spacing:.1em;opacity:.65}
 .nav-links a:hover,.nav-links a.active{color:var(--txt)}
 .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.lang-sw{display:flex;align-items:center;gap:2px;background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:3px}
-.lang-btn{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);background:none;border:none;cursor:pointer;padding:4px 8px;border-radius:2px;transition:background .2s,color .2s}
+.lang-sw{display:flex;align-items:center;gap:0;background:var(--tag);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:4px;padding:2px}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.04em;text-transform:uppercase;color:var(--txt3);background:none;border:none;cursor:pointer;padding:4px 4px;border-radius:2px;transition:background .2s,color .2s;display:flex;align-items:center;justify-content:center;line-height:1}
 .lang-btn.active{background:var(--txt);color:var(--bg)}
 .theme-tog{width:42px;height:22px;background:var(--bg3);border:1px solid var(--line2);border-radius:11px;cursor:pointer;position:relative;flex-shrink:0;transition:var(--tt)}
 .theme-tog::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--txt);top:3px;left:3px;transition:transform .4s cubic-bezier(.4,0,.2,1)}
@@ -170,6 +172,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border
 .mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:999;padding:24px 28px;flex-direction:column;gap:20px}
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2);padding:8px 0;border-bottom:1px solid var(--line)}
+.mobile-menu a.minor{font-size:10px;opacity:.65}
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:110px 0 80px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0;cursor:none}
 .hero-bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 32%}
@@ -395,8 +398,8 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <a href="#certs" data-i18n="nav_certs">Certs</a>
       <a href="#case" data-i18n="nav_case">Case</a>
       <a href="#projects" data-i18n="nav_projects">Projects</a>
-      <a href="#otherwork" data-i18n="nav_otherwork">Other Experience</a>
-      <a href="#faq">FAQ</a>
+      <a href="#otherwork" class="minor" data-i18n="nav_otherwork">Other Experience</a>
+      <a href="#faq" class="minor">FAQ</a>
     </nav>
     <div class="nav-right">
       <div class="lang-sw" id="langSw">
@@ -422,8 +425,8 @@ footer{border-top:1px solid var(--line);padding:52px 0}
   <a href="#certs" data-i18n="nav_certs" onclick="closeMob()">Certs</a>
   <a href="#case" data-i18n="nav_case" onclick="closeMob()">Case</a>
   <a href="#projects" data-i18n="nav_projects" onclick="closeMob()">Projects</a>
-  <a href="#otherwork" data-i18n="nav_otherwork" onclick="closeMob()">Other Experience</a>
-  <a href="#faq" onclick="closeMob()">FAQ</a>
+  <a href="#otherwork" class="minor" data-i18n="nav_otherwork" onclick="closeMob()">Other Experience</a>
+  <a href="#faq" class="minor" onclick="closeMob()">FAQ</a>
 </div>
 <section class="hero" id="top">
   <div class="hero-bg" id="heroBg">
@@ -2205,10 +2208,24 @@ const barObs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.sk-bar-f').forEach(el=>barObs.observe(el));
 const sections=document.querySelectorAll('section[id]');
 const navAnchors=document.querySelectorAll('.nav-links a');
+const navEl=document.getElementById('nav');
+let lastScrollY=window.scrollY;
+let navStopTimer=null;
 window.addEventListener('scroll',()=>{
   let cur='';
   sections.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id});
   navAnchors.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+
+  const curY=window.scrollY;
+  if(curY>lastScrollY&&curY>120){
+    navEl.classList.add('nav-hidden');
+  }else if(curY<lastScrollY){
+    navEl.classList.remove('nav-hidden');
+  }
+  lastScrollY=curY;
+
+  clearTimeout(navStopTimer);
+  navStopTimer=setTimeout(()=>{navEl.classList.remove('nav-hidden');},500);
 },{passive:true});
 const ham=document.getElementById('hamBtn');
 const mob=document.getElementById('mobileMenu');
@@ -2277,12 +2294,15 @@ function dlPDF(){
   const ctx=c.getContext('2d');
   let W,H,rings=[],t=0,musicPulse=1,musicTarget=1;
   const RING_COUNT=8;
+  const PALETTE_DARK=[[168,148,255],[245,166,35],[56,214,201],[236,120,158]];
+  const PALETTE_LIGHT=[[122,90,210],[178,108,18],[16,150,138],[182,68,104]];
   function makeRing(){
     return{
       x:Math.random()*W,y:Math.random()*H,
       r:10+Math.random()*50,maxR:80+Math.random()*280,
       speed:0.3+Math.random()*0.85,alpha:0.12+Math.random()*0.2,
-      phase:Math.random()*Math.PI*2,hue:Math.random()>0.7
+      phase:Math.random()*Math.PI*2,hue:Math.random()>0.7,
+      colorIdx:Math.floor(Math.random()*4)
     };
   }
   function init(){
@@ -2298,18 +2318,30 @@ function dlPDF(){
     musicPulse+=(musicTarget-musicPulse)*0.08;
     t+=0.013;
     const isDark=document.documentElement.getAttribute('data-theme')!=='light';
+    const palette=isDark?PALETTE_DARK:PALETTE_LIGHT;
     rings.forEach(rg=>{
       rg.r+=rg.speed*musicPulse;
       if(rg.r>rg.maxR*musicPulse){Object.assign(rg,makeRing());rg.r=10;}
       const fade=1-(rg.r-10)/(rg.maxR-10);
       const pulse=0.4+0.6*Math.abs(Math.sin(t*1.8+rg.phase));
-      const a=rg.alpha*fade*pulse*(musicOn?Math.min(1.6,musicPulse):1);
-      let stroke;
-      if(isDark){stroke=rg.hue?`rgba(160,140,255,${(a*0.7).toFixed(3)})`:`rgba(239,239,239,${a.toFixed(3)})`;}
-      else{stroke=rg.hue?`rgba(80,60,180,${(a*0.5).toFixed(3)})`:`rgba(12,12,12,${a.toFixed(3)})`;}
+      let stroke,lineW,glow;
+      if(musicOn){
+        const a=Math.min(0.85,rg.alpha*fade*pulse*musicPulse*2.6);
+        const [pr,pg,pb]=palette[rg.colorIdx];
+        stroke=`rgba(${pr},${pg},${pb},${a.toFixed(3)})`;
+        lineW=1.6*musicPulse;
+        glow=`rgba(${pr},${pg},${pb},${Math.min(0.55,a*0.9).toFixed(3)})`;
+      }else{
+        const a=rg.alpha*fade*pulse;
+        stroke=isDark?(rg.hue?`rgba(160,140,255,${(a*0.7).toFixed(3)})`:`rgba(239,239,239,${a.toFixed(3)})`)
+                     :(rg.hue?`rgba(80,60,180,${(a*0.5).toFixed(3)})`:`rgba(12,12,12,${a.toFixed(3)})`);
+        lineW=1.1;glow=null;
+      }
       ctx.beginPath();ctx.arc(rg.x,rg.y,rg.r,0,Math.PI*2);
-      ctx.strokeStyle=stroke;ctx.lineWidth=musicOn?1.5*musicPulse:1.1;ctx.stroke();
+      if(glow){ctx.shadowColor=glow;ctx.shadowBlur=14*musicPulse;}else{ctx.shadowBlur=0;}
+      ctx.strokeStyle=stroke;ctx.lineWidth=lineW;ctx.stroke();
     });
+    ctx.shadowBlur=0;
     requestAnimationFrame(draw);
   }
   init();
