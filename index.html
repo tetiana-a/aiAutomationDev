@@ -9,6 +9,8 @@
 <meta name="description" content="Tetiana Kotolup — AI Automation Developer. n8n workflows, AI voice agents, Telegram AI bots, full-stack AI SaaS products with OpenAI GPT-4o, Anthropic Claude, Node.js, PostgreSQL.">
 <meta name="keywords" content="AI automation developer, n8n developer, AI voice agent developer, Telegram bot developer, OpenAI integration, Anthropic Claude developer, full-stack AI developer, AI SaaS developer">
 <meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="author" content="Tetiana Kotolup">
 <link rel="canonical" href="https://tetianakotolup.com/">
 
@@ -175,8 +177,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;o
 .hamburger.open span:nth-child(1){transform:translateY(5px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:translateY(-5px) rotate(-45deg)}
-@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}}
-@media(max-width:480px){.nav-in{padding:0 20px}.pdf-btn span{display:none}}
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}.lang-sw{display:none}.pdf-btn{display:none}}
+@media(max-width:480px){.nav-in{padding:0 20px}}
+.mobile-lang-row{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 4px}
+.mobile-lang-row .lang-btn{background:var(--tag);border:1px solid var(--line);padding:10px 14px;font-size:11px;border-radius:4px}
+.mobile-menu .pdf-btn{display:flex;width:100%;justify-content:center;margin-top:14px;padding:12px}
+.mobile-menu .pdf-btn span{display:inline}
 .mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:999;padding:24px 28px;flex-direction:column;gap:20px}
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2);padding:8px 0;border-bottom:1px solid var(--line)}
@@ -202,7 +208,14 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;o
     linear-gradient(180deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.22) 20%,rgba(255,255,255,.32) 55%,rgba(255,255,255,.82) 100%),
     radial-gradient(ellipse 60% 70% at 22% 55%,rgba(255,255,255,.4) 0%,transparent 70%);
 }
-@media(max-width:768px){.hero-cursor-ring{display:none}.hero-hint{font-size:9px;padding:7px 14px}}
+@media(max-width:768px){.hero-cursor-ring{display:none}.hero-hint{font-size:9px;padding:7px 14px}
+  .hero-overlay-v{background:
+    linear-gradient(180deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.42) 20%,rgba(0,0,0,.55) 55%,rgba(0,0,0,.92) 100%),
+    radial-gradient(ellipse 60% 70% at 22% 55%,rgba(0,0,0,.55) 0%,transparent 70%);}
+  [data-theme="light"] .hero-overlay-v{background:
+    linear-gradient(180deg,rgba(255,255,255,.62) 0%,rgba(255,255,255,.32) 20%,rgba(255,255,255,.44) 55%,rgba(255,255,255,.9) 100%),
+    radial-gradient(ellipse 60% 70% at 22% 55%,rgba(255,255,255,.5) 0%,transparent 70%);}
+}
 .hero-content{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 40px}
 .hero-name{text-shadow:0 4px 30px rgba(0,0,0,.55)}
 [data-theme="light"] .hero-name{text-shadow:0 4px 24px rgba(255,255,255,.6)}
@@ -435,6 +448,17 @@ footer{border-top:1px solid var(--line);padding:52px 0}
   <a href="#projects" data-i18n="nav_projects" onclick="closeMob()">Projects</a>
   <a href="#otherwork" class="minor" data-i18n="nav_otherwork" onclick="closeMob()">Other Experience</a>
   <a href="#faq" class="minor" onclick="closeMob()">FAQ</a>
+  <div class="mobile-lang-row">
+    <button class="lang-btn active" data-lang-btn="en">EN</button>
+    <button class="lang-btn" data-lang-btn="uk">UA</button>
+    <button class="lang-btn" data-lang-btn="ru">RU</button>
+    <button class="lang-btn" data-lang-btn="cs">CZ</button>
+    <button class="lang-btn" data-lang-btn="it">IT</button>
+  </div>
+  <button class="pdf-btn" onclick="dlPDF()">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3M2 12h12"/></svg>
+    <span>Download PDF</span>
+  </button>
 </div>
 <section class="hero" id="top">
   <div class="hero-bg" id="heroBg">
@@ -520,9 +544,9 @@ footer{border-top:1px solid var(--line);padding:52px 0}
         <div class="a-lbl" data-i18n="about_contact_lbl">Contact</div>
         <div class="contact-list">
           <a href="mailto:kotolup24@gmail.com" class="c-item"><div class="c-ico">@</div><span>kotolup24@gmail.com</span></a>
-          <a href="https://t.me/tetiana_K888" target="_blank" class="c-item"><div class="c-ico">tg</div>@tetiana_K888</a>
-          <a href="https://github.com/tetiana-a" target="_blank" class="c-item"><div class="c-ico">gh</div>github.com/tetiana-a</a>
-          <a href="https://tetianakotolup.com/" target="_blank" class="c-item"><div class="c-ico">↗</div>Portfolio site</a>
+          <a href="https://t.me/tetiana_K888" target="_blank" rel="noopener noreferrer" class="c-item"><div class="c-ico">tg</div>@tetiana_K888</a>
+          <a href="https://github.com/tetiana-a" target="_blank" rel="noopener noreferrer" class="c-item"><div class="c-ico">gh</div>github.com/tetiana-a</a>
+          <a href="https://tetianakotolup.com/" target="_blank" rel="noopener noreferrer" class="c-item"><div class="c-ico">↗</div>Portfolio site</a>
         </div>
       </div>
     </div>
@@ -571,8 +595,8 @@ footer{border-top:1px solid var(--line);padding:52px 0}
         <div class="c-blk" style="border-right: none; border-bottom: none;">
           <p class="case-tag" data-i18n="exp2_intro" style="margin-bottom: 20px;">Delivered production web applications across Real Estate & Construction and e-commerce industries — full cycle from requirements to deployment:</p>
           <ul class="c-list">
-            <li data-i18n="exp2_1">Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — full-stack React + Node.js online shop with product catalog, cart, checkout, admin panel and email notifications. Deployed on Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]</li>
-            <li data-i18n="exp2_2">HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — business website for a construction company. End-to-end: client communication, design, frontend & backend, testing, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]</li>
+            <li data-i18n="exp2_1">Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Link</a> — full-stack React + Node.js online shop with product catalog, cart, checkout, admin panel and email notifications. Deployed on Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]</li>
+            <li data-i18n="exp2_2">HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Link</a> — business website for a construction company. End-to-end: client communication, design, frontend & backend, testing, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]</li>
             <li data-i18n="exp2_3">Built landing pages, multi-page sites and portfolio sites; integrated contact forms, product catalogs and basic CMS functionality.</li>
           </ul>
           <div class="c-blk-lbl" style="margin-top: 24px;" data-i18n="exp_stack">Stack</div>
@@ -661,55 +685,55 @@ footer{border-top:1px solid var(--line);padding:52px 0}
         <div class="c-iss">GoIT · Course Certificate · Unique ID 46370</div>
         <div class="c-name">AI Automator</div>
         <div class="c-desc" data-i18n="cert9_desc">243-hour program: no-code automation with n8n, prompt engineering & AI agents, marketing/sales/customer-service automation, production-ready AI agent build</div>
-        <div class="c-foot"><span class="c-date">18 Jun 2026</span><a href="https://github.com/tetiana-a/aiAutomationDev/blob/main/Tetiana%20Kotolup%20(2).pdf" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">18 Jun 2026</span><a href="https://github.com/tetiana-a/aiAutomationDev/blob/main/Tetiana%20Kotolup%20(2).pdf" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
       <div class="c-card rv rv-d2">
         <div class="c-iss">Alison · CPD Certified · Diploma</div>
         <div class="c-name">Advanced Diploma in Brain and Behaviour</div>
         <div class="c-desc" data-i18n="cert1_desc">Cognitive processes and behavioural patterns — strengthens building human-centred automations</div>
-        <div class="c-foot"><span class="c-date">01 Jan 2026</span><a href="https://alison.com/verify/676d6c5a6d" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">01 Jan 2026</span><a href="https://alison.com/verify/676d6c5a6d" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
       <div class="c-card rv rv-d3">
         <div class="c-iss">Alison · CPD Certified · Certificate</div>
         <div class="c-name">AI Marketing</div>
         <div class="c-desc" data-i18n="cert2_desc">AI in marketing: content automation, personalisation, analytics. Business context for marketing automation</div>
-        <div class="c-foot"><span class="c-date">28 Jun 2025</span><a href="https://alison.com/verify/77a395484d" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">28 Jun 2025</span><a href="https://alison.com/verify/77a395484d" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
       <div class="c-card rv rv-d4">
         <div class="c-iss">EITCI Brussels · 2 ECTS · 86.67%</div>
         <div class="c-name">HTML &amp; CSS Fundamentals</div>
         <div class="c-desc" data-i18n="cert3_desc">Responsive layout, Flexbox, Grid, CSS animations, forms, validation</div>
-        <div class="c-foot"><span class="c-date">Aug 2024</span><a href="https://www.eitci.org/certificatesupplement?id=EITC/WD/HCF/YTE24004731&t=fdL6fN2J3ctfWKrm" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">Aug 2024</span><a href="https://www.eitci.org/certificatesupplement?id=EITC/WD/HCF/YTE24004731&t=fdL6fN2J3ctfWKrm" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
       <div class="c-card rv rv-d1">
         <div class="c-iss">EITCI Brussels · 2 ECTS · 86.67%</div>
         <div class="c-name">JavaScript Fundamentals</div>
         <div class="c-desc" data-i18n="cert4_desc">Functions, arrays, objects, DOM, event listeners, debugging, Chrome DevTools</div>
-        <div class="c-foot"><span class="c-date">Aug 2024</span><a href="https://www.eitci.org/certificatesupplement?id=EITC/WD/JSF/YTE24004731&t=jpd7VPm9gh8X1qqW" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">Aug 2024</span><a href="https://www.eitci.org/certificatesupplement?id=EITC/WD/JSF/YTE24004731&t=jpd7VPm9gh8X1qqW" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
       <div class="c-card rv rv-d2">
         <div class="c-iss">EITCI Brussels · 2 ECTS · 66.67%</div>
         <div class="c-name">Google Cloud Platform</div>
         <div class="c-desc" data-i18n="cert5_desc">Compute Engine, Cloud Storage, BigQuery, Kubernetes Engine, Cloud Functions, GCP security</div>
-        <div class="c-foot"><span class="c-date">Jul 2024</span><a href="https://www.eitci.org/certificatesupplement?id=EITC/CL/GCP/YTE24004731&t=tG3TSjfFds5LmmHc" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">Jul 2024</span><a href="https://www.eitci.org/certificatesupplement?id=EITC/CL/GCP/YTE24004731&t=tG3TSjfFds5LmmHc" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
       <div class="c-card rv rv-d3">
         <div class="c-iss">EITCI Brussels · 2 ECTS · 60%</div>
         <div class="c-name">PHP &amp; MySQL Fundamentals</div>
         <div class="c-desc" data-i18n="cert6_desc">Back-end development, databases, forms, sessions, XSS protection, error handling</div>
-        <div class="c-foot"><span class="c-date">Feb 2026</span><a href="https://eitci.org/val?id=EITC/WD/PMSF/YTE24004731&t=f6VF6kMpXql5vpQ9" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">Feb 2026</span><a href="https://eitci.org/val?id=EITC/WD/PMSF/YTE24004731&t=f6VF6kMpXql5vpQ9" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
       <div class="c-card rv rv-d4">
         <div class="c-iss">Great Learning · Certificate of Completion</div>
         <div class="c-name">ChatGPT for Business Communication</div>
         <div class="c-desc" data-i18n="cert7_desc">ChatGPT in business communication: automating correspondence, reports and presentations</div>
-        <div class="c-foot"><span class="c-date">30 Jul 2025</span><a href="https://www.mygreatlearning.com/certificate/YOJKHQQT" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">30 Jul 2025</span><a href="https://www.mygreatlearning.com/certificate/YOJKHQQT" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
       <div class="c-card rv rv-d1">
         <div class="c-iss">Femme Palette · 6-Month Mentoring Program</div>
         <div class="c-name">Mentoring for Professionals</div>
         <div class="c-desc" data-i18n="cert8_desc">12 hours of 1-to-1 mentorship from industry experts: goal setting, career development, strategy</div>
-        <div class="c-foot"><span class="c-date">—</span><a href="https://certificate.femmepalette.com/verify/YWMI9J0OKAM4/" target="_blank" class="c-link">Verify ↗</a></div>
+        <div class="c-foot"><span class="c-date">—</span><a href="https://certificate.femmepalette.com/verify/YWMI9J0OKAM4/" target="_blank" rel="noopener noreferrer" class="c-link">Verify ↗</a></div>
       </div>
     </div>
   </div>
@@ -1049,7 +1073,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       </div>
       <div class="faq-item">
         <div class="faq-q" data-i18n="faq5_q">How can I contact Tetiana Kotolup?</div>
-        <div class="faq-a"><span data-i18n="faq5_a">You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.</span></div>
+        <div class="faq-a"><span data-i18n="faq5_a">You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.</span></div>
       </div>
       <div class="faq-item">
         <div class="faq-q" data-i18n="faq6_q">What are Tetiana's interests outside of work?</div>
@@ -1106,8 +1130,8 @@ en:{
   exp1_4:"Automated lead qualification, customer support and business workflows.",
   exp1_5:"Implemented prompt engineering and optimized AI workflows for production use.",
   exp1_6:"Collaborated on deploying AI automation solutions that reduced manual work and improved operational efficiency.",
-  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — full-stack React + Node.js online shop with product catalog, cart, checkout, admin panel and email notifications. Deployed on Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
-  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — business website for a construction company. End-to-end: client communication, design, frontend & backend, testing, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Link</a> — full-stack React + Node.js online shop with product catalog, cart, checkout, admin panel and email notifications. Deployed on Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Link</a> — business website for a construction company. End-to-end: client communication, design, frontend & backend, testing, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
   exp2_3:"Built landing pages, multi-page sites and portfolio sites; integrated contact forms, product catalogs and basic CMS functionality.",
   exp_stack:"Stack",
   skills_title:"Key Expertise",
@@ -1171,7 +1195,7 @@ en:{
   faq4_q:"Where is Tetiana Kotolup located and does she work remotely?",
   faq4_a:"She is based in Brno, Czech Republic, and works remotely with clients internationally.",
   faq5_q:"How can I contact Tetiana Kotolup?",
-  faq5_a:'You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.',
+  faq5_a:'You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.',
   faq6_q:"What are Tetiana's interests outside of work?",
   faq6_a:"Self-development is a big part of her life — she reads widely across many fields and puts what she learns into practice. She also dances, runs, trains with kettlebells, and enjoys extreme driving to stay disciplined and energized outside the screen.",
   job1_title:"Driver — Medical Supplies Distribution",
@@ -1328,8 +1352,8 @@ uk:{
   exp1_4:"Автоматизація кваліфікації лідів, підтримки клієнтів та бізнес-процесів.",
   exp1_5:"Впровадження промпт-інжинірингу та оптимізація AI-воркфлоу для production.",
   exp1_6:"Співпраця у розгортанні рішень з AI-автоматизації, що зменшили ручну роботу та підвищили ефективність.",
-  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Посилання</a> — full-stack React + Node.js інтернет-магазин з каталогом, кошиком, оформленням замовлень, адмінпанеллю та email-сповіщеннями. Деплой на Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
-  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Посилання</a> — бізнес-сайт будівельної компанії. End-to-end: комунікація з клієнтом, дизайн, frontend та backend розробка, тестування та деплой. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Посилання</a> — full-stack React + Node.js інтернет-магазин з каталогом, кошиком, оформленням замовлень, адмінпанеллю та email-сповіщеннями. Деплой на Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Посилання</a> — бізнес-сайт будівельної компанії. End-to-end: комунікація з клієнтом, дизайн, frontend та backend розробка, тестування та деплой. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
   exp2_3:"Створення лендінгів, багосторінкових сайтів та портфоліо; інтеграція контактних форм, каталогів товарів та базового CMS-функціоналу.",
   exp_stack:"Стек",
   skills_title:"Ключові навички",
@@ -1393,7 +1417,7 @@ uk:{
   faq4_q:"Де знаходиться Тетяна Котолуп і чи працює вона віддалено?",
   faq4_a:"Вона базується в Брно, Чехія, та працює віддалено з клієнтами по всьому світу.",
   faq5_q:"Як зв'язатися з Тетяною Котолуп?",
-  faq5_a:'Ви можете написати на email <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, у Telegram <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, або через це портфоліо.',
+  faq5_a:'Ви можете написати на email <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, у Telegram <a href="https://t.me/tetiana_K888" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">@tetiana_K888</a>, або через це портфоліо.',
   faq6_q:"Які у Тетяни інтереси поза роботою?",
   faq6_a:"Саморозвиток — важлива частина її життя: вона багато читає в різних напрямках і застосовує знання на практиці. Також танцює, бігає, тренується з гирями та захоплюється екстремальною їздою, щоб залишатись дисциплінованою та енергійною поза екраном.",
   job1_title:"Водій — доставка медичних матеріалів",
@@ -1550,8 +1574,8 @@ cs:{
   exp1_4:"Automatizace kvalifikace leadů, zákaznické podpory a obchodních procesů.",
   exp1_5:"Implementace prompt inženýrství a optimalizace AI workflow pro produkci.",
   exp1_6:"Spolupráce na nasazení AI automatizačních řešení, která snížila ruční práci a zlepšila efektivitu.",
-  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Odkaz</a> — full-stack React + Node.js e-shop s katalogem, košíkem, pokladnou, admin panelem a e-mailovými notifikacemi. Nasazeno na Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
-  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Odkaz</a> — firemní web stavební společnosti. End-to-end: komunikace s klientem, design, frontend a backend vývoj, testování a nasazení. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Odkaz</a> — full-stack React + Node.js e-shop s katalogem, košíkem, pokladnou, admin panelem a e-mailovými notifikacemi. Nasazeno na Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Odkaz</a> — firemní web stavební společnosti. End-to-end: komunikace s klientem, design, frontend a backend vývoj, testování a nasazení. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
   exp2_3:"Tvorba landing page, vícestránkových webů a portfolií; integrace kontaktních formulářů, katalogů produktů a základních CMS funkcí.",
   exp_stack:"Stack",
   skills_title:"Klíčové dovednosti",
@@ -1615,7 +1639,7 @@ cs:{
   faq4_q:"Kde se Tetiana Kotolup nachází a pracuje na dálku?",
   faq4_a:"Sídlí v Brně a pracuje na dálku s klienty po celém světě.",
   faq5_q:"Jak kontaktovat Tetianu Kotolup?",
-  faq5_a:'Můžete ji kontaktovat e-mailem na <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, přes Telegram <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, nebo přes toto portfolio.',
+  faq5_a:'Můžete ji kontaktovat e-mailem na <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, přes Telegram <a href="https://t.me/tetiana_K888" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">@tetiana_K888</a>, nebo přes toto portfolio.',
   faq6_q:"Jaké má Tetiana zájmy mimo práci?",
   faq6_a:"Sebezdokonalování je důležitou součástí jejího života — hodně čte napříč různými obory a získané znalosti uplatňuje v praxi. Také tančí, běhá, cvičí s kettlebell a má ráda extrémní jízdu, aby zůstala disciplinovaná a energická i mimo obrazovku.",
   job1_title:"Řidič — rozvoz zdravotnického materiálu",
@@ -1772,8 +1796,8 @@ it:{
   exp1_4:"Automazione della qualificazione dei lead, del supporto clienti e dei processi aziendali.",
   exp1_5:"Implementazione del prompt engineering e ottimizzazione dei workflow AI per l'uso in produzione.",
   exp1_6:"Collaborazione al deployment di soluzioni di automazione AI che hanno ridotto il lavoro manuale e migliorato l'efficienza operativa.",
-  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — negozio online full-stack React + Node.js con catalogo prodotti, carrello, checkout, pannello admin e notifiche email. Distribuito su Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
-  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Link</a> — sito web aziendale per un\'impresa edile. End-to-end: comunicazione con il cliente, design, sviluppo frontend e backend, test, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Link</a> — negozio online full-stack React + Node.js con catalogo prodotti, carrello, checkout, pannello admin e notifiche email. Distribuito su Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Link</a> — sito web aziendale per un\'impresa edile. End-to-end: comunicazione con il cliente, design, sviluppo frontend e backend, test, deployment. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
   exp2_3:"Creazione di landing page, siti multi-pagina e portfolio; integrazione di moduli di contatto, cataloghi prodotti e funzionalità CMS di base.",
   exp_stack:"Stack",
   skills_title:"Competenze chiave",
@@ -1837,7 +1861,7 @@ it:{
   faq4_q:"Dove si trova Tetiana Kotolup e lavora da remoto?",
   faq4_a:"Ha sede a Brno, Repubblica Ceca, e lavora da remoto con clienti internazionali.",
   faq5_q:"Come posso contattare Tetiana Kotolup?",
-  faq5_a:'Puoi contattarla via email a <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, su Telegram <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, oppure tramite questo portfolio.',
+  faq5_a:'Puoi contattarla via email a <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, su Telegram <a href="https://t.me/tetiana_K888" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">@tetiana_K888</a>, oppure tramite questo portfolio.',
   faq6_q:"Quali sono gli interessi di Tetiana al di fuori del lavoro?",
   faq6_a:"L'auto-miglioramento è una parte importante della sua vita — legge molto in diversi ambiti e mette in pratica ciò che apprende. Balla, corre, si allena con i kettlebell e ama la guida estrema, per rimanere disciplinata ed energica anche fuori dallo schermo.",
   job1_title:"Autista — Distribuzione di Materiale Medico",
@@ -1996,8 +2020,8 @@ i18n.ru={
   exp1_4:"Автоматизация квалификации лидов, клиентской поддержки и бизнес-процессов.",
   exp1_5:"Внедрение промпт-инжиниринга и оптимизация AI-процессов для production.",
   exp1_6:"Участие во внедрении AI-автоматизаций, которые сократили ручную работу и повысили операционную эффективность.",
-  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Ссылка</a> — full-stack интернет-магазин на React + Node.js с каталогом, корзиной, оформлением заказов, админ-панелью и email-уведомлениями. Развёрнут на Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
-  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" style="color:var(--txt);text-decoration:underline;">Ссылка</a> — бизнес-сайт строительной компании. Полный цикл: общение с клиентом, дизайн, frontend и backend, тестирование и развёртывание. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_1:'Eco Italia <a href="https://shopecoitaly.housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Ссылка</a> — full-stack интернет-магазин на React + Node.js с каталогом, корзиной, оформлением заказов, админ-панелью и email-уведомлениями. Развёрнут на Railway. [<a href="https://github.com/tetiana-a/eco-italia" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
+  exp2_2:'HouseFixBrno <a href="https://housefixbrno.cz/" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">Ссылка</a> — бизнес-сайт строительной компании. Полный цикл: общение с клиентом, дизайн, frontend и backend, тестирование и развёртывание. [<a href="https://github.com/tetiana-a/fixhouse-brno" target="_blank" rel="noopener noreferrer" style="color:var(--txt);text-decoration:underline;">GitHub</a>]',
   exp2_3:"Создание лендингов, многостраничных сайтов и портфолио; интеграция контактных форм, каталогов товаров и базовых функций CMS.",
   exp_stack:"Стек",
   skills_title:"Ключевые навыки",
@@ -2061,7 +2085,7 @@ i18n.ru={
   faq4_q:"Где находится Татьяна Котолуп и работает ли она удалённо?",
   faq4_a:"Она базируется в Брно, Чехия, и работает удалённо с клиентами по всему миру.",
   faq5_q:"Как связаться с Татьяной Котолуп?",
-  faq5_a:'Вы можете написать на email <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, в Telegram <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, или через это портфолио.',
+  faq5_a:'Вы можете написать на email <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, в Telegram <a href="https://t.me/tetiana_K888" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;">@tetiana_K888</a>, или через это портфолио.',
   faq6_q:"Какие у Татьяны увлечения вне работы?",
   faq6_a:"Саморазвитие — важная часть её жизни: она много читает в разных областях и применяет знания на практике. Также танцует, бегает, тренируется с гирями и увлекается экстремальной ездой, чтобы оставаться дисциплинированной и энергичной вне экрана.",
   job1_title:"Водитель — доставка медицинских материалов",
@@ -2231,9 +2255,9 @@ function applyLang(lang){
     const el=document.createElement('div');
     el.className=`p-card rv ${delay}`;
     let acts=`<div class="p-actions"><button class="p-btn accent" onclick="openProject('${p.id}')">${t.btn_details}</button>`;
-    if(p.site)acts+=`<a href="${p.site}" target="_blank" rel="noopener" class="p-btn">${t.btn_site}</a>`;
-    if(p.bot)acts+=`<a href="${p.bot}" target="_blank" rel="noopener" class="p-btn">${t.btn_bot}</a>`;
-    if(p.github)acts+=`<a href="${p.github}" target="_blank" rel="noopener" class="p-btn">${t.btn_github}</a>`;
+    if(p.site)acts+=`<a href="${p.site}" target="_blank" rel="noopener noreferrer" class="p-btn">${t.btn_site}</a>`;
+    if(p.bot)acts+=`<a href="${p.bot}" target="_blank" rel="noopener noreferrer" class="p-btn">${t.btn_bot}</a>`;
+    if(p.github)acts+=`<a href="${p.github}" target="_blank" rel="noopener noreferrer" class="p-btn">${t.btn_github}</a>`;
     acts+=`</div>`;
     const badge=`<span style="font-family:'JetBrains Mono',monospace;font-size:8px;background:var(--txt);color:var(--bg);padding:2px 7px;border-radius:2px;margin-left:8px;">${p.year} · Live</span>`;
     el.innerHTML=`<div class="p-idx">${p.idx}${badge}</div><div class="p-ttl">${p.title}</div><div class="p-desc">${p.desc}</div><div class="p-tags">${p.tags.map(tag=>`<span class="p-tag">${tag}</span>`).join('')}</div>${acts}`;
@@ -2255,7 +2279,7 @@ function applyLang(lang){
   document.querySelectorAll('.rv:not(.on)').forEach(el=>rvObserver.observe(el));
   document.querySelectorAll('[data-lang-btn]').forEach(b=>b.classList.toggle('active',b.getAttribute('data-lang-btn')===lang));
 }
-document.getElementById('langSw').addEventListener('click',e=>{
+document.addEventListener('click',e=>{
   const btn=e.target.closest('[data-lang-btn]');
   if(btn)applyLang(btn.getAttribute('data-lang-btn'));
 });
