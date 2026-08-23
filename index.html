@@ -122,6 +122,14 @@
         "@type": "Answer",
         "text": "You can reach her by email at kotolup24@gmail.com, via Telegram at @tetiana_K888, or through her portfolio at https://tetianakotolup.com/."
       }
+    },
+    {
+      "@type": "Question",
+      "name": "What are Tetiana's interests outside of work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Self-development is a big part of her life — she reads widely across many fields and puts what she learns into practice. She also dances, runs, trains with kettlebells, and enjoys extreme driving to stay disciplined and energized outside the screen."
+      }
     }
   ]
 }
@@ -144,12 +152,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;o
 .wrap{max-width:1040px;margin:0 auto;padding:0 40px}
 @media(max-width:900px){.wrap{padding:0 28px}}
 @media(max-width:480px){.wrap{padding:0 20px}}
-#nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt),transform .35s cubic-bezier(.4,0,.2,1)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:color-mix(in srgb, var(--bg) 70%, transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);transition:var(--tt),transform .35s cubic-bezier(.4,0,.2,1)}
 #nav.nav-hidden{transform:translateY(-100%)}
-.nav-in{max-width:1040px;margin:0 auto;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt)}
-.nav-links{display:flex;gap:32px;align-items:center}
-.nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
+.nav-in{max-width:1040px;margin:0 auto;padding:12px 40px;min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:nowrap}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt);white-space:nowrap;flex-shrink:0}
+.nav-links{display:flex;gap:18px;align-items:center;flex-wrap:nowrap}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);transition:color .2s;white-space:nowrap}
 .nav-links a.minor{font-size:8px;letter-spacing:.1em;opacity:.65}
 .nav-links a:hover,.nav-links a.active{color:var(--txt)}
 .nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
@@ -855,7 +863,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
           <div>
             <div class="job-title" data-i18n="job2_title">Secondary Employment (DPČ)</div>
           </div>
-          <div class="job-date" data-i18n="job2_date">Nov 2025 – present</div>
+          <div class="job-date" data-i18n="job2_date">Nov 2025 – Mar 2026</div>
         </div>
         <ul class="job-list">
           <li data-i18n="job2_b1">Supplementary work agreement alongside the main position</li>
@@ -1011,11 +1019,11 @@ footer{border-top:1px solid var(--line);padding:52px 0}
           <div class="folder-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
           <div>
             <div class="folder-title" data-i18n="faq_folder_title">Frequently Asked Questions</div>
-            <div class="folder-sub" data-i18n="faq_folder_sub">5 questions — click to expand</div>
+            <div class="folder-sub" data-i18n="faq_folder_sub">6 questions — click to expand</div>
           </div>
         </div>
         <div class="folder-right">
-          <span class="folder-badge" data-i18n="faq_folder_badge">+5</span>
+          <span class="folder-badge" data-i18n="faq_folder_badge">+6</span>
           <svg class="folder-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
         </div>
       </div>
@@ -1024,24 +1032,28 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 
     <div class="faq-list">
       <div class="faq-item">
-        <div class="faq-q">Who is Tetiana Kotolup?</div>
-        <div class="faq-a">Tetiana Kotolup is an AI Automation Developer based in Brno, Czech Republic, specializing in n8n workflow automation, AI voice agents, Telegram AI bots, and full-stack AI SaaS products built with OpenAI GPT-4o, Anthropic Claude, Node.js, and PostgreSQL.</div>
+        <div class="faq-q" data-i18n="faq1_q">Who is Tetiana Kotolup?</div>
+        <div class="faq-a" data-i18n="faq1_a">Tetiana Kotolup is an AI Automation Developer based in Brno, Czech Republic, specializing in n8n workflow automation, AI voice agents, Telegram AI bots, and full-stack AI SaaS products built with OpenAI GPT-4o, Anthropic Claude, Node.js, and PostgreSQL.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">What services does Tetiana Kotolup provide?</div>
-        <div class="faq-a">She designs and builds production-ready n8n automation workflows, AI voice agents for sales and support, Telegram AI bots, and full-stack AI SaaS products — from initial process analysis through deployment on platforms like Render, Vercel, and Railway.</div>
+        <div class="faq-q" data-i18n="faq2_q">What services does Tetiana Kotolup provide?</div>
+        <div class="faq-a" data-i18n="faq2_a">She designs and builds production-ready n8n automation workflows, AI voice agents for sales and support, Telegram AI bots, and full-stack AI SaaS products — from initial process analysis through deployment on platforms like Render, Vercel, and Railway.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">What technologies does Tetiana Kotolup work with?</div>
-        <div class="faq-a">Her core stack includes n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase, and voice AI platforms such as Vapi, Retell AI, and Bland AI.</div>
+        <div class="faq-q" data-i18n="faq3_q">What technologies does Tetiana Kotolup work with?</div>
+        <div class="faq-a" data-i18n="faq3_a">Her core stack includes n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase, and voice AI platforms such as Vapi, Retell AI, and Bland AI.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">Where is Tetiana Kotolup located and does she work remotely?</div>
-        <div class="faq-a">She is based in Brno, Czech Republic, and works remotely with clients internationally.</div>
+        <div class="faq-q" data-i18n="faq4_q">Where is Tetiana Kotolup located and does she work remotely?</div>
+        <div class="faq-a" data-i18n="faq4_a">She is based in Brno, Czech Republic, and works remotely with clients internationally.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q">How can I contact Tetiana Kotolup?</div>
-        <div class="faq-a">You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.</div>
+        <div class="faq-q" data-i18n="faq5_q">How can I contact Tetiana Kotolup?</div>
+        <div class="faq-a"><span data-i18n="faq5_a">You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.</span></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq6_q">What are Tetiana's interests outside of work?</div>
+        <div class="faq-a" data-i18n="faq6_a">Self-development is a big part of her life — she reads widely across many fields and puts what she learns into practice. She also dances, runs, trains with kettlebells, and enjoys extreme driving to stay disciplined and energized outside the screen.</div>
       </div>
     </div>
 
@@ -1148,14 +1160,26 @@ en:{
   ow_folder_sub:"8 roles across Czech Republic & Ukraine — click to expand",
   ow_folder_badge:"+8 roles",
   faq_folder_title:"Frequently Asked Questions",
-  faq_folder_sub:"5 questions — click to expand",
-  faq_folder_badge:"+5",
+  faq_folder_sub:"6 questions — click to expand",
+  faq_folder_badge:"+6",
+  faq1_q:"Who is Tetiana Kotolup?",
+  faq1_a:"Tetiana Kotolup is an AI Automation Developer based in Brno, Czech Republic, specializing in n8n workflow automation, AI voice agents, Telegram AI bots, and full-stack AI SaaS products built with OpenAI GPT-4o, Anthropic Claude, Node.js, and PostgreSQL.",
+  faq2_q:"What services does Tetiana Kotolup provide?",
+  faq2_a:"She designs and builds production-ready n8n automation workflows, AI voice agents for sales and support, Telegram AI bots, and full-stack AI SaaS products — from initial process analysis through deployment on platforms like Render, Vercel, and Railway.",
+  faq3_q:"What technologies does Tetiana Kotolup work with?",
+  faq3_a:"Her core stack includes n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase, and voice AI platforms such as Vapi, Retell AI, and Bland AI.",
+  faq4_q:"Where is Tetiana Kotolup located and does she work remotely?",
+  faq4_a:"She is based in Brno, Czech Republic, and works remotely with clients internationally.",
+  faq5_q:"How can I contact Tetiana Kotolup?",
+  faq5_a:'You can reach her by email at <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, via Telegram at <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, or through this portfolio.',
+  faq6_q:"What are Tetiana's interests outside of work?",
+  faq6_a:"Self-development is a big part of her life — she reads widely across many fields and puts what she learns into practice. She also dances, runs, trains with kettlebells, and enjoys extreme driving to stay disciplined and energized outside the screen.",
   job1_title:"Driver — Medical Supplies Distribution",
   job1_date:"Jul 2025 – Mar 2026 · Permanent position",
   job1_b1:"Safe and timely distribution of medicines and medical supplies across the entire Czech Republic",
   job1_b2:"Reliability and strict adherence to route and time schedules",
   job2_title:"Secondary Employment (DPČ)",
-  job2_date:"Nov 2025 – present",
+  job2_date:"Nov 2025 – Mar 2026",
   job2_b1:"Supplementary work agreement alongside the main position",
   job3_title:"Road Freight Transport — Own Business Permit",
   job3_company:"OSVČ · Trade licence",
@@ -1358,14 +1382,26 @@ uk:{
   ow_folder_sub:"8 позицій у Чехії та Україні — натисніть, щоб розгорнути",
   ow_folder_badge:"+8 позицій",
   faq_folder_title:"Часті запитання",
-  faq_folder_sub:"5 запитань — натисніть, щоб розгорнути",
-  faq_folder_badge:"+5",
+  faq_folder_sub:"6 запитань — натисніть, щоб розгорнути",
+  faq_folder_badge:"+6",
+  faq1_q:"Хто така Тетяна Котолуп?",
+  faq1_a:"Тетяна Котолуп — AI Automation Developer з Брно, Чехія, що спеціалізується на автоматизації workflow в n8n, AI голосових агентах, Telegram AI ботах та full-stack AI SaaS продуктах на базі OpenAI GPT-4o, Anthropic Claude, Node.js та PostgreSQL.",
+  faq2_q:"Які послуги надає Тетяна Котолуп?",
+  faq2_a:"Вона проєктує та будує готові до production n8n автоматизації, AI голосових агентів для продажів та підтримки, Telegram AI ботів та full-stack AI SaaS продукти — від аналізу процесів до розгортання на платформах на кшталт Render, Vercel та Railway.",
+  faq3_q:"З якими технологіями працює Тетяна Котолуп?",
+  faq3_a:"Її основний стек включає n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase та голосові AI платформи, такі як Vapi, Retell AI та Bland AI.",
+  faq4_q:"Де знаходиться Тетяна Котолуп і чи працює вона віддалено?",
+  faq4_a:"Вона базується в Брно, Чехія, та працює віддалено з клієнтами по всьому світу.",
+  faq5_q:"Як зв'язатися з Тетяною Котолуп?",
+  faq5_a:'Ви можете написати на email <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, у Telegram <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, або через це портфоліо.',
+  faq6_q:"Які у Тетяни інтереси поза роботою?",
+  faq6_a:"Саморозвиток — важлива частина її життя: вона багато читає в різних напрямках і застосовує знання на практиці. Також танцює, бігає, тренується з гирями та захоплюється екстремальною їздою, щоб залишатись дисциплінованою та енергійною поза екраном.",
   job1_title:"Водій — доставка медичних матеріалів",
   job1_date:"Лип 2025 – Бер 2026 · Постійна посада",
   job1_b1:"Безпечна та своєчасна доставка ліків і медичних матеріалів по всій Чехії",
   job1_b2:"Надійність і дотримання встановлених маршрутів та графіків",
   job2_title:"Додаткова зайнятість (DPČ)",
-  job2_date:"Лис 2025 – дотепер",
+  job2_date:"Лис 2025 – Бер 2026",
   job2_b1:"Додаткова трудова угода паралельно з основною роботою",
   job3_title:"Автомобільні вантажні перевезення — власна ліцензія",
   job3_company:"ФОП · Ліцензія на діяльність",
@@ -1568,14 +1604,26 @@ cs:{
   ow_folder_sub:"8 pozic v Česku a na Ukrajině — klikněte pro rozbalení",
   ow_folder_badge:"+8 pozic",
   faq_folder_title:"Časté dotazy",
-  faq_folder_sub:"5 otázek — klikněte pro rozbalení",
-  faq_folder_badge:"+5",
+  faq_folder_sub:"6 otázek — klikněte pro rozbalení",
+  faq_folder_badge:"+6",
+  faq1_q:"Kdo je Tetiana Kotolup?",
+  faq1_a:"Tetiana Kotolup je AI Automation Developer se sídlem v Brně, specializující se na automatizaci workflow v n8n, AI hlasové agenty, Telegram AI boty a full-stack AI SaaS produkty postavené na OpenAI GPT-4o, Anthropic Claude, Node.js a PostgreSQL.",
+  faq2_q:"Jaké služby Tetiana Kotolup poskytuje?",
+  faq2_a:"Navrhuje a vytváří produkčně připravené n8n automatizace, AI hlasové agenty pro prodej a podporu, Telegram AI boty a full-stack AI SaaS produkty — od analýzy procesů až po nasazení na platformách jako Render, Vercel a Railway.",
+  faq3_q:"S jakými technologiemi Tetiana Kotolup pracuje?",
+  faq3_a:"Její hlavní stack zahrnuje n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase a hlasové AI platformy jako Vapi, Retell AI a Bland AI.",
+  faq4_q:"Kde se Tetiana Kotolup nachází a pracuje na dálku?",
+  faq4_a:"Sídlí v Brně a pracuje na dálku s klienty po celém světě.",
+  faq5_q:"Jak kontaktovat Tetianu Kotolup?",
+  faq5_a:'Můžete ji kontaktovat e-mailem na <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, přes Telegram <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, nebo přes toto portfolio.',
+  faq6_q:"Jaké má Tetiana zájmy mimo práci?",
+  faq6_a:"Sebezdokonalování je důležitou součástí jejího života — hodně čte napříč různými obory a získané znalosti uplatňuje v praxi. Také tančí, běhá, cvičí s kettlebell a má ráda extrémní jízdu, aby zůstala disciplinovaná a energická i mimo obrazovku.",
   job1_title:"Řidič — rozvoz zdravotnického materiálu",
   job1_date:"Čvc 2025 – Bře 2026 · Pracovní poměr na dobu neurčitou",
   job1_b1:"Zajištění bezpečné a včasné distribuce léčiv a zdravotnického materiálu po celé ČR",
   job1_b2:"Spolehlivost a dodržování stanovených trasových a časových plánů",
   job2_title:"Vedlejší pracovní poměr (DPČ)",
-  job2_date:"Lis 2025 – doposud",
+  job2_date:"Lis 2025 – Bře 2026",
   job2_b1:"Doplňkový pracovní poměr souběžně s hlavním zaměstnáním",
   job3_title:"Silniční motorová dopravní činnost — vlastní oprávnění",
   job3_company:"OSVČ · Živnostenský list",
@@ -1778,14 +1826,26 @@ it:{
   ow_folder_sub:"8 ruoli tra Repubblica Ceca e Ucraina — clicca per espandere",
   ow_folder_badge:"+8 ruoli",
   faq_folder_title:"Domande Frequenti",
-  faq_folder_sub:"5 domande — clicca per espandere",
-  faq_folder_badge:"+5",
+  faq_folder_sub:"6 domande — clicca per espandere",
+  faq_folder_badge:"+6",
+  faq1_q:"Chi è Tetiana Kotolup?",
+  faq1_a:"Tetiana Kotolup è una AI Automation Developer con sede a Brno, Repubblica Ceca, specializzata in automazione di workflow n8n, agenti vocali AI, bot AI per Telegram e prodotti AI SaaS full-stack costruiti con OpenAI GPT-4o, Anthropic Claude, Node.js e PostgreSQL.",
+  faq2_q:"Quali servizi offre Tetiana Kotolup?",
+  faq2_a:"Progetta e sviluppa workflow di automazione n8n pronti per la produzione, agenti vocali AI per vendite e supporto, bot AI per Telegram e prodotti AI SaaS full-stack — dall'analisi iniziale dei processi fino al deployment su piattaforme come Render, Vercel e Railway.",
+  faq3_q:"Con quali tecnologie lavora Tetiana Kotolup?",
+  faq3_a:"Il suo stack principale include n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase e piattaforme AI vocali come Vapi, Retell AI e Bland AI.",
+  faq4_q:"Dove si trova Tetiana Kotolup e lavora da remoto?",
+  faq4_a:"Ha sede a Brno, Repubblica Ceca, e lavora da remoto con clienti internazionali.",
+  faq5_q:"Come posso contattare Tetiana Kotolup?",
+  faq5_a:'Puoi contattarla via email a <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, su Telegram <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, oppure tramite questo portfolio.',
+  faq6_q:"Quali sono gli interessi di Tetiana al di fuori del lavoro?",
+  faq6_a:"L'auto-miglioramento è una parte importante della sua vita — legge molto in diversi ambiti e mette in pratica ciò che apprende. Balla, corre, si allena con i kettlebell e ama la guida estrema, per rimanere disciplinata ed energica anche fuori dallo schermo.",
   job1_title:"Autista — Distribuzione di Materiale Medico",
   job1_date:"Lug 2025 – Mar 2026 · Posizione permanente",
   job1_b1:"Distribuzione sicura e puntuale di farmaci e materiale medico in tutta la Repubblica Ceca",
   job1_b2:"Affidabilità e rigoroso rispetto dei percorsi e degli orari stabiliti",
   job2_title:"Impiego Secondario (DPČ)",
-  job2_date:"Nov 2025 – presente",
+  job2_date:"Nov 2025 – Mar 2026",
   job2_b1:"Contratto di lavoro supplementare parallelo alla posizione principale",
   job3_title:"Trasporto Merci su Strada — Licenza Aziendale Propria",
   job3_company:"OSVČ · Licenza commerciale",
@@ -1990,14 +2050,26 @@ i18n.ru={
   ow_folder_sub:"8 позиций в Чехии и Украине — нажмите, чтобы развернуть",
   ow_folder_badge:"+8 позиций",
   faq_folder_title:"Часто задаваемые вопросы",
-  faq_folder_sub:"5 вопросов — нажмите, чтобы развернуть",
-  faq_folder_badge:"+5",
+  faq_folder_sub:"6 вопросов — нажмите, чтобы развернуть",
+  faq_folder_badge:"+6",
+  faq1_q:"Кто такая Татьяна Котолуп?",
+  faq1_a:"Татьяна Котолуп — AI Automation Developer из Брно, Чехия, специализирующаяся на автоматизации workflow в n8n, голосовых AI-агентах, Telegram AI-ботах и full-stack AI SaaS-продуктах на базе OpenAI GPT-4o, Anthropic Claude, Node.js и PostgreSQL.",
+  faq2_q:"Какие услуги предоставляет Татьяна Котолуп?",
+  faq2_a:"Она проектирует и создаёт готовые к продакшену n8n-автоматизации, голосовых AI-агентов для продаж и поддержки, Telegram AI-ботов и full-stack AI SaaS-продукты — от анализа процессов до развёртывания на платформах вроде Render, Vercel и Railway.",
+  faq3_q:"С какими технологиями работает Татьяна Котолуп?",
+  faq3_a:"Её основной стек включает n8n, OpenAI GPT-4o, Anthropic Claude, Telegram Bot API, Node.js, TypeScript, Express.js, React.js, PostgreSQL, Prisma ORM, Supabase и голосовые AI-платформы, такие как Vapi, Retell AI и Bland AI.",
+  faq4_q:"Где находится Татьяна Котолуп и работает ли она удалённо?",
+  faq4_a:"Она базируется в Брно, Чехия, и работает удалённо с клиентами по всему миру.",
+  faq5_q:"Как связаться с Татьяной Котолуп?",
+  faq5_a:'Вы можете написать на email <a href="mailto:kotolup24@gmail.com" style="text-decoration:underline;">kotolup24@gmail.com</a>, в Telegram <a href="https://t.me/tetiana_K888" target="_blank" style="text-decoration:underline;">@tetiana_K888</a>, или через это портфолио.',
+  faq6_q:"Какие у Татьяны увлечения вне работы?",
+  faq6_a:"Саморазвитие — важная часть её жизни: она много читает в разных областях и применяет знания на практике. Также танцует, бегает, тренируется с гирями и увлекается экстремальной ездой, чтобы оставаться дисциплинированной и энергичной вне экрана.",
   job1_title:"Водитель — доставка медицинских материалов",
   job1_date:"Июл 2025 – Мар 2026 · Постоянная должность",
   job1_b1:"Безопасная и своевременная доставка лекарств и медицинских материалов по всей Чехии",
   job1_b2:"Надёжность и соблюдение установленных маршрутов и графиков",
   job2_title:"Дополнительная занятость (DPČ)",
-  job2_date:"Ноя 2025 – по настоящее время",
+  job2_date:"Ноя 2025 – Мар 2026",
   job2_b1:"Дополнительное трудовое соглашение параллельно с основной работой",
   job3_title:"Автомобильные грузоперевозки — собственная лицензия",
   job3_company:"ИП · Лицензия на деятельность",
