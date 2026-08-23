@@ -141,12 +141,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9990;o
 #cursor-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--txt);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);will-change:transform}
 #cursor-ring{position:fixed;width:28px;height:28px;border-radius:50%;border:1px solid var(--txt2);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .4s cubic-bezier(.4,0,.2,1),height .4s,opacity .3s;will-change:transform;opacity:.5}
 @media(hover:none){#cursor-dot,#cursor-ring{display:none}}
-.wrap{max-width:1160px;margin:0 auto;padding:0 48px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 40px}
 @media(max-width:900px){.wrap{padding:0 28px}}
 @media(max-width:480px){.wrap{padding:0 20px}}
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt),transform .35s cubic-bezier(.4,0,.2,1)}
-nav.nav-hidden{transform:translateY(-100%)}
-.nav-in{max-width:1160px;margin:0 auto;padding:0 48px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--bg);border-bottom:1px solid var(--line);transition:var(--tt),transform .35s cubic-bezier(.4,0,.2,1)}
+#nav.nav-hidden{transform:translateY(-100%)}
+.nav-in{max-width:1040px;margin:0 auto;padding:0 40px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;letter-spacing:.06em;color:var(--txt)}
 .nav-links{display:flex;gap:32px;align-items:center}
 .nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
@@ -195,7 +195,7 @@ nav.nav-hidden{transform:translateY(-100%)}
     radial-gradient(ellipse 60% 70% at 22% 55%,rgba(255,255,255,.4) 0%,transparent 70%);
 }
 @media(max-width:768px){.hero-cursor-ring{display:none}.hero-hint{font-size:9px;padding:7px 14px}}
-.hero-content{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 48px}
+.hero-content{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 40px}
 .hero-name{text-shadow:0 4px 30px rgba(0,0,0,.55)}
 [data-theme="light"] .hero-name{text-shadow:0 4px 24px rgba(255,255,255,.6)}
 .hero-eyebrow{padding:7px 16px 7px 6px;background:var(--bg2);border:1px solid var(--line2);border-radius:100px;width:fit-content;backdrop-filter:blur(6px)}
