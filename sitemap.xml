@@ -1,15 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Замінити BASE_URL на свій домен. Покласти файл у корінь репозиторію (поруч з index.html) -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://BASE_URL/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://BASE_URL/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://BASE_URL/?lang=uk"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://BASE_URL/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="cs" href="https://BASE_URL/?lang=cs"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://BASE_URL/?lang=en"/>
-    <changefreq>monthly</changefreq>
+    <loc>https://tetianakotolup.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://tetianakotolup.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://tetianakotolup.com/?lang=uk"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://tetianakotolup.com/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="cs" href="https://tetianakotolup.com/?lang=cs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://tetianakotolup.com/?lang=en"/>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/15.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/12.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/13.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/14.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/16.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/1.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/2.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/3.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/4.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/5.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/6.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/7.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/8.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/9.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/10.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://tetianakotolup.com/v.html</loc>
+    <lastmod>2026-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>
