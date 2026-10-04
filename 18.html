@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="dark" data-lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title>AURELIUS — Universal AI Search Agent</title>
+<meta name="description" content="AURELIUS — Universal AI Search Agent demo: one query to sources, research, evidence, deduplication and structured export. Built by Tetiana Kotolup, AI Automation Developer.">
+<link rel="icon" href="icon32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Olive Grove design system (same as 16.html) + multicolor accents */
+:root{--tt:all .5s cubic-bezier(.4,0,.2,1);--ease:cubic-bezier(.16,1,.3,1);
+ --c1:#7c9a4e;--c2:#c9a84c;--c3:#d98f4e;--c4:#4fb3a5;--c5:#5b9bd5;--c6:#a58be0;--c7:#e0768a;--c8:#a8c256}
+[data-theme="dark"]{--bg-deep:#060f08;--bg:#0a1810;--bg2:#0f2417;--bg3:#16321f;--surface:rgba(30,55,35,.55);--surface-h:rgba(38,68,42,.7);--glass:rgba(18,40,24,.45);--glass-border:rgba(201,168,76,.16);--line:rgba(201,168,76,.08);--line2:rgba(201,168,76,.2);--txt:#f2ecd8;--txt2:#a9b79a;--txt3:#6f8567;--accent:#d98f4e;--accent-glow:rgba(217,143,78,.4);--gold:#c9a84c;--gold-glow:rgba(201,168,76,.3);--olive:#7c9a4e;--g1:#3d5a2a;--g2:#6b8f3f;--g3:#c9a84c;--ink:#060f08}
+[data-theme="light"]{--bg-deep:#f3efe1;--bg:#f7f4e9;--bg2:#fff;--bg3:#ece5cd;--surface:rgba(255,255,255,.8);--surface-h:rgba(255,255,255,.95);--glass:rgba(255,255,255,.6);--glass-border:rgba(107,143,63,.25);--line:rgba(107,143,63,.12);--line2:rgba(107,143,63,.25);--txt:#17250f;--txt2:#48592f;--txt3:#6d7b52;--accent:#b5651d;--accent-glow:rgba(181,101,29,.28);--gold:#9c7a1f;--gold-glow:rgba(156,122,31,.22);--olive:#5c7a35;--g1:#3d5a2a;--g2:#6b8f3f;--g3:#c9a84c;--ink:#f7f4e9;
+ --c1:#5c7a35;--c2:#9c7a1f;--c3:#b5651d;--c4:#2a8a7d;--c5:#2f6fb0;--c6:#7a5fc0;--c7:#c0455d;--c8:#6f8f1c}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--txt);font-family:'Space Grotesk',sans-serif;line-height:1.7;font-size:18px;overflow-x:hidden;transition:var(--tt);min-height:100vh}
+::selection{background:var(--gold);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.grove-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.4;animation:blob-float 22s ease-in-out infinite}
+.blob-1{width:620px;height:620px;background:linear-gradient(135deg,var(--g1),var(--g2));top:-220px;left:-120px}
+.blob-2{width:520px;height:520px;background:linear-gradient(135deg,var(--g2),var(--g3));bottom:-160px;right:-120px;animation-delay:-8s}
+.blob-3{width:420px;height:420px;background:linear-gradient(135deg,var(--c5),var(--c6));top:42%;left:52%;animation-delay:-15s;opacity:.18}
+.blob-4{width:360px;height:360px;background:linear-gradient(135deg,var(--c4),var(--c8));top:18%;right:8%;animation-delay:-4s;opacity:.16}
+@keyframes blob-float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-50px) scale(1.05)}50%{transform:translate(-20px,30px) scale(.95)}75%{transform:translate(40px,20px) scale(1.02)}}
+.dapple{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' seed='9'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23c)'/%3E%3C/svg%3E");opacity:.035;mix-blend-mode:overlay;animation:dapple 32s linear infinite}
+@keyframes dapple{to{transform:translate(-50px,-50px)}}
+#cursor-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 20px var(--accent-glow)}
+#cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s;opacity:.4}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}}
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(24px,5vw,60px);position:relative;z-index:1}
+
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 clamp(16px,5vw,60px);display:flex;justify-content:center}
+.nav-glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:100px;padding:10px 14px 10px 24px;display:flex;align-items:center;gap:22px;max-width:100%}
+.nav-logo{font-weight:700;font-size:13px;letter-spacing:.08em;white-space:nowrap}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);white-space:nowrap;transition:color .2s;display:inline-flex;align-items:center;gap:6px}
+.nav-link:hover{color:var(--txt)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.lang-switch{display:flex;background:rgba(0,0,0,.2);border-radius:8px;padding:2px}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);background:transparent;border:none;padding:7px 10px;border-radius:6px;cursor:pointer;transition:all .2s}
+.lang-btn:hover{color:var(--txt)}
+.lang-btn.active{background:var(--accent);color:var(--ink);box-shadow:0 0 20px var(--accent-glow)}
+.icon-btn{width:36px;height:36px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:all .2s;flex-shrink:0}
+.icon-btn:hover{background:var(--surface-h);box-shadow:0 0 20px var(--gold-glow)}
+.icon-btn.playing{background:var(--accent);color:var(--ink);box-shadow:0 0 25px var(--accent-glow)}
+.icon-btn.playing svg{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+svg.i{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:700px){.nav-link .t{display:none}.nav-glass{gap:10px;padding:8px 8px 8px 14px}.nav-logo{font-size:11px}.lang-btn{padding:6px 7px;font-size:9px}.icon-btn{width:32px;height:32px}}
+@media(max-width:430px){.nav-logo{display:none}}
+
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 0 80px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:10px;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:100px;padding:8px 16px;margin-bottom:32px;width:fit-content;opacity:0;animation:reveal .8s .2s var(--ease) forwards}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow);animation:pulse 2s infinite}
+.badge span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)}
+h1{font-family:'Instrument Serif',serif;font-size:clamp(40px,7.5vw,84px);font-weight:400;line-height:1.05;letter-spacing:-.03em;margin-bottom:24px;opacity:0;animation:reveal .8s .3s var(--ease) forwards}
+h1 em{font-style:italic;display:block;background:linear-gradient(90deg,var(--c2),var(--c3),var(--c7),var(--c6),var(--c5),var(--c4),var(--c8),var(--c2));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:spectrum 14s linear infinite}
+@keyframes spectrum{to{background-position:250% 0}}
+.hero-desc{font-size:clamp(16px,2vw,20px);color:var(--txt2);max-width:660px;margin-bottom:40px;opacity:0;animation:reveal .8s .4s var(--ease) forwards}
+.tags{display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:reveal .8s .5s var(--ease) forwards}
+.tag{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);padding:10px 18px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:all .2s;position:relative}
+.tag::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c);margin-right:9px;box-shadow:0 0 10px var(--c)}
+.tag:hover{border-color:var(--c);color:var(--txt);box-shadow:0 0 20px var(--gold-glow);transform:translateY(-2px)}
+@keyframes reveal{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+.sec{padding:100px 0;position:relative;z-index:1}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:40px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(30px,5vw,50px);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin-bottom:40px}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.visible{opacity:1;transform:none}
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;padding:28px;transition:all .3s var(--ease);position:relative;overflow:hidden;--c:var(--gold)}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.7}
+.glass:hover{border-color:color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px color-mix(in srgb,var(--c) 28%,transparent);transform:translateY(-4px)}
+
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.link{display:flex;align-items:center;gap:18px;padding:22px}
+.links .link:nth-child(1){--c:var(--c1)}.links .link:nth-child(2){--c:var(--c5)}.links .link:nth-child(3){--c:var(--c4)}.links .link:nth-child(4){--c:var(--c3)}
+.link .ic{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 85%,#000),var(--c));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 24px color-mix(in srgb,var(--c) 40%,transparent);color:#fff;font-size:22px}
+.link .tx{flex:1;min-width:0}
+.link .lb{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.link .ds{font-size:14px;color:var(--txt);overflow-wrap:anywhere}
+.link .ar{color:var(--txt3);transition:transform .3s var(--ease);font-size:20px}
+.link:hover .ar{transform:translateX(6px);color:var(--c)}
+
+.text p{font-size:17px;color:var(--txt2);line-height:1.85;margin-bottom:1.4em;max-width:820px}
+.text strong{color:var(--txt);font-weight:500}
+.pipe{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:34px}
+.pipe .n{background:rgba(0,0,0,.25);border:1px solid var(--glass-border);padding:9px 15px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt2);display:inline-flex;gap:8px;align-items:center}
+[data-theme="light"] .pipe .n{background:rgba(255,255,255,.6)}
+.pipe .n b{color:var(--c);font-weight:600}
+.pipe .n.last{background:var(--accent);color:var(--ink);border-color:transparent;font-weight:600}.pipe .n.last b{color:var(--ink)}
+.pipe .s{color:var(--gold)}
+.pipe .n:nth-of-type(1){--c:var(--c1)}.pipe .n:nth-of-type(2){--c:var(--c5)}.pipe .n:nth-of-type(3){--c:var(--c4)}.pipe .n:nth-of-type(4){--c:var(--c6)}.pipe .n:nth-of-type(5){--c:var(--c7)}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.steps .step:nth-child(1){--c:var(--c1)}.steps .step:nth-child(2){--c:var(--c5)}.steps .step:nth-child(3){--c:var(--c6)}.steps .step:nth-child(4){--c:var(--c4)}
+.step .num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--c);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.step .num::before{content:'';width:30px;height:1px;background:var(--c);box-shadow:0 0 10px var(--c)}
+.step h3,.feat h3{font-weight:600;font-size:16px;margin-bottom:8px}
+.step p,.feat p{font-size:14px;color:var(--txt2);line-height:1.65}
+
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.feats .feat:nth-child(1){--c:var(--c3)}.feats .feat:nth-child(2){--c:var(--c5)}.feats .feat:nth-child(3){--c:var(--c1)}.feats .feat:nth-child(4){--c:var(--c6)}
+.feats .feat:nth-child(5){--c:var(--c4)}.feats .feat:nth-child(6){--c:var(--c7)}.feats .feat:nth-child(7){--c:var(--c2)}.feats .feat:nth-child(8){--c:var(--c8)}
+.feat .fi{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 35%,transparent);margin-bottom:16px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.pill{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);padding:11px 17px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:all .2s;display:flex;align-items:center;gap:9px}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c)}
+.pill:hover{border-color:var(--c);color:var(--txt);box-shadow:0 0 20px var(--gold-glow)}
+.arch-desc{color:var(--txt2);max-width:760px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.stats .stat:nth-child(1){--c:var(--c1)}.stats .stat:nth-child(2){--c:var(--c5)}.stats .stat:nth-child(3){--c:var(--c3)}.stats .stat:nth-child(4){--c:var(--c6)}
+.stat .v{font-family:'Instrument Serif',serif;font-size:clamp(36px,5vw,52px);line-height:1.05;color:var(--c)}
+.stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-top:8px}
+.note{display:flex;gap:16px;align-items:flex-start;margin-top:22px;--c:var(--c2)}
+.note .fi{font-size:22px;color:var(--c);margin-top:3px;flex-shrink:0}
+.note h3{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:6px}
+.note p{color:var(--txt2);font-size:15px}
+.author p{font-size:17px;color:var(--txt2)}
+.author a{color:var(--gold);text-decoration:underline}
+footer{padding:60px 0;border-top:1px solid var(--line);margin-top:60px;position:relative;z-index:1}
+.f{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.fb{font-family:'Instrument Serif',serif;font-size:22px}
+.fi2{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-align:right;line-height:2}
+@media(max-width:600px){.f{flex-direction:column;align-items:flex-start}.fi2{text-align:left}.sec{padding:70px 0}}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.particle{position:absolute;width:3px;height:3px;background:var(--c);border-radius:50%;opacity:.35;animation:float-up 16s linear infinite}
+@keyframes float-up{0%{transform:translateY(100vh);opacity:0}10%,90%{opacity:.35}100%{transform:translateY(-100px);opacity:0}}
+a,button{cursor:none}@media(hover:none){a,button{cursor:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}h1,.badge,.hero-desc,.tags{opacity:1}}
+
+/* ===== 2026 page-wide motion ===== */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100001;transform-origin:0 50%;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c7),var(--c6),var(--c5),var(--c4),var(--c8));transform:scaleX(0);box-shadow:0 0 14px var(--c2)}
+@supports(animation-timeline:scroll()){
+ .progress{animation:grow linear both;animation-timeline:scroll(root)}
+ @keyframes grow{to{transform:scaleX(1)}}
+ .blob-1{animation:blob-float 22s ease-in-out infinite,par1 linear both;animation-timeline:auto,scroll(root)}
+ .blob-2{animation:blob-float 22s ease-in-out infinite -8s,par2 linear both;animation-timeline:auto,scroll(root)}
+ @keyframes par1{to{translate:80px 420px}}
+ @keyframes par2{to{translate:-120px -360px}}
+ .rv{opacity:1;transform:none;transition:none;animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+ @keyframes rise{from{opacity:0;transform:translateY(60px) scale(.98);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+ .glass{animation:cardin linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+ @keyframes cardin{from{opacity:.0;transform:translateY(40px) rotateX(12deg)}to{opacity:1;transform:none}}
+}
+.mesh{position:absolute;inset:-20%;background:conic-gradient(from 0deg at 30% 40%,transparent 0 20%,color-mix(in srgb,var(--c4) 16%,transparent) 30%,transparent 45%,color-mix(in srgb,var(--c6) 14%,transparent) 65%,transparent 80%,color-mix(in srgb,var(--c3) 14%,transparent) 92%,transparent);filter:blur(70px);animation:spin 40s linear infinite;mix-blend-mode:screen}
+[data-theme="light"] .mesh{mix-blend-mode:multiply;opacity:.6}
+@keyframes spin{to{transform:rotate(360deg)}}
+.glass::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--c) 22%,transparent),transparent 60%)}
+.glass:hover::after{opacity:1}
+.glass{transform-style:preserve-3d;will-change:transform}
+.link.primary{background:linear-gradient(var(--bg2),var(--bg2)) padding-box,conic-gradient(from var(--ang,0deg),var(--c1),var(--c5),var(--c6),var(--c7),var(--c3),var(--c2),var(--c1)) border-box;border:1.5px solid transparent;animation:ang 6s linear infinite}
+[data-theme="light"] .link.primary{background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ang,0deg),var(--c1),var(--c5),var(--c6),var(--c7),var(--c3),var(--c2),var(--c1)) border-box}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes ang{to{--ang:360deg}}
+h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2) 70%,var(--txt)));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pipe .n{animation:nodeglow 4s ease-in-out infinite}
+.pipe .n:nth-of-type(2){animation-delay:.5s}.pipe .n:nth-of-type(3){animation-delay:1s}.pipe .n:nth-of-type(4){animation-delay:1.5s}.pipe .n:nth-of-type(5){animation-delay:2s}
+@keyframes nodeglow{0%,100%{box-shadow:0 0 0 transparent}50%{box-shadow:0 0 22px color-mix(in srgb,var(--c,var(--gold)) 45%,transparent)}}
+.pipe .s{animation:flow 2.4s ease-in-out infinite}
+@keyframes flow{0%,100%{transform:translateX(0);opacity:.5}50%{transform:translateX(5px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.progress{display:none}.mesh{animation:none}.glass,.rv{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="g-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+<symbol id="g-git" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.35 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.65 16 2.5a13.4 13.4 0 0 0-7 0C6.3.65 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/></symbol>
+<symbol id="g-tg" viewBox="0 0 24 24"><path d="M22 3 2 11l6 2.5L10 21l3.5-4.5L18 20 22 3z"/><path d="M8 13.5 22 3"/></symbol>
+<symbol id="g-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 14h.01M15 14h.01M2 13v3M22 13v3"/></symbol>
+<symbol id="g-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="g-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></symbol>
+<symbol id="g-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="g-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 12 10 5 10-5M2 17l10 5 10-5"/></symbol>
+<symbol id="g-swap" viewBox="0 0 24 24"><path d="M17 3l4 4-4 4M3 7h18M7 21l-4-4 4-4M21 17H3"/></symbol>
+<symbol id="g-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="g-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+<symbol id="g-down" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+<symbol id="g-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="g-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+<symbol id="g-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+<symbol id="g-vol" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M19.1 4.9a10 10 0 0 1 0 14.2M15.5 8.5a5 5 0 0 1 0 7"/></symbol>
+<symbol id="g-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+</defs>
+</svg>
+
+<div class="grove-bg"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div><div class="dapple"></div><div class="mesh"></div></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="particles" id="particles"></div>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+
+<nav id="nav">
+  <div class="nav-inner"><div class="nav-glass">
+    <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+    <a href="index.html" class="nav-link"><svg class="i"><use href="#g-back"/></svg><span class="t" data-i18n="nav_back">Zpět na portfolio</span></a>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="cs">CZ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="uk">UA</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+      </div>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme"><svg class="i" style="width:16px;height:16px"><use href="#g-sun"/></svg></button>
+      <button class="icon-btn" id="audioBtn" aria-label="Toggle audio"><svg class="i" style="width:16px;height:16px"><use href="#g-vol"/></svg></button>
+    </div>
+  </div></div>
+</nav>
+
+<section class="hero"><div class="wrap">
+  <div class="badge"><i></i><span data-i18n="hero_type">AI výzkumný agent</span></div>
+  <h1 data-i18n="hero_title">AURELIUS — <em>Universal AI Search Agent</em></h1>
+  <p class="hero-desc" data-i18n="hero_desc"></p>
+  <div class="tags">
+    <span class="tag" style="--c:var(--c1)">Next.js 16</span><span class="tag" style="--c:var(--c2)">React 19</span><span class="tag" style="--c:var(--c3)">TypeScript</span><span class="tag" style="--c:var(--c4)">Tailwind CSS 4</span>
+    <span class="tag" style="--c:var(--c5)">OpenAI Responses API</span><span class="tag" style="--c:var(--c6)">Vitest</span><span class="tag" style="--c:var(--c7)">Vercel</span><span class="tag" style="--c:var(--c8)">2026</span>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_links">Zdroje projektu</div>
+  <h2 data-i18n="links_title">Odkazy</h2>
+  <div class="links">
+    <a class="glass link primary" href="https://universal-ai-search-agent-demo.vercel.app/" target="_blank" rel="noopener noreferrer">
+      <span class="ic"><svg class="i"><use href="#g-globe"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_demo">Živé demo</div><div class="ds" data-i18n="l_demo_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+    <a class="glass link" href="https://github.com/tetiana-a/universal-ai-search-agent-demo" target="_blank" rel="noopener noreferrer">
+      <span class="ic"><svg class="i"><use href="#g-git"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_git">Zdrojový kód</div><div class="ds" data-i18n="l_git_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+    <a class="glass link" href="https://t.me/+mQ1fB5SG3r5jZjAy" target="_blank" rel="noopener noreferrer">
+      <span class="ic"><svg class="i"><use href="#g-tg"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_tg">Telegram</div><div class="ds" data-i18n="l_tg_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+    <a class="glass link" id="botCard" href="#" target="_blank" rel="noopener noreferrer" hidden>
+      <span class="ic"><svg class="i"><use href="#g-bot"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_bot">Testovací bot</div><div class="ds" data-i18n="l_bot_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_ctx">O projektu</div>
+  <h2 data-i18n="ctx_title">Kontext a cíl</h2>
+  <div class="text"><p data-i18n="ctx_p1"></p><p data-i18n="ctx_p2"></p></div>
+  <div class="pipe">
+    <span class="n"><b>01</b><span data-i18n="pipe0"></span></span><span class="s">→</span>
+    <span class="n"><b>02</b><span data-i18n="pipe1"></span></span><span class="s">→</span>
+    <span class="n"><b>03</b><span data-i18n="pipe2"></span></span><span class="s">→</span>
+    <span class="n"><b>04</b><span data-i18n="pipe3"></span></span><span class="s">→</span>
+    <span class="n"><b>05</b><span data-i18n="pipe4"></span></span><span class="s">→</span>
+    <span class="n last"><b>06</b><span data-i18n="pipe5"></span></span>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_test">Vyzkoušejte sami</div>
+  <h2 data-i18n="test_title">Jak testovat</h2>
+  <div class="steps">
+    <div class="glass step"><div class="num">01</div><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></div>
+    <div class="glass step"><div class="num">02</div><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></div>
+    <div class="glass step"><div class="num">03</div><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p></div>
+    <div class="glass step"><div class="num">04</div><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_feat">Možnosti</div>
+  <h2 data-i18n="feat_title">Co agent umí</h2>
+  <div class="feats">
+    <div class="glass feat"><svg class="i fi"><use href="#g-mic"/></svg><h3 data-i18n="f1t"></h3><p data-i18n="f1d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-search"/></svg><h3 data-i18n="f2t"></h3><p data-i18n="f2d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-layers"/></svg><h3 data-i18n="f3t"></h3><p data-i18n="f3d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-swap"/></svg><h3 data-i18n="f4t"></h3><p data-i18n="f4d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-shield"/></svg><h3 data-i18n="f5t"></h3><p data-i18n="f5d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-db"/></svg><h3 data-i18n="f6t"></h3><p data-i18n="f6d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-down"/></svg><h3 data-i18n="f7t"></h3><p data-i18n="f7d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-lock"/></svg><h3 data-i18n="f8t"></h3><p data-i18n="f8d"></p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_arch">Stack</div>
+  <h2 data-i18n="arch_title">Architektura</h2>
+  <p class="arch-desc" data-i18n="arch_desc"></p>
+  <div class="pills">
+    <div class="pill" style="--c:var(--c3)">Next.js 16 · App Router</div><div class="pill" style="--c:var(--c4)">React 19</div><div class="pill" style="--c:var(--c5)">TypeScript (strict)</div><div class="pill" style="--c:var(--c6)">Tailwind CSS 4</div>
+    <div class="pill" style="--c:var(--c7)">Lucide React</div><div class="pill" style="--c:var(--c8)">OpenAI Responses API</div><div class="pill" style="--c:var(--c1)">OpenRouter · Gemini · Groq</div><div class="pill" style="--c:var(--c2)">Brave · Exa · Tavily · Serper</div>
+    <div class="pill" style="--c:var(--c3)">Upstash Redis / KV</div><div class="pill" style="--c:var(--c4)">Telegram Bot API</div><div class="pill" style="--c:var(--c5)">Resend</div><div class="pill" style="--c:var(--c6)">Vitest</div><div class="pill" style="--c:var(--c7)">GitHub Actions CI</div><div class="pill" style="--c:var(--c8)">Vercel</div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_res">V číslech</div>
+  <h2 data-i18n="res_title">Inženýrství v kostce</h2>
+  <div class="stats">
+    <div class="glass stat"><div class="v" data-i18n="r1n"></div><div class="l" data-i18n="r1l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r2n"></div><div class="l" data-i18n="r2l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r3n"></div><div class="l" data-i18n="r3l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r4n"></div><div class="l" data-i18n="r4l"></div></div>
+  </div>
+  <div class="glass note"><svg class="i fi"><use href="#g-info"/></svg><div><h3 data-i18n="note_t"></h3><p data-i18n="note_d"></p></div></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap rv">
+  <div class="glass author" style="padding:36px">
+    <div class="eyebrow" data-i18n="sec_author">Autor</div>
+    <p><span data-i18n="author_p"></span> <a href="index.html">tetianakotolup.com</a></p>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="f">
+  <div class="fb">Tetiana Kotolup</div>
+  <div class="fi2">AI Automation Developer<br>kotolup24@gmail.com · @tetiana_K888 · 2026</div>
+</div></div></footer>
+
+<audio id="bgMusic" loop preload="none"><source src="07.mp3" type="audio/mpeg"></audio>
+
+<script>
+const i18n = {
+ "en": {
+  "nav_back": "Back to Portfolio",
+  "hero_type": "AI Research Agent · Data Acquisition",
+  "hero_title": "AURELIUS — <em>Universal AI Search Agent</em>",
+  "hero_desc": "A research and data-acquisition engine demo: describe what you need in plain language and the agent runs one query through sources, research, evidence checks and deduplication to a structured, exportable result. Bilingual RU/EN interface.",
+  "sec_links": "Project resources",
+  "links_title": "Links",
+  "l_demo": "Live demo",
+  "l_demo_d": "Open the interactive demo",
+  "l_git": "Source code",
+  "l_git_d": "GitHub repository",
+  "l_tg": "Telegram",
+  "l_tg_d": "Join the project channel",
+  "l_bot": "Test bot",
+  "l_bot_d": "Try report delivery in Telegram",
+  "sec_ctx": "About the project",
+  "ctx_title": "Context & goal",
+  "ctx_p1": "Finding land, investors or B2B suppliers usually means dozens of tabs, duplicated listings and unverified claims. AURELIUS is a demo of an agent that takes one natural-language task and returns a ranked, de-duplicated list with evidence for every match.",
+  "ctx_p2": "<strong>Goal:</strong> show a complete, production-minded pipeline — query, sources, research, evidence, quality gate, export and delivery — with a clean interface, a regression test suite and security guards.",
+  "pipe0": "Query",
+  "pipe1": "Sources",
+  "pipe2": "Research",
+  "pipe3": "Evidence",
+  "pipe4": "Deduplication",
+  "pipe5": "Structured result",
+  "sec_test": "Try it yourself",
+  "test_title": "How to test",
+  "s1t": "Open the demo",
+  "s1d": "Go to the live demo and pick a scenario: Land (Madrid, ≥ 10,000 m²), Investors (Amsterdam, Series A–B) or Companies (China → EU, B2B).",
+  "s2t": "Run the pipeline",
+  "s2d": "Watch sources found, checked and de-duplicated, then review ranked results with confidence scores.",
+  "s3t": "Export",
+  "s3d": "Download the result as CSV, XLSX, PDF or JSON.",
+  "s4t": "Telegram delivery",
+  "s4d": "Open the test bot, press Start, then send the report to Telegram from the demo.",
+  "sec_feat": "Capabilities",
+  "feat_title": "What the agent does",
+  "f1t": "Voice & audio input",
+  "f1d": "Dictate a task or upload an MP3 for transcription (requires an OpenAI key).",
+  "f2t": "Live research",
+  "f2d": "OpenAI Responses API with web search and a strict function call that returns structured results.",
+  "f3t": "Free & Pro editions",
+  "f3d": "Free edition needs no paid key: keyless search and reader with free-tier AI fallback chain.",
+  "f4t": "Provider fallback",
+  "f4d": "Switches between search providers (Brave, Tavily, Exa, Serper and others) when one fails.",
+  "f5t": "Quality Gate",
+  "f5d": "Scores relevance, evidence, source validity and confidence; each item is PASS, REVIEW or FAIL.",
+  "f6t": "Dedup & Source Memory",
+  "f6d": "Deterministic entity resolution plus persistent source memory and a registry with domain health.",
+  "f7t": "Exports & delivery",
+  "f7d": "Server-side CSV, XLSX, PDF and JSON; delivery by Telegram bot or e-mail.",
+  "f8t": "Security by design",
+  "f8d": "SSRF guard, formula-injection guard, bot token never in the browser, recipient allowlist.",
+  "sec_arch": "Stack",
+  "arch_title": "Architecture & engineering",
+  "arch_desc": "A typed, tested Next.js application deployed on Vercel. A GitHub Actions pipeline runs typecheck and tests before every build.",
+  "sec_res": "In numbers",
+  "res_title": "Engineering at a glance",
+  "r1n": "44",
+  "r1l": "regression tests",
+  "r2n": "v1.1 → v2.3",
+  "r2l": "iterations shipped",
+  "r3n": "4",
+  "r3l": "export formats",
+  "r4n": "RU / EN",
+  "r4l": "interface languages",
+  "note_t": "Honest note",
+  "note_d": "Records, counters and scores shown in the demo are illustrative sample data. The agent does not bypass CAPTCHA, access controls or credentials: blocked sources are routed to manual review.",
+  "sec_author": "Author",
+  "author_p": "Designed and built by <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+ },
+ "cs": {
+  "nav_back": "Zpět na portfolio",
+  "hero_type": "AI výzkumný agent · Získávání dat",
+  "hero_title": "AURELIUS — <em>Universal AI Search Agent</em>",
+  "hero_desc": "Demo enginu pro výzkum a získávání dat: popište, co potřebujete, a agent provede jeden dotaz přes zdroje, research, ověření důkazů a deduplikaci až ke strukturovanému, exportovatelnému výsledku. Dvojjazyčné rozhraní RU/EN.",
+  "sec_links": "Zdroje projektu",
+  "links_title": "Odkazy",
+  "l_demo": "Živé demo",
+  "l_demo_d": "Otevřít interaktivní demo",
+  "l_git": "Zdrojový kód",
+  "l_git_d": "Repozitář na GitHubu",
+  "l_tg": "Telegram",
+  "l_tg_d": "Připojit se ke kanálu projektu",
+  "l_bot": "Testovací bot",
+  "l_bot_d": "Vyzkoušet doručení reportu v Telegramu",
+  "sec_ctx": "O projektu",
+  "ctx_title": "Kontext a cíl",
+  "ctx_p1": "Hledání pozemků, investorů nebo B2B dodavatelů obvykle znamená desítky záložek, duplicitní inzeráty a neověřená tvrzení. AURELIUS je demo agenta, který přijme jeden úkol v přirozeném jazyce a vrátí seřazený seznam bez duplicit s důkazy ke každé shodě.",
+  "ctx_p2": "<strong>Cíl:</strong> ukázat kompletní pipeline připravenou pro provoz — dotaz, zdroje, research, důkazy, kontrola kvality, export a doručení — s čistým rozhraním, regresními testy a bezpečnostními pojistkami.",
+  "pipe0": "Dotaz",
+  "pipe1": "Zdroje",
+  "pipe2": "Research",
+  "pipe3": "Důkazy",
+  "pipe4": "Deduplikace",
+  "pipe5": "Strukturovaný výsledek",
+  "sec_test": "Vyzkoušejte sami",
+  "test_title": "Jak testovat",
+  "s1t": "Otevřete demo",
+  "s1d": "Přejděte na živé demo a vyberte scénář: Pozemek (Madrid, ≥ 10 000 m²), Investoři (Amsterdam, Series A–B) nebo Firmy (Čína → EU, B2B).",
+  "s2t": "Spusťte pipeline",
+  "s2d": "Sledujte nalezené, ověřené a deduplikované zdroje a projděte seřazené výsledky se skóre jistoty.",
+  "s3t": "Export",
+  "s3d": "Stáhněte výsledek jako CSV, XLSX, PDF nebo JSON.",
+  "s4t": "Doručení do Telegramu",
+  "s4d": "Otevřete testovacího bota, stiskněte Start a z dema odešlete report do Telegramu.",
+  "sec_feat": "Možnosti",
+  "feat_title": "Co agent umí",
+  "f1t": "Hlasový a audio vstup",
+  "f1d": "Nadiktujte úkol nebo nahrajte MP3 k přepisu (vyžaduje klíč OpenAI).",
+  "f2t": "Živý research",
+  "f2d": "OpenAI Responses API s webovým vyhledáváním a striktním voláním funkce pro strukturované výsledky.",
+  "f3t": "Edice Free a Pro",
+  "f3d": "Free edice nepotřebuje placený klíč: vyhledávání a čtečka bez klíče a řetězec bezplatných AI modelů.",
+  "f4t": "Záložní poskytovatelé",
+  "f4d": "Při výpadku přepíná mezi poskytovateli vyhledávání (Brave, Tavily, Exa, Serper a další).",
+  "f5t": "Quality Gate",
+  "f5d": "Hodnotí relevanci, důkazy, platnost zdroje a jistotu; každá položka je PASS, REVIEW nebo FAIL.",
+  "f6t": "Dedup a paměť zdrojů",
+  "f6d": "Deterministické rozpoznání entit, trvalá paměť zdrojů a registr se zdravím domén.",
+  "f7t": "Exporty a doručení",
+  "f7d": "CSV, XLSX, PDF a JSON na serveru; doručení přes Telegram bota nebo e-mail.",
+  "f8t": "Bezpečnost od základu",
+  "f8d": "Ochrana SSRF a formula injection, token bota nikdy v prohlížeči, allowlist příjemců.",
+  "sec_arch": "Stack",
+  "arch_title": "Architektura a inženýrství",
+  "arch_desc": "Typovaná a testovaná aplikace v Next.js nasazená na Vercelu. Pipeline GitHub Actions spouští typecheck a testy před každým buildem.",
+  "sec_res": "V číslech",
+  "res_title": "Inženýrství v kostce",
+  "r1n": "44",
+  "r1l": "regresních testů",
+  "r2n": "v1.1 → v2.3",
+  "r2l": "dodaných iterací",
+  "r3n": "4",
+  "r3l": "exportní formáty",
+  "r4n": "RU / EN",
+  "r4l": "jazyky rozhraní",
+  "note_t": "Upřímná poznámka",
+  "note_d": "Záznamy, počty a skóre v demu jsou ilustrativní ukázková data. Agent neobchází CAPTCHA, řízení přístupu ani přihlašovací údaje: blokované zdroje jdou k ruční kontrole.",
+  "sec_author": "Autor",
+  "author_p": "Navrhla a postavila <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+ },
+ "uk": {
+  "nav_back": "Назад до портфоліо",
+  "hero_type": "AI-агент досліджень · Збір даних",
+  "hero_title": "AURELIUS — <em>Universal AI Search Agent</em>",
+  "hero_desc": "Демо рушія для досліджень і збору даних: опишіть, що потрібно знайти, і агент проведе один запит через джерела, дослідження, перевірку доказів та дедуплікацію до структурованого результату з експортом. Двомовний інтерфейс RU/EN.",
+  "sec_links": "Ресурси проекту",
+  "links_title": "Посилання",
+  "l_demo": "Живе демо",
+  "l_demo_d": "Відкрити інтерактивне демо",
+  "l_git": "Вихідний код",
+  "l_git_d": "Репозиторій на GitHub",
+  "l_tg": "Telegram",
+  "l_tg_d": "Долучитися до каналу проекту",
+  "l_bot": "Тестовий бот",
+  "l_bot_d": "Спробувати доставку звіту в Telegram",
+  "sec_ctx": "Про проект",
+  "ctx_title": "Контекст і мета",
+  "ctx_p1": "Пошук землі, інвесторів чи B2B-постачальників зазвичай означає десятки вкладок, дублікати оголошень і неперевірені твердження. AURELIUS — демо агента, який приймає одне завдання природною мовою й повертає ранжований список без дублікатів з доказами для кожного збігу.",
+  "ctx_p2": "<strong>Мета:</strong> показати повний пайплайн, готовий до експлуатації — запит, джерела, дослідження, докази, контроль якості, експорт і доставку — з чистим інтерфейсом, регресійними тестами та захистом.",
+  "pipe0": "Запит",
+  "pipe1": "Джерела",
+  "pipe2": "Дослідження",
+  "pipe3": "Докази",
+  "pipe4": "Дедуплікація",
+  "pipe5": "Структурований результат",
+  "sec_test": "Спробуйте самі",
+  "test_title": "Як протестувати",
+  "s1t": "Відкрийте демо",
+  "s1d": "Перейдіть до живого демо й оберіть сценарій: Земля (Мадрид, ≥ 10 000 м²), Інвестори (Амстердам, Series A–B) або Компанії (Китай → ЄС, B2B).",
+  "s2t": "Запустіть пайплайн",
+  "s2d": "Стежте за знайденими, перевіреними та дедуплікованими джерелами й перегляньте ранжовані результати з оцінкою впевненості.",
+  "s3t": "Експорт",
+  "s3d": "Завантажте результат у CSV, XLSX, PDF або JSON.",
+  "s4t": "Доставка в Telegram",
+  "s4d": "Відкрийте тестового бота, натисніть Start і надішліть звіт у Telegram з демо.",
+  "sec_feat": "Можливості",
+  "feat_title": "Що вміє агент",
+  "f1t": "Голосовий та аудіо-ввід",
+  "f1d": "Надиктуйте завдання або завантажте MP3 для транскрипції (потрібен ключ OpenAI).",
+  "f2t": "Живе дослідження",
+  "f2d": "OpenAI Responses API з веб-пошуком і суворим викликом функції для структурованих результатів.",
+  "f3t": "Редакції Free та Pro",
+  "f3d": "Free не потребує платного ключа: пошук і reader без ключа та ланцюжок безкоштовних AI-моделей.",
+  "f4t": "Резервні провайдери",
+  "f4d": "Перемикається між провайдерами пошуку (Brave, Tavily, Exa, Serper та іншими) при збої.",
+  "f5t": "Quality Gate",
+  "f5d": "Оцінює релевантність, докази, валідність джерела та впевненість; кожен елемент — PASS, REVIEW або FAIL.",
+  "f6t": "Дедуп і пам'ять джерел",
+  "f6d": "Детермінована entity resolution, стала пам'ять джерел і реєстр зі станом доменів.",
+  "f7t": "Експорти та доставка",
+  "f7d": "CSV, XLSX, PDF і JSON на сервері; доставка через Telegram-бота або e-mail.",
+  "f8t": "Безпека за дизайном",
+  "f8d": "Захист від SSRF і formula injection, токен бота ніколи не в браузері, allowlist отримувачів.",
+  "sec_arch": "Стек",
+  "arch_title": "Архітектура та інженерія",
+  "arch_desc": "Типізований і протестований застосунок на Next.js, розгорнутий на Vercel. Пайплайн GitHub Actions запускає typecheck і тести перед кожною збіркою.",
+  "sec_res": "У цифрах",
+  "res_title": "Інженерія коротко",
+  "r1n": "44",
+  "r1l": "регресійних тести",
+  "r2n": "v1.1 → v2.3",
+  "r2l": "випущених ітерацій",
+  "r3n": "4",
+  "r3l": "формати експорту",
+  "r4n": "RU / EN",
+  "r4l": "мови інтерфейсу",
+  "note_t": "Чесна примітка",
+  "note_d": "Записи, лічильники та оцінки в демо — ілюстративні приклади даних. Агент не обходить CAPTCHA, контроль доступу чи облікові дані: заблоковані джерела йдуть на ручну перевірку.",
+  "sec_author": "Автор",
+  "author_p": "Розробила і побудувала <strong>Тетяна Котолуп</strong> — AI Automation Developer."
+ },
+ "ru": {
+  "nav_back": "Назад в портфолио",
+  "hero_type": "AI-агент исследований · Сбор данных",
+  "hero_title": "AURELIUS — <em>Universal AI Search Agent</em>",
+  "hero_desc": "Демо движка для исследований и сбора данных: опишите, что нужно найти, и агент проведёт один запрос через источники, исследование, проверку доказательств и дедупликацию до структурированного результата с экспортом. Двуязычный интерфейс RU/EN.",
+  "sec_links": "Ресурсы проекта",
+  "links_title": "Ссылки",
+  "l_demo": "Живое демо",
+  "l_demo_d": "Открыть интерактивное демо",
+  "l_git": "Исходный код",
+  "l_git_d": "Репозиторий на GitHub",
+  "l_tg": "Telegram",
+  "l_tg_d": "Присоединиться к каналу проекта",
+  "l_bot": "Тестовый бот",
+  "l_bot_d": "Попробовать доставку отчёта в Telegram",
+  "sec_ctx": "О проекте",
+  "ctx_title": "Контекст и цель",
+  "ctx_p1": "Поиск земли, инвесторов или B2B-поставщиков обычно означает десятки вкладок, дубли объявлений и непроверенные утверждения. AURELIUS — демо агента, который принимает одну задачу на естественном языке и возвращает ранжированный список без дублей с доказательствами для каждого совпадения.",
+  "ctx_p2": "<strong>Цель:</strong> показать полный пайплайн, готовый к эксплуатации — запрос, источники, исследование, доказательства, контроль качества, экспорт и доставку — с чистым интерфейсом, регрессионными тестами и защитой.",
+  "pipe0": "Запрос",
+  "pipe1": "Источники",
+  "pipe2": "Исследование",
+  "pipe3": "Доказательства",
+  "pipe4": "Дедупликация",
+  "pipe5": "Структурированный результат",
+  "sec_test": "Попробуйте сами",
+  "test_title": "Как протестировать",
+  "s1t": "Откройте демо",
+  "s1d": "Перейдите в живое демо и выберите сценарий: Земля (Мадрид, ≥ 10 000 м²), Инвесторы (Амстердам, Series A–B) или Компании (Китай → ЕС, B2B).",
+  "s2t": "Запустите пайплайн",
+  "s2d": "Следите за найденными, проверенными и дедуплицированными источниками и просмотрите ранжированные результаты с оценкой уверенности.",
+  "s3t": "Экспорт",
+  "s3d": "Скачайте результат в CSV, XLSX, PDF или JSON.",
+  "s4t": "Доставка в Telegram",
+  "s4d": "Откройте тестового бота, нажмите Start и отправьте отчёт в Telegram из демо.",
+  "sec_feat": "Возможности",
+  "feat_title": "Что умеет агент",
+  "f1t": "Голосовой и аудио-ввод",
+  "f1d": "Надиктуйте задачу или загрузите MP3 для транскрипции (нужен ключ OpenAI).",
+  "f2t": "Живое исследование",
+  "f2d": "OpenAI Responses API с веб-поиском и строгим вызовом функции для структурированных результатов.",
+  "f3t": "Редакции Free и Pro",
+  "f3d": "Free не требует платного ключа: поиск и reader без ключа и цепочка бесплатных AI-моделей.",
+  "f4t": "Резервные провайдеры",
+  "f4d": "Переключается между провайдерами поиска (Brave, Tavily, Exa, Serper и другими) при сбое.",
+  "f5t": "Quality Gate",
+  "f5d": "Оценивает релевантность, доказательства, валидность источника и уверенность; каждый элемент — PASS, REVIEW или FAIL.",
+  "f6t": "Дедуп и память источников",
+  "f6d": "Детерминированная entity resolution, постоянная память источников и реестр со состоянием доменов.",
+  "f7t": "Экспорты и доставка",
+  "f7d": "CSV, XLSX, PDF и JSON на сервере; доставка через Telegram-бота или e-mail.",
+  "f8t": "Безопасность по дизайну",
+  "f8d": "Защита от SSRF и formula injection, токен бота никогда не в браузере, allowlist получателей.",
+  "sec_arch": "Стек",
+  "arch_title": "Архитектура и инженерия",
+  "arch_desc": "Типизированное и протестированное приложение на Next.js, развёрнутое на Vercel. Пайплайн GitHub Actions запускает typecheck и тесты перед каждой сборкой.",
+  "sec_res": "В цифрах",
+  "res_title": "Инженерия кратко",
+  "r1n": "44",
+  "r1l": "регрессионных теста",
+  "r2n": "v1.1 → v2.3",
+  "r2l": "выпущенных итераций",
+  "r3n": "4",
+  "r3l": "формата экспорта",
+  "r4n": "RU / EN",
+  "r4l": "языка интерфейса",
+  "note_t": "Честная заметка",
+  "note_d": "Записи, счётчики и оценки в демо — иллюстративные примеры данных. Агент не обходит CAPTCHA, контроль доступа и учётные данные: заблокированные источники уходят на ручную проверку.",
+  "sec_author": "Автор",
+  "author_p": "Разработала и построила <strong>Татьяна Котолуп</strong> — AI Automation Developer."
+ },
+ "it": {
+  "nav_back": "Torna al portfolio",
+  "hero_type": "Agente di ricerca AI · Acquisizione dati",
+  "hero_title": "AURELIUS — <em>Universal AI Search Agent</em>",
+  "hero_desc": "Demo di un motore di ricerca e acquisizione dati: descrivi ciò che ti serve e l'agente porta una sola richiesta attraverso fonti, ricerca, verifica delle prove e deduplicazione fino a un risultato strutturato ed esportabile. Interfaccia bilingue RU/EN.",
+  "sec_links": "Risorse del progetto",
+  "links_title": "Link",
+  "l_demo": "Demo live",
+  "l_demo_d": "Apri la demo interattiva",
+  "l_git": "Codice sorgente",
+  "l_git_d": "Repository su GitHub",
+  "l_tg": "Telegram",
+  "l_tg_d": "Unisciti al canale del progetto",
+  "l_bot": "Bot di test",
+  "l_bot_d": "Prova la consegna del report su Telegram",
+  "sec_ctx": "Sul progetto",
+  "ctx_title": "Contesto e obiettivo",
+  "ctx_p1": "Cercare terreni, investitori o fornitori B2B significa di solito decine di schede, annunci duplicati e affermazioni non verificate. AURELIUS è la demo di un agente che riceve un compito in linguaggio naturale e restituisce un elenco ordinato e senza duplicati, con prove per ogni risultato.",
+  "ctx_p2": "<strong>Obiettivo:</strong> mostrare una pipeline completa e pronta per la produzione — richiesta, fonti, ricerca, prove, controllo qualità, export e consegna — con un'interfaccia pulita, test di regressione e protezioni di sicurezza.",
+  "pipe0": "Richiesta",
+  "pipe1": "Fonti",
+  "pipe2": "Ricerca",
+  "pipe3": "Prove",
+  "pipe4": "Deduplicazione",
+  "pipe5": "Risultato strutturato",
+  "sec_test": "Provalo tu stesso",
+  "test_title": "Come testare",
+  "s1t": "Apri la demo",
+  "s1d": "Vai alla demo live e scegli uno scenario: Terreno (Madrid, ≥ 10.000 m²), Investitori (Amsterdam, Series A–B) o Aziende (Cina → UE, B2B).",
+  "s2t": "Avvia la pipeline",
+  "s2d": "Osserva le fonti trovate, verificate e deduplicate, poi esamina i risultati ordinati con il punteggio di affidabilità.",
+  "s3t": "Export",
+  "s3d": "Scarica il risultato in CSV, XLSX, PDF o JSON.",
+  "s4t": "Consegna su Telegram",
+  "s4d": "Apri il bot di test, premi Start e invia il report su Telegram dalla demo.",
+  "sec_feat": "Funzionalità",
+  "feat_title": "Cosa fa l'agente",
+  "f1t": "Input vocale e audio",
+  "f1d": "Detta un compito o carica un MP3 per la trascrizione (richiede una chiave OpenAI).",
+  "f2t": "Ricerca live",
+  "f2d": "OpenAI Responses API con ricerca web e chiamata di funzione rigorosa per risultati strutturati.",
+  "f3t": "Edizioni Free e Pro",
+  "f3d": "La Free non richiede chiavi a pagamento: ricerca e reader senza chiave e catena di modelli AI gratuiti.",
+  "f4t": "Fallback dei provider",
+  "f4d": "In caso di errore passa tra provider di ricerca (Brave, Tavily, Exa, Serper e altri).",
+  "f5t": "Quality Gate",
+  "f5d": "Valuta pertinenza, prove, validità della fonte e affidabilità; ogni voce è PASS, REVIEW o FAIL.",
+  "f6t": "Dedup e memoria delle fonti",
+  "f6d": "Entity resolution deterministica, memoria persistente delle fonti e registro con stato dei domini.",
+  "f7t": "Export e consegna",
+  "f7d": "CSV, XLSX, PDF e JSON lato server; consegna tramite bot Telegram o e-mail.",
+  "f8t": "Sicurezza by design",
+  "f8d": "Protezione da SSRF e formula injection, token del bot mai nel browser, allowlist dei destinatari.",
+  "sec_arch": "Stack",
+  "arch_title": "Architettura e ingegneria",
+  "arch_desc": "Un'applicazione Next.js tipizzata e testata, distribuita su Vercel. Una pipeline GitHub Actions esegue typecheck e test prima di ogni build.",
+  "sec_res": "In numeri",
+  "res_title": "Ingegneria in sintesi",
+  "r1n": "44",
+  "r1l": "test di regressione",
+  "r2n": "v1.1 → v2.3",
+  "r2l": "iterazioni rilasciate",
+  "r3n": "4",
+  "r3l": "formati di export",
+  "r4n": "RU / EN",
+  "r4l": "lingue dell'interfaccia",
+  "note_t": "Nota onesta",
+  "note_d": "Record, contatori e punteggi mostrati nella demo sono dati di esempio illustrativi. L'agente non aggira CAPTCHA, controlli di accesso o credenziali: le fonti bloccate vanno in revisione manuale.",
+  "sec_author": "Autore",
+  "author_p": "Progettato e realizzato da <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+ }
+};
+// Test bot URL: put the t.me link of the bot here and its card appears automatically.
+const BOT_URL = "";
+
+const store = {get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const root = document.documentElement;
+
+function applyLang(lang){
+  if(!i18n[lang]) lang='cs';
+  const t = i18n[lang];
+  root.setAttribute('data-lang',lang); root.setAttribute('lang',lang==='uk'?'uk':lang);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+  document.querySelectorAll('[data-lang]').forEach(b=>{ if(b.classList.contains('lang-btn')) b.classList.toggle('active',b.getAttribute('data-lang')===lang);});
+  store.set('aurelius-lang',lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.getAttribute('data-lang'))));
+
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const next = root.getAttribute('data-theme')==='dark'?'light':'dark';
+  root.setAttribute('data-theme',next); store.set('aurelius-theme',next);
+});
+
+const audioBtn=document.getElementById('audioBtn'), bgMusic=document.getElementById('bgMusic');
+audioBtn.addEventListener('click',()=>{
+  if(bgMusic.paused){ bgMusic.play().then(()=>audioBtn.classList.add('playing')).catch(()=>{}); }
+  else { bgMusic.pause(); audioBtn.classList.remove('playing'); }
+});
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+if(BOT_URL && /^https:\/\/t\.me\//.test(BOT_URL)){ const c=document.getElementById('botCard'); c.href=BOT_URL; c.hidden=false; }
+
+root.setAttribute('data-theme', store.get('aurelius-theme','dark')==='light'?'light':'dark');
+applyLang(store.get('aurelius-lang','cs'));
+
+(function(){
+  if(window.matchMedia('(hover:hover)').matches){
+    const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'},{passive:true});
+    (function a(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+    document.querySelectorAll('a,button,.glass,.pill,.tag').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width=ring.style.height='60px'});el.addEventListener('mouseleave',()=>{ring.style.width=ring.style.height='40px'})});
+  }
+  const pc=document.getElementById('particles'),cs=['#7c9a4e','#c9a84c','#d98f4e','#4fb3a5','#5b9bd5','#a58be0','#e0768a'];
+  for(let i=0;i<18;i++){const p=document.createElement('div');p.className='particle';p.style.setProperty('--c',cs[i%cs.length]);p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*15+'s';p.style.animationDuration=(10+Math.random()*10)+'s';pc.appendChild(p)}
+})();
+
+
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  // scroll progress fallback
+  if(!CSS.supports('animation-timeline:scroll()')){
+    const pr=document.querySelector('.progress');
+    const f=()=>{const h=document.documentElement;pr.style.transform='scaleX('+(h.scrollTop/(h.scrollHeight-h.clientHeight||1))+')'};
+    addEventListener('scroll',f,{passive:true});f();
+  }
+  if(reduce||!fine) return;
+  // spotlight + 3D tilt
+  document.querySelectorAll('.glass').forEach(el=>{
+    el.addEventListener('pointermove',e=>{
+      const r=el.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      el.style.setProperty('--mx',x+'px');el.style.setProperty('--my',y+'px');
+      const rx=((y/r.height)-.5)*-6,ry=((x/r.width)-.5)*6;
+      el.style.transform='perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)';
+    });
+    el.addEventListener('pointerleave',()=>{el.style.transform=''});
+  });
+  // magnetic nav buttons
+  document.querySelectorAll('.icon-btn').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.25)+'px)'});
+    b.addEventListener('pointerleave',()=>{b.style.transform=''});
+  });
+  // hero parallax
+  const hero=document.querySelector('.hero .wrap');
+  addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);document.querySelectorAll('.blob-3,.blob-4').forEach((b,i)=>{b.style.translate=(x*(i?-60:60))+'px '+(y*(i?-60:60))+'px'})},{passive:true});
+})();
+</script>
+</body>
+</html>
