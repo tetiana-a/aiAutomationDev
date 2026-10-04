@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="dark" data-lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title>AI Trading Journal — Project Details</title>
+<link rel="canonical" href="https://tetianakotolup.com/19.html">
+<meta property="og:title" content="AI Trading Journal — Project Details">
+<meta property="og:description" content="Privacy-first AI trading journal: live market data, automatic PnL analytics, screenshots and optional AI-assisted trade reviews. Vanilla JS and Supabase. Project by Tetiana Kotolup.">
+<meta property="og:url" content="https://tetianakotolup.com/19.html">
+<meta property="og:image" content="https://tetianakotolup.com/foto.jpeg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "AI Trading Journal — Project Details", "description": "Privacy-first AI trading journal: live market data, automatic PnL analytics, screenshots and optional AI-assisted trade reviews. Vanilla JS and Supabase. Project by Tetiana Kotolup.", "url": "https://tetianakotolup.com/19.html", "inLanguage": ["cs", "en", "uk", "ru", "it"], "datePublished": "2026", "author": {"@type": "Person", "name": "Tetiana Kotolup", "url": "https://tetianakotolup.com/", "jobTitle": "AI Automation Developer"}}</script>
+<meta name="description" content="Privacy-first AI trading journal: live market data, automatic PnL analytics, screenshots and optional AI-assisted trade reviews. Vanilla JS and Supabase. Project by Tetiana Kotolup.">
+<link rel="icon" href="icon32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Olive Grove design system (same as 16.html) + multicolor accents */
+:root{--tt:all .5s cubic-bezier(.4,0,.2,1);--ease:cubic-bezier(.16,1,.3,1);
+ --c1:#5fbf8f;--c2:#e0b45a;--c3:#ef7f45;--c4:#3fc1c0;--c5:#4ea8de;--c6:#9b86f0;--c7:#e5648f;--c8:#a6c84a}
+[data-theme="dark"]{--bg-deep:#0b0d10;--bg:#101317;--bg2:#161a1f;--bg3:#1d2229;--surface:rgba(40,46,56,.55);--surface-h:rgba(52,60,72,.7);--glass:rgba(24,28,34,.5);--glass-border:rgba(165,175,190,.16);--line:rgba(165,175,190,.08);--line2:rgba(165,175,190,.2);--txt:#e9ecf0;--txt2:#9ca5b0;--txt3:#6b7581;--accent:#4ea8de;--accent-glow:rgba(78,168,222,.4);--gold:#e0b45a;--gold-glow:rgba(224,180,90,.28);--olive:#7aa88a;--g1:#2a3340;--g2:#3d4b5e;--g3:#6b7f99;--ink:#0b0d10}
+[data-theme="light"]{--bg-deep:#eceef1;--bg:#f2f4f6;--bg2:#fff;--bg3:#e1e5ea;--surface:rgba(255,255,255,.8);--surface-h:rgba(255,255,255,.95);--glass:rgba(255,255,255,.6);--glass-border:rgba(90,105,125,.25);--line:rgba(90,105,125,.12);--line2:rgba(90,105,125,.25);--txt:#171c22;--txt2:#475260;--txt3:#6f7a87;--accent:#1f78b4;--accent-glow:rgba(31,120,180,.28);--gold:#9a7316;--gold-glow:rgba(154,115,22,.22);--olive:#3f7a57;--g1:#9aa8b8;--g2:#b9c4d0;--g3:#8ea0b5;--ink:#f2f4f6;
+ --c1:#2f7a57;--c2:#9a7316;--c3:#c4571a;--c4:#1f8a86;--c5:#1f78b4;--c6:#6a4fc0;--c7:#c0396a;--c8:#7a8a1a}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--txt);font-family:'Space Grotesk',sans-serif;line-height:1.7;font-size:18px;overflow-x:hidden;transition:var(--tt);min-height:100vh}
+::selection{background:var(--gold);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.grove-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.4;animation:blob-float 22s ease-in-out infinite}
+.blob-1{width:620px;height:620px;background:linear-gradient(135deg,var(--g1),var(--g2));top:-220px;left:-120px}
+.blob-2{width:520px;height:520px;background:linear-gradient(135deg,var(--g2),var(--g3));bottom:-160px;right:-120px;animation-delay:-8s}
+.blob-3{width:420px;height:420px;background:linear-gradient(135deg,var(--c5),var(--c6));top:42%;left:52%;animation-delay:-15s;opacity:.18}
+.blob-4{width:360px;height:360px;background:linear-gradient(135deg,var(--c4),var(--c8));top:18%;right:8%;animation-delay:-4s;opacity:.16}
+@keyframes blob-float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-50px) scale(1.05)}50%{transform:translate(-20px,30px) scale(.95)}75%{transform:translate(40px,20px) scale(1.02)}}
+.dapple{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' seed='9'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23c)'/%3E%3C/svg%3E");opacity:.035;mix-blend-mode:overlay;animation:dapple 32s linear infinite}
+@keyframes dapple{to{transform:translate(-50px,-50px)}}
+#cursor-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 20px var(--accent-glow)}
+#cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s;opacity:.4}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}}
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(24px,5vw,60px);position:relative;z-index:1}
+
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 clamp(16px,5vw,60px);display:flex;justify-content:center}
+.nav-glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:100px;padding:10px 14px 10px 24px;display:flex;align-items:center;gap:22px;max-width:100%}
+.nav-logo{font-weight:700;font-size:13px;letter-spacing:.08em;white-space:nowrap}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);white-space:nowrap;transition:color .2s;display:inline-flex;align-items:center;gap:6px}
+.nav-link:hover{color:var(--txt)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.lang-switch{display:flex;background:rgba(0,0,0,.2);border-radius:8px;padding:2px}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);background:transparent;border:none;padding:7px 10px;border-radius:6px;cursor:pointer;transition:all .2s}
+.lang-btn:hover{color:var(--txt)}
+.lang-btn.active{background:var(--accent);color:var(--ink);box-shadow:0 0 20px var(--accent-glow)}
+.icon-btn{width:36px;height:36px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:all .2s;flex-shrink:0}
+.icon-btn:hover{background:var(--surface-h);box-shadow:0 0 20px var(--gold-glow)}
+.icon-btn.playing{background:var(--accent);color:var(--ink);box-shadow:0 0 25px var(--accent-glow)}
+.icon-btn.playing svg{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+svg.i{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:700px){.nav-link .t{display:none}.nav-glass{gap:10px;padding:8px 8px 8px 14px}.nav-logo{font-size:11px}.lang-btn{padding:6px 7px;font-size:9px}.icon-btn{width:32px;height:32px}}
+@media(max-width:430px){.nav-logo{display:none}}
+
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 0 80px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:10px;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:100px;padding:8px 16px;margin-bottom:32px;width:fit-content;opacity:0;animation:reveal .8s .2s var(--ease) forwards}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow);animation:pulse 2s infinite}
+.badge span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)}
+h1{font-family:'Instrument Serif',serif;font-size:clamp(40px,7.5vw,84px);font-weight:400;line-height:1.05;letter-spacing:-.03em;margin-bottom:24px;opacity:0;animation:reveal .8s .3s var(--ease) forwards}
+h1 em{font-style:italic;display:block;background:linear-gradient(90deg,var(--c2),var(--c3),var(--c7),var(--c6),var(--c5),var(--c4),var(--c8),var(--c2));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:spectrum 14s linear infinite}
+@keyframes spectrum{to{background-position:250% 0}}
+.hero-desc{font-size:clamp(16px,2vw,20px);color:var(--txt2);max-width:660px;margin-bottom:40px;opacity:0;animation:reveal .8s .4s var(--ease) forwards}
+.tags{display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:reveal .8s .5s var(--ease) forwards}
+.tag{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);padding:10px 18px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:all .2s;position:relative}
+.tag::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c);margin-right:9px;box-shadow:0 0 10px var(--c)}
+.tag:hover{border-color:var(--c);color:var(--txt);box-shadow:0 0 20px var(--gold-glow);transform:translateY(-2px)}
+@keyframes reveal{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+.sec{padding:100px 0;position:relative;z-index:1}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:40px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(30px,5vw,50px);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin-bottom:40px}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.visible{opacity:1;transform:none}
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;padding:28px;transition:all .3s var(--ease);position:relative;overflow:hidden;--c:var(--gold)}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.7}
+.glass:hover{border-color:color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px color-mix(in srgb,var(--c) 28%,transparent);transform:translateY(-4px)}
+
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.link{display:flex;align-items:center;gap:18px;padding:22px}
+.links .link:nth-child(1){--c:var(--c1)}.links .link:nth-child(2){--c:var(--c5)}.links .link:nth-child(3){--c:var(--c4)}.links .link:nth-child(4){--c:var(--c3)}
+.link .ic{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 85%,#000),var(--c));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 24px color-mix(in srgb,var(--c) 40%,transparent);color:#fff;font-size:22px}
+.link .tx{flex:1;min-width:0}
+.link .lb{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.link .ds{font-size:14px;color:var(--txt);overflow-wrap:anywhere}
+.link .ar{color:var(--txt3);transition:transform .3s var(--ease);font-size:20px}
+.link:hover .ar{transform:translateX(6px);color:var(--c)}
+
+.text p{font-size:17px;color:var(--txt2);line-height:1.85;margin-bottom:1.4em;max-width:820px}
+.text strong{color:var(--txt);font-weight:500}
+.pipe{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:34px}
+.pipe .n{background:rgba(0,0,0,.25);border:1px solid var(--glass-border);padding:9px 15px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt2);display:inline-flex;gap:8px;align-items:center}
+[data-theme="light"] .pipe .n{background:rgba(255,255,255,.6)}
+.pipe .n b{color:var(--c);font-weight:600}
+.pipe .n.last{background:var(--accent);color:var(--ink);border-color:transparent;font-weight:600}.pipe .n.last b{color:var(--ink)}
+.pipe .s{color:var(--gold)}
+.pipe .n:nth-of-type(1){--c:var(--c1)}.pipe .n:nth-of-type(2){--c:var(--c5)}.pipe .n:nth-of-type(3){--c:var(--c4)}.pipe .n:nth-of-type(4){--c:var(--c6)}.pipe .n:nth-of-type(5){--c:var(--c7)}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.steps .step:nth-child(1){--c:var(--c1)}.steps .step:nth-child(2){--c:var(--c5)}.steps .step:nth-child(3){--c:var(--c6)}.steps .step:nth-child(4){--c:var(--c4)}
+.step .num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--c);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.step .num::before{content:'';width:30px;height:1px;background:var(--c);box-shadow:0 0 10px var(--c)}
+.step h3,.feat h3{font-weight:600;font-size:16px;margin-bottom:8px}
+.step p,.feat p{font-size:14px;color:var(--txt2);line-height:1.65}
+
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.feats .feat:nth-child(1){--c:var(--c3)}.feats .feat:nth-child(2){--c:var(--c5)}.feats .feat:nth-child(3){--c:var(--c1)}.feats .feat:nth-child(4){--c:var(--c6)}
+.feats .feat:nth-child(5){--c:var(--c4)}.feats .feat:nth-child(6){--c:var(--c7)}.feats .feat:nth-child(7){--c:var(--c2)}.feats .feat:nth-child(8){--c:var(--c8)}
+.feat .fi{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 35%,transparent);margin-bottom:16px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.pill{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);padding:11px 17px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:all .2s;display:flex;align-items:center;gap:9px}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c)}
+.pill:hover{border-color:var(--c);color:var(--txt);box-shadow:0 0 20px var(--gold-glow)}
+.arch-desc{color:var(--txt2);max-width:760px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.stats .stat:nth-child(1){--c:var(--c1)}.stats .stat:nth-child(2){--c:var(--c5)}.stats .stat:nth-child(3){--c:var(--c3)}.stats .stat:nth-child(4){--c:var(--c6)}
+.stat .v{font-family:'Instrument Serif',serif;font-size:clamp(36px,5vw,52px);line-height:1.05;color:var(--c)}
+.stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-top:8px}
+.note{display:flex;gap:16px;align-items:flex-start;margin-top:22px;--c:var(--c2)}
+.note .fi{font-size:22px;color:var(--c);margin-top:3px;flex-shrink:0}
+.note h3{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:6px}
+.note p{color:var(--txt2);font-size:15px}
+.author p{font-size:17px;color:var(--txt2)}
+.author a{color:var(--gold);text-decoration:underline}
+footer{padding:60px 0;border-top:1px solid var(--line);margin-top:60px;position:relative;z-index:1}
+.f{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.fb{font-family:'Instrument Serif',serif;font-size:22px}
+.fi2{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-align:right;line-height:2}
+@media(max-width:600px){.f{flex-direction:column;align-items:flex-start}.fi2{text-align:left}.sec{padding:70px 0}}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.particle{position:absolute;width:3px;height:3px;background:var(--c);border-radius:50%;opacity:.35;animation:float-up 16s linear infinite}
+@keyframes float-up{0%{transform:translateY(100vh);opacity:0}10%,90%{opacity:.35}100%{transform:translateY(-100px);opacity:0}}
+a,button{cursor:none}@media(hover:none){a,button{cursor:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}h1,.badge,.hero-desc,.tags{opacity:1}}
+
+/* ===== 2026 page-wide motion ===== */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100001;transform-origin:0 50%;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c7),var(--c6),var(--c5),var(--c4),var(--c8));transform:scaleX(0);box-shadow:0 0 14px var(--c2)}
+@supports(animation-timeline:scroll()){
+ .progress{animation:grow linear both;animation-timeline:scroll(root)}
+ @keyframes grow{to{transform:scaleX(1)}}
+ .blob-1{animation:blob-float 22s ease-in-out infinite,par1 linear both;animation-timeline:auto,scroll(root)}
+ .blob-2{animation:blob-float 22s ease-in-out infinite -8s,par2 linear both;animation-timeline:auto,scroll(root)}
+ @keyframes par1{to{translate:80px 420px}}
+ @keyframes par2{to{translate:-120px -360px}}
+ .rv{opacity:1;transform:none;transition:none;animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+ @keyframes rise{from{opacity:0;transform:translateY(60px) scale(.98);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+ .glass{animation:cardin linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+ @keyframes cardin{from{opacity:.0;transform:translateY(40px) rotateX(12deg)}to{opacity:1;transform:none}}
+}
+.mesh{position:absolute;inset:-20%;background:conic-gradient(from 0deg at 30% 40%,transparent 0 20%,color-mix(in srgb,var(--c4) 16%,transparent) 30%,transparent 45%,color-mix(in srgb,var(--c6) 14%,transparent) 65%,transparent 80%,color-mix(in srgb,var(--c3) 14%,transparent) 92%,transparent);filter:blur(70px);animation:spin 40s linear infinite;mix-blend-mode:screen}
+[data-theme="light"] .mesh{mix-blend-mode:multiply;opacity:.6}
+@keyframes spin{to{transform:rotate(360deg)}}
+.glass::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--c) 22%,transparent),transparent 60%)}
+.glass:hover::after{opacity:1}
+.glass{transform-style:preserve-3d;will-change:transform}
+.link.primary{background:linear-gradient(var(--bg2),var(--bg2)) padding-box,conic-gradient(from var(--ang,0deg),var(--c1),var(--c5),var(--c6),var(--c7),var(--c3),var(--c2),var(--c1)) border-box;border:1.5px solid transparent;animation:ang 6s linear infinite}
+[data-theme="light"] .link.primary{background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ang,0deg),var(--c1),var(--c5),var(--c6),var(--c7),var(--c3),var(--c2),var(--c1)) border-box}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes ang{to{--ang:360deg}}
+h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2) 70%,var(--txt)));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pipe .n{animation:nodeglow 4s ease-in-out infinite}
+.pipe .n:nth-of-type(2){animation-delay:.5s}.pipe .n:nth-of-type(3){animation-delay:1s}.pipe .n:nth-of-type(4){animation-delay:1.5s}.pipe .n:nth-of-type(5){animation-delay:2s}
+@keyframes nodeglow{0%,100%{box-shadow:0 0 0 transparent}50%{box-shadow:0 0 22px color-mix(in srgb,var(--c,var(--gold)) 45%,transparent)}}
+.pipe .s{animation:flow 2.4s ease-in-out infinite}
+@keyframes flow{0%,100%{transform:translateX(0);opacity:.5}50%{transform:translateX(5px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.progress{display:none}.mesh{animation:none}.glass,.rv{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
+</style>
+<script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="g-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+<symbol id="g-git" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.35 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.65 16 2.5a13.4 13.4 0 0 0-7 0C6.3.65 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/></symbol>
+<symbol id="g-tg" viewBox="0 0 24 24"><path d="M22 3 2 11l6 2.5L10 21l3.5-4.5L18 20 22 3z"/><path d="M8 13.5 22 3"/></symbol>
+<symbol id="g-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 14h.01M15 14h.01M2 13v3M22 13v3"/></symbol>
+<symbol id="g-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="g-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></symbol>
+<symbol id="g-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="g-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 12 10 5 10-5M2 17l10 5 10-5"/></symbol>
+<symbol id="g-swap" viewBox="0 0 24 24"><path d="M17 3l4 4-4 4M3 7h18M7 21l-4-4 4-4M21 17H3"/></symbol>
+<symbol id="g-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="g-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+<symbol id="g-down" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+<symbol id="g-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="g-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+<symbol id="g-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+<symbol id="g-vol" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M19.1 4.9a10 10 0 0 1 0 14.2M15.5 8.5a5 5 0 0 1 0 7"/></symbol>
+<symbol id="g-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+</defs>
+</svg>
+
+<div class="grove-bg"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div><div class="dapple"></div><div class="mesh"></div></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="particles" id="particles"></div>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+
+<nav id="nav">
+  <div class="nav-inner"><div class="nav-glass">
+    <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+    <a href="index.html" class="nav-link"><svg class="i"><use href="#g-back"/></svg><span class="t" data-i18n="nav_back">Zpět na portfolio</span></a>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="cs">CZ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="uk">UA</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+      </div>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme"><svg class="i" style="width:16px;height:16px"><use href="#g-sun"/></svg></button>
+      <button class="icon-btn" id="audioBtn" aria-label="Toggle audio"><svg class="i" style="width:16px;height:16px"><use href="#g-vol"/></svg></button>
+    </div>
+  </div></div>
+</nav>
+
+<section class="hero"><div class="wrap">
+  <div class="badge"><i></i><span data-i18n="hero_type">AI výzkumný agent</span></div>
+  <h1 data-i18n="hero_title">AI Trading Journal — <em>personal trading analytics</em></h1>
+  <p class="hero-desc" data-i18n="hero_desc"></p>
+  <div class="tags">
+    <span class="tag" style="--c:var(--c1)">Vanilla JS</span><span class="tag" style="--c:var(--c2)">Supabase</span><span class="tag" style="--c:var(--c3)">PostgreSQL</span><span class="tag" style="--c:var(--c4)">TradingView Charts</span><span class="tag" style="--c:var(--c5)">Edge Functions</span><span class="tag" style="--c:var(--c6)">Web Audio</span><span class="tag" style="--c:var(--c7)">MIT</span><span class="tag" style="--c:var(--c8)">2026</span>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_links">Zdroje projektu</div>
+  <h2 data-i18n="links_title">Odkazy</h2>
+  <div class="links">
+    <a class="glass link primary" href="https://tetiana-a.github.io/ai-trading-journal/" target="_blank" rel="noopener noreferrer">
+      <span class="ic"><svg class="i"><use href="#g-globe"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_demo">Živé demo</div><div class="ds" data-i18n="l_demo_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+    <a class="glass link" href="https://github.com/tetiana-a/ai-trading-journal" target="_blank" rel="noopener noreferrer">
+      <span class="ic"><svg class="i"><use href="#g-git"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_git">Zdrojový kód</div><div class="ds" data-i18n="l_git_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_ctx">O projektu</div>
+  <h2 data-i18n="ctx_title">Kontext a cíl</h2>
+  <div class="text"><p data-i18n="ctx_p1"></p><p data-i18n="ctx_p2"></p></div>
+  <div class="pipe">
+    <span class="n"><b>01</b><span data-i18n="pipe0"></span></span><span class="s">→</span>
+    <span class="n"><b>02</b><span data-i18n="pipe1"></span></span><span class="s">→</span>
+    <span class="n"><b>03</b><span data-i18n="pipe2"></span></span><span class="s">→</span>
+    <span class="n"><b>04</b><span data-i18n="pipe3"></span></span><span class="s">→</span>
+    <span class="n"><b>05</b><span data-i18n="pipe4"></span></span><span class="s">→</span>
+    <span class="n last"><b>06</b><span data-i18n="pipe5"></span></span>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_test">Vyzkoušejte sami</div>
+  <h2 data-i18n="test_title">Jak testovat</h2>
+  <div class="steps">
+    <div class="glass step"><div class="num">01</div><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></div>
+    <div class="glass step"><div class="num">02</div><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></div>
+    <div class="glass step"><div class="num">03</div><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p></div>
+    <div class="glass step"><div class="num">04</div><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_feat">Možnosti</div>
+  <h2 data-i18n="feat_title">Co agent umí</h2>
+  <div class="feats">
+    <div class="glass feat"><svg class="i fi"><use href="#g-mic"/></svg><h3 data-i18n="f1t"></h3><p data-i18n="f1d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-search"/></svg><h3 data-i18n="f2t"></h3><p data-i18n="f2d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-layers"/></svg><h3 data-i18n="f3t"></h3><p data-i18n="f3d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-swap"/></svg><h3 data-i18n="f4t"></h3><p data-i18n="f4d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-shield"/></svg><h3 data-i18n="f5t"></h3><p data-i18n="f5d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-db"/></svg><h3 data-i18n="f6t"></h3><p data-i18n="f6d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-down"/></svg><h3 data-i18n="f7t"></h3><p data-i18n="f7d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-lock"/></svg><h3 data-i18n="f8t"></h3><p data-i18n="f8d"></p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_arch">Stack</div>
+  <h2 data-i18n="arch_title">Architektura</h2>
+  <p class="arch-desc" data-i18n="arch_desc"></p>
+  <div class="pills">
+    <div class="pill" style="--c:var(--c3)">Vanilla JavaScript</div><div class="pill" style="--c:var(--c4)">HTML5 · CSS3</div><div class="pill" style="--c:var(--c5)">Canvas API</div><div class="pill" style="--c:var(--c6)">Web Audio API</div><div class="pill" style="--c:var(--c7)">Supabase Postgres</div><div class="pill" style="--c:var(--c8)">Supabase Auth</div><div class="pill" style="--c:var(--c1)">Edge Functions</div><div class="pill" style="--c:var(--c2)">Private Storage</div><div class="pill" style="--c:var(--c3)">TradingView Lightweight Charts</div><div class="pill" style="--c:var(--c4)">Binance · Bybit · OKX · Kraken</div><div class="pill" style="--c:var(--c5)">Groq · OpenAI · Claude (optional)</div><div class="pill" style="--c:var(--c6)">Telegram Bot</div><div class="pill" style="--c:var(--c7)">GitHub Pages</div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_res">V číslech</div>
+  <h2 data-i18n="res_title">Inženýrství v kostce</h2>
+  <div class="stats">
+    <div class="glass stat"><div class="v" data-i18n="r1n"></div><div class="l" data-i18n="r1l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r2n"></div><div class="l" data-i18n="r2l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r3n"></div><div class="l" data-i18n="r3l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r4n"></div><div class="l" data-i18n="r4l"></div></div>
+  </div>
+  <div class="glass note"><svg class="i fi"><use href="#g-info"/></svg><div><h3 data-i18n="note_t"></h3><p data-i18n="note_d"></p></div></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap rv">
+  <div class="glass author" style="padding:36px">
+    <div class="eyebrow" data-i18n="sec_author">Autor</div>
+    <p><span data-i18n="author_p"></span> <a href="index.html">tetianakotolup.com</a></p>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="f">
+  <div class="fb">Tetiana Kotolup</div>
+  <div class="fi2">AI Automation Developer<br>kotolup24@gmail.com · @tetiana_K888 · 2026</div>
+</div></div></footer>
+
+<audio id="bgMusic" loop preload="none"><source src="08.mp3" type="audio/mpeg"></audio>
+
+<script>
+const i18n = {
+ "en": {
+  "nav_back": "Back to Portfolio",
+  "hero_type": "Trading Analytics · Privacy-first",
+  "hero_title": "AI Trading Journal — <em>personal trading analytics</em>",
+  "hero_desc": "A privacy-first trading journal with live market data, automatic PnL analytics, screenshots and optional AI-assisted trade reviews. Built as a personal trading operating system, not a generic SaaS.",
+  "sec_links": "Project resources",
+  "links_title": "Links",
+  "l_demo": "Live demo",
+  "l_demo_d": "Open the journal in your browser",
+  "l_git": "Source code",
+  "l_git_d": "GitHub repository · MIT license",
+  "sec_ctx": "About the project",
+  "ctx_title": "Context & goal",
+  "ctx_p1": "Most trading journals are spreadsheets or paid SaaS that keep your data on someone else's server. This project keeps trades, screenshots and settings in your browser by default, and adds cloud sync only if you opt in.",
+  "ctx_p2": "<strong>Goal:</strong> one place to record trades, see real statistics, keep risk under control and review decisions with AI, while staying in control of your own data.",
+  "pipe0": "Trade entry",
+  "pipe1": "Screenshot",
+  "pipe2": "Live price",
+  "pipe3": "PnL",
+  "pipe4": "Risk Guard",
+  "pipe5": "AI review",
+  "sec_test": "Quick tour",
+  "test_title": "How to try it",
+  "s1t": "Open the demo",
+  "s1d": "Local mode needs no account: trades, screenshots and settings stay in your browser.",
+  "s2t": "Add a trade",
+  "s2d": "Long or short, exit reason, and a screenshot pasted with Ctrl+V or uploaded.",
+  "s3t": "Read the statistics",
+  "s3d": "Win rate, profit factor, equity curve, calendar and monthly review.",
+  "s4t": "Back up your data",
+  "s4d": "Export to JSON or CSV. Cloud sync through Supabase is optional.",
+  "sec_feat": "Capabilities",
+  "feat_title": "What the journal does",
+  "f1t": "Automatic PnL",
+  "f1d": "Long and short positions, return in percent and averages calculated for you.",
+  "f2t": "Live market prices",
+  "f2d": "Public APIs of Binance, Bybit, OKX and Kraken.",
+  "f3t": "Screenshots",
+  "f3d": "Attach chart images to trades by paste or upload.",
+  "f4t": "Statistics dashboard",
+  "f4d": "Win rate, profit factor, equity curve, calendar and monthly review.",
+  "f5t": "Prop Risk Guard",
+  "f5d": "Daily stop, firm loss limits and a STOP DAY that blocks new entries after a loss threshold.",
+  "f6t": "Optional AI review",
+  "f6d": "Trade reviews through Groq, OpenAI or Claude, configured on the backend.",
+  "f7t": "Privacy by design",
+  "f7d": "Local mode by default. Cloud mode uses Row Level Security and a private storage bucket.",
+  "f8t": "Learning & system hubs",
+  "f8d": "Trading System hub, Learning hub with study notes and a prop firms guide.",
+  "sec_arch": "Stack",
+  "arch_title": "Architecture & engineering",
+  "arch_desc": "A framework-free frontend with a Supabase backend. Secrets are never committed: only publishable keys live in the browser, tokens stay server-side.",
+  "sec_res": "In numbers",
+  "res_title": "At a glance",
+  "r1n": "4",
+  "r1l": "exchange data sources",
+  "r2n": "2",
+  "r2l": "modes: local and cloud",
+  "r3n": "11",
+  "r3l": "built-in radio stations",
+  "r4n": "MIT",
+  "r4l": "open-source license",
+  "note_t": "Honest note",
+  "note_d": "Educational and personal analytics tool. It gives no financial advice or trading signals and promises no profit. Trading, especially with leverage, involves risk.",
+  "sec_author": "Author",
+  "author_p": "Designed and built by <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+ },
+ "cs": {
+  "nav_back": "Zpět na portfolio",
+  "hero_type": "Tradingová analytika · Soukromí na prvním místě",
+  "hero_title": "AI Trading Journal — <em>osobní tradingová analytika</em>",
+  "hero_desc": "Tradingový deník s důrazem na soukromí: živá tržní data, automatická analytika PnL, screenshoty a volitelné hodnocení obchodů pomocí AI. Vznikl jako osobní tradingový systém, ne obecné SaaS.",
+  "sec_links": "Zdroje projektu",
+  "links_title": "Odkazy",
+  "l_demo": "Živé demo",
+  "l_demo_d": "Otevřít deník v prohlížeči",
+  "l_git": "Zdrojový kód",
+  "l_git_d": "Repozitář na GitHubu · licence MIT",
+  "sec_ctx": "O projektu",
+  "ctx_title": "Kontext a cíl",
+  "ctx_p1": "Většina tradingových deníků jsou tabulky nebo placené SaaS, které drží vaše data na cizím serveru. Tento projekt ukládá obchody, screenshoty a nastavení ve výchozím stavu v prohlížeči a cloudovou synchronizaci přidává jen na požádání.",
+  "ctx_p2": "<strong>Cíl:</strong> jedno místo pro zápis obchodů, skutečné statistiky, kontrolu rizika a hodnocení rozhodnutí pomocí AI, a přitom plná kontrola nad vlastními daty.",
+  "pipe0": "Zápis obchodu",
+  "pipe1": "Screenshot",
+  "pipe2": "Živá cena",
+  "pipe3": "PnL",
+  "pipe4": "Risk Guard",
+  "pipe5": "AI hodnocení",
+  "sec_test": "Rychlá prohlídka",
+  "test_title": "Jak to vyzkoušet",
+  "s1t": "Otevřete demo",
+  "s1d": "Lokální režim nevyžaduje účet: obchody, screenshoty a nastavení zůstávají ve vašem prohlížeči.",
+  "s2t": "Přidejte obchod",
+  "s2d": "Long nebo short, důvod výstupu a screenshot vložený přes Ctrl+V nebo nahraný.",
+  "s3t": "Projděte statistiky",
+  "s3d": "Win rate, profit factor, equity křivka, kalendář a měsíční přehled.",
+  "s4t": "Zálohujte data",
+  "s4d": "Export do JSON nebo CSV. Cloudová synchronizace přes Supabase je volitelná.",
+  "sec_feat": "Možnosti",
+  "feat_title": "Co deník umí",
+  "f1t": "Automatický PnL",
+  "f1d": "Long i short pozice, návratnost v procentech a průměry se počítají samy.",
+  "f2t": "Živé tržní ceny",
+  "f2d": "Veřejná API Binance, Bybit, OKX a Kraken.",
+  "f3t": "Screenshoty",
+  "f3d": "Připojte obrázky grafů k obchodům vložením nebo nahráním.",
+  "f4t": "Dashboard statistik",
+  "f4d": "Win rate, profit factor, equity křivka, kalendář a měsíční přehled.",
+  "f5t": "Prop Risk Guard",
+  "f5d": "Denní stop, limity ztrát firmy a STOP DAY, který po překročení ztráty zablokuje nové vstupy.",
+  "f6t": "Volitelné AI hodnocení",
+  "f6d": "Hodnocení obchodů přes Groq, OpenAI nebo Claude, nastavené na backendu.",
+  "f7t": "Soukromí od základu",
+  "f7d": "Ve výchozím stavu lokální režim. Cloud používá Row Level Security a soukromé úložiště.",
+  "f8t": "Učení a systémové huby",
+  "f8d": "Trading System hub, Learning hub se studijními poznámkami a průvodce prop firmami.",
+  "sec_arch": "Stack",
+  "arch_title": "Architektura a inženýrství",
+  "arch_desc": "Frontend bez frameworku a backend na Supabase. Tajné klíče se nikdy necommitují: v prohlížeči jsou jen veřejné klíče, tokeny zůstávají na serveru.",
+  "sec_res": "V číslech",
+  "res_title": "V kostce",
+  "r1n": "4",
+  "r1l": "zdroje dat z burz",
+  "r2n": "2",
+  "r2l": "režimy: lokální a cloud",
+  "r3n": "11",
+  "r3l": "vestavěných rádií",
+  "r4n": "MIT",
+  "r4l": "open-source licence",
+  "note_t": "Upřímná poznámka",
+  "note_d": "Vzdělávací a osobní analytický nástroj. Neposkytuje finanční poradenství ani obchodní signály a neslibuje zisk. Obchodování, zejména s pákou, nese riziko.",
+  "sec_author": "Autor",
+  "author_p": "Navrhla a postavila <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+ },
+ "uk": {
+  "nav_back": "Назад до портфоліо",
+  "hero_type": "Трейдингова аналітика · Приватність насамперед",
+  "hero_title": "AI Trading Journal — <em>особиста трейдингова аналітика</em>",
+  "hero_desc": "Трейдинговий журнал із акцентом на приватність: живі ринкові дані, автоматична аналітика PnL, скриншоти та необов'язкова AI-оцінка угод. Створений як особиста трейдингова система, а не універсальний SaaS.",
+  "sec_links": "Ресурси проекту",
+  "links_title": "Посилання",
+  "l_demo": "Живе демо",
+  "l_demo_d": "Відкрити журнал у браузері",
+  "l_git": "Вихідний код",
+  "l_git_d": "Репозиторій на GitHub · ліцензія MIT",
+  "sec_ctx": "Про проект",
+  "ctx_title": "Контекст і мета",
+  "ctx_p1": "Більшість трейдингових журналів — це таблиці або платні SaaS, що тримають ваші дані на чужому сервері. Цей проект за замовчуванням зберігає угоди, скриншоти й налаштування у браузері, а хмарну синхронізацію додає лише за вашим бажанням.",
+  "ctx_p2": "<strong>Мета:</strong> одне місце для запису угод, реальної статистики, контролю ризику та розбору рішень за допомогою AI, зі збереженням повного контролю над власними даними.",
+  "pipe0": "Запис угоди",
+  "pipe1": "Скриншот",
+  "pipe2": "Жива ціна",
+  "pipe3": "PnL",
+  "pipe4": "Risk Guard",
+  "pipe5": "AI-розбір",
+  "sec_test": "Швидкий огляд",
+  "test_title": "Як спробувати",
+  "s1t": "Відкрийте демо",
+  "s1d": "Локальний режим не потребує акаунта: угоди, скриншоти й налаштування лишаються у вашому браузері.",
+  "s2t": "Додайте угоду",
+  "s2d": "Long або short, причина виходу та скриншот, вставлений через Ctrl+V або завантажений.",
+  "s3t": "Перегляньте статистику",
+  "s3d": "Win rate, profit factor, крива капіталу, календар і місячний огляд.",
+  "s4t": "Зробіть резервну копію",
+  "s4d": "Експорт у JSON або CSV. Хмарна синхронізація через Supabase необов'язкова.",
+  "sec_feat": "Можливості",
+  "feat_title": "Що вміє журнал",
+  "f1t": "Автоматичний PnL",
+  "f1d": "Long і short позиції, дохідність у відсотках і середні значення рахуються самі.",
+  "f2t": "Живі ринкові ціни",
+  "f2d": "Публічні API Binance, Bybit, OKX і Kraken.",
+  "f3t": "Скриншоти",
+  "f3d": "Додавайте зображення графіків до угод вставкою або завантаженням.",
+  "f4t": "Дашборд статистики",
+  "f4d": "Win rate, profit factor, крива капіталу, календар і місячний огляд.",
+  "f5t": "Prop Risk Guard",
+  "f5d": "Денний стоп, ліміти збитків фірми та STOP DAY, що блокує нові входи після порогу збитку.",
+  "f6t": "Необов'язковий AI-розбір",
+  "f6d": "Розбір угод через Groq, OpenAI або Claude, налаштований на бекенді.",
+  "f7t": "Приватність за дизайном",
+  "f7d": "За замовчуванням локальний режим. Хмара використовує Row Level Security і приватне сховище.",
+  "f8t": "Навчання та системні хаби",
+  "f8d": "Trading System hub, Learning hub із навчальними нотатками та гід по prop-фірмах.",
+  "sec_arch": "Стек",
+  "arch_title": "Архітектура та інженерія",
+  "arch_desc": "Фронтенд без фреймворків і бекенд на Supabase. Секрети ніколи не комітяться: у браузері лише публічні ключі, токени залишаються на сервері.",
+  "sec_res": "У цифрах",
+  "res_title": "Коротко",
+  "r1n": "4",
+  "r1l": "джерела даних бірж",
+  "r2n": "2",
+  "r2l": "режими: локальний і хмара",
+  "r3n": "11",
+  "r3l": "вбудованих радіостанцій",
+  "r4n": "MIT",
+  "r4l": "open-source ліцензія",
+  "note_t": "Чесна примітка",
+  "note_d": "Освітній та особистий аналітичний інструмент. Не надає фінансових порад чи торгових сигналів і не обіцяє прибутку. Торгівля, особливо з плечем, пов'язана з ризиком.",
+  "sec_author": "Автор",
+  "author_p": "Розробила і побудувала <strong>Тетяна Котолуп</strong> — AI Automation Developer."
+ },
+ "ru": {
+  "nav_back": "Назад в портфолио",
+  "hero_type": "Трейдинговая аналитика · Приватность прежде всего",
+  "hero_title": "AI Trading Journal — <em>личная трейдинговая аналитика</em>",
+  "hero_desc": "Трейдинговый журнал с упором на приватность: живые рыночные данные, автоматическая аналитика PnL, скриншоты и необязательная AI-оценка сделок. Создан как личная трейдинговая система, а не универсальный SaaS.",
+  "sec_links": "Ресурсы проекта",
+  "links_title": "Ссылки",
+  "l_demo": "Живое демо",
+  "l_demo_d": "Открыть журнал в браузере",
+  "l_git": "Исходный код",
+  "l_git_d": "Репозиторий на GitHub · лицензия MIT",
+  "sec_ctx": "О проекте",
+  "ctx_title": "Контекст и цель",
+  "ctx_p1": "Большинство трейдинговых журналов — это таблицы или платные SaaS, которые хранят ваши данные на чужом сервере. Этот проект по умолчанию хранит сделки, скриншоты и настройки в браузере, а облачную синхронизацию добавляет только по вашему желанию.",
+  "ctx_p2": "<strong>Цель:</strong> одно место для записи сделок, реальной статистики, контроля риска и разбора решений с помощью AI, с сохранением полного контроля над собственными данными.",
+  "pipe0": "Запись сделки",
+  "pipe1": "Скриншот",
+  "pipe2": "Живая цена",
+  "pipe3": "PnL",
+  "pipe4": "Risk Guard",
+  "pipe5": "AI-разбор",
+  "sec_test": "Быстрый обзор",
+  "test_title": "Как попробовать",
+  "s1t": "Откройте демо",
+  "s1d": "Локальный режим не требует аккаунта: сделки, скриншоты и настройки остаются в вашем браузере.",
+  "s2t": "Добавьте сделку",
+  "s2d": "Long или short, причина выхода и скриншот, вставленный через Ctrl+V или загруженный.",
+  "s3t": "Посмотрите статистику",
+  "s3d": "Win rate, profit factor, кривая капитала, календарь и месячный обзор.",
+  "s4t": "Сделайте резервную копию",
+  "s4d": "Экспорт в JSON или CSV. Облачная синхронизация через Supabase необязательна.",
+  "sec_feat": "Возможности",
+  "feat_title": "Что умеет журнал",
+  "f1t": "Автоматический PnL",
+  "f1d": "Long и short позиции, доходность в процентах и средние значения считаются сами.",
+  "f2t": "Живые рыночные цены",
+  "f2d": "Публичные API Binance, Bybit, OKX и Kraken.",
+  "f3t": "Скриншоты",
+  "f3d": "Прикрепляйте изображения графиков к сделкам вставкой или загрузкой.",
+  "f4t": "Дашборд статистики",
+  "f4d": "Win rate, profit factor, кривая капитала, календарь и месячный обзор.",
+  "f5t": "Prop Risk Guard",
+  "f5d": "Дневной стоп, лимиты убытков фирмы и STOP DAY, блокирующий новые входы после порога убытка.",
+  "f6t": "Необязательный AI-разбор",
+  "f6d": "Разбор сделок через Groq, OpenAI или Claude, настроенный на бэкенде.",
+  "f7t": "Приватность по дизайну",
+  "f7d": "По умолчанию локальный режим. Облако использует Row Level Security и приватное хранилище.",
+  "f8t": "Обучение и системные хабы",
+  "f8d": "Trading System hub, Learning hub с учебными заметками и гид по prop-фирмам.",
+  "sec_arch": "Стек",
+  "arch_title": "Архитектура и инженерия",
+  "arch_desc": "Фронтенд без фреймворков и бэкенд на Supabase. Секреты никогда не коммитятся: в браузере только публичные ключи, токены остаются на сервере.",
+  "sec_res": "В цифрах",
+  "res_title": "Кратко",
+  "r1n": "4",
+  "r1l": "источника данных бирж",
+  "r2n": "2",
+  "r2l": "режима: локальный и облако",
+  "r3n": "11",
+  "r3l": "встроенных радиостанций",
+  "r4n": "MIT",
+  "r4l": "open-source лицензия",
+  "note_t": "Честная заметка",
+  "note_d": "Образовательный и личный аналитический инструмент. Не даёт финансовых советов и торговых сигналов и не обещает прибыли. Торговля, особенно с плечом, связана с риском.",
+  "sec_author": "Автор",
+  "author_p": "Разработала и построила <strong>Татьяна Котолуп</strong> — AI Automation Developer."
+ },
+ "it": {
+  "nav_back": "Torna al portfolio",
+  "hero_type": "Analisi del trading · Privacy al primo posto",
+  "hero_title": "AI Trading Journal — <em>analisi di trading personale</em>",
+  "hero_desc": "Un diario di trading orientato alla privacy: dati di mercato in tempo reale, analisi PnL automatica, screenshot e revisione opzionale dei trade con l'AI. Pensato come sistema di trading personale, non come SaaS generico.",
+  "sec_links": "Risorse del progetto",
+  "links_title": "Link",
+  "l_demo": "Demo live",
+  "l_demo_d": "Apri il diario nel browser",
+  "l_git": "Codice sorgente",
+  "l_git_d": "Repository GitHub · licenza MIT",
+  "sec_ctx": "Sul progetto",
+  "ctx_title": "Contesto e obiettivo",
+  "ctx_p1": "La maggior parte dei diari di trading sono fogli di calcolo o SaaS a pagamento che tengono i tuoi dati su un server altrui. Questo progetto conserva per impostazione predefinita operazioni, screenshot e impostazioni nel browser e aggiunge la sincronizzazione cloud solo se la attivi.",
+  "ctx_p2": "<strong>Obiettivo:</strong> un unico posto per registrare i trade, vedere statistiche reali, tenere sotto controllo il rischio e rivedere le decisioni con l'AI, mantenendo il controllo dei propri dati.",
+  "pipe0": "Inserimento trade",
+  "pipe1": "Screenshot",
+  "pipe2": "Prezzo live",
+  "pipe3": "PnL",
+  "pipe4": "Risk Guard",
+  "pipe5": "Revisione AI",
+  "sec_test": "Giro rapido",
+  "test_title": "Come provarlo",
+  "s1t": "Apri la demo",
+  "s1d": "La modalità locale non richiede un account: trade, screenshot e impostazioni restano nel tuo browser.",
+  "s2t": "Aggiungi un trade",
+  "s2d": "Long o short, motivo dell'uscita e uno screenshot incollato con Ctrl+V o caricato.",
+  "s3t": "Leggi le statistiche",
+  "s3d": "Win rate, profit factor, curva del capitale, calendario e revisione mensile.",
+  "s4t": "Fai un backup",
+  "s4d": "Esporta in JSON o CSV. La sincronizzazione cloud tramite Supabase è facoltativa.",
+  "sec_feat": "Funzionalità",
+  "feat_title": "Cosa fa il diario",
+  "f1t": "PnL automatico",
+  "f1d": "Posizioni long e short, rendimento in percentuale e medie calcolati per te.",
+  "f2t": "Prezzi di mercato live",
+  "f2d": "API pubbliche di Binance, Bybit, OKX e Kraken.",
+  "f3t": "Screenshot",
+  "f3d": "Allega immagini dei grafici ai trade con incolla o caricamento.",
+  "f4t": "Dashboard statistiche",
+  "f4d": "Win rate, profit factor, curva del capitale, calendario e revisione mensile.",
+  "f5t": "Prop Risk Guard",
+  "f5d": "Stop giornaliero, limiti di perdita della firm e STOP DAY che blocca nuovi ingressi dopo una soglia di perdita.",
+  "f6t": "Revisione AI opzionale",
+  "f6d": "Revisione dei trade tramite Groq, OpenAI o Claude, configurata sul backend.",
+  "f7t": "Privacy by design",
+  "f7d": "Modalità locale di default. Il cloud usa Row Level Security e un bucket privato.",
+  "f8t": "Hub di studio e sistema",
+  "f8d": "Trading System hub, Learning hub con appunti di studio e guida alle prop firm.",
+  "sec_arch": "Stack",
+  "arch_title": "Architettura e ingegneria",
+  "arch_desc": "Frontend senza framework e backend su Supabase. I segreti non vengono mai committati: nel browser solo chiavi pubbliche, i token restano lato server.",
+  "sec_res": "In numeri",
+  "res_title": "In sintesi",
+  "r1n": "4",
+  "r1l": "fonti dati degli exchange",
+  "r2n": "2",
+  "r2l": "modalità: locale e cloud",
+  "r3n": "11",
+  "r3l": "radio integrate",
+  "r4n": "MIT",
+  "r4l": "licenza open source",
+  "note_t": "Nota onesta",
+  "note_d": "Strumento educativo e di analisi personale. Non fornisce consulenza finanziaria né segnali di trading e non promette profitti. Il trading, soprattutto con la leva, comporta rischi.",
+  "sec_author": "Autore",
+  "author_p": "Progettato e realizzato da <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+ }
+};
+
+const store = {get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const root = document.documentElement;
+
+function applyLang(lang){
+  if(!i18n[lang]) lang='cs';
+  const t = i18n[lang];
+  root.setAttribute('data-lang',lang); root.setAttribute('lang',lang==='uk'?'uk':lang);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+  document.querySelectorAll('[data-lang]').forEach(b=>{ if(b.classList.contains('lang-btn')) b.classList.toggle('active',b.getAttribute('data-lang')===lang);});
+  store.set('aitrading-lang',lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.getAttribute('data-lang'))));
+
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const next = root.getAttribute('data-theme')==='dark'?'light':'dark';
+  root.setAttribute('data-theme',next); store.set('aitrading-theme',next);
+});
+
+const audioBtn=document.getElementById('audioBtn'), bgMusic=document.getElementById('bgMusic');
+audioBtn.addEventListener('click',()=>{
+  if(bgMusic.paused){ bgMusic.play().then(()=>audioBtn.classList.add('playing')).catch(()=>{}); }
+  else { bgMusic.pause(); audioBtn.classList.remove('playing'); }
+});
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+
+root.setAttribute('data-theme', store.get('aitrading-theme','dark')==='light'?'light':'dark');
+applyLang(store.get('aitrading-lang','cs'));
+
+(function(){
+  if(window.matchMedia('(hover:hover)').matches){
+    const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'},{passive:true});
+    (function a(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+    document.querySelectorAll('a,button,.glass,.pill,.tag').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width=ring.style.height='60px'});el.addEventListener('mouseleave',()=>{ring.style.width=ring.style.height='40px'})});
+  }
+  const pc=document.getElementById('particles'),cs=['#5fbf8f','#e0b45a','#ef7f45','#3fc1c0','#4ea8de','#9b86f0','#e5648f'];
+  for(let i=0;i<18;i++){const p=document.createElement('div');p.className='particle';p.style.setProperty('--c',cs[i%cs.length]);p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*15+'s';p.style.animationDuration=(10+Math.random()*10)+'s';pc.appendChild(p)}
+})();
+
+
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  // scroll progress fallback
+  if(!CSS.supports('animation-timeline:scroll()')){
+    const pr=document.querySelector('.progress');
+    const f=()=>{const h=document.documentElement;pr.style.transform='scaleX('+(h.scrollTop/(h.scrollHeight-h.clientHeight||1))+')'};
+    addEventListener('scroll',f,{passive:true});f();
+  }
+  if(reduce||!fine) return;
+  // spotlight + 3D tilt
+  document.querySelectorAll('.glass').forEach(el=>{
+    el.addEventListener('pointermove',e=>{
+      const r=el.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      el.style.setProperty('--mx',x+'px');el.style.setProperty('--my',y+'px');
+      const rx=((y/r.height)-.5)*-6,ry=((x/r.width)-.5)*6;
+      el.style.transform='perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)';
+    });
+    el.addEventListener('pointerleave',()=>{el.style.transform=''});
+  });
+  // magnetic nav buttons
+  document.querySelectorAll('.icon-btn').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.25)+'px)'});
+    b.addEventListener('pointerleave',()=>{b.style.transform=''});
+  });
+  // hero parallax
+  const hero=document.querySelector('.hero .wrap');
+  addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);document.querySelectorAll('.blob-3,.blob-4').forEach((b,i)=>{b.style.translate=(x*(i?-60:60))+'px '+(y*(i?-60:60))+'px'})},{passive:true});
+})();
+</script>
+</body>
+</html>
