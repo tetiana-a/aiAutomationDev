@@ -151,7 +151,7 @@
 }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Carlito:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root{--tt:background .5s cubic-bezier(.4,0,.2,1),color .5s cubic-bezier(.4,0,.2,1),border-color .5s cubic-bezier(.4,0,.2,1)}
 [data-theme="dark"]{--bg:#080808;--bg2:#101010;--bg3:#181818;--line:rgba(255,255,255,.07);--line2:rgba(255,255,255,.13);--txt:#efefef;--txt2:#909090;--txt3:#454545;--tag:rgba(255,255,255,.05);--hov:rgba(255,255,255,.03);--accent:#f59e0b}
@@ -447,8 +447,8 @@ body{font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rend
 .status-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.15);flex-shrink:0}
 
 /* ===== unified type system: one family (Inter) outside the hero ===== */
-body,.sec,#nav,.mobile-menu,footer,.music-fab,.faq-item{font-family:'Inter',system-ui,sans-serif;font-feature-settings:'cv11','ss01','tnum'}
-.sec *,#nav *,.mobile-menu *,footer *,.music-fab *{font-family:'Inter',system-ui,sans-serif!important}
+body,.sec,#nav,.mobile-menu,footer,.music-fab,.faq-item{font-family:'Calibri Light','Calibri','Carlito','Segoe UI',system-ui,sans-serif;font-feature-settings:'cv11','ss01','tnum'}
+.sec *,#nav *,.mobile-menu *,footer *,.music-fab *{font-family:'Calibri Light','Calibri','Carlito','Segoe UI',system-ui,sans-serif!important}
 .sec-title,.job-title,.p-ttl,.folder-title,.faq-q,.c-name,.ft-name{font-weight:500;letter-spacing:-.015em}
 .a-lbl,.c-blk-lbl,.sec-num,.p-idx,.p-tag,.t-tag,.mini-tag,.job-date,.c-iss,.nav-links a,.p-btn,.mini-btn,.lang-btn,.pdf-btn,.music-lbl,.folder-sub,.pat-head,.sk-num{font-weight:500;letter-spacing:.08em}
 .sec-title{font-size:clamp(22px,2.4vw,30px)}
@@ -471,7 +471,7 @@ body,.sec,#nav,.mobile-menu,footer,.music-fab,.faq-item{font-family:'Inter',syst
 
 /* ===== mobile hardening ===== */
 img,video,svg{max-width:100%}
-.sec *{min-width:0;overflow-wrap:anywhere}
+.sec *{min-width:0;overflow-wrap:break-word}
 @media(max-width:700px){
   .c-blk,.case-box *{max-width:100%}
   .job-date{white-space:normal}
@@ -482,6 +482,30 @@ img,video,svg{max-width:100%}
   .nav-links{display:none}
 }
 @media(max-width:380px){.wrap{padding:0 16px}.p-btn{padding:8px 10px}}
+
+/* ===== Calibri Light system ===== */
+body,.sec,.sec *{font-weight:300}
+.sec strong,.sec b,.sec-title,.job-title,.p-ttl,.folder-title,.faq-q,.c-name,.ft-name,.mini-title,.value-title,.sk-name{font-weight:400}
+body{font-size:16px;letter-spacing:.005em}
+.a-cell p,.lead{font-size:15px}.p-desc,.job-list li,.c-list li,.faq-a,.case-tag{font-size:14px}
+.sec-title{font-size:clamp(26px,3vw,36px);letter-spacing:-.01em}
+/* ===== glass panels ===== */
+.a-cell,.job-item,.p-card,.c-card,.value-card,.faq-item,.license-box,.edu-box,.mini-item,.case-box,.c-blk{
+  background:linear-gradient(145deg,color-mix(in srgb,var(--txt) 7%,transparent),color-mix(in srgb,var(--txt) 2%,transparent));
+  border:1px solid color-mix(in srgb,var(--txt) 14%,transparent);
+  box-shadow:inset 0 1px 0 color-mix(in srgb,var(--txt) 10%,transparent),0 18px 40px -28px rgba(0,0,0,.6);
+  backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-radius:14px;
+  transition:border-color .35s,transform .35s}
+.a-cell:hover,.p-card:hover,.c-card:hover,.value-card:hover,.faq-item:hover{border-color:color-mix(in srgb,var(--txt) 28%,transparent)}
+.case-box .c-blk{border-radius:10px}
+/* ===== staged text reveal (both directions) ===== */
+.tx{opacity:0;transform:translateY(16px);filter:blur(5px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1),filter .6s;transition-delay:0s}
+.tx-in .tx{opacity:1;transform:none;filter:none;transition-delay:calc(var(--i,0)*70ms)}
+.tx-up .tx{transform:translateY(-16px)}
+.tx-in.tx-up .tx{transform:none}
+@media(prefers-reduced-motion:reduce){.tx{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}}
+.job-list li,.c-list li,.app-item{display:block;position:relative;padding-left:18px}
+.job-list li::before,.c-list li::before,.app-item::before{position:absolute;left:0;top:.15em;margin:0}
 </style>
 <script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -2711,6 +2735,36 @@ musicBtn.addEventListener('click',async()=>{
     musicBtn.dataset.on='true';musicLbl.textContent='On';localStorage.setItem('tk_music','on');
   }
 });
+</script>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window))return;
+  var BLOCK='.sec .sec-head,.a-cell,.job-item,.p-card,.c-card,.value-card,.faq-item,.mini-item,.case-box,.license-box';
+  var TEXT='p,li,h2,h3,h4,.a-lbl,.c-blk-lbl,.sec-num,.p-idx,.p-tags,.p-btns,.mini-title,.mini-desc,.mini-tags,.c-iss,.c-name,.c-desc,.value-title,.value-desc,.job-title,.job-company,.job-date,.c-item,.app-item,.tech-tags,.stack-wrap,.edu-box,.case-kicker';
+  var lastY=scrollY,dir=1;
+  addEventListener('scroll',function(){dir=scrollY>=lastY?1:-1;lastY=scrollY},{passive:true});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    var b=e.target;
+    if(e.isIntersecting){b.classList.add('tx-in')}
+    else{b.classList.toggle('tx-up',e.boundingClientRect.top<0);b.classList.remove('tx-in')}
+  })},{threshold:0,rootMargin:'0px 0px -8% 0px'});
+  function prep(root){
+    (root||document).querySelectorAll(BLOCK).forEach(function(b){
+      if(b.closest('.hero'))return;
+      var i=0;
+      b.querySelectorAll(TEXT).forEach(function(t){
+        if(t.classList.contains('tx'))return;
+        var p=t.parentElement.closest('.tx');
+        if(p&&b.contains(p))return;
+        if(t.closest(BLOCK)!==b)return;
+        t.classList.add('tx');t.style.setProperty('--i',Math.min(i++,12));
+      });
+      if(!b.__tx){b.__tx=1;io.observe(b)}
+    });
+  }
+  function boot(){prep();var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(prep,120)}).observe(document.body,{childList:true,subtree:true})}
+  document.readyState==='loading'?addEventListener('DOMContentLoaded',boot):boot();
+})();
 </script>
 </body>
 </html>
