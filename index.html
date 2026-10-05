@@ -419,6 +419,32 @@ footer{border-top:1px solid var(--line);padding:52px 0}
 .faq-item:hover{background:var(--bg2)}
 .faq-q{font-family:'Playfair Display',serif;font-size:19px;font-weight:400;color:var(--txt);margin-bottom:10px}
 .faq-a{font-size:14px;color:var(--txt2);line-height:1.75;max-width:760px}
+
+/* ===== refined typography & glass frames (hero untouched) ===== */
+body{font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.sec-title{font-size:clamp(24px,2.8vw,34px);letter-spacing:-.02em}
+.sec-num{font-size:9px;letter-spacing:.16em}
+.a-cell p{font-size:13.5px;line-height:1.75}
+.app-item{font-size:13px}.edu-box{font-size:11px}
+.job-title{font-size:16px}.job-company{font-size:12px}.job-list li{font-size:12.5px}
+.case-ttl{font-size:clamp(20px,2.4vw,28px)}.case-tag{font-size:13px}
+.sk-name{font-size:13px}.sk-desc{font-size:12px}
+.p-ttl{font-size:16px}.p-desc{font-size:12.5px}.folder-title{font-size:16px}
+.mini-title{font-size:12.5px}.mini-desc{font-size:11.5px}
+.value-title{font-size:13px}.value-desc{font-size:12px}
+.faq-q{font-size:16px}.faq-a{font-size:13px}
+.ft-name{font-size:19px}
+.lead{font-size:13.5px}
+.a-cell,.job-item,.p-card,.c-card,.value-card,.faq-item,.license-box,.edu-box,.mini-item,.sk-row,.folder-hdr,#prodFolder{
+  background:color-mix(in srgb,var(--bg2) 55%,transparent);
+  border:1px solid color-mix(in srgb,var(--txt) 12%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:6px}
+.about-grid{gap:14px;border:0}.proj-grid{gap:14px}
+.status-note{display:flex;align-items:center;gap:12px;margin:0 0 14px;padding:14px 20px;border-radius:6px;
+  background:color-mix(in srgb,var(--bg2) 55%,transparent);border:1px solid color-mix(in srgb,var(--txt) 14%,transparent);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.status-note p{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--txt2);line-height:1.6;margin:0}
+.status-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.15);flex-shrink:0}
 </style>
 <script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -433,7 +459,6 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <a href="#experience" data-i18n="nav_exp">Experience</a>
       <a href="#skills" data-i18n="nav_skills">Skills</a>
       <a href="#certs" data-i18n="nav_certs">Certs</a>
-      <a href="#case" data-i18n="nav_case">Case</a>
       <a href="#projects" data-i18n="nav_projects">Projects</a>
       <a href="#otherwork" class="minor" data-i18n="nav_otherwork">Other Experience</a>
       <a href="#faq" class="minor">FAQ</a>
@@ -460,7 +485,6 @@ footer{border-top:1px solid var(--line);padding:52px 0}
   <a href="#experience" data-i18n="nav_exp" onclick="closeMob()">Experience</a>
   <a href="#skills" data-i18n="nav_skills" onclick="closeMob()">Skills</a>
   <a href="#certs" data-i18n="nav_certs" onclick="closeMob()">Certs</a>
-  <a href="#case" data-i18n="nav_case" onclick="closeMob()">Case</a>
   <a href="#projects" data-i18n="nav_projects" onclick="closeMob()">Projects</a>
   <a href="#otherwork" class="minor" data-i18n="nav_otherwork" onclick="closeMob()">Other Experience</a>
   <a href="#faq" class="minor" onclick="closeMob()">FAQ</a>
@@ -515,6 +539,7 @@ footer{border-top:1px solid var(--line);padding:52px 0}
       <span class="sec-num">01</span>
       <h2 class="sec-title" data-i18n="about_title">About me</h2>
     </div>
+        <div class="status-note rv rv-d1"><span class="status-dot"></span><p data-i18n="status_note">I have completed my studies and am currently working on a project.</p></div>
     <div class="about-grid">
       <div class="a-cell rv rv-d1">
         <div class="a-lbl" data-i18n="about_who_lbl">Who I am</div>
@@ -780,88 +805,10 @@ footer{border-top:1px solid var(--line);padding:52px 0}
     </div>
   </div>
 </section>
-<section class="sec" id="case">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <span class="sec-num">05</span>
-      <h2 class="sec-title" data-i18n="case_sec_title">Featured Case</h2>
-    </div>
-    <div class="case-box rv rv-d1">
-      <div class="case-hdr">
-        <div>
-          <div class="case-kicker" data-i18n="case_kicker">AI Sales Ecosystem · n8n + Claude + Zoho CRM + Telegram</div>
-          <h3 class="case-ttl" data-i18n="case_title">GrowthLab AI<br>Sales Automation Ecosystem</h3>
-          <p class="case-tag" data-i18n="case_tagline">Company couldn't understand why leads were lost. Built AI ecosystem that qualifies leads automatically, analyzes all dialogues, and sends CEO reports to Telegram — 3 interconnected workflows running 24/7.</p>
-        </div>
-        <div class="stack-wrap">
-          <span class="st">n8n</span><span class="st">Anthropic Claude</span><span class="st">Zoho CRM</span>
-          <span class="st">Telegram Bot</span><span class="st">Google Sheets</span><span class="st">Postgres Memory</span><span class="st">AI Agents</span>
-        </div>
-      </div>
-      <div class="case-body">
-        <div class="c-blk">
-          <div class="c-blk-lbl" data-i18n="case_prob_lbl">Problem</div>
-          <ul class="c-list">
-            <li data-i18n="case_p1">Leads processed manually — high risk of loss</li>
-            <li data-i18n="case_p2">No systematic dialogue analysis</li>
-            <li data-i18n="case_p3">CEO had no quick report on funnel quality</li>
-            <li data-i18n="case_p4">Bottlenecks invisible until too late</li>
-          </ul>
-        </div>
-        <div class="c-blk">
-          <div class="c-blk-lbl" data-i18n="case_sol_lbl">Solution · 3 workflows</div>
-          <div class="pipe"><div class="pn" data-i18n="p_chat">Chat</div><div class="pa">→</div><div class="pn">AI Agent</div><div class="pa">→</div><div class="pn">BANT</div><div class="pa">→</div><div class="pn">Zoho CRM</div></div>
-          <div class="pipe"><div class="pn">Dialogues</div><div class="pa">→</div><div class="pn">Postgres</div><div class="pa">→</div><div class="pn">AI Analysis</div><div class="pa">→</div><div class="pn">Sheets</div></div>
-          <div class="pipe"><div class="pn">Zoho</div><div class="pa">→</div><div class="pn">AI Analytics</div><div class="pa">→</div><div class="pn">CEO Report</div><div class="pa">→</div><div class="pn">Telegram</div></div>
-        </div>
-        <div class="c-blk">
-          <div class="c-blk-lbl" data-i18n="case_proc_lbl">Process</div>
-          <ul class="c-list">
-            <li data-i18n="case_pr1">Workflow 1: AI chatbot conducts BANT qualification</li>
-            <li data-i18n="case_pr2">Collects business, budget, authority, need, timeline</li>
-            <li data-i18n="case_pr3">Workflow 2: Analyzes all dialogues via Postgres Memory</li>
-            <li data-i18n="case_pr4">Detects agent errors, client problems, success patterns</li>
-            <li data-i18n="case_pr5">Workflow 3: CEO analytics of entire CRM funnel</li>
-            <li data-i18n="case_pr6">Auto-generates HOT/WARM/COLD segmentation</li>
-          </ul>
-        </div>
-        <div class="c-blk">
-          <div class="c-blk-lbl" data-i18n="case_res_lbl">Results</div>
-          <div class="res-grid">
-            <div class="r-blk">
-              <div class="r-ttl" data-i18n="res_quant">Quantitative</div>
-              <ul class="c-list">
-                <li><strong>100% leads</strong></li>
-                <li data-i18n="res_q1">Auto-qualified</li>
-                <li data-i18n="res_q2">Zero manual work</li>
-              </ul>
-            </div>
-            <div class="r-blk">
-              <div class="r-ttl" data-i18n="res_qual">Qualitative</div>
-              <ul class="c-list">
-                <li data-i18n="res_ql1">Full transparency</li>
-                <li data-i18n="res_ql2">Real-time insights</li>
-                <li data-i18n="res_ql3">CEO visibility</li>
-              </ul>
-            </div>
-            <div class="r-blk">
-              <div class="r-ttl" data-i18n="res_biz">Business</div>
-              <ul class="c-list">
-                <li data-i18n="res_b1">Scale-ready</li>
-                <li data-i18n="res_b2">Data-driven</li>
-                <li data-i18n="res_b3">Monetization-ready</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <section class="sec" id="projects">
   <div class="wrap">
     <div class="sec-head rv">
-      <span class="sec-num">06</span>
+      <span class="sec-num">05</span>
       <h2 class="sec-title" data-i18n="proj_title">All Projects</h2>
     </div>
     <div class="proj-grid" id="proj-grid"></div>
@@ -1211,6 +1158,7 @@ en:{
   hero_desc:"I design and build production-ready AI automations, voice agents, and full-stack AI products — from n8n pipelines and AI phone agents to SaaS backends with PostgreSQL. From idea to live system, systematically and predictably.",
   stat_projects:"Projects",stat_certs:"Certificates",stat_saas:"Live SaaS",stat_first:"AI-first approach",
   about_title:"About me",about_who_lbl:"Who I am",
+  status_note:"I have completed my studies and am currently working on a project.",
   about_who_p1:"<strong>Tetiana Kotolup</strong> — IT Specialist · Automation and Full-Stack. I build n8n automations, AI voice agents, Telegram AI bots, and full-stack AI SaaS products with Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude and React.",
   edu_lbl:"Education",edu_degree:"Junior Specialist Diploma",
   edu_school:"Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician",
@@ -1462,6 +1410,7 @@ uk:{
   hero_desc:"Проєктую та будую production-ready AI автоматизації, голосових агентів та full-stack AI продукти — від n8n пайплайнів і AI телефонних агентів до SaaS бекендів з PostgreSQL. Від ідеї до живої системи — системно та прогнозовано.",
   stat_projects:"Проектів",stat_certs:"Сертифікатів",stat_saas:"Live SaaS",stat_first:"AI-first підхід",
   about_title:"Про мене",about_who_lbl:"Хто я",
+  status_note:"Навчання завершено — зараз працюю над проєктом.",
   about_who_p1:"<strong>Тетяна Котолуп</strong> — IT-спеціаліст · автоматизація та full-stack. Будую n8n автоматизації, AI голосових агентів, Telegram AI боти та full-stack AI SaaS продукти з Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude та React.",
   edu_lbl:"Освіта",edu_degree:"Диплом молодшого спеціаліста",
   edu_school:"Черкаський державний бізнес-коледж · 2017<br>Спеціальність: Технік комп'ютерних систем",
@@ -1713,6 +1662,7 @@ cs:{
   hero_desc:"Navrhuji a vytvářím produkční AI automatizace, hlasové agenty a full-stack AI produkty — od n8n pipelines a AI telefonních agentů po SaaS backendy s PostgreSQL. Od nápadu po živý systém — systematicky a předvídatelně.",
   stat_projects:"Projektů",stat_certs:"Certifikátů",stat_saas:"Live SaaS",stat_first:"AI-first přístup",
   about_title:"O mně",about_who_lbl:"Kdo jsem",
+  status_note:"Studium jsem úspěšně dokončila a nyní pracuji na projektu.",
   about_who_p1:"<strong>Tetiana Kotolup</strong> — IT specialista · automatizace a full-stack. Vytvářím n8n automatizace, AI hlasové agenty, Telegram AI boty a full-stack AI SaaS produkty s Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude a React.",
   edu_lbl:"Vzdělání",edu_degree:"Diplom mladšího specialisty",
   edu_school:"Čerkaská státní obchodní škola · 2017<br>Specializace: Technik počítačových systémů",
@@ -1964,6 +1914,7 @@ it:{
   hero_desc:"Progetto e sviluppo automazioni AI pronte per la produzione, agenti vocali e prodotti AI full-stack — dalle pipeline n8n e agenti telefonici AI ai backend SaaS con PostgreSQL. Dall'idea al sistema live, in modo sistematico e prevedibile.",
   stat_projects:"Progetti",stat_certs:"Certificati",stat_saas:"SaaS Live",stat_first:"Approccio AI-first",
   about_title:"Chi sono",about_who_lbl:"Chi sono",
+  status_note:"Ho completato gli studi e al momento lavoro a un progetto.",
   about_who_p1:"<strong>Tetiana Kotolup</strong> — IT Specialist · Automazione e Full-Stack. Sviluppo automazioni n8n, agenti vocali AI, bot AI per Telegram e prodotti AI SaaS full-stack con Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude e React.",
   edu_lbl:"Istruzione",edu_degree:"Diploma di Specialista Junior",
   edu_school:"Cherkasy State Business College · 2017<br>Specializzazione: Tecnico di Sistemi Informatici",
@@ -2216,6 +2167,7 @@ i18n.ru={
   hero_desc:"Проектирую и создаю готовые к работе AI-автоматизации, голосовых агентов и full-stack AI-продукты — от n8n-процессов и телефонных AI-агентов до SaaS-бэкендов с PostgreSQL. От идеи до работающей системы — системно и предсказуемо.",
   stat_projects:"Проектов",stat_certs:"Сертификатов",stat_saas:"Рабочих SaaS",stat_first:"AI-first подход",
   about_title:"Обо мне",about_who_lbl:"Кто я",
+  status_note:"Обучение завершено — сейчас работаю над проектом.",
   about_who_p1:"<strong>Татьяна Котолуп</strong> — IT-специалист · автоматизация и full-stack. Создаю автоматизации в n8n, голосовых AI-агентов, Telegram AI-ботов и full-stack AI SaaS-продукты с использованием Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude и React.",
   edu_lbl:"Образование",edu_degree:"Диплом младшего специалиста",
   edu_school:"Черкасский государственный бизнес-колледж · 2017<br>Специальность: Техник компьютерных систем",
