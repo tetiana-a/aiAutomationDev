@@ -506,6 +506,26 @@ body{font-size:16px;letter-spacing:.005em}
 @media(prefers-reduced-motion:reduce){.tx{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}}
 .job-list li,.c-list li,.app-item{display:block;position:relative;padding-left:18px}
 .job-list li::before,.c-list li::before,.app-item::before{position:absolute;left:0;top:.15em;margin:0}
+
+/* ===== borderless glass: 90% / 95% transparent ===== */
+.a-cell,.job-item,.p-card,.c-card,.value-card,.faq-item,.mini-item,.case-box,.status-note,.folder-hdr,#prodFolder,.sk-row{
+  background:color-mix(in srgb,var(--txt) 10%,transparent)!important;border:0!important;box-shadow:none!important;outline:0}
+.edu-box,.license-box,.c-blk,.case-box .c-blk,.case-hdr,.pat-head{
+  background:color-mix(in srgb,var(--txt) 5%,transparent)!important;border:0!important;box-shadow:none!important}
+.about-grid,.proj-grid,.case-box,.case-box *{border-color:transparent!important}
+.job-item,.faq-item,.mini-item{margin-bottom:10px}
+.a-cell:hover,.p-card:hover,.c-card:hover,.value-card:hover,.faq-item:hover,.job-item:hover{background:color-mix(in srgb,var(--txt) 13%,transparent)!important}
+/* ===== eyebrow pill: slow colour drift at 85% transparency ===== */
+@property --hue{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes eyeHue{to{--hue:360deg}}
+@keyframes eyeShift{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+.hero-eyebrow{border:0!important;position:relative;overflow:hidden;
+  background:linear-gradient(90deg,rgba(52,211,153,.15),rgba(96,165,250,.15),rgba(167,139,250,.15),rgba(244,114,182,.15),rgba(251,191,36,.15),rgba(52,211,153,.15))!important;
+  background-size:300% 100%!important;animation:fadeUp .7s .3s both,eyeShift 14s linear infinite!important;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.hero-eyebrow .eye-txt{color:color-mix(in srgb,var(--txt) 78%,transparent)}
+@media(prefers-reduced-motion:reduce){.hero-eyebrow{animation:fadeUp .7s .3s both!important}}
+.case-box .c-blk,.case-box .case-hdr,.case-box .c-grid,.case-box>*{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 </style>
 <script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
