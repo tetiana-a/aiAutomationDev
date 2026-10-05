@@ -151,7 +151,7 @@
 }
 </script>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--tt:background .5s cubic-bezier(.4,0,.2,1),color .5s cubic-bezier(.4,0,.2,1),border-color .5s cubic-bezier(.4,0,.2,1)}
 [data-theme="dark"]{--bg:#080808;--bg2:#101010;--bg3:#181818;--line:rgba(255,255,255,.07);--line2:rgba(255,255,255,.13);--txt:#efefef;--txt2:#909090;--txt3:#454545;--tag:rgba(255,255,255,.05);--hov:rgba(255,255,255,.03);--accent:#f59e0b}
@@ -445,10 +445,34 @@ body{font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rend
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .status-note p{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--txt2);line-height:1.6;margin:0}
 .status-dot{width:7px;height:7px;border-radius:50%;background:#34d399;box-shadow:0 0 0 4px rgba(52,211,153,.15);flex-shrink:0}
+
+/* ===== unified type system: one family (Inter) outside the hero ===== */
+body,.sec,#nav,.mobile-menu,footer,.music-fab,.faq-item{font-family:'Inter',system-ui,sans-serif;font-feature-settings:'cv11','ss01','tnum'}
+.sec *,#nav *,.mobile-menu *,footer *,.music-fab *{font-family:'Inter',system-ui,sans-serif!important}
+.sec-title,.job-title,.p-ttl,.folder-title,.faq-q,.c-name,.ft-name{font-weight:500;letter-spacing:-.015em}
+.a-lbl,.c-blk-lbl,.sec-num,.p-idx,.p-tag,.t-tag,.mini-tag,.job-date,.c-iss,.nav-links a,.p-btn,.mini-btn,.lang-btn,.pdf-btn,.music-lbl,.folder-sub,.pat-head,.sk-num{font-weight:500;letter-spacing:.08em}
+.sec-title{font-size:clamp(22px,2.4vw,30px)}
+/* ===== scroll-driven motion ===== */
+.scroll-bar{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#34d399,#60a5fa,#a78bfa);z-index:10001;pointer-events:none}
+@supports (animation-timeline:view()){
+  @keyframes sbar{to{transform:scaleX(1)}}
+  .scroll-bar{animation:sbar linear both;animation-timeline:scroll(root)}
+  @keyframes cardIn{from{opacity:0;transform:translateY(46px) scale(.97);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+  @keyframes titleIn{from{opacity:0;transform:translateX(-34px);letter-spacing:.04em}to{opacity:1;transform:none}}
+  @keyframes lineIn{from{opacity:.0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes floatY{from{transform:translateY(40px)}to{transform:translateY(-40px)}}
+  .sec .sec-head,.p-card,.a-cell,.job-item,.c-card,.value-card,.faq-item,.mini-item,.folder-hdr,.license-box,.sk-table tr{
+    animation:cardIn both cubic-bezier(.2,.7,.2,1);animation-timeline:view();animation-range:entry 0% entry 55%}
+  .sec-title{animation:titleIn both cubic-bezier(.2,.7,.2,1);animation-timeline:view();animation-range:entry 0% entry 60%}
+  .rv{opacity:1;transform:none;transition:none}
+  .p-card::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(600px 160px at 50% -20%,rgba(255,255,255,.07),transparent)}
+}
+@media(prefers-reduced-motion:reduce){.scroll-bar{display:none}.sec *{animation:none!important}}
 </style>
 <script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+<div class="scroll-bar"></div>
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 <nav id="nav">
@@ -529,7 +553,6 @@ body{font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rend
       <div><div class="stat-n">19</div><div class="stat-l" data-i18n="stat_projects">Projects</div></div>
       <div><div class="stat-n">9</div><div class="stat-l" data-i18n="stat_certs">Certificates</div></div>
       <div><div class="stat-n">3</div><div class="stat-l" data-i18n="stat_cases">Case studies</div></div>
-      <div><div class="stat-n">4</div><div class="stat-l" data-i18n="stat_langs">Languages · CZ EN RU UA</div></div>
     </div>
   </div>
 </section>
@@ -539,7 +562,6 @@ body{font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rend
       <span class="sec-num">01</span>
       <h2 class="sec-title" data-i18n="about_title">About me</h2>
     </div>
-        <div class="status-note rv rv-d1"><span class="status-dot"></span><p data-i18n="status_note">I have completed my studies and am currently working on a project.</p></div>
     <div class="about-grid">
       <div class="a-cell rv rv-d1">
         <div class="a-lbl" data-i18n="about_who_lbl">Who I am</div>
@@ -1158,7 +1180,6 @@ en:{
   hero_desc:"I design and build production-ready AI automations, voice agents, and full-stack AI products — from n8n pipelines and AI phone agents to SaaS backends with PostgreSQL. From idea to live system, systematically and predictably.",
   stat_projects:"Projects",stat_certs:"Certificates",stat_saas:"Live SaaS",stat_first:"AI-first approach",
   about_title:"About me",about_who_lbl:"Who I am",
-  status_note:"I have completed my studies and am currently working on a project.",
   about_who_p1:"<strong>Tetiana Kotolup</strong> — IT Specialist · Automation and Full-Stack. I build n8n automations, AI voice agents, Telegram AI bots, and full-stack AI SaaS products with Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude and React.",
   edu_lbl:"Education",edu_degree:"Junior Specialist Diploma",
   edu_school:"Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician",
@@ -1233,7 +1254,6 @@ en:{
   prod_folder_badge:"+{n}",
   badge_case:"Case study",
   stat_cases:"Case studies",
-  stat_langs:"Languages · CZ EN RU UA",
   ow_title:"Other Professional Experience",
   ow_lead:"Before and alongside IT, a track record of reliable, hands-on work — production, logistics, and customer-facing roles in both the Czech Republic and Ukraine.",
   ow_folder_title:"Full work history",
@@ -1410,7 +1430,6 @@ uk:{
   hero_desc:"Проєктую та будую production-ready AI автоматизації, голосових агентів та full-stack AI продукти — від n8n пайплайнів і AI телефонних агентів до SaaS бекендів з PostgreSQL. Від ідеї до живої системи — системно та прогнозовано.",
   stat_projects:"Проектів",stat_certs:"Сертифікатів",stat_saas:"Live SaaS",stat_first:"AI-first підхід",
   about_title:"Про мене",about_who_lbl:"Хто я",
-  status_note:"Навчання завершено — зараз працюю над проєктом.",
   about_who_p1:"<strong>Тетяна Котолуп</strong> — IT-спеціаліст · автоматизація та full-stack. Будую n8n автоматизації, AI голосових агентів, Telegram AI боти та full-stack AI SaaS продукти з Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude та React.",
   edu_lbl:"Освіта",edu_degree:"Диплом молодшого спеціаліста",
   edu_school:"Черкаський державний бізнес-коледж · 2017<br>Спеціальність: Технік комп'ютерних систем",
@@ -1485,7 +1504,6 @@ uk:{
   prod_folder_badge:"+{n}",
   badge_case:"Кейс",
   stat_cases:"Кейси",
-  stat_langs:"Мови · CZ EN RU UA",
   ow_title:"Досвід поза IT",
   ow_lead:"До та паралельно з IT — досвід надійної фізичної роботи: виробництво, логістика та робота з клієнтами в Чехії та Україні.",
   ow_folder_title:"Повна історія роботи",
@@ -1662,7 +1680,6 @@ cs:{
   hero_desc:"Navrhuji a vytvářím produkční AI automatizace, hlasové agenty a full-stack AI produkty — od n8n pipelines a AI telefonních agentů po SaaS backendy s PostgreSQL. Od nápadu po živý systém — systematicky a předvídatelně.",
   stat_projects:"Projektů",stat_certs:"Certifikátů",stat_saas:"Live SaaS",stat_first:"AI-first přístup",
   about_title:"O mně",about_who_lbl:"Kdo jsem",
-  status_note:"Studium jsem úspěšně dokončila a nyní pracuji na projektu.",
   about_who_p1:"<strong>Tetiana Kotolup</strong> — IT specialista · automatizace a full-stack. Vytvářím n8n automatizace, AI hlasové agenty, Telegram AI boty a full-stack AI SaaS produkty s Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude a React.",
   edu_lbl:"Vzdělání",edu_degree:"Diplom mladšího specialisty",
   edu_school:"Čerkaská státní obchodní škola · 2017<br>Specializace: Technik počítačových systémů",
@@ -1737,7 +1754,6 @@ cs:{
   prod_folder_badge:"+{n}",
   badge_case:"Případová studie",
   stat_cases:"Případové studie",
-  stat_langs:"Jazyky · CZ EN RU UA",
   ow_title:"Zkušenosti mimo IT",
   ow_lead:"Před IT i souběžně s ním — zkušenost se spolehlivou manuální prací: výroba, logistika a práce s klienty v Česku i na Ukrajině.",
   ow_folder_title:"Kompletní pracovní historie",
@@ -1914,7 +1930,6 @@ it:{
   hero_desc:"Progetto e sviluppo automazioni AI pronte per la produzione, agenti vocali e prodotti AI full-stack — dalle pipeline n8n e agenti telefonici AI ai backend SaaS con PostgreSQL. Dall'idea al sistema live, in modo sistematico e prevedibile.",
   stat_projects:"Progetti",stat_certs:"Certificati",stat_saas:"SaaS Live",stat_first:"Approccio AI-first",
   about_title:"Chi sono",about_who_lbl:"Chi sono",
-  status_note:"Ho completato gli studi e al momento lavoro a un progetto.",
   about_who_p1:"<strong>Tetiana Kotolup</strong> — IT Specialist · Automazione e Full-Stack. Sviluppo automazioni n8n, agenti vocali AI, bot AI per Telegram e prodotti AI SaaS full-stack con Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude e React.",
   edu_lbl:"Istruzione",edu_degree:"Diploma di Specialista Junior",
   edu_school:"Cherkasy State Business College · 2017<br>Specializzazione: Tecnico di Sistemi Informatici",
@@ -1989,7 +2004,6 @@ it:{
   prod_folder_badge:"+{n}",
   badge_case:"Caso studio",
   stat_cases:"Casi studio",
-  stat_langs:"Lingue · CZ EN RU UA",
   ow_title:"Altra Esperienza Professionale",
   ow_lead:"Prima e parallelamente all'IT, un percorso di lavoro affidabile e concreto — ruoli nella produzione, nella logistica e a contatto con i clienti sia in Repubblica Ceca che in Ucraina.",
   ow_folder_title:"Storia lavorativa completa",
@@ -2167,7 +2181,6 @@ i18n.ru={
   hero_desc:"Проектирую и создаю готовые к работе AI-автоматизации, голосовых агентов и full-stack AI-продукты — от n8n-процессов и телефонных AI-агентов до SaaS-бэкендов с PostgreSQL. От идеи до работающей системы — системно и предсказуемо.",
   stat_projects:"Проектов",stat_certs:"Сертификатов",stat_saas:"Рабочих SaaS",stat_first:"AI-first подход",
   about_title:"Обо мне",about_who_lbl:"Кто я",
-  status_note:"Обучение завершено — сейчас работаю над проектом.",
   about_who_p1:"<strong>Татьяна Котолуп</strong> — IT-специалист · автоматизация и full-stack. Создаю автоматизации в n8n, голосовых AI-агентов, Telegram AI-ботов и full-stack AI SaaS-продукты с использованием Node.js, TypeScript, PostgreSQL, OpenAI, Anthropic Claude и React.",
   edu_lbl:"Образование",edu_degree:"Диплом младшего специалиста",
   edu_school:"Черкасский государственный бизнес-колледж · 2017<br>Специальность: Техник компьютерных систем",
@@ -2243,7 +2256,6 @@ i18n.ru={
   prod_folder_badge:"+{n}",
   badge_case:"Кейс",
   stat_cases:"Кейса",
-  stat_langs:"Языка · CZ EN RU UA",
   ow_title:"Опыт вне IT",
   ow_lead:"До и параллельно с IT — опыт надёжной физической работы: производство, логистика и работа с клиентами в Чехии и Украине.",
   ow_folder_title:"Полная история работы",
