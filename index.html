@@ -468,6 +468,20 @@ body,.sec,#nav,.mobile-menu,footer,.music-fab,.faq-item{font-family:'Inter',syst
   .p-card::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(600px 160px at 50% -20%,rgba(255,255,255,.07),transparent)}
 }
 @media(prefers-reduced-motion:reduce){.scroll-bar{display:none}.sec *{animation:none!important}}
+
+/* ===== mobile hardening ===== */
+img,video,svg{max-width:100%}
+.sec *{min-width:0;overflow-wrap:anywhere}
+@media(max-width:700px){
+  .c-blk,.case-box *{max-width:100%}
+  .job-date{white-space:normal}
+  .job-item,.faq-item,.p-card,.a-cell,.c-card{padding:20px 18px}
+  .proj-grid{grid-template-columns:1fr}
+  .sk-table{display:block;overflow-x:auto}
+  .sec-title{font-size:22px}
+  .nav-links{display:none}
+}
+@media(max-width:380px){.wrap{padding:0 16px}.p-btn{padding:8px 10px}}
 </style>
 <script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
