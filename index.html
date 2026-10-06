@@ -526,6 +526,9 @@ body{font-size:16px;letter-spacing:.005em}
 .hero-eyebrow .eye-txt{color:color-mix(in srgb,var(--txt) 78%,transparent)}
 @media(prefers-reduced-motion:reduce){.hero-eyebrow{animation:fadeUp .7s .3s both!important}}
 .case-box .c-blk,.case-box .case-hdr,.case-box .c-grid,.case-box>*{background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.edu-box .edu-note{display:inline-block;font-size:12.5px;line-height:1.6;color:color-mix(in srgb,var(--txt) 82%,transparent)!important;font-weight:400}
+.edu-box [data-i18n="edu_lbl"]{color:color-mix(in srgb,var(--txt) 60%,transparent)!important;font-size:10px!important}
+.edu-box span{color:color-mix(in srgb,var(--txt) 72%,transparent)}
 </style>
 <script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -628,8 +631,8 @@ body{font-size:16px;letter-spacing:.005em}
           <div style="font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt3);margin-bottom:7px;" data-i18n="edu_lbl">Education</div>
           <strong style="color:var(--txt);font-size:12px;" data-i18n="edu_degree">Junior Specialist Diploma</strong><br>
           <span style="font-size:11px;" data-i18n="edu_school">Cherkasy State Business College · 2017<br>Specialization: Computer Systems Technician</span><br>
-          <span style="font-size:10px;color:var(--txt3);" data-i18n="edu_leader">— Group leader (starosta) throughout studies</span><br><br>
-          <span style="font-size:10px;color:var(--txt3);" data-i18n="edu_nostri">✓ Nostrified in CZ · 18-20-M/01 Informační technologie · KÚ JMK 2021</span>
+          <span class="edu-note" data-i18n="edu_leader">— Group leader (starosta) throughout studies</span><br><br>
+          <span class="edu-note" data-i18n="edu_nostri">✓ Nostrified in CZ · 18-20-M/01 Informační technologie · KÚ JMK 2021</span>
         </div>
         <p style="margin-top:12px;" data-i18n="about_who_p2">Completing the <strong style="color:var(--txt)">AI No-Code Developer</strong> program. 4 live AI SaaS products deployed in production.</p>
       </div>
