@@ -182,6 +182,14 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
 .pipe .s{animation:flow 2.4s ease-in-out infinite}
 @keyframes flow{0%,100%{transform:translateX(0);opacity:.5}50%{transform:translateX(5px);opacity:1}}
 @media(prefers-reduced-motion:reduce){.progress{display:none}.mesh{animation:none}.glass,.rv{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
+.ytv{padding:0;overflow:hidden;border-radius:18px;margin-top:22px}
+.ytv-btn{position:relative;display:block;width:100%;aspect-ratio:16/9;border:0;padding:0;background:#000;cursor:pointer}
+.ytv-btn img{width:100%;height:100%;object-fit:cover;opacity:.85;transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .4s}
+.ytv-btn:hover img{transform:scale(1.03);opacity:1}
+.ytv-btn iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.ytv-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(255,255,255,.28);transition:transform .3s}
+.ytv-btn:hover .ytv-play{transform:translate(-50%,-50%) scale(1.08)}
+.ytv-link{margin-top:14px;font-size:13px}.ytv-link a{color:var(--txt2)}.ytv-link a:hover{color:var(--txt)}
 </style>
 <script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -262,6 +270,16 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
       <span class="tx"><div class="lb" data-i18n="l_bot">Testovací bot</div><div class="ds" data-i18n="l_bot_d"></div></span>
       <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
   </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_vid">Video</div>
+  <h2 data-i18n="vid_title">Demo video</h2>
+  <div class="glass ytv"><button class="ytv-btn" data-yt="lIFXynnf2z0" aria-label="Play video">
+    <img src="https://i.ytimg.com/vi/lIFXynnf2z0/hqdefault.jpg" alt="AURELIUS demo video" loading="lazy">
+    <span class="ytv-play"><svg viewBox="0 0 24 24" width="24" height="24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
+  </button></div>
+  <p class="ytv-link"><a href="https://www.youtube.com/watch?v=lIFXynnf2z0" target="_blank" rel="noopener noreferrer" data-i18n="vid_open">Watch on YouTube ↗</a></p>
 </div></section>
 
 <section class="sec"><div class="wrap rv">
@@ -412,7 +430,10 @@ const i18n = {
   "note_t": "Honest note",
   "note_d": "Records, counters and scores shown in the demo are illustrative sample data. The agent does not bypass CAPTCHA, access controls or credentials: blocked sources are routed to manual review.",
   "sec_author": "Author",
-  "author_p": "Designed and built by <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+  "author_p": "Designed and built by <strong>Tetiana Kotolup</strong> — AI Automation Developer.",
+  "sec_vid": "Video",
+  "vid_title": "Demo video",
+  "vid_open": "Watch on YouTube ↗"
  },
  "cs": {
   "nav_back": "Zpět na portfolio",
@@ -483,7 +504,10 @@ const i18n = {
   "note_t": "Upřímná poznámka",
   "note_d": "Záznamy, počty a skóre v demu jsou ilustrativní ukázková data. Agent neobchází CAPTCHA, řízení přístupu ani přihlašovací údaje: blokované zdroje jdou k ruční kontrole.",
   "sec_author": "Autor",
-  "author_p": "Navrhla a postavila <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+  "author_p": "Navrhla a postavila <strong>Tetiana Kotolup</strong> — AI Automation Developer.",
+  "sec_vid": "Video",
+  "vid_title": "Ukázkové video",
+  "vid_open": "Přehrát na YouTube ↗"
  },
  "uk": {
   "nav_back": "Назад до портфоліо",
@@ -554,7 +578,10 @@ const i18n = {
   "note_t": "Чесна примітка",
   "note_d": "Записи, лічильники та оцінки в демо — ілюстративні приклади даних. Агент не обходить CAPTCHA, контроль доступу чи облікові дані: заблоковані джерела йдуть на ручну перевірку.",
   "sec_author": "Автор",
-  "author_p": "Розробила і побудувала <strong>Тетяна Котолуп</strong> — AI Automation Developer."
+  "author_p": "Розробила і побудувала <strong>Тетяна Котолуп</strong> — AI Automation Developer.",
+  "sec_vid": "Відео",
+  "vid_title": "Демо-відео",
+  "vid_open": "Дивитися на YouTube ↗"
  },
  "ru": {
   "nav_back": "Назад в портфолио",
@@ -625,7 +652,10 @@ const i18n = {
   "note_t": "Честная заметка",
   "note_d": "Записи, счётчики и оценки в демо — иллюстративные примеры данных. Агент не обходит CAPTCHA, контроль доступа и учётные данные: заблокированные источники уходят на ручную проверку.",
   "sec_author": "Автор",
-  "author_p": "Разработала и построила <strong>Татьяна Котолуп</strong> — AI Automation Developer."
+  "author_p": "Разработала и построила <strong>Татьяна Котолуп</strong> — AI Automation Developer.",
+  "sec_vid": "Видео",
+  "vid_title": "Демо-видео",
+  "vid_open": "Смотреть на YouTube ↗"
  },
  "it": {
   "nav_back": "Torna al portfolio",
@@ -696,7 +726,10 @@ const i18n = {
   "note_t": "Nota onesta",
   "note_d": "Record, contatori e punteggi mostrati nella demo sono dati di esempio illustrativi. L'agente non aggira CAPTCHA, controlli di accesso o credenziali: le fonti bloccate vanno in revisione manuale.",
   "sec_author": "Autore",
-  "author_p": "Progettato e realizzato da <strong>Tetiana Kotolup</strong> — AI Automation Developer."
+  "author_p": "Progettato e realizzato da <strong>Tetiana Kotolup</strong> — AI Automation Developer.",
+  "sec_vid": "Video",
+  "vid_title": "Video demo",
+  "vid_open": "Guarda su YouTube ↗"
  }
 };
 // Test bot URL: put the t.me link of the bot here and its card appears automatically.
@@ -775,6 +808,11 @@ applyLang(store.get('aurelius-lang','cs'));
   const hero=document.querySelector('.hero .wrap');
   addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);document.querySelectorAll('.blob-3,.blob-4').forEach((b,i)=>{b.style.translate=(x*(i?-60:60))+'px '+(y*(i?-60:60))+'px'})},{passive:true});
 })();
+</script>
+<script>
+document.addEventListener('click',function(e){var b=e.target.closest('.ytv-btn');if(!b||b.querySelector('iframe'))return;
+var f=document.createElement('iframe');f.src='https://www.youtube-nocookie.com/embed/'+b.dataset.yt+'?autoplay=1&rel=0';
+f.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;f.title='YouTube video';b.appendChild(f);});
 </script>
 </body>
 </html>
