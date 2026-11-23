@@ -215,6 +215,14 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
 .vtitle{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(30px,4vw,52px);line-height:1.05;margin-top:8px}
 @media(max-width:900px){.vstage{grid-template-columns:1fr;gap:20px;padding:56px 20px 110px}.vplay{width:72px;height:72px}.vcap{left:20px}.vdur{top:18px;right:18px}.vline{margin:14px 0}}
 @media(prefers-reduced-motion:reduce){.vplay::after{animation:none}}
+.contrib{padding:30px 34px;border-radius:20px;margin-top:22px}
+.contrib ol{list-style:none;display:grid;gap:14px}
+.contrib li{display:grid;grid-template-columns:42px 1fr;gap:10px;line-height:1.65}
+.contrib .cn{font-family:'JetBrains Mono',monospace;color:var(--accent);font-size:13px;padding-top:2px}
+.cnote{margin-top:20px;padding-top:16px;border-top:1px solid var(--glass-border);font-size:13px;opacity:.75}
+.ci-badge{vertical-align:middle;margin-right:6px}
+@media(max-width:600px){.contrib{padding:22px 18px}.contrib li{grid-template-columns:32px 1fr}}
+.links{grid-template-columns:repeat(2,minmax(0,1fr))!important}@media(max-width:700px){.links{grid-template-columns:1fr!important}}
 </style>
 <script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -266,9 +274,9 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
 </nav>
 
 <section class="hero"><div class="wrap">
-  <div class="badge"><i></i><span data-i18n="hero_type">AI výzkumný agent</span></div>
+  <div class="badge"><i></i><span data-i18n="hero_type">Praktický test · INIZIO Internet Media</span></div>
   <h1 data-i18n="hero_title">SERP extraktor — <em>organické výsledky Google, 1. strana</em></h1>
-  <p class="hero-desc" data-i18n="hero_desc"></p>
+  <p class="hero-desc" data-i18n="hero_desc">Stránka s jedním vstupním polem: zadáte klíčové slovo a dostanete organické výsledky z 1. strany Google (google.cz) — bez reklam, mapy a „Lidé se také ptají“. Výsledky lze stáhnout jako JSON nebo CSV. Vznikl jako praktický test pro INIZIO, firmu za Collabimem.</p>
   <div class="tags">
     <span class="tag" style="--c:var(--c1)">Node.js 22</span><span class="tag" style="--c:var(--c2)">TypeScript</span><span class="tag" style="--c:var(--c3)">Express 5</span><span class="tag" style="--c:var(--c4)">SerpApi</span><span class="tag" style="--c:var(--c5)">Vitest</span><span class="tag" style="--c:var(--c6)">Playwright</span><span class="tag" style="--c:var(--c7)">axe-core</span><span class="tag" style="--c:var(--c8)">Docker</span>
   </div>
@@ -280,15 +288,19 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
   <div class="links">
     <a class="glass link primary" href="https://inizio-serp-kotolup.vercel.app" target="_blank" rel="noopener noreferrer">
       <span class="ic"><svg class="i"><use href="#g-globe"/></svg></span>
-      <span class="tx"><div class="lb" data-i18n="l_demo">Živé demo</div><div class="ds" data-i18n="l_demo_d"></div></span>
+      <span class="tx"><div class="lb" data-i18n="l_demo">Živá aplikace</div><div class="ds" data-i18n="l_demo_d">inizio-serp-kotolup.vercel.app</div></span>
       <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
     <a class="glass link" href="https://github.com/tetiana-a/Inizio-test" target="_blank" rel="noopener noreferrer">
       <span class="ic"><svg class="i"><use href="#g-git"/></svg></span>
-      <span class="tx"><div class="lb" data-i18n="l_git">Zdrojový kód</div><div class="ds" data-i18n="l_git_d"></div></span>
+      <span class="tx"><div class="lb" data-i18n="l_git">Zdrojový kód</div><div class="ds" data-i18n="l_git_d">GitHub · tetiana-a/Inizio-test</div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+    <a class="glass link" href="https://github.com/tetiana-a/Inizio-test/actions/workflows/test.yml" target="_blank" rel="noopener noreferrer">
+      <span class="ic"><svg class="i"><use href="#g-shield"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_ci">Testy v CI</div><div class="ds"><img class="ci-badge" src="https://github.com/tetiana-a/Inizio-test/actions/workflows/test.yml/badge.svg" alt="Tests status" height="20"> <span data-i18n="l_ci_d">GitHub Actions · unit + e2e</span></div></span>
       <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
     <a class="glass link" id="videoLink" href="#" target="_blank" rel="noopener noreferrer" hidden>
       <span class="ic"><svg class="i"><use href="#g-play"/></svg></span>
-      <span class="tx"><div class="lb" data-i18n="l_vid">Video</div><div class="ds" data-i18n="l_vid_d"></div></span>
+      <span class="tx"><div class="lb" data-i18n="l_vid">Video</div><div class="ds" data-i18n="l_vid_d">Ukázka, kód a zelené testy (česky)</div></span>
       <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
   </div>
 </div></section>
@@ -301,7 +313,7 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
       <div class="vh" data-i18n="vid_h">SERP extraktor</div>
       <div class="vsub" data-i18n="vid_sub">Node.js · TypeScript · Testy</div>
       <span class="vline"></span>
-      <p class="vlines"><span data-i18n="vid_l1"></span><br><span data-i18n="vid_l2"></span><br><span data-i18n="vid_l3"></span></p>
+      <p class="vlines"><span data-i18n="vid_l1">Organické výsledky Google.</span><br><span data-i18n="vid_l2">Export JSON a CSV.</span><br><span data-i18n="vid_l3">Zelené unit a e2e testy.</span></p>
     </div>
     <div class="vframe" data-drive="1mTD0QL_CPiguN6M_ytDC53qgFpP6fKc1">
       <img src="img/inizio/video-poster.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
@@ -313,60 +325,72 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
 </div></section>
 
 <section class="sec"><div class="wrap rv">
-  <div class="eyebrow" data-i18n="sec_gal">Screenshots</div>
-  <h2 data-i18n="gal_title">How it looks</h2>
+  <div class="eyebrow" data-i18n="sec_gal">Snímky obrazovky</div>
+  <h2 data-i18n="gal_title">Jak to vypadá</h2>
   <div class="gal">
-    <figure class="glass shot wide"><a href="img/inizio/light.webp" target="_blank" rel="noopener"><img src="img/inizio/light.webp" alt="" loading="lazy" decoding="async" width="1440" height="900"></a><figcaption data-i18n="g1"></figcaption></figure>
-    <figure class="glass shot"><a href="img/inizio/dark.webp" target="_blank" rel="noopener"><img src="img/inizio/dark.webp" alt="" loading="lazy" decoding="async" width="1440" height="900"></a><figcaption data-i18n="g2"></figcaption></figure>
-    <figure class="glass shot"><a href="img/inizio/mobile.webp" target="_blank" rel="noopener"><img src="img/inizio/mobile.webp" alt="" loading="lazy" decoding="async" width="1200" height="1247"></a><figcaption data-i18n="g3"></figcaption></figure>
-    <figure class="glass shot wide"><a href="img/inizio/tests.webp" target="_blank" rel="noopener"><img src="img/inizio/tests.webp" alt="" loading="lazy" decoding="async" width="1600" height="825"></a><figcaption data-i18n="g4"></figcaption></figure>
+    <figure class="glass shot wide"><a href="img/inizio/light.webp" target="_blank" rel="noopener"><img src="img/inizio/light.webp" alt="" loading="lazy" decoding="async" width="1440" height="900"></a><figcaption data-i18n="g1">Světlý motiv — výsledky pro „kávovar“</figcaption></figure>
+    <figure class="glass shot"><a href="img/inizio/dark.webp" target="_blank" rel="noopener"><img src="img/inizio/dark.webp" alt="" loading="lazy" decoding="async" width="1440" height="900"></a><figcaption data-i18n="g2">Tmavý motiv se zlatým rádiem</figcaption></figure>
+    <figure class="glass shot"><a href="img/inizio/mobile.webp" target="_blank" rel="noopener"><img src="img/inizio/mobile.webp" alt="" loading="lazy" decoding="async" width="1200" height="1247"></a><figcaption data-i18n="g3">Mobil, 390 px — tmavý a světlý</figcaption></figure>
+    <figure class="glass shot wide"><a href="img/inizio/tests.webp" target="_blank" rel="noopener"><img src="img/inizio/tests.webp" alt="" loading="lazy" decoding="async" width="1600" height="825"></a><figcaption data-i18n="g4">Zelené end‑to‑end testy ve VS Code</figcaption></figure>
   </div>
 </div></section>
 
 <section class="sec"><div class="wrap rv">
   <div class="eyebrow" data-i18n="sec_ctx">O projektu</div>
-  <h2 data-i18n="ctx_title">Kontext a cíl</h2>
-  <div class="text"><p data-i18n="ctx_p1"></p><p data-i18n="ctx_p2"></p></div>
+  <h2 data-i18n="ctx_title">Zadání a přístup</h2>
+  <div class="text"><p data-i18n="ctx_p1">Zadání: HTML stránka s jedním inputem, zadám klíčové slovo a dostanu organické výsledky z 1. strany Google ve strojově čitelném formátu, pokrytí unit testy, nasazení na internet a volitelně Docker Compose.</p><p data-i18n="ctx_p2"><strong>Přístup:</strong> Google blokuje jednoduché stahování z cloudových serverů CAPTCHOU a oficiální Custom Search API je pro nové zákazníky uzavřené, proto data přicházejí přes SERP API za vyměnitelným rozhraním. Vše ostatní — filtrování, normalizace, export, testy a nasazení — je můj vlastní kód.</p></div>
   <div class="pipe">
-    <span class="n"><b>01</b><span data-i18n="pipe0"></span></span><span class="s">→</span>
-    <span class="n"><b>02</b><span data-i18n="pipe1"></span></span><span class="s">→</span>
-    <span class="n"><b>03</b><span data-i18n="pipe2"></span></span><span class="s">→</span>
-    <span class="n"><b>04</b><span data-i18n="pipe3"></span></span><span class="s">→</span>
-    <span class="n"><b>05</b><span data-i18n="pipe4"></span></span><span class="s">→</span>
-    <span class="n last"><b>06</b><span data-i18n="pipe5"></span></span>
+    <span class="n"><b>01</b><span data-i18n="pipe0">Klíčové slovo</span></span><span class="s">→</span>
+    <span class="n"><b>02</b><span data-i18n="pipe1">Validace</span></span><span class="s">→</span>
+    <span class="n"><b>03</b><span data-i18n="pipe2">SerpApi · google.cz</span></span><span class="s">→</span>
+    <span class="n"><b>04</b><span data-i18n="pipe3">Jen organické</span></span><span class="s">→</span>
+    <span class="n"><b>05</b><span data-i18n="pipe4">Rozbalení /goto</span></span><span class="s">→</span>
+    <span class="n last"><b>06</b><span data-i18n="pipe5">JSON · CSV</span></span>
   </div>
 </div></section>
 
 <section class="sec"><div class="wrap rv">
-  <div class="eyebrow" data-i18n="sec_test">Vyzkoušejte sami</div>
-  <h2 data-i18n="test_title">Jak testovat</h2>
+  <div class="eyebrow" data-i18n="sec_contrib">Můj podíl</div>
+  <h2 data-i18n="contrib_title">Co jsem udělala já</h2>
+  <div class="glass contrib"><ol>
+      <li><span class="cn">01</span><span data-i18n="c1">Analyzovala jsem zadání a vedla vývoj s AI asistentem (Claude): stanovila požadavky, kontrolovala každý výsledek a vracela úpravy, dokud vše nefungovalo.</span></li>
+      <li><span class="cn">02</span><span data-i18n="c2">Sama jsem nastavila služby: účet a API klíč SerpApi, repozitář na GitHubu, projekt na Vercelu propojený s GitHubem a klíč jako tajnou proměnnou prostředí.</span></li>
+      <li><span class="cn">03</span><span data-i18n="c3">Spouštěla jsem unit i e2e testy u sebe ve VS Code (229 e2e testů prošlo) a ověřila živou aplikaci i testy v GitHub Actions.</span></li>
+      <li><span class="cn">04</span><span data-i18n="c4">Určila jsem vzhled: zlatý motiv ve slonovinové a černé, tmavý režim, rádio a mobilní rozvržení.</span></li>
+      <li><span class="cn">05</span><span data-i18n="c5">Natočila jsem videoprezentaci v češtině.</span></li>
+  </ol><p class="cnote" data-i18n="contrib_note">Kód vznikl s pomocí AI (Claude) — uvádím to otevřeně. AI‑asistovaný vývoj je součást mé práce.</p></div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_test">Rychlá prohlídka</div>
+  <h2 data-i18n="test_title">Jak vyzkoušet</h2>
   <div class="steps">
-    <div class="glass step"><div class="num">01</div><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></div>
-    <div class="glass step"><div class="num">02</div><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></div>
-    <div class="glass step"><div class="num">03</div><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p></div>
-    <div class="glass step"><div class="num">04</div><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></div>
+    <div class="glass step"><div class="num">01</div><h3 data-i18n="s1t">Otevřete aplikaci</h3><p data-i18n="s1d">Otevřete živou aplikaci; funguje na mobilu, tabletu i počítači.</p></div>
+    <div class="glass step"><div class="num">02</div><h3 data-i18n="s2t">Zadejte slovo</h3><p data-i18n="s2d">Napište např. „kávovar brno“ a stiskněte Enter nebo Vyhledat.</p></div>
+    <div class="glass step"><div class="num">03</div><h3 data-i18n="s3t">Prohlédněte výsledky</h3><p data-i18n="s3d">Každý výsledek má pozici, titulek, URL, doménu a popisek — reklamy a jiné bloky ne.</p></div>
+    <div class="glass step"><div class="num">04</div><h3 data-i18n="s4t">Stáhněte</h3><p data-i18n="s4d">Stejná data uložíte jako JSON nebo CSV; CSV se správně otevře v Excelu i s diakritikou.</p></div>
   </div>
 </div></section>
 
 <section class="sec"><div class="wrap rv">
-  <div class="eyebrow" data-i18n="sec_feat">Možnosti</div>
-  <h2 data-i18n="feat_title">Co agent umí</h2>
+  <div class="eyebrow" data-i18n="sec_feat">Funkce</div>
+  <h2 data-i18n="feat_title">Co umí</h2>
   <div class="feats">
-    <div class="glass feat"><svg class="i fi"><use href="#g-search"/></svg><h3 data-i18n="f1t"></h3><p data-i18n="f1d"></p></div>
-    <div class="glass feat"><svg class="i fi"><use href="#g-down"/></svg><h3 data-i18n="f2t"></h3><p data-i18n="f2d"></p></div>
-    <div class="glass feat"><svg class="i fi"><use href="#g-swap"/></svg><h3 data-i18n="f3t"></h3><p data-i18n="f3d"></p></div>
-    <div class="glass feat"><svg class="i fi"><use href="#g-layers"/></svg><h3 data-i18n="f4t"></h3><p data-i18n="f4d"></p></div>
-    <div class="glass feat"><svg class="i fi"><use href="#g-shield"/></svg><h3 data-i18n="f5t"></h3><p data-i18n="f5d"></p></div>
-    <div class="glass feat"><svg class="i fi"><use href="#g-lock"/></svg><h3 data-i18n="f6t"></h3><p data-i18n="f6d"></p></div>
-    <div class="glass feat"><svg class="i fi"><use href="#g-info"/></svg><h3 data-i18n="f7t"></h3><p data-i18n="f7d"></p></div>
-    <div class="glass feat"><svg class="i fi"><use href="#g-mic"/></svg><h3 data-i18n="f8t"></h3><p data-i18n="f8d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-search"/></svg><h3 data-i18n="f1t">Jen organické výsledky</h3><p data-i18n="f1d">Reklamy, místní výsledky, „Lidé se také ptají“ a znalostní panel se vyřadí; duplicity a neplatné URL pryč, pozice 1…n.</p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-down"/></svg><h3 data-i18n="f2t">Export JSON a CSV</h3><p data-i18n="f2d">CSV podle RFC 4180 s UTF‑8 BOM pro Excel a ochranou proti CSV injection.</p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-swap"/></svg><h3 data-i18n="f3t">Odkazy Google /goto</h3><p data-i18n="f3d">Od srpna 2026 Google skrývá část odkazů za google.com/goto; aplikace zjistí skutečný cíl, s bezpečnou zálohou.</p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-layers"/></svg><h3 data-i18n="f4t">Vyměnitelný zdroj dat</h3><p data-i18n="f4d">Rozhraní SerpProvider se dvěma implementacemi — SerpApi a Serper.</p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-shield"/></svg><h3 data-i18n="f5t">Cache a rate limit</h3><p data-i18n="f5d">Cache na 10 minut, takže zobrazení i stažení stojí jeden dotaz na API; 60 požadavků za 15 min z jedné IP a jasné chybové kódy.</p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-lock"/></svg><h3 data-i18n="f6t">Unit testy</h3><p data-i18n="f6d">61 testů ve Vitestu a Supertestu bez přístupu k síti; CSV načte zpět nezávislý parser a musí sedět.</p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-info"/></svg><h3 data-i18n="f7t">E2E a přístupnost</h3><p data-i18n="f7d">Playwright na 9 zařízeních od iPhonu SE po 1920 px, kontrola axe‑core podle WCAG 2.2 AA v obou motivech, ovládání klávesnicí.</p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-mic"/></svg><h3 data-i18n="f8t">Design a rádio</h3><p data-i18n="f8d">Světlý a tmavý zlatý motiv, animované pozadí v Canvasu, tekuté sklo, rádio (ČRo Jazz a D‑dur, Radio Paradise, generativní ambient), které hraje až po kliknutí.</p></div>
   </div>
 </div></section>
 
 <section class="sec"><div class="wrap rv">
   <div class="eyebrow" data-i18n="sec_arch">Stack</div>
   <h2 data-i18n="arch_title">Architektura</h2>
-  <p class="arch-desc" data-i18n="arch_desc"></p>
+  <p class="arch-desc" data-i18n="arch_desc">Na serveru Node.js 22, TypeScript a Express 5; stránka v čistém HTML, CSS a JavaScriptu. Docker Compose pro lokální vývoj, testy v GitHub Actions, každý push do main se sám nasadí na Vercel. API klíč je jen v proměnných prostředí Vercelu — nikdy v kódu.</p>
   <div class="pills">
     <div class="pill" style="--c:var(--c3)">Node.js 22</div><div class="pill" style="--c:var(--c4)">TypeScript</div><div class="pill" style="--c:var(--c5)">Express 5</div><div class="pill" style="--c:var(--c6)">express-rate-limit</div><div class="pill" style="--c:var(--c7)">SerpApi · Serper</div><div class="pill" style="--c:var(--c8)">HTML · CSS · JavaScript</div><div class="pill" style="--c:var(--c1)">Canvas · Web Audio API</div><div class="pill" style="--c:var(--c2)">View Transitions API</div><div class="pill" style="--c:var(--c3)">Vitest · Supertest</div><div class="pill" style="--c:var(--c4)">Playwright · axe-core</div><div class="pill" style="--c:var(--c5)">GitHub Actions</div><div class="pill" style="--c:var(--c6)">Docker Compose</div><div class="pill" style="--c:var(--c7)">Vercel</div>
   </div>
@@ -376,18 +400,18 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
   <div class="eyebrow" data-i18n="sec_res">V číslech</div>
   <h2 data-i18n="res_title">Inženýrství v kostce</h2>
   <div class="stats">
-    <div class="glass stat"><div class="v" data-i18n="r1n"></div><div class="l" data-i18n="r1l"></div></div>
-    <div class="glass stat"><div class="v" data-i18n="r2n"></div><div class="l" data-i18n="r2l"></div></div>
-    <div class="glass stat"><div class="v" data-i18n="r3n"></div><div class="l" data-i18n="r3l"></div></div>
-    <div class="glass stat"><div class="v" data-i18n="r4n"></div><div class="l" data-i18n="r4l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r1n">61</div><div class="l" data-i18n="r1l">unit testů</div></div>
+    <div class="glass stat"><div class="v" data-i18n="r2n">243</div><div class="l" data-i18n="r2l">e2e běhů (27 testů × 9 zařízení)</div></div>
+    <div class="glass stat"><div class="v" data-i18n="r3n">320–2560</div><div class="l" data-i18n="r3l">px responzivní rozsah</div></div>
+    <div class="glass stat"><div class="v" data-i18n="r4n">WCAG 2.2</div><div class="l" data-i18n="r4l">kontrola přístupnosti AA</div></div>
   </div>
-  <div class="glass note"><svg class="i fi"><use href="#g-info"/></svg><div><h3 data-i18n="note_t"></h3><p data-i18n="note_d"></p></div></div>
+  <div class="glass note"><svg class="i fi"><use href="#g-info"/></svg><div><h3 data-i18n="note_t">Upřímně</h3><p data-i18n="note_d">Výsledky přicházejí přes SerpApi (zdarma 250 dotazů měsíčně) pro google.cz z lokace poskytovatele, takže se mohou lišit od vašeho osobního Googlu. Snímky používají uloženou skutečnou odpověď SerpApi, stejnou jako automatické testy.</p></div></div>
 </div></section>
 
 <section class="sec" style="padding-top:0"><div class="wrap rv">
   <div class="glass author" style="padding:36px">
     <div class="eyebrow" data-i18n="sec_author">Autor</div>
-    <p><span data-i18n="author_p"></span> <a href="index.html">tetianakotolup.com</a></p>
+    <p><span data-i18n="author_p">Navrhla a vytvořila <strong>Tetiana Kotolup</strong> — AI Automation &amp; Full‑Stack Developer.</span> <a href="index.html">tetianakotolup.com</a></p>
   </div>
 </div></section>
 
@@ -482,7 +506,17 @@ const i18n = {
   "vid_l3": "Green unit and e2e tests.",
   "vid_kick": "Video · in Czech",
   "vid_title": "Demo, code and tests",
-  "vid_play": "Play video"
+  "vid_play": "Play video",
+  "sec_contrib": "My contribution",
+  "contrib_title": "What I did",
+  "c1": "Analysed the brief and led development with an AI assistant (Claude): set the requirements, reviewed every result and sent fixes back until everything worked.",
+  "c2": "Set up the services myself: SerpApi account and API key, GitHub repository, Vercel project linked to GitHub and the key as a secret environment variable.",
+  "c3": "Ran the unit and e2e tests on my machine in VS Code (229 e2e tests passed) and checked the live app and the tests in GitHub Actions.",
+  "c4": "Directed the design: gold theme in ivory and black, dark mode, radio and the mobile layout.",
+  "c5": "Recorded the video presentation in Czech.",
+  "contrib_note": "The code was written with AI assistance (Claude) — I say so openly. AI‑assisted development is part of how I work.",
+  "l_ci": "Tests in CI",
+  "l_ci_d": "GitHub Actions · unit + e2e"
  },
  "cs": {
   "nav_back": "Zpět na portfolio",
@@ -566,7 +600,17 @@ const i18n = {
   "vid_l3": "Zelené unit a e2e testy.",
   "vid_kick": "Video · česky",
   "vid_title": "Ukázka, kód a testy",
-  "vid_play": "Přehrát video"
+  "vid_play": "Přehrát video",
+  "sec_contrib": "Můj podíl",
+  "contrib_title": "Co jsem udělala já",
+  "c1": "Analyzovala jsem zadání a vedla vývoj s AI asistentem (Claude): stanovila požadavky, kontrolovala každý výsledek a vracela úpravy, dokud vše nefungovalo.",
+  "c2": "Sama jsem nastavila služby: účet a API klíč SerpApi, repozitář na GitHubu, projekt na Vercelu propojený s GitHubem a klíč jako tajnou proměnnou prostředí.",
+  "c3": "Spouštěla jsem unit i e2e testy u sebe ve VS Code (229 e2e testů prošlo) a ověřila živou aplikaci i testy v GitHub Actions.",
+  "c4": "Určila jsem vzhled: zlatý motiv ve slonovinové a černé, tmavý režim, rádio a mobilní rozvržení.",
+  "c5": "Natočila jsem videoprezentaci v češtině.",
+  "contrib_note": "Kód vznikl s pomocí AI (Claude) — uvádím to otevřeně. AI‑asistovaný vývoj je součást mé práce.",
+  "l_ci": "Testy v CI",
+  "l_ci_d": "GitHub Actions · unit + e2e"
  },
  "uk": {
   "nav_back": "Назад до портфоліо",
@@ -650,7 +694,17 @@ const i18n = {
   "vid_l3": "Зелені юніт- і e2e-тести.",
   "vid_kick": "Відео · чеською",
   "vid_title": "Демо, код і тести",
-  "vid_play": "Відтворити відео"
+  "vid_play": "Відтворити відео",
+  "sec_contrib": "Мій внесок",
+  "contrib_title": "Що зробила я",
+  "c1": "Проаналізувала завдання й керувала розробкою з AI-асистентом (Claude): ставила вимоги, перевіряла кожен результат і повертала правки, доки все не запрацювало.",
+  "c2": "Сама налаштувала сервіси: акаунт і API-ключ SerpApi, репозиторій на GitHub, проєкт на Vercel, пов’язаний із GitHub, і ключ як секретну змінну середовища.",
+  "c3": "Запускала юніт- і e2e-тести у себе у VS Code (229 e2e-тестів пройшли) і перевірила робочий застосунок та тести в GitHub Actions.",
+  "c4": "Визначила дизайн: золота тема в слоновій кістці й чорному, темний режим, радіо й мобільну версію.",
+  "c5": "Записала відеопрезентацію чеською.",
+  "contrib_note": "Код створено за допомогою AI (Claude) — я кажу про це відкрито. AI-асистована розробка — частина моєї роботи.",
+  "l_ci": "Тести в CI",
+  "l_ci_d": "GitHub Actions · unit + e2e"
  },
  "ru": {
   "nav_back": "Назад к портфолио",
@@ -734,7 +788,17 @@ const i18n = {
   "vid_l3": "Зелёные юнит- и e2e-тесты.",
   "vid_kick": "Видео · на чешском",
   "vid_title": "Демо, код и тесты",
-  "vid_play": "Воспроизвести видео"
+  "vid_play": "Воспроизвести видео",
+  "sec_contrib": "Мой вклад",
+  "contrib_title": "Что сделала я",
+  "c1": "Проанализировала задание и руководила разработкой с AI-ассистентом (Claude): ставила требования, проверяла каждый результат и возвращала правки, пока всё не заработало.",
+  "c2": "Сама настроила сервисы: аккаунт и API-ключ SerpApi, репозиторий на GitHub, проект на Vercel, связанный с GitHub, и ключ как секретную переменную окружения.",
+  "c3": "Запускала юнит- и e2e-тесты у себя в VS Code (229 e2e-тестов прошли) и проверила рабочее приложение и тесты в GitHub Actions.",
+  "c4": "Определила дизайн: золотая тема в слоновой кости и чёрном, тёмный режим, радио и мобильную версию.",
+  "c5": "Записала видеопрезентацию на чешском.",
+  "contrib_note": "Код создан с помощью AI (Claude) — я говорю об этом открыто. AI-ассистированная разработка — часть моей работы.",
+  "l_ci": "Тесты в CI",
+  "l_ci_d": "GitHub Actions · unit + e2e"
  },
  "it": {
   "nav_back": "Torna al portfolio",
@@ -818,7 +882,17 @@ const i18n = {
   "vid_l3": "Test unit ed e2e verdi.",
   "vid_kick": "Video · in ceco",
   "vid_title": "Demo, codice e test",
-  "vid_play": "Riproduci video"
+  "vid_play": "Riproduci video",
+  "sec_contrib": "Il mio contributo",
+  "contrib_title": "Cosa ho fatto io",
+  "c1": "Ho analizzato il compito e guidato lo sviluppo con un assistente AI (Claude): ho definito i requisiti, controllato ogni risultato e chiesto correzioni finché tutto funzionava.",
+  "c2": "Ho configurato io i servizi: account e chiave API di SerpApi, repository GitHub, progetto Vercel collegato a GitHub e la chiave come variabile d’ambiente segreta.",
+  "c3": "Ho eseguito i test unit ed e2e sul mio computer in VS Code (229 test e2e superati) e verificato l’app online e i test in GitHub Actions.",
+  "c4": "Ho definito il design: tema dorato avorio e nero, modalità scura, radio e layout mobile.",
+  "c5": "Ho registrato la presentazione video in ceco.",
+  "contrib_note": "Il codice è stato scritto con l’aiuto dell’AI (Claude) — lo dico apertamente. Lo sviluppo assistito dall’AI fa parte del mio lavoro.",
+  "l_ci": "Test in CI",
+  "l_ci_d": "GitHub Actions · unit + e2e"
  }
 };
 
