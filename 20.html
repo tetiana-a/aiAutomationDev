@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="dark" data-lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<title>SERP Extractor (INIZIO test) — Project Details</title>
+<link rel="canonical" href="https://tetianakotolup.com/20.html">
+<meta property="og:title" content="SERP Extractor (INIZIO test) — Project Details">
+<meta property="og:description" content="SERP Extractor: one-input web app returning organic Google page-1 results as JSON/CSV. Node.js, TypeScript, Express, 61 unit tests, Playwright e2e on 9 devices, WCAG 2.2 AA. Project by Tetiana Kotolup.">
+<meta property="og:url" content="https://tetianakotolup.com/20.html">
+<meta property="og:image" content="https://tetianakotolup.com/foto.jpeg">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "SERP Extractor (INIZIO test) — Project Details", "description": "SERP Extractor: one-input web app returning organic Google page-1 results as JSON/CSV. Node.js, TypeScript, Express, 61 unit tests, Playwright e2e on 9 devices, WCAG 2.2 AA. Project by Tetiana Kotolup.", "url": "https://tetianakotolup.com/20.html", "inLanguage": ["cs", "en", "uk", "ru", "it"], "datePublished": "2026", "author": {"@type": "Person", "name": "Tetiana Kotolup", "url": "https://tetianakotolup.com/", "jobTitle": "AI Automation Developer"}}</script>
+<meta name="description" content="SERP Extractor: one-input web app returning organic Google page-1 results as JSON/CSV. Node.js, TypeScript, Express, 61 unit tests, Playwright e2e on 9 devices, WCAG 2.2 AA. Project by Tetiana Kotolup.">
+<link rel="icon" href="icon32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Olive Grove design system (same as 16.html) + gold accents (INIZIO SERP app) */
+:root{--tt:all .5s cubic-bezier(.4,0,.2,1);--ease:cubic-bezier(.16,1,.3,1);
+ --c1:#d4a84b;--c2:#e8c877;--c3:#c08a3e;--c4:#f0d9a0;--c5:#b8935a;--c6:#e3b866;--c7:#cfa15f;--c8:#f3e2b3}
+[data-theme="dark"]{--bg-deep:#0b0d10;--bg:#101317;--bg2:#161a1f;--bg3:#1d2229;--surface:rgba(40,46,56,.55);--surface-h:rgba(52,60,72,.7);--glass:rgba(24,28,34,.5);--glass-border:rgba(165,175,190,.16);--line:rgba(165,175,190,.08);--line2:rgba(165,175,190,.2);--txt:#e9ecf0;--txt2:#9ca5b0;--txt3:#6b7581;--accent:#d4a84b;--accent-glow:rgba(212,168,75,.4);--gold:#e0b45a;--gold-glow:rgba(224,180,90,.28);--olive:#7aa88a;--g1:#2a3340;--g2:#3d4b5e;--g3:#6b7f99;--ink:#0b0d10}
+[data-theme="light"]{--bg-deep:#eceef1;--bg:#f2f4f6;--bg2:#fff;--bg3:#e1e5ea;--surface:rgba(255,255,255,.8);--surface-h:rgba(255,255,255,.95);--glass:rgba(255,255,255,.6);--glass-border:rgba(90,105,125,.25);--line:rgba(90,105,125,.12);--line2:rgba(90,105,125,.25);--txt:#171c22;--txt2:#475260;--txt3:#6f7a87;--accent:#9a7316;--accent-glow:rgba(154,115,22,.28);--gold:#9a7316;--gold-glow:rgba(154,115,22,.22);--olive:#3f7a57;--g1:#9aa8b8;--g2:#b9c4d0;--g3:#8ea0b5;--ink:#f2f4f6;
+ --c1:#8a6416;--c2:#9a7316;--c3:#7d5417;--c4:#a57e2c;--c5:#6f5326;--c6:#946b1d;--c7:#86602a;--c8:#a07a2e}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg-deep);color:var(--txt);font-family:'Space Grotesk',sans-serif;line-height:1.7;font-size:18px;overflow-x:hidden;transition:var(--tt);min-height:100vh}
+::selection{background:var(--gold);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.grove-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.4;animation:blob-float 22s ease-in-out infinite}
+.blob-1{width:620px;height:620px;background:linear-gradient(135deg,var(--g1),var(--g2));top:-220px;left:-120px}
+.blob-2{width:520px;height:520px;background:linear-gradient(135deg,var(--g2),var(--g3));bottom:-160px;right:-120px;animation-delay:-8s}
+.blob-3{width:420px;height:420px;background:linear-gradient(135deg,var(--c5),var(--c6));top:42%;left:52%;animation-delay:-15s;opacity:.18}
+.blob-4{width:360px;height:360px;background:linear-gradient(135deg,var(--c4),var(--c8));top:18%;right:8%;animation-delay:-4s;opacity:.16}
+@keyframes blob-float{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(30px,-50px) scale(1.05)}50%{transform:translate(-20px,30px) scale(.95)}75%{transform:translate(40px,20px) scale(1.02)}}
+.dapple{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='c'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='3' seed='9'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23c)'/%3E%3C/svg%3E");opacity:.035;mix-blend-mode:overlay;animation:dapple 32s linear infinite}
+@keyframes dapple{to{transform:translate(-50px,-50px)}}
+#cursor-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 20px var(--accent-glow)}
+#cursor-ring{position:fixed;width:40px;height:40px;border-radius:50%;border:1px solid var(--gold);pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .3s var(--ease),height .3s;opacity:.4}
+@media(hover:none){#cursor-dot,#cursor-ring{display:none}}
+.wrap{max-width:1100px;margin:0 auto;padding:0 clamp(24px,5vw,60px);position:relative;z-index:1}
+
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:16px 0}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 clamp(16px,5vw,60px);display:flex;justify-content:center}
+.nav-glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:100px;padding:10px 14px 10px 24px;display:flex;align-items:center;gap:22px;max-width:100%}
+.nav-logo{font-weight:700;font-size:13px;letter-spacing:.08em;white-space:nowrap}
+.nav-link{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);white-space:nowrap;transition:color .2s;display:inline-flex;align-items:center;gap:6px}
+.nav-link:hover{color:var(--txt)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.lang-switch{display:flex;background:rgba(0,0,0,.2);border-radius:8px;padding:2px}
+.lang-btn{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);background:transparent;border:none;padding:7px 10px;border-radius:6px;cursor:pointer;transition:all .2s}
+.lang-btn:hover{color:var(--txt)}
+.lang-btn.active{background:var(--accent);color:var(--ink);box-shadow:0 0 20px var(--accent-glow)}
+.icon-btn{width:36px;height:36px;border-radius:50%;background:var(--glass);border:1px solid var(--glass-border);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--txt);transition:all .2s;flex-shrink:0}
+.icon-btn:hover{background:var(--surface-h);box-shadow:0 0 20px var(--gold-glow)}
+.icon-btn.playing{background:var(--accent);color:var(--ink);box-shadow:0 0 25px var(--accent-glow)}
+.icon-btn.playing svg{animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+svg.i{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:700px){.nav-link .t{display:none}.nav-glass{gap:10px;padding:8px 8px 8px 14px}.nav-logo{font-size:11px}.lang-btn{padding:6px 7px;font-size:9px}.icon-btn{width:32px;height:32px}}
+@media(max-width:430px){.nav-logo{display:none}}
+
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 0 80px;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:10px;background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);border-radius:100px;padding:8px 16px;margin-bottom:32px;width:fit-content;opacity:0;animation:reveal .8s .2s var(--ease) forwards}
+.badge i{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent-glow);animation:pulse 2s infinite}
+.badge span{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--txt2)}
+h1{font-family:'Instrument Serif',serif;font-size:clamp(40px,7.5vw,84px);font-weight:400;line-height:1.05;letter-spacing:-.03em;margin-bottom:24px;opacity:0;animation:reveal .8s .3s var(--ease) forwards}
+h1 em{font-style:italic;display:block;background:linear-gradient(90deg,var(--c2),var(--c3),var(--c7),var(--c6),var(--c5),var(--c4),var(--c8),var(--c2));background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:spectrum 14s linear infinite}
+@keyframes spectrum{to{background-position:250% 0}}
+.hero-desc{font-size:clamp(16px,2vw,20px);color:var(--txt2);max-width:660px;margin-bottom:40px;opacity:0;animation:reveal .8s .4s var(--ease) forwards}
+.tags{display:flex;flex-wrap:wrap;gap:10px;opacity:0;animation:reveal .8s .5s var(--ease) forwards}
+.tag{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);padding:10px 18px;border-radius:100px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:all .2s;position:relative}
+.tag::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c);margin-right:9px;box-shadow:0 0 10px var(--c)}
+.tag:hover{border-color:var(--c);color:var(--txt);box-shadow:0 0 20px var(--gold-glow);transform:translateY(-2px)}
+@keyframes reveal{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+
+.sec{padding:100px 0;position:relative;z-index:1}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:'';width:40px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(30px,5vw,50px);font-weight:400;line-height:1.1;letter-spacing:-.02em;margin-bottom:40px}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.visible{opacity:1;transform:none}
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:20px;padding:28px;transition:all .3s var(--ease);position:relative;overflow:hidden;--c:var(--gold)}
+.glass::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.7}
+.glass:hover{border-color:color-mix(in srgb,var(--c) 55%,transparent);box-shadow:0 20px 60px rgba(0,0,0,.3),0 0 40px color-mix(in srgb,var(--c) 28%,transparent);transform:translateY(-4px)}
+
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.link{display:flex;align-items:center;gap:18px;padding:22px}
+.links .link:nth-child(1){--c:var(--c1)}.links .link:nth-child(2){--c:var(--c5)}.links .link:nth-child(3){--c:var(--c4)}.links .link:nth-child(4){--c:var(--c3)}
+.link .ic{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 85%,#000),var(--c));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 24px color-mix(in srgb,var(--c) 40%,transparent);color:#fff;font-size:22px}
+.link .tx{flex:1;min-width:0}
+.link .lb{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--txt3);margin-bottom:4px}
+.link .ds{font-size:14px;color:var(--txt);overflow-wrap:anywhere}
+.link .ar{color:var(--txt3);transition:transform .3s var(--ease);font-size:20px}
+.link:hover .ar{transform:translateX(6px);color:var(--c)}
+
+.text p{font-size:17px;color:var(--txt2);line-height:1.85;margin-bottom:1.4em;max-width:820px}
+.text strong{color:var(--txt);font-weight:500}
+.pipe{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:34px}
+.pipe .n{background:rgba(0,0,0,.25);border:1px solid var(--glass-border);padding:9px 15px;border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--txt2);display:inline-flex;gap:8px;align-items:center}
+[data-theme="light"] .pipe .n{background:rgba(255,255,255,.6)}
+.pipe .n b{color:var(--c);font-weight:600}
+.pipe .n.last{background:var(--accent);color:var(--ink);border-color:transparent;font-weight:600}.pipe .n.last b{color:var(--ink)}
+.pipe .s{color:var(--gold)}
+.pipe .n:nth-of-type(1){--c:var(--c1)}.pipe .n:nth-of-type(2){--c:var(--c5)}.pipe .n:nth-of-type(3){--c:var(--c4)}.pipe .n:nth-of-type(4){--c:var(--c6)}.pipe .n:nth-of-type(5){--c:var(--c7)}
+
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.steps .step:nth-child(1){--c:var(--c1)}.steps .step:nth-child(2){--c:var(--c5)}.steps .step:nth-child(3){--c:var(--c6)}.steps .step:nth-child(4){--c:var(--c4)}
+.step .num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--c);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.step .num::before{content:'';width:30px;height:1px;background:var(--c);box-shadow:0 0 10px var(--c)}
+.step h3,.feat h3{font-weight:600;font-size:16px;margin-bottom:8px}
+.step p,.feat p{font-size:14px;color:var(--txt2);line-height:1.65}
+
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.feats .feat:nth-child(1){--c:var(--c3)}.feats .feat:nth-child(2){--c:var(--c5)}.feats .feat:nth-child(3){--c:var(--c1)}.feats .feat:nth-child(4){--c:var(--c6)}
+.feats .feat:nth-child(5){--c:var(--c4)}.feats .feat:nth-child(6){--c:var(--c7)}.feats .feat:nth-child(7){--c:var(--c2)}.feats .feat:nth-child(8){--c:var(--c8)}
+.feat .fi{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);border:1px solid color-mix(in srgb,var(--c) 35%,transparent);margin-bottom:16px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.pill{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-border);padding:11px 17px;border-radius:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--txt2);transition:all .2s;display:flex;align-items:center;gap:9px}
+.pill::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--c)}
+.pill:hover{border-color:var(--c);color:var(--txt);box-shadow:0 0 20px var(--gold-glow)}
+.arch-desc{color:var(--txt2);max-width:760px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.stats .stat:nth-child(1){--c:var(--c1)}.stats .stat:nth-child(2){--c:var(--c5)}.stats .stat:nth-child(3){--c:var(--c3)}.stats .stat:nth-child(4){--c:var(--c6)}
+.stat .v{font-family:'Instrument Serif',serif;font-size:clamp(36px,5vw,52px);line-height:1.05;color:var(--c)}
+.stat .l{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--txt3);margin-top:8px}
+.note{display:flex;gap:16px;align-items:flex-start;margin-top:22px;--c:var(--c2)}
+.note .fi{font-size:22px;color:var(--c);margin-top:3px;flex-shrink:0}
+.note h3{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:6px}
+.note p{color:var(--txt2);font-size:15px}
+.author p{font-size:17px;color:var(--txt2)}
+.author a{color:var(--gold);text-decoration:underline}
+footer{padding:60px 0;border-top:1px solid var(--line);margin-top:60px;position:relative;z-index:1}
+.f{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.fb{font-family:'Instrument Serif',serif;font-size:22px}
+.fi2{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--txt3);text-align:right;line-height:2}
+@media(max-width:600px){.f{flex-direction:column;align-items:flex-start}.fi2{text-align:left}.sec{padding:70px 0}}
+.particles{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.particle{position:absolute;width:3px;height:3px;background:var(--c);border-radius:50%;opacity:.35;animation:float-up 16s linear infinite}
+@keyframes float-up{0%{transform:translateY(100vh);opacity:0}10%,90%{opacity:.35}100%{transform:translateY(-100px);opacity:0}}
+a,button{cursor:none}@media(hover:none){a,button{cursor:auto}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}h1,.badge,.hero-desc,.tags{opacity:1}}
+
+/* ===== 2026 page-wide motion ===== */
+.progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100001;transform-origin:0 50%;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c7),var(--c6),var(--c5),var(--c4),var(--c8));transform:scaleX(0);box-shadow:0 0 14px var(--c2)}
+@supports(animation-timeline:scroll()){
+ .progress{animation:grow linear both;animation-timeline:scroll(root)}
+ @keyframes grow{to{transform:scaleX(1)}}
+ .blob-1{animation:blob-float 22s ease-in-out infinite,par1 linear both;animation-timeline:auto,scroll(root)}
+ .blob-2{animation:blob-float 22s ease-in-out infinite -8s,par2 linear both;animation-timeline:auto,scroll(root)}
+ @keyframes par1{to{translate:80px 420px}}
+ @keyframes par2{to{translate:-120px -360px}}
+ .rv{opacity:1;transform:none;transition:none;animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+ @keyframes rise{from{opacity:0;transform:translateY(60px) scale(.98);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+ .glass{animation:cardin linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+ @keyframes cardin{from{opacity:.0;transform:translateY(40px) rotateX(12deg)}to{opacity:1;transform:none}}
+}
+.mesh{position:absolute;inset:-20%;background:conic-gradient(from 0deg at 30% 40%,transparent 0 20%,color-mix(in srgb,var(--c4) 16%,transparent) 30%,transparent 45%,color-mix(in srgb,var(--c6) 14%,transparent) 65%,transparent 80%,color-mix(in srgb,var(--c3) 14%,transparent) 92%,transparent);filter:blur(70px);animation:spin 40s linear infinite;mix-blend-mode:screen}
+[data-theme="light"] .mesh{mix-blend-mode:multiply;opacity:.6}
+@keyframes spin{to{transform:rotate(360deg)}}
+.glass::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--c) 22%,transparent),transparent 60%)}
+.glass:hover::after{opacity:1}
+.glass{transform-style:preserve-3d;will-change:transform}
+.link.primary{background:linear-gradient(var(--bg2),var(--bg2)) padding-box,conic-gradient(from var(--ang,0deg),var(--c1),var(--c5),var(--c6),var(--c7),var(--c3),var(--c2),var(--c1)) border-box;border:1.5px solid transparent;animation:ang 6s linear infinite}
+[data-theme="light"] .link.primary{background:linear-gradient(#fff,#fff) padding-box,conic-gradient(from var(--ang,0deg),var(--c1),var(--c5),var(--c6),var(--c7),var(--c3),var(--c2),var(--c1)) border-box}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes ang{to{--ang:360deg}}
+h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2) 70%,var(--txt)));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pipe .n{animation:nodeglow 4s ease-in-out infinite}
+.pipe .n:nth-of-type(2){animation-delay:.5s}.pipe .n:nth-of-type(3){animation-delay:1s}.pipe .n:nth-of-type(4){animation-delay:1.5s}.pipe .n:nth-of-type(5){animation-delay:2s}
+@keyframes nodeglow{0%,100%{box-shadow:0 0 0 transparent}50%{box-shadow:0 0 22px color-mix(in srgb,var(--c,var(--gold)) 45%,transparent)}}
+.pipe .s{animation:flow 2.4s ease-in-out infinite}
+@keyframes flow{0%,100%{transform:translateX(0);opacity:.5}50%{transform:translateX(5px);opacity:1}}
+@media(prefers-reduced-motion:reduce){.progress{display:none}.mesh{animation:none}.glass,.rv{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;align-items:start}
+.shot{margin:0;padding:10px;border-radius:18px;overflow:hidden}
+.shot.wide{grid-column:1/-1}
+.shot a{display:block;border-radius:12px;overflow:hidden}
+.shot img{display:block;width:100%;height:auto;transition:transform .8s var(--ease)}
+.shot:hover img{transform:scale(1.025)}
+.shot figcaption{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--t2,inherit);opacity:.8;padding:12px 6px 4px}
+@media(max-width:700px){.gal{grid-template-columns:1fr}}
+</style>
+<script data-goatcounter="https://tetianakotolup.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="g-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+<symbol id="g-git" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.35 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.65 16 2.5a13.4 13.4 0 0 0-7 0C6.3.65 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7A3.4 3.4 0 0 0 9 18.1V22"/></symbol>
+<symbol id="g-tg" viewBox="0 0 24 24"><path d="M22 3 2 11l6 2.5L10 21l3.5-4.5L18 20 22 3z"/><path d="M8 13.5 22 3"/></symbol>
+<symbol id="g-bot" viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 8V4M9 14h.01M15 14h.01M2 13v3M22 13v3"/></symbol>
+<symbol id="g-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="g-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></symbol>
+<symbol id="g-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="g-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7l10-5z"/><path d="m2 12 10 5 10-5M2 17l10 5 10-5"/></symbol>
+<symbol id="g-swap" viewBox="0 0 24 24"><path d="M17 3l4 4-4 4M3 7h18M7 21l-4-4 4-4M21 17H3"/></symbol>
+<symbol id="g-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="g-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+<symbol id="g-down" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+<symbol id="g-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="g-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+<symbol id="g-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></symbol>
+<symbol id="g-vol" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M19.1 4.9a10 10 0 0 1 0 14.2M15.5 8.5a5 5 0 0 1 0 7"/></symbol>
+<symbol id="g-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></symbol>
+<symbol id="g-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+</defs>
+</svg>
+
+<div class="grove-bg"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="blob blob-3"></div><div class="blob blob-4"></div><div class="dapple"></div><div class="mesh"></div></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="particles" id="particles"></div>
+<div id="cursor-dot"></div><div id="cursor-ring"></div>
+
+<nav id="nav">
+  <div class="nav-inner"><div class="nav-glass">
+    <a href="index.html" class="nav-logo">T. KOTOLUP</a>
+    <a href="index.html" class="nav-link"><svg class="i"><use href="#g-back"/></svg><span class="t" data-i18n="nav_back">Zpět na portfolio</span></a>
+    <div class="nav-actions">
+      <div class="lang-switch">
+        <button class="lang-btn active" data-lang="cs">CZ</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="uk">UA</button>
+        <button class="lang-btn" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+      </div>
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme"><svg class="i" style="width:16px;height:16px"><use href="#g-sun"/></svg></button>
+      <button class="icon-btn" id="audioBtn" aria-label="Toggle audio"><svg class="i" style="width:16px;height:16px"><use href="#g-vol"/></svg></button>
+    </div>
+  </div></div>
+</nav>
+
+<section class="hero"><div class="wrap">
+  <div class="badge"><i></i><span data-i18n="hero_type">AI výzkumný agent</span></div>
+  <h1 data-i18n="hero_title">SERP extraktor — <em>organické výsledky Google, 1. strana</em></h1>
+  <p class="hero-desc" data-i18n="hero_desc"></p>
+  <div class="tags">
+    <span class="tag" style="--c:var(--c1)">Node.js 22</span><span class="tag" style="--c:var(--c2)">TypeScript</span><span class="tag" style="--c:var(--c3)">Express 5</span><span class="tag" style="--c:var(--c4)">SerpApi</span><span class="tag" style="--c:var(--c5)">Vitest</span><span class="tag" style="--c:var(--c6)">Playwright</span><span class="tag" style="--c:var(--c7)">axe-core</span><span class="tag" style="--c:var(--c8)">Docker</span>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_links">Zdroje projektu</div>
+  <h2 data-i18n="links_title">Odkazy</h2>
+  <div class="links">
+    <a class="glass link primary" href="https://inizio-serp-kotolup.vercel.app" target="_blank" rel="noopener noreferrer">
+      <span class="ic"><svg class="i"><use href="#g-globe"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_demo">Živé demo</div><div class="ds" data-i18n="l_demo_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+    <a class="glass link" href="https://github.com/tetiana-a/Inizio-test" target="_blank" rel="noopener noreferrer">
+      <span class="ic"><svg class="i"><use href="#g-git"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_git">Zdrojový kód</div><div class="ds" data-i18n="l_git_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+    <a class="glass link" id="videoLink" href="#" target="_blank" rel="noopener noreferrer" hidden>
+      <span class="ic"><svg class="i"><use href="#g-play"/></svg></span>
+      <span class="tx"><div class="lb" data-i18n="l_vid">Video</div><div class="ds" data-i18n="l_vid_d"></div></span>
+      <span class="ar"><svg class="i"><use href="#g-arrow"/></svg></span></a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_gal">Screenshots</div>
+  <h2 data-i18n="gal_title">How it looks</h2>
+  <div class="gal">
+    <figure class="glass shot wide"><a href="img/inizio/light.webp" target="_blank" rel="noopener"><img src="img/inizio/light.webp" alt="" loading="lazy" decoding="async" width="1440" height="900"></a><figcaption data-i18n="g1"></figcaption></figure>
+    <figure class="glass shot"><a href="img/inizio/dark.webp" target="_blank" rel="noopener"><img src="img/inizio/dark.webp" alt="" loading="lazy" decoding="async" width="1440" height="900"></a><figcaption data-i18n="g2"></figcaption></figure>
+    <figure class="glass shot"><a href="img/inizio/mobile.webp" target="_blank" rel="noopener"><img src="img/inizio/mobile.webp" alt="" loading="lazy" decoding="async" width="1200" height="1247"></a><figcaption data-i18n="g3"></figcaption></figure>
+    <figure class="glass shot wide"><a href="img/inizio/tests.webp" target="_blank" rel="noopener"><img src="img/inizio/tests.webp" alt="" loading="lazy" decoding="async" width="1600" height="825"></a><figcaption data-i18n="g4"></figcaption></figure>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_ctx">O projektu</div>
+  <h2 data-i18n="ctx_title">Kontext a cíl</h2>
+  <div class="text"><p data-i18n="ctx_p1"></p><p data-i18n="ctx_p2"></p></div>
+  <div class="pipe">
+    <span class="n"><b>01</b><span data-i18n="pipe0"></span></span><span class="s">→</span>
+    <span class="n"><b>02</b><span data-i18n="pipe1"></span></span><span class="s">→</span>
+    <span class="n"><b>03</b><span data-i18n="pipe2"></span></span><span class="s">→</span>
+    <span class="n"><b>04</b><span data-i18n="pipe3"></span></span><span class="s">→</span>
+    <span class="n"><b>05</b><span data-i18n="pipe4"></span></span><span class="s">→</span>
+    <span class="n last"><b>06</b><span data-i18n="pipe5"></span></span>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_test">Vyzkoušejte sami</div>
+  <h2 data-i18n="test_title">Jak testovat</h2>
+  <div class="steps">
+    <div class="glass step"><div class="num">01</div><h3 data-i18n="s1t"></h3><p data-i18n="s1d"></p></div>
+    <div class="glass step"><div class="num">02</div><h3 data-i18n="s2t"></h3><p data-i18n="s2d"></p></div>
+    <div class="glass step"><div class="num">03</div><h3 data-i18n="s3t"></h3><p data-i18n="s3d"></p></div>
+    <div class="glass step"><div class="num">04</div><h3 data-i18n="s4t"></h3><p data-i18n="s4d"></p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_feat">Možnosti</div>
+  <h2 data-i18n="feat_title">Co agent umí</h2>
+  <div class="feats">
+    <div class="glass feat"><svg class="i fi"><use href="#g-search"/></svg><h3 data-i18n="f1t"></h3><p data-i18n="f1d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-down"/></svg><h3 data-i18n="f2t"></h3><p data-i18n="f2d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-swap"/></svg><h3 data-i18n="f3t"></h3><p data-i18n="f3d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-layers"/></svg><h3 data-i18n="f4t"></h3><p data-i18n="f4d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-shield"/></svg><h3 data-i18n="f5t"></h3><p data-i18n="f5d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-lock"/></svg><h3 data-i18n="f6t"></h3><p data-i18n="f6d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-info"/></svg><h3 data-i18n="f7t"></h3><p data-i18n="f7d"></p></div>
+    <div class="glass feat"><svg class="i fi"><use href="#g-mic"/></svg><h3 data-i18n="f8t"></h3><p data-i18n="f8d"></p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_arch">Stack</div>
+  <h2 data-i18n="arch_title">Architektura</h2>
+  <p class="arch-desc" data-i18n="arch_desc"></p>
+  <div class="pills">
+    <div class="pill" style="--c:var(--c3)">Node.js 22</div><div class="pill" style="--c:var(--c4)">TypeScript</div><div class="pill" style="--c:var(--c5)">Express 5</div><div class="pill" style="--c:var(--c6)">express-rate-limit</div><div class="pill" style="--c:var(--c7)">SerpApi · Serper</div><div class="pill" style="--c:var(--c8)">HTML · CSS · JavaScript</div><div class="pill" style="--c:var(--c1)">Canvas · Web Audio API</div><div class="pill" style="--c:var(--c2)">View Transitions API</div><div class="pill" style="--c:var(--c3)">Vitest · Supertest</div><div class="pill" style="--c:var(--c4)">Playwright · axe-core</div><div class="pill" style="--c:var(--c5)">GitHub Actions</div><div class="pill" style="--c:var(--c6)">Docker Compose</div><div class="pill" style="--c:var(--c7)">Vercel</div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap rv">
+  <div class="eyebrow" data-i18n="sec_res">V číslech</div>
+  <h2 data-i18n="res_title">Inženýrství v kostce</h2>
+  <div class="stats">
+    <div class="glass stat"><div class="v" data-i18n="r1n"></div><div class="l" data-i18n="r1l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r2n"></div><div class="l" data-i18n="r2l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r3n"></div><div class="l" data-i18n="r3l"></div></div>
+    <div class="glass stat"><div class="v" data-i18n="r4n"></div><div class="l" data-i18n="r4l"></div></div>
+  </div>
+  <div class="glass note"><svg class="i fi"><use href="#g-info"/></svg><div><h3 data-i18n="note_t"></h3><p data-i18n="note_d"></p></div></div>
+</div></section>
+
+<section class="sec" style="padding-top:0"><div class="wrap rv">
+  <div class="glass author" style="padding:36px">
+    <div class="eyebrow" data-i18n="sec_author">Autor</div>
+    <p><span data-i18n="author_p"></span> <a href="index.html">tetianakotolup.com</a></p>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><div class="f">
+  <div class="fb">Tetiana Kotolup</div>
+  <div class="fi2">AI Automation Developer<br>kotolup24@gmail.com · @tetiana_K888 · 2026</div>
+</div></div></footer>
+
+<audio id="bgMusic" loop preload="none"><source src="012.mp3" type="audio/mpeg"></audio>
+
+<script>
+const i18n = {
+ "en": {
+  "nav_back": "Back to Portfolio",
+  "hero_type": "Practical hiring test · INIZIO Internet Media",
+  "hero_title": "SERP Extractor — <em>organic Google results, page 1</em>",
+  "hero_desc": "A web page with a single input: type a keyword and get the organic results from Google page 1 (google.cz) — without ads, map pack or “People also ask”. Results can be downloaded as JSON or CSV. Built as a practical test for INIZIO, the company behind Collabim.",
+  "sec_links": "Project sources",
+  "links_title": "Links",
+  "l_demo": "Live app",
+  "l_demo_d": "inizio-serp-kotolup.vercel.app",
+  "l_git": "Source code",
+  "l_git_d": "GitHub · tetiana-a/Inizio-test",
+  "l_vid": "Video walkthrough",
+  "l_vid_d": "Demo, code and green tests (in Czech)",
+  "sec_gal": "Screenshots",
+  "gal_title": "How it looks",
+  "g1": "Light theme — results for “kávovar”",
+  "g2": "Dark theme with the gold radio player",
+  "g3": "Mobile, 390 px — dark and light",
+  "g4": "Green end-to-end tests in VS Code",
+  "sec_ctx": "About the project",
+  "ctx_title": "Task and approach",
+  "ctx_p1": "The brief: an HTML page with one input, a keyword in, page-1 organic Google results out, downloadable in a structured format, covered by unit tests, deployed online, with an optional Docker Compose setup.",
+  "ctx_p2": "<strong>Approach:</strong> Google blocks plain scraping from cloud servers with CAPTCHA and the official Custom Search API is closed to new customers, so the data come from a SERP API behind a swappable provider interface. Everything else — filtering, normalisation, export, tests and deployment — is my own code.",
+  "pipe0": "Keyword",
+  "pipe1": "Validation",
+  "pipe2": "SerpApi · google.cz",
+  "pipe3": "Organic only",
+  "pipe4": "Resolve /goto links",
+  "pipe5": "JSON · CSV",
+  "sec_test": "Quick tour",
+  "test_title": "How to try it",
+  "s1t": "Open the app",
+  "s1d": "Open the live app; it works on phone, tablet and desktop.",
+  "s2t": "Enter a keyword",
+  "s2d": "Type e.g. “kávovar brno” and press Enter or Vyhledat.",
+  "s3t": "Read the results",
+  "s3d": "Each result shows position, title, URL, domain and snippet — ads and other blocks are left out.",
+  "s4t": "Download",
+  "s4d": "Save the same data as JSON or CSV; the CSV opens correctly in Excel, diacritics included.",
+  "sec_feat": "Features",
+  "feat_title": "What it does",
+  "f1t": "Organic results only",
+  "f1d": "Ads, local results, “People also ask” and the knowledge panel are filtered out; duplicates and invalid URLs removed, positions renumbered 1…n.",
+  "f2t": "JSON & CSV export",
+  "f2d": "CSV by RFC 4180 with UTF‑8 BOM for Excel and protection against CSV injection.",
+  "f3t": "Google /goto links",
+  "f3d": "Since August 2026 Google hides part of the links behind google.com/goto; the app resolves the real target, with a safe fallback.",
+  "f4t": "Swappable data source",
+  "f4d": "A SerpProvider interface with two implementations — SerpApi and Serper.",
+  "f5t": "Cache & rate limit",
+  "f5d": "10‑minute cache, so viewing and downloading cost one API call; 60 requests per 15 min per IP and clear error codes.",
+  "f6t": "Unit tests",
+  "f6d": "61 tests in Vitest and Supertest without network access; the CSV is read back by an independent parser and must match.",
+  "f7t": "E2E & accessibility",
+  "f7d": "Playwright on 9 devices from iPhone SE to 1920 px, axe‑core check against WCAG 2.2 AA in both themes, keyboard control.",
+  "f8t": "Design & radio",
+  "f8d": "Light and dark gold theme, animated canvas background, liquid glass, radio (Czech Radio Jazz and D‑dur, Radio Paradise, generative ambient) that plays only after a click.",
+  "sec_arch": "Stack",
+  "arch_title": "Architecture",
+  "arch_desc": "Node.js 22, TypeScript and Express 5 on the server; plain HTML, CSS and JavaScript on the page. Docker Compose for local development, tests in GitHub Actions, every push to main deploys automatically to Vercel. The API key lives only in Vercel environment variables — never in the code.",
+  "sec_res": "In numbers",
+  "res_title": "Engineering at a glance",
+  "r1n": "61",
+  "r1l": "unit tests",
+  "r2n": "243",
+  "r2l": "e2e runs (27 tests × 9 devices)",
+  "r3n": "320–2560",
+  "r3l": "px responsive range",
+  "r4n": "WCAG 2.2",
+  "r4l": "AA accessibility check",
+  "note_t": "Honest note",
+  "note_d": "Results come through SerpApi (free tier: 250 searches a month) for google.cz from the provider’s location, so they can differ from your personal Google. The screenshots use a saved real SerpApi response, the same one the automated tests use.",
+  "sec_author": "Author",
+  "author_p": "Designed and built by <strong>Tetiana Kotolup</strong> — AI Automation &amp; Full‑Stack Developer."
+ },
+ "cs": {
+  "nav_back": "Zpět na portfolio",
+  "hero_type": "Praktický test · INIZIO Internet Media",
+  "hero_title": "SERP extraktor — <em>organické výsledky Google, 1. strana</em>",
+  "hero_desc": "Stránka s jedním vstupním polem: zadáte klíčové slovo a dostanete organické výsledky z 1. strany Google (google.cz) — bez reklam, mapy a „Lidé se také ptají“. Výsledky lze stáhnout jako JSON nebo CSV. Vznikl jako praktický test pro INIZIO, firmu za Collabimem.",
+  "sec_links": "Zdroje projektu",
+  "links_title": "Odkazy",
+  "l_demo": "Živá aplikace",
+  "l_demo_d": "inizio-serp-kotolup.vercel.app",
+  "l_git": "Zdrojový kód",
+  "l_git_d": "GitHub · tetiana-a/Inizio-test",
+  "l_vid": "Video",
+  "l_vid_d": "Ukázka, kód a zelené testy (česky)",
+  "sec_gal": "Snímky obrazovky",
+  "gal_title": "Jak to vypadá",
+  "g1": "Světlý motiv — výsledky pro „kávovar“",
+  "g2": "Tmavý motiv se zlatým rádiem",
+  "g3": "Mobil, 390 px — tmavý a světlý",
+  "g4": "Zelené end‑to‑end testy ve VS Code",
+  "sec_ctx": "O projektu",
+  "ctx_title": "Zadání a přístup",
+  "ctx_p1": "Zadání: HTML stránka s jedním inputem, zadám klíčové slovo a dostanu organické výsledky z 1. strany Google ve strojově čitelném formátu, pokrytí unit testy, nasazení na internet a volitelně Docker Compose.",
+  "ctx_p2": "<strong>Přístup:</strong> Google blokuje jednoduché stahování z cloudových serverů CAPTCHOU a oficiální Custom Search API je pro nové zákazníky uzavřené, proto data přicházejí přes SERP API za vyměnitelným rozhraním. Vše ostatní — filtrování, normalizace, export, testy a nasazení — je můj vlastní kód.",
+  "pipe0": "Klíčové slovo",
+  "pipe1": "Validace",
+  "pipe2": "SerpApi · google.cz",
+  "pipe3": "Jen organické",
+  "pipe4": "Rozbalení /goto",
+  "pipe5": "JSON · CSV",
+  "sec_test": "Rychlá prohlídka",
+  "test_title": "Jak vyzkoušet",
+  "s1t": "Otevřete aplikaci",
+  "s1d": "Otevřete živou aplikaci; funguje na mobilu, tabletu i počítači.",
+  "s2t": "Zadejte slovo",
+  "s2d": "Napište např. „kávovar brno“ a stiskněte Enter nebo Vyhledat.",
+  "s3t": "Prohlédněte výsledky",
+  "s3d": "Každý výsledek má pozici, titulek, URL, doménu a popisek — reklamy a jiné bloky ne.",
+  "s4t": "Stáhněte",
+  "s4d": "Stejná data uložíte jako JSON nebo CSV; CSV se správně otevře v Excelu i s diakritikou.",
+  "sec_feat": "Funkce",
+  "feat_title": "Co umí",
+  "f1t": "Jen organické výsledky",
+  "f1d": "Reklamy, místní výsledky, „Lidé se také ptají“ a znalostní panel se vyřadí; duplicity a neplatné URL pryč, pozice 1…n.",
+  "f2t": "Export JSON a CSV",
+  "f2d": "CSV podle RFC 4180 s UTF‑8 BOM pro Excel a ochranou proti CSV injection.",
+  "f3t": "Odkazy Google /goto",
+  "f3d": "Od srpna 2026 Google skrývá část odkazů za google.com/goto; aplikace zjistí skutečný cíl, s bezpečnou zálohou.",
+  "f4t": "Vyměnitelný zdroj dat",
+  "f4d": "Rozhraní SerpProvider se dvěma implementacemi — SerpApi a Serper.",
+  "f5t": "Cache a rate limit",
+  "f5d": "Cache na 10 minut, takže zobrazení i stažení stojí jeden dotaz na API; 60 požadavků za 15 min z jedné IP a jasné chybové kódy.",
+  "f6t": "Unit testy",
+  "f6d": "61 testů ve Vitestu a Supertestu bez přístupu k síti; CSV načte zpět nezávislý parser a musí sedět.",
+  "f7t": "E2E a přístupnost",
+  "f7d": "Playwright na 9 zařízeních od iPhonu SE po 1920 px, kontrola axe‑core podle WCAG 2.2 AA v obou motivech, ovládání klávesnicí.",
+  "f8t": "Design a rádio",
+  "f8d": "Světlý a tmavý zlatý motiv, animované pozadí v Canvasu, tekuté sklo, rádio (ČRo Jazz a D‑dur, Radio Paradise, generativní ambient), které hraje až po kliknutí.",
+  "sec_arch": "Stack",
+  "arch_title": "Architektura",
+  "arch_desc": "Na serveru Node.js 22, TypeScript a Express 5; stránka v čistém HTML, CSS a JavaScriptu. Docker Compose pro lokální vývoj, testy v GitHub Actions, každý push do main se sám nasadí na Vercel. API klíč je jen v proměnných prostředí Vercelu — nikdy v kódu.",
+  "sec_res": "V číslech",
+  "res_title": "Inženýrství v kostce",
+  "r1n": "61",
+  "r1l": "unit testů",
+  "r2n": "243",
+  "r2l": "e2e běhů (27 testů × 9 zařízení)",
+  "r3n": "320–2560",
+  "r3l": "px responzivní rozsah",
+  "r4n": "WCAG 2.2",
+  "r4l": "kontrola přístupnosti AA",
+  "note_t": "Upřímně",
+  "note_d": "Výsledky přicházejí přes SerpApi (zdarma 250 dotazů měsíčně) pro google.cz z lokace poskytovatele, takže se mohou lišit od vašeho osobního Googlu. Snímky používají uloženou skutečnou odpověď SerpApi, stejnou jako automatické testy.",
+  "sec_author": "Autor",
+  "author_p": "Navrhla a vytvořila <strong>Tetiana Kotolup</strong> — AI Automation &amp; Full‑Stack Developer."
+ },
+ "uk": {
+  "nav_back": "Назад до портфоліо",
+  "hero_type": "Практичне тестове завдання · INIZIO Internet Media",
+  "hero_title": "SERP Extractor — <em>органічні результати Google, 1 сторінка</em>",
+  "hero_desc": "Сторінка з одним полем вводу: вводите ключове слово й отримуєте органічні результати з першої сторінки Google (google.cz) — без реклами, карти й блоку «Люди також питають». Результати можна завантажити в JSON або CSV. Створено як практичне завдання для INIZIO — компанії, що стоїть за Collabim.",
+  "sec_links": "Джерела проєкту",
+  "links_title": "Посилання",
+  "l_demo": "Робочий застосунок",
+  "l_demo_d": "inizio-serp-kotolup.vercel.app",
+  "l_git": "Вихідний код",
+  "l_git_d": "GitHub · tetiana-a/Inizio-test",
+  "l_vid": "Відео",
+  "l_vid_d": "Демо, код і зелені тести (чеською)",
+  "sec_gal": "Скриншоти",
+  "gal_title": "Як це виглядає",
+  "g1": "Світла тема — результати для «kávovar»",
+  "g2": "Темна тема із золотим радіо",
+  "g3": "Мобільна версія, 390 px — темна і світла",
+  "g4": "Зелені end‑to‑end тести у VS Code",
+  "sec_ctx": "Про проєкт",
+  "ctx_title": "Завдання і підхід",
+  "ctx_p1": "Завдання: HTML-сторінка з одним полем, ввожу ключове слово й отримую органічні результати з 1 сторінки Google у структурованому форматі, юніт-тести, розміщення в інтернеті й за бажанням Docker Compose.",
+  "ctx_p2": "<strong>Підхід:</strong> Google блокує простий парсинг із хмарних серверів через CAPTCHA, а офіційний Custom Search API закритий для нових клієнтів, тому дані надходять через SERP API за змінним інтерфейсом. Усе інше — фільтрація, нормалізація, експорт, тести й деплой — мій власний код.",
+  "pipe0": "Ключове слово",
+  "pipe1": "Валідація",
+  "pipe2": "SerpApi · google.cz",
+  "pipe3": "Лише органічні",
+  "pipe4": "Розв’язання /goto",
+  "pipe5": "JSON · CSV",
+  "sec_test": "Швидкий огляд",
+  "test_title": "Як спробувати",
+  "s1t": "Відкрийте застосунок",
+  "s1d": "Відкрийте робочий застосунок; він працює на телефоні, планшеті й комп’ютері.",
+  "s2t": "Введіть слово",
+  "s2d": "Наприклад «kávovar brno» і натисніть Enter або Vyhledat.",
+  "s3t": "Перегляньте результати",
+  "s3d": "У кожного результату є позиція, заголовок, URL, домен і опис — реклами та інших блоків немає.",
+  "s4t": "Завантажте",
+  "s4d": "Ті самі дані зберігаються в JSON або CSV; CSV правильно відкривається в Excel разом із діакритикою.",
+  "sec_feat": "Можливості",
+  "feat_title": "Що вміє",
+  "f1t": "Лише органічні результати",
+  "f1d": "Реклама, локальні результати, «Люди також питають» і панель знань відфільтровуються; дублікати й неправильні URL прибираються, позиції 1…n.",
+  "f2t": "Експорт JSON і CSV",
+  "f2d": "CSV за RFC 4180 з UTF‑8 BOM для Excel і захистом від CSV-ін’єкцій.",
+  "f3t": "Посилання Google /goto",
+  "f3d": "З серпня 2026 Google ховає частину посилань за google.com/goto; застосунок знаходить справжню адресу, з безпечним запасним варіантом.",
+  "f4t": "Змінне джерело даних",
+  "f4d": "Інтерфейс SerpProvider з двома реалізаціями — SerpApi і Serper.",
+  "f5t": "Кеш і обмеження запитів",
+  "f5d": "Кеш на 10 хвилин, тож перегляд і завантаження коштують один запит до API; 60 запитів за 15 хв з однієї IP і зрозумілі коди помилок.",
+  "f6t": "Юніт-тести",
+  "f6d": "61 тест у Vitest і Supertest без доступу до мережі; CSV зчитує назад незалежний парсер, і дані мають збігатися.",
+  "f7t": "E2E і доступність",
+  "f7d": "Playwright на 9 пристроях від iPhone SE до 1920 px, перевірка axe‑core за WCAG 2.2 AA в обох темах, керування з клавіатури.",
+  "f8t": "Дизайн і радіо",
+  "f8d": "Світла й темна золота тема, анімований фон на Canvas, «рідке скло», радіо (ČRo Jazz і D‑dur, Radio Paradise, генеративний ambient), яке вмикається лише після кліку.",
+  "sec_arch": "Стек",
+  "arch_title": "Архітектура",
+  "arch_desc": "На сервері Node.js 22, TypeScript і Express 5; сторінка на чистому HTML, CSS і JavaScript. Docker Compose для локальної розробки, тести в GitHub Actions, кожен push у main автоматично публікується на Vercel. API-ключ зберігається лише у змінних середовища Vercel — ніколи в коді.",
+  "sec_res": "У цифрах",
+  "res_title": "Інженерія коротко",
+  "r1n": "61",
+  "r1l": "юніт-тест",
+  "r2n": "243",
+  "r2l": "e2e-запуски (27 тестів × 9 пристроїв)",
+  "r3n": "320–2560",
+  "r3l": "px адаптивний діапазон",
+  "r4n": "WCAG 2.2",
+  "r4l": "перевірка доступності AA",
+  "note_t": "Чесно",
+  "note_d": "Результати надходять через SerpApi (безкоштовно 250 пошуків на місяць) для google.cz з локації провайдера, тому можуть відрізнятися від вашого особистого Google. На скриншотах — збережена справжня відповідь SerpApi, та сама, що в автотестах.",
+  "sec_author": "Автор",
+  "author_p": "Спроєктувала й розробила <strong>Тетяна Котолуп</strong> — AI Automation &amp; Full‑Stack Developer."
+ },
+ "ru": {
+  "nav_back": "Назад к портфолио",
+  "hero_type": "Практическое тестовое задание · INIZIO Internet Media",
+  "hero_title": "SERP Extractor — <em>органические результаты Google, 1 страница</em>",
+  "hero_desc": "Страница с одним полем ввода: вводите ключевое слово и получаете органические результаты с первой страницы Google (google.cz) — без рекламы, карты и блока «Люди также спрашивают». Результаты можно скачать в JSON или CSV. Сделано как практическое задание для INIZIO — компании, которая стоит за Collabim.",
+  "sec_links": "Источники проекта",
+  "links_title": "Ссылки",
+  "l_demo": "Рабочее приложение",
+  "l_demo_d": "inizio-serp-kotolup.vercel.app",
+  "l_git": "Исходный код",
+  "l_git_d": "GitHub · tetiana-a/Inizio-test",
+  "l_vid": "Видео",
+  "l_vid_d": "Демо, код и зелёные тесты (на чешском)",
+  "sec_gal": "Скриншоты",
+  "gal_title": "Как это выглядит",
+  "g1": "Светлая тема — результаты для «kávovar»",
+  "g2": "Тёмная тема с золотым радио",
+  "g3": "Мобильная версия, 390 px — тёмная и светлая",
+  "g4": "Зелёные end‑to‑end тесты в VS Code",
+  "sec_ctx": "О проекте",
+  "ctx_title": "Задание и подход",
+  "ctx_p1": "Задание: HTML-страница с одним полем, ввожу ключевое слово и получаю органические результаты с 1 страницы Google в структурированном формате, юнит-тесты, размещение в интернете и по желанию Docker Compose.",
+  "ctx_p2": "<strong>Подход:</strong> Google блокирует простой парсинг с облачных серверов через CAPTCHA, а официальный Custom Search API закрыт для новых клиентов, поэтому данные приходят через SERP API за сменным интерфейсом. Всё остальное — фильтрация, нормализация, экспорт, тесты и деплой — мой собственный код.",
+  "pipe0": "Ключевое слово",
+  "pipe1": "Валидация",
+  "pipe2": "SerpApi · google.cz",
+  "pipe3": "Только органика",
+  "pipe4": "Разбор /goto",
+  "pipe5": "JSON · CSV",
+  "sec_test": "Быстрый обзор",
+  "test_title": "Как попробовать",
+  "s1t": "Откройте приложение",
+  "s1d": "Откройте рабочее приложение; оно работает на телефоне, планшете и компьютере.",
+  "s2t": "Введите слово",
+  "s2d": "Например «kávovar brno» и нажмите Enter или Vyhledat.",
+  "s3t": "Посмотрите результаты",
+  "s3d": "У каждого результата есть позиция, заголовок, URL, домен и описание — рекламы и других блоков нет.",
+  "s4t": "Скачайте",
+  "s4d": "Те же данные сохраняются в JSON или CSV; CSV правильно открывается в Excel вместе с диакритикой.",
+  "sec_feat": "Возможности",
+  "feat_title": "Что умеет",
+  "f1t": "Только органические результаты",
+  "f1d": "Реклама, локальные результаты, «Люди также спрашивают» и панель знаний отфильтровываются; дубликаты и неверные URL убираются, позиции 1…n.",
+  "f2t": "Экспорт JSON и CSV",
+  "f2d": "CSV по RFC 4180 с UTF‑8 BOM для Excel и защитой от CSV-инъекций.",
+  "f3t": "Ссылки Google /goto",
+  "f3d": "С августа 2026 Google прячет часть ссылок за google.com/goto; приложение находит настоящий адрес, с безопасным запасным вариантом.",
+  "f4t": "Сменный источник данных",
+  "f4d": "Интерфейс SerpProvider с двумя реализациями — SerpApi и Serper.",
+  "f5t": "Кэш и лимит запросов",
+  "f5d": "Кэш на 10 минут, поэтому просмотр и скачивание стоят один запрос к API; 60 запросов за 15 мин с одного IP и понятные коды ошибок.",
+  "f6t": "Юнит-тесты",
+  "f6d": "61 тест в Vitest и Supertest без доступа к сети; CSV читает обратно независимый парсер, и данные должны совпасть.",
+  "f7t": "E2E и доступность",
+  "f7d": "Playwright на 9 устройствах от iPhone SE до 1920 px, проверка axe‑core по WCAG 2.2 AA в обеих темах, управление с клавиатуры.",
+  "f8t": "Дизайн и радио",
+  "f8d": "Светлая и тёмная золотая тема, анимированный фон на Canvas, «жидкое стекло», радио (ČRo Jazz и D‑dur, Radio Paradise, генеративный ambient), которое включается только по клику.",
+  "sec_arch": "Стек",
+  "arch_title": "Архитектура",
+  "arch_desc": "На сервере Node.js 22, TypeScript и Express 5; страница на чистом HTML, CSS и JavaScript. Docker Compose для локальной разработки, тесты в GitHub Actions, каждый push в main автоматически публикуется на Vercel. API-ключ хранится только в переменных окружения Vercel — никогда в коде.",
+  "sec_res": "В цифрах",
+  "res_title": "Инженерия коротко",
+  "r1n": "61",
+  "r1l": "юнит-тест",
+  "r2n": "243",
+  "r2l": "e2e-запуска (27 тестов × 9 устройств)",
+  "r3n": "320–2560",
+  "r3l": "px адаптивный диапазон",
+  "r4n": "WCAG 2.2",
+  "r4l": "проверка доступности AA",
+  "note_t": "Честно",
+  "note_d": "Результаты приходят через SerpApi (бесплатно 250 поисков в месяц) для google.cz из локации провайдера, поэтому могут отличаться от вашего личного Google. На скриншотах — сохранённый настоящий ответ SerpApi, тот же, что в автотестах.",
+  "sec_author": "Автор",
+  "author_p": "Спроектировала и разработала <strong>Тетяна Котолуп</strong> — AI Automation &amp; Full‑Stack Developer."
+ },
+ "it": {
+  "nav_back": "Torna al portfolio",
+  "hero_type": "Test pratico di selezione · INIZIO Internet Media",
+  "hero_title": "SERP Extractor — <em>risultati organici Google, pagina 1</em>",
+  "hero_desc": "Una pagina con un solo campo: inserisci una parola chiave e ottieni i risultati organici della prima pagina di Google (google.cz) — senza annunci, mappa e «Le persone chiedono anche». I risultati si scaricano in JSON o CSV. Realizzato come test pratico per INIZIO, l’azienda dietro Collabim.",
+  "sec_links": "Fonti del progetto",
+  "links_title": "Link",
+  "l_demo": "App online",
+  "l_demo_d": "inizio-serp-kotolup.vercel.app",
+  "l_git": "Codice sorgente",
+  "l_git_d": "GitHub · tetiana-a/Inizio-test",
+  "l_vid": "Video",
+  "l_vid_d": "Demo, codice e test verdi (in ceco)",
+  "sec_gal": "Screenshot",
+  "gal_title": "Come appare",
+  "g1": "Tema chiaro — risultati per «kávovar»",
+  "g2": "Tema scuro con la radio dorata",
+  "g3": "Mobile, 390 px — scuro e chiaro",
+  "g4": "Test end‑to‑end verdi in VS Code",
+  "sec_ctx": "Il progetto",
+  "ctx_title": "Compito e approccio",
+  "ctx_p1": "Il compito: una pagina HTML con un input, inserisco una parola chiave e ottengo i risultati organici della 1ª pagina di Google in un formato strutturato, con unit test, pubblicata online e, facoltativamente, Docker Compose.",
+  "ctx_p2": "<strong>Approccio:</strong> Google blocca lo scraping semplice dai server cloud con il CAPTCHA e la Custom Search API ufficiale è chiusa ai nuovi clienti, quindi i dati arrivano da una SERP API dietro un’interfaccia sostituibile. Tutto il resto — filtri, normalizzazione, export, test e deploy — è codice mio.",
+  "pipe0": "Parola chiave",
+  "pipe1": "Validazione",
+  "pipe2": "SerpApi · google.cz",
+  "pipe3": "Solo organici",
+  "pipe4": "Risoluzione /goto",
+  "pipe5": "JSON · CSV",
+  "sec_test": "Tour rapido",
+  "test_title": "Come provarlo",
+  "s1t": "Apri l’app",
+  "s1d": "Apri l’app online; funziona su telefono, tablet e computer.",
+  "s2t": "Inserisci una parola",
+  "s2d": "Ad esempio «kávovar brno», poi Invio o Vyhledat.",
+  "s3t": "Leggi i risultati",
+  "s3d": "Ogni risultato ha posizione, titolo, URL, dominio e descrizione — senza annunci e altri blocchi.",
+  "s4t": "Scarica",
+  "s4d": "Gli stessi dati si salvano in JSON o CSV; il CSV si apre correttamente in Excel, diacritici inclusi.",
+  "sec_feat": "Funzionalità",
+  "feat_title": "Cosa fa",
+  "f1t": "Solo risultati organici",
+  "f1d": "Annunci, risultati locali, «Le persone chiedono anche» e il pannello informativo vengono esclusi; duplicati e URL non validi rimossi, posizioni 1…n.",
+  "f2t": "Export JSON e CSV",
+  "f2d": "CSV secondo RFC 4180 con BOM UTF‑8 per Excel e protezione contro la CSV injection.",
+  "f3t": "Link Google /goto",
+  "f3d": "Da agosto 2026 Google nasconde parte dei link dietro google.com/goto; l’app trova la destinazione reale, con un fallback sicuro.",
+  "f4t": "Fonte dati sostituibile",
+  "f4d": "Interfaccia SerpProvider con due implementazioni — SerpApi e Serper.",
+  "f5t": "Cache e rate limit",
+  "f5d": "Cache di 10 minuti, così visualizzazione e download costano una sola chiamata API; 60 richieste ogni 15 min per IP e codici di errore chiari.",
+  "f6t": "Unit test",
+  "f6d": "61 test con Vitest e Supertest senza accesso alla rete; il CSV viene riletto da un parser indipendente e deve coincidere.",
+  "f7t": "E2E e accessibilità",
+  "f7d": "Playwright su 9 dispositivi da iPhone SE a 1920 px, verifica axe‑core secondo WCAG 2.2 AA in entrambi i temi, uso da tastiera.",
+  "f8t": "Design e radio",
+  "f8d": "Tema chiaro e scuro dorato, sfondo animato in Canvas, vetro liquido, radio (ČRo Jazz e D‑dur, Radio Paradise, ambient generativo) che parte solo dopo un clic.",
+  "sec_arch": "Stack",
+  "arch_title": "Architettura",
+  "arch_desc": "Sul server Node.js 22, TypeScript ed Express 5; la pagina in HTML, CSS e JavaScript puri. Docker Compose per lo sviluppo locale, test in GitHub Actions, ogni push su main va online automaticamente su Vercel. La chiave API sta solo nelle variabili d’ambiente di Vercel — mai nel codice.",
+  "sec_res": "In numeri",
+  "res_title": "Ingegneria in breve",
+  "r1n": "61",
+  "r1l": "unit test",
+  "r2n": "243",
+  "r2l": "esecuzioni e2e (27 test × 9 dispositivi)",
+  "r3n": "320–2560",
+  "r3l": "px intervallo responsive",
+  "r4n": "WCAG 2.2",
+  "r4l": "verifica accessibilità AA",
+  "note_t": "Nota onesta",
+  "note_d": "I risultati arrivano tramite SerpApi (gratis 250 ricerche al mese) per google.cz dalla posizione del provider, quindi possono differire dal tuo Google personale. Gli screenshot usano una risposta reale di SerpApi salvata, la stessa dei test automatici.",
+  "sec_author": "Autore",
+  "author_p": "Progettato e realizzato da <strong>Tetiana Kotolup</strong> — AI Automation &amp; Full‑Stack Developer."
+ }
+};
+
+const store = {get(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const root = document.documentElement;
+
+function applyLang(lang){
+  if(!i18n[lang]) lang='cs';
+  const t = i18n[lang];
+  root.setAttribute('data-lang',lang); root.setAttribute('lang',lang==='uk'?'uk':lang);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(t[k]!==undefined) el.innerHTML=t[k];});
+  document.querySelectorAll('[data-lang]').forEach(b=>{ if(b.classList.contains('lang-btn')) b.classList.toggle('active',b.getAttribute('data-lang')===lang);});
+  store.set('inizio-lang',lang);
+}
+document.querySelectorAll('.lang-btn').forEach(b=>b.addEventListener('click',()=>applyLang(b.getAttribute('data-lang'))));
+
+document.getElementById('themeBtn').addEventListener('click',()=>{
+  const next = root.getAttribute('data-theme')==='dark'?'light':'dark';
+  root.setAttribute('data-theme',next); store.set('inizio-theme',next);
+});
+
+const audioBtn=document.getElementById('audioBtn'), bgMusic=document.getElementById('bgMusic');
+audioBtn.addEventListener('click',()=>{
+  if(bgMusic.paused){ bgMusic.play().then(()=>audioBtn.classList.add('playing')).catch(()=>{}); }
+  else { bgMusic.pause(); audioBtn.classList.remove('playing'); }
+});
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+
+root.setAttribute('data-theme', store.get('inizio-theme','dark')==='light'?'light':'dark');
+applyLang(store.get('inizio-lang','cs'));
+
+(function(){
+  if(window.matchMedia('(hover:hover)').matches){
+    const dot=document.getElementById('cursor-dot'),ring=document.getElementById('cursor-ring');let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'},{passive:true});
+    (function a(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(a)})();
+    document.querySelectorAll('a,button,.glass,.pill,.tag').forEach(el=>{el.addEventListener('mouseenter',()=>{ring.style.width=ring.style.height='60px'});el.addEventListener('mouseleave',()=>{ring.style.width=ring.style.height='40px'})});
+  }
+  const pc=document.getElementById('particles'),cs=['#5fbf8f','#e0b45a','#ef7f45','#3fc1c0','#4ea8de','#9b86f0','#e5648f'];
+  for(let i=0;i<18;i++){const p=document.createElement('div');p.className='particle';p.style.setProperty('--c',cs[i%cs.length]);p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*15+'s';p.style.animationDuration=(10+Math.random()*10)+'s';pc.appendChild(p)}
+})();
+
+
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  // scroll progress fallback
+  if(!CSS.supports('animation-timeline:scroll()')){
+    const pr=document.querySelector('.progress');
+    const f=()=>{const h=document.documentElement;pr.style.transform='scaleX('+(h.scrollTop/(h.scrollHeight-h.clientHeight||1))+')'};
+    addEventListener('scroll',f,{passive:true});f();
+  }
+  if(reduce||!fine) return;
+  // spotlight + 3D tilt
+  document.querySelectorAll('.glass').forEach(el=>{
+    el.addEventListener('pointermove',e=>{
+      const r=el.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      el.style.setProperty('--mx',x+'px');el.style.setProperty('--my',y+'px');
+      const rx=((y/r.height)-.5)*-6,ry=((x/r.width)-.5)*6;
+      el.style.transform='perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)';
+    });
+    el.addEventListener('pointerleave',()=>{el.style.transform=''});
+  });
+  // magnetic nav buttons
+  document.querySelectorAll('.icon-btn').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.25)+'px)'});
+    b.addEventListener('pointerleave',()=>{b.style.transform=''});
+  });
+  // hero parallax
+  const hero=document.querySelector('.hero .wrap');
+  addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5),y=(e.clientY/innerHeight-.5);document.querySelectorAll('.blob-3,.blob-4').forEach((b,i)=>{b.style.translate=(x*(i?-60:60))+'px '+(y*(i?-60:60))+'px'})},{passive:true});
+})();
+</script>
+<script>
+// Video link: set VIDEO_URL once the walkthrough is uploaded; card stays hidden until then.
+const VIDEO_URL = "";
+if (VIDEO_URL) { const v = document.getElementById('videoLink'); v.href = VIDEO_URL; v.hidden = false; }
+</script>
+</body>
+</html>
