@@ -315,7 +315,7 @@ h2{background:linear-gradient(90deg,var(--txt) 0 60%,color-mix(in srgb,var(--c2)
       <span class="vline"></span>
       <p class="vlines"><span data-i18n="vid_l1">Organické výsledky Google.</span><br><span data-i18n="vid_l2">Export JSON a CSV.</span><br><span data-i18n="vid_l3">Zelené unit a e2e testy.</span></p>
     </div>
-    <div class="vframe" data-drive="1mTD0QL_CPiguN6M_ytDC53qgFpP6fKc1">
+    <div class="vframe" data-yt="VY6kVsZMdRU">
       <img src="img/inizio/video-poster.webp" alt="" width="1280" height="720" loading="lazy" decoding="async">
       <button class="vplay" type="button" aria-label="Přehrát video"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></button>
     </div>
@@ -971,12 +971,12 @@ applyLang(store.get('inizio-lang','cs'));
 </script>
 <script>
 // Video link: set VIDEO_URL once the walkthrough is uploaded; card stays hidden until then.
-const VIDEO_URL = "https://drive.google.com/file/d/1mTD0QL_CPiguN6M_ytDC53qgFpP6fKc1/view";
+const VIDEO_URL = "https://youtu.be/VY6kVsZMdRU";
 if (VIDEO_URL) { const v = document.getElementById('videoLink'); v.href = VIDEO_URL; v.hidden = false; }
 document.querySelectorAll('.vframe').forEach(f=>f.addEventListener('click',()=>{
   if(f.querySelector('iframe'))return;
-  const i=document.createElement('iframe');i.src='https://drive.google.com/file/d/'+f.dataset.drive+'/preview';
-  i.allow='autoplay; fullscreen';i.allowFullscreen=true;i.title='Video';f.classList.add('on');f.appendChild(i);
+  const i=document.createElement('iframe');i.src='https://www.youtube-nocookie.com/embed/'+f.dataset.yt+'?autoplay=1&rel=0&modestbranding=1';
+  i.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';i.allowFullscreen=true;i.title='Video';f.classList.add('on');f.appendChild(i);
 }));
 </script>
 </body>
