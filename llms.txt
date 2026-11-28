@@ -1,0 +1,35 @@
+# Tetiana Kotolup — IT Specialist (AI automation & full-stack development)
+
+> Tetiana Kotolup is an IT specialist based in Brno, Czech Republic. She builds n8n workflow automations, AI voice agents, Telegram AI bots and full-stack web applications with OpenAI and Anthropic Claude, Node.js, TypeScript, React and PostgreSQL/Supabase. She works in Czech, English, Ukrainian and Russian and is open to full-time roles in Brno, Prague or remote, and to freelance projects.
+
+Name: Tetiana Kotolup (Ukrainian: Тетяна Котолуп). Online handle: tetiana.dev, GitHub: tetiana-a.
+Location: Brno, Czech Republic.
+Contact: kotolup24@gmail.com · +420 608 317 700
+Profiles: [LinkedIn](https://www.linkedin.com/in/tetiana-kotolup/) · [GitHub](https://github.com/tetiana-a) · [YouTube](https://www.youtube.com/@TetianaKotolup) · [Instagram](https://www.instagram.com/tetiana.dev/)
+
+## Main page
+
+- [Portfolio](https://tetianakotolup.com/): experience, skills, certificates, all projects and FAQ in five languages (CZ, EN, UA, RU, IT)
+
+## Featured case studies
+
+- [SERP Extractor (INIZIO practical test)](https://tetianakotolup.com/20.html): one-input web app returning organic Google page-1 results as JSON/CSV; Node.js, TypeScript, Express; 61 unit tests, Playwright end-to-end tests on 9 devices, WCAG 2.2 AA check; built with AI assistance (Claude), stated openly
+- [AI Trading Journal](https://tetianakotolup.com/19.html): personal trading workspace with strategy desk, pre-trade risk sizing, performance dashboard, MT5 import and server-side AI reviews; vanilla JavaScript and Supabase
+- [AURELIUS — Universal AI Search Agent](https://tetianakotolup.com/18.html): demo of an AI research agent — one query to sources, evidence checks, deduplication, CSV/XLSX/PDF/JSON export, Telegram delivery; Next.js, TypeScript
+- [RealityPraha — AI ticket routing & SLA agent](https://tetianakotolup.com/17.html): classifies client e-mails for a real-estate office, assigns an owner, calculates SLA deadlines and escalates; n8n + OpenAI
+- [Apulia Olive Oil CZ](https://tetianakotolup.com/16.html): multilingual e-shop — product data, payment gateway, Google Ads, GDPR Consent Mode v2
+
+## Other projects
+
+- [GrowthLab AI](https://tetianakotolup.com/15.html)
+- [LegisFlow](https://tetianakotolup.com/14.html): AI document compliance analysis
+- [AI CRM](https://tetianakotolup.com/13.html)
+- [WealthMirror AI](https://tetianakotolup.com/12.html)
+- [n8n automations](https://tetianakotolup.com/2.html): reports, Telegram alerts, Google Calendar and Drive integrations (pages 1–10)
+
+## Experience (short)
+
+- VIA BASILICATA — AI & digital project specialist, part-time (DPČ), since 09/2026: digital marketing, website management, content
+- HAPP — AI automation, freelance/contract, 04/2026–06/2026: n8n workflows, AI voice assistants, Telegram AI bots, API and CRM integrations
+- Earlier career outside IT: textile production, electrical assembly, sales, road freight transport
+- Education: Junior Specialist diploma in Computer Systems Technology (2017), nostrified in the Czech Republic
